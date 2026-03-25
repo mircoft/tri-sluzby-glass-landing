@@ -3,6 +3,988 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">AirLens Photo - thedesigns.org</title>
+  <meta name="description" content="Portfólio fotografií + profesionálna produkcia. SK/DE." />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --ink: #0b0b0f;
+      --muted: rgba(11,11,15,0.64);
+      --hair: rgba(11,11,15,0.12);
+      --card: rgba(255,255,255,0.85);
+      --shadow: rgba(0,0,0,0.08);
+      --accent: #0b0b0f;
+      --accent2: #111827;
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1180px;
+      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x:hidden;
+    }
+
+    /* Subtle grain to mimic template polish */
+    .grain{
+      position:fixed; inset:0; pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+      opacity:0.08;
+      z-index:0;
+    }
+    .wrap{width:min(var(--max), 92%); margin:0 auto; position:relative; z-index:1;}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid var(--hair);
+    }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+      line-height:1.05;
+    }
+    .brand b{
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      letter-spacing:0.02em;
+    }
+    .brand span{
+      font-size:0.92rem;
+      color: var(--muted);
+    }
+    nav{
+      display:flex; gap: 18px; flex-wrap:wrap; align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      color: rgba(11,11,15,0.78);
+      font-weight:650;
+      font-size:0.93rem;
+      padding: 8px 0;
+      position:relative;
+    }
+    nav a::after{
+      content:"";
+      position:absolute; left:0; bottom:2px;
+      width:100%; height:2px;
+      background: rgba(11,11,15,0.85);
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: transform .18s ease;
+      opacity:0.9;
+    }
+    nav a:hover::after{ transform: scaleX(1); }
+
+    .lang-switch{display:flex; gap: 8px; align-items:center;}
+    .lang-btn{
+      border: 1px solid var(--hair);
+      background: rgba(255,255,255,0.9);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-weight: 750;
+      letter-spacing:0.12em;
+      font-size: 0.78rem;
+      cursor:pointer;
+      transition: background .15s ease, transform .15s ease, border-color .15s ease;
+    }
+    .lang-btn:hover{transform: translateY(-1px); border-color: rgba(11,11,15,0.22); background: rgba(255,255,255,1);}
+    .lang-btn.active{
+      background: rgba(11,11,15,0.92);
+      color:#fff;
+      border-color: rgba(11,11,15,0.92);
+    }
+
+    /* Buttons */
+    .btn-row{display:flex; gap: 12px; flex-wrap:wrap; margin-top: 18px;}
+    .btn{
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(11,11,15,0.14);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 900;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      box-shadow: 0 16px 40px -24px var(--shadow);
+    }
+    .btn:hover{transform: translateY(-2px); box-shadow: 0 22px 60px -36px rgba(0,0,0,0.14);}
+    .btn.primary{
+      background: var(--ink);
+      color:#fff;
+      border-color: rgba(11,11,15,0.9);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 44px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 24px;
+      align-items:start;
+    }
+    .kicker{
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(11,11,15,0.62);
+      font-size: 0.78rem;
+    }
+    .hero h1{
+      font-family: var(--serif);
+      font-weight: 520;
+      font-size: clamp(2.2rem, 4.2vw, 3.7rem);
+      line-height: 1.02;
+      margin-top: 12px;
+    }
+    .hero p{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.6;
+      max-width: 65ch;
+    }
+
+    .hero-media{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border: 1px solid rgba(11,11,15,0.12);
+      box-shadow: 0 30px 80px -60px rgba(0,0,0,0.26);
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));
+      position:relative;
+      min-height: 340px;
+    }
+    .hero-media img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      filter: grayscale(1) contrast(1.04) saturate(0.25) brightness(0.98);
+      transform: scale(1.03);
+      transition: filter .35s ease, transform .35s ease;
+    }
+    .hero-media::after{
+      content:"";
+      position:absolute; inset:-15%;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,210,120,0.28), transparent 22%),
+        radial-gradient(circle at 70% 35%, rgba(255,255,255,0.22), transparent 25%),
+        radial-gradient(circle at 42% 78%, rgba(120,190,255,0.20), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.28));
+      filter: blur(22px);
+      opacity: 0.95;
+      transform: translateY(calc(var(--py, 0px) * 0.65));
+      pointer-events:none;
+    }
+    .hero-media:hover img{
+      filter: grayscale(0.08) contrast(1.09) saturate(1.08) brightness(1.02);
+      transform: scale(1.01);
+    }
+    .hero-media:hover::after{
+      transform: translateY(calc(var(--py, 0px) * 0.42));
+    }
+
+    /* Sections */
+    section{padding: 30px 0;}
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end; gap: 18px; flex-wrap:wrap;
+      margin-bottom: 16px;
+    }
+    .section-head h2{
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 550;
+    }
+    .section-head p{
+      color: var(--muted);
+      max-width: 70ch;
+      line-height:1.55;
+    }
+    .card-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card{
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(11,11,15,0.12);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 18px 45px -30px rgba(0,0,0,0.12);
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      min-height: 190px;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(11,11,15,0.24);
+      box-shadow: 0 30px 80px -55px rgba(0,0,0,0.18);
+    }
+    .card-media{
+      height: 120px;
+      position:relative;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));
+    }
+    .card-media img{
+      width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      filter: grayscale(1) contrast(1.05) saturate(0.25) brightness(0.98);
+      transform: scale(1.04);
+      transition: filter .3s ease, transform .3s ease;
+    }
+    .card:hover .card-media img{
+      filter: grayscale(0.08) contrast(1.08) saturate(1.05) brightness(1.02);
+      transform: scale(1.01);
+    }
+    .card-body{
+      padding: 14px 14px 16px;
+    }
+    .card-body b{
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .card-body p{
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .metric{
+      border-radius: var(--radius);
+      border: 1px solid rgba(11,11,15,0.12);
+      background: rgba(255,255,255,0.86);
+      box-shadow: 0 18px 45px -30px rgba(0,0,0,0.12);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      min-height: 150px;
+    }
+    .metric::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0,0,0,0.10), transparent 35%),
+        radial-gradient(circle at 70% 20%, rgba(0,0,0,0.06), transparent 40%);
+      opacity:0.4;
+      pointer-events:none;
+      transform: translateY(calc(var(--py, 0px) * 0.3));
+    }
+    .metric b{
+      font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace);
+      letter-spacing:0.14em;
+      text-transform: uppercase;
+      font-size:0.78rem;
+      color: rgba(11,11,15,0.68);
+    }
+    .metric .num{
+      margin-top: 10px;
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .metric span{
+      display:block;
+      margin-top: 8px;
+      color: var(--muted);
+      line-height:1.5;
+      font-size: 0.95rem;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .quote{
+      border-radius: var(--radius);
+      border: 1px solid rgba(11,11,15,0.12);
+      background: rgba(255,255,255,0.86);
+      box-shadow: 0 18px 45px -30px rgba(0,0,0,0.12);
+      padding: 16px;
+      min-height: 170px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .quote p{
+      color: rgba(11,11,15,0.76);
+      line-height:1.6;
+      font-size: 0.98rem;
+    }
+    .quote footer{
+      margin-top: 12px;
+      display:flex; gap: 10px; align-items:center; justify-content:space-between;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .avatar{
+      width: 34px; height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,11,15,0.12);
+      background: linear-gradient(180deg, rgba(11,11,15,0.08), rgba(11,11,15,0.02));
+    }
+    .avatar::after{
+      content:"";
+      display:block;
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      background: rgba(11,11,15,0.26);
+      margin: 12px auto 0;
+    }
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    details{
+      border-radius: var(--radius);
+      border: 1px solid rgba(11,11,15,0.12);
+      background: rgba(255,255,255,0.86);
+      box-shadow: 0 18px 45px -30px rgba(0,0,0,0.12);
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 850;
+      color: rgba(11,11,15,0.88);
+      list-style: none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .faq p{
+      margin-top: 10px;
+      color: var(--muted);
+      line-height:1.6;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 40px;
+      border-top: 1px solid var(--hair);
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 30px;
+    }
+    .footer-grid{
+      display:flex; justify-content:space-between; align-items:center; gap: 14px; flex-wrap:wrap;
+    }
+    .footer-links{display:flex; gap: 14px; flex-wrap:wrap;}
+    .footer-links a{color: rgba(11,11,15,0.62); text-decoration:none; font-weight:700;}
+    .footer-links a:hover{text-decoration:underline}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .card-grid{grid-template-columns: 1fr;}
+      .metrics{grid-template-columns: 1fr 1fr;}
+      .testimonials{grid-template-columns: 1fr;}
+      .faq{grid-template-columns: 1fr;}
+      nav{gap: 10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap topbar">
+      <div class="brand" aria-label="AirLens brand">
+        <b>AirLens</b>
+        <span data-i18n="subline">Foto portfolio • Umelecký feel • SK/DE</span>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+        <a href="#services" data-i18n="navServices">What I offer</a>
+        <a href="#testimonials" data-i18n="navTestimonials">Testimonials</a>
+        <a href="#faq" data-i18n="navFaq">FAQ</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+        <button class="lang-btn" type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker" data-i18n="kicker">YOUR VISION</div>
+          <h1 data-i18n="h1">I capture images that blend imagination and emotion.</h1>
+          <p data-i18n="lead">
+            Zábery, ktoré rozprávajú príbeh. Jemné “soft focus” hover efekty a editorial atmosféra.
+          </p>
+          <div class="btn-row">
+            <a class="btn primary" href="#portfolio" data-i18n="btnWork">Check out my work</a>
+            <a class="btn" href="mailto:info@thedesigns.org" data-i18n="btnContact">Contact</a>
+          </div>
+        </div>
+
+        <div class="hero-media" id="heroMedia" aria-label="Hero photo">
+          <img id="heroImg" src="../img/egypt/egypt_1009.jpg" alt="Egypt hero" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="portfolioTitle">Portfolio</h2>
+          <p data-i18n="portfolioLead">
+            Umelecké zábery z Egypta. Hover = soft color reveal (B/W → tón).
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1009.jpg" alt="Egypt 1009" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p1t">Weddings</b>
+              <p data-i18n="p1d">Story moments • soft focus mood</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1025.jpg" alt="Egypt 1025" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p2t">Editorial</b>
+              <p data-i18n="p2d">Dust & light • editorial rhythm</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1050.jpg" alt="Egypt 1050" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p3t">Portrait</b>
+              <p data-i18n="p3d">Skin & sun • minimal composition</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1069.jpg" alt="Egypt 1069" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p4t">Street</b>
+              <p data-i18n="p4d">Heat lines • silent walk</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1073.jpg" alt="Egypt 1073" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p5t">Fashion</b>
+              <p data-i18n="p5d">Editorial frame • texture & contrast</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="../img/egypt/egypt_1082.jpg" alt="Egypt 1082" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <b data-i18n="p6t">Brand</b>
+              <p data-i18n="p6d">Black/white clarity • warm reveal</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="servicesTitle">Here's what I offer.</h2>
+          <p data-i18n="servicesLead">
+            Výber služieb od fotenia po postprodukciu. Všetko v jednom podpisovom štýle.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s1t">Video Editing Services</b>
+              <p data-i18n="s1d">Krátke showreely + strih pre sociálne siete.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s2t">Photo Editing</b>
+              <p data-i18n="s2d">Soft retuš, konzistentné farby, čisté detaily.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s3t">Wading Photography</b>
+              <p data-i18n="s3d">Špeciálne lokácie a editorial kompozície.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s4t">Professional Headshots</b>
+              <p data-i18n="s4d">Portréty, ktoré vyzerajú draho aj jednoducho.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s5t">Fashion & Editorial</b>
+              <p data-i18n="s5d">Textúra, svetlo, štýl — bez chaosu.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="s6t">Brand & Commercial</b>
+              <p data-i18n="s6d">Produkty a brand zábery s jednou vizuálnou DNA.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="whyTitle">Why choose me?</h2>
+          <p data-i18n="whyLead">Technika + cit. Preto výsledok vyzerá konzistentne na všetkých platformách.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <b data-i18n="m1t">Over 10+ years</b>
+            <div class="num" data-i18n="m1v">10+</div>
+            <span data-i18n="m1s">Skúsenosti a proces od nápadu po final.</span>
+          </div>
+          <div class="metric">
+            <b data-i18n="m2t">Satisfied clients</b>
+            <div class="num" data-i18n="m2v">200+</div>
+            <span data-i18n="m2s">Výsledky, ktoré klienti chcú zdieľať.</span>
+          </div>
+          <div class="metric">
+            <b data-i18n="m3t">HD images</b>
+            <div class="num" data-i18n="m3v">HD</div>
+            <span data-i18n="m3s">Detail a čistota v každom zábere.</span>
+          </div>
+          <div class="metric">
+            <b data-i18n="m4t">Signature look</b>
+            <div class="num" data-i18n="m4v">One</div>
+            <span data-i18n="m4s">Jednotná “editorial” retuš DNA.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="tTitle">Customer testimonials</h2>
+          <p data-i18n="tLead">Krátke recenzie, presne ako v template — len pre tvoje fotky.</p>
+        </div>
+        <div class="testimonials">
+          <div class="quote">
+            <p data-i18n="q1">This photography website template changed how I showcase my portfolio.</p>
+            <footer>
+              <span style="display:flex; gap:10px; align-items:center;">
+                <span class="avatar" aria-hidden="true"></span>
+                <span>
+                  <b data-i18n="q1n">Emily Carter</b>
+                  <span data-i18n="q1r">Professional Photographer</span>
+                </span>
+              </span>
+            </footer>
+          </div>
+          <div class="quote">
+            <p data-i18n="q2">This template is a game-changer for my photography business.</p>
+            <footer>
+              <span style="display:flex; gap:10px; align-items:center;">
+                <span class="avatar" aria-hidden="true"></span>
+                <span>
+                  <b data-i18n="q2n">Sarah James</b>
+                  <span data-i18n="q2r">Lifestyle Photographer</span>
+                </span>
+              </span>
+            </footer>
+          </div>
+          <div class="quote">
+            <p data-i18n="q3">Simple, elegant, and super easy to customize.</p>
+            <footer>
+              <span style="display:flex; gap:10px; align-items:center;">
+                <span class="avatar" aria-hidden="true"></span>
+                <span>
+                  <b data-i18n="q3n">Daniel Kim</b>
+                  <span data-i18n="q3r">Portrait Photographer</span>
+                </span>
+              </span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+          <p data-i18n="faqLead">Rýchle odpovede na to, čo ľudia najčastejšie pýtajú.</p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary data-i18n="f1q">Should I book a session before my photoshoot?</summary>
+            <p data-i18n="f1a">While walk-ins are always welcome, we recommend booking in advance for weekends and peak hours.</p>
+          </details>
+          <details>
+            <summary data-i18n="f2q">What are your studio hours?</summary>
+            <p data-i18n="f2a">Mon - Fri, 5am - 6pm. For urgent requests write us and we’ll adapt.</p>
+          </details>
+          <details>
+            <summary data-i18n="f3q">Do you offer both outdoor and indoor photography?</summary>
+            <p data-i18n="f3a">Yes. We match light, mood and schedule — indoor studio or outdoor locations.</p>
+          </details>
+          <details>
+            <summary data-i18n="f4q">Is home photography available for events?</summary>
+            <p data-i18n="f4a">Yes. We can come to your venue and deliver a clean editorial output.</p>
+          </details>
+          <details>
+            <summary data-i18n="f5q">Can I book a photography session online?</summary>
+            <p data-i18n="f5a">Yes. Use the contact button and we’ll confirm availability quickly.</p>
+          </details>
+          <details>
+            <summary data-i18n="f6q">Can I hold workshops at your studio?</summary>
+            <p data-i18n="f6a">Absolutely. We prepare schedules depending on the topic and group size.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 data-i18n="contactTitle">Let’s Connect</h2>
+          <p data-i18n="contactLead">Napíš nám a dohodneme termín, lokalitu a štýl — rýchlo a profesionálne.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="c1t">Phone</b>
+              <p data-i18n="c1v">(480) 555-0103</p>
+              <p data-i18n="c1s">info@thedesigns.org (alternatively)</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="c2t">Email</b>
+              <p data-i18n="c2v">info@thedesigns.org</p>
+              <p data-i18n="c2s" style="margin-top:10px;">We answer fast — usually within 24-48h.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <b data-i18n="c3t">CTA</b>
+              <p data-i18n="c3s">Are you all set to snap those unforgettable moments?</p>
+              <div class="btn-row" style="margin-top:14px;">
+                <a class="btn primary" href="mailto:info@thedesigns.org" data-i18n="c3btn">Contact me today</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>© <span data-i18n="footerYear">2026</span> thedesigns.org</div>
+      <div class="footer-links">
+        <a href="#portfolio" data-i18n="ft1">Portfolio</a>
+        <a href="#services" data-i18n="ft2">Offers</a>
+        <a href="#faq" data-i18n="ft3">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const dictionary = {
+      sk: {
+        title: "AirLens Photo - thedesigns.org",
+        subline: "Foto portfolio • Umelecký feel • SK/DE",
+        navPortfolio: "Portfolio",
+        navServices: "Služby",
+        navTestimonials: "Recenzie",
+        navFaq: "FAQ",
+        navContact: "Kontakt",
+        kicker: "YOUR VISION",
+        h1: "I capture images that blend imagination and emotion.",
+        lead: "Zábery, ktoré rozprávajú príbeh. Jemné “soft focus” hover efekty a editorial atmosféra.",
+        btnWork: "Check out my work",
+        btnContact: "Kontakt",
+        portfolioTitle: "Portfolio",
+        portfolioLead: "Umelecké zábery z Egypta. Hover = soft color reveal (B/W → tón).",
+        p1t: "Weddings",
+        p1d: "Story moments • soft focus mood",
+        p2t: "Editorial",
+        p2d: "Dust & light • editorial rhythm",
+        p3t: "Portrait",
+        p3d: "Skin & sun • minimal composition",
+        p4t: "Street",
+        p4d: "Heat lines • silent walk",
+        p5t: "Fashion",
+        p5d: "Editorial frame • texture & contrast",
+        p6t: "Brand",
+        p6d: "Black/white clarity • warm reveal",
+
+        servicesTitle: "Here's what I offer.",
+        servicesLead: "Výber služieb od fotenia po postprodukciu. Všetko v jednom podpisovom štýle.",
+        s1t: "Video Editing Services",
+        s1d: "Krátke showreely + strih pre sociálne siete.",
+        s2t: "Photo Editing",
+        s2d: "Soft retuš, konzistentné farby, čisté detaily.",
+        s3t: "Wading Photography",
+        s3d: "Špeciálne lokácie a editorial kompozície.",
+        s4t: "Professional Headshots",
+        s4d: "Portréty, ktoré vyzerajú draho aj jednoducho.",
+        s5t: "Fashion & Editorial",
+        s5d: "Textúra, svetlo, štýl — bez chaosu.",
+        s6t: "Brand & Commercial",
+        s6d: "Produkty a brand zábery s jednou vizuálnou DNA.",
+
+        whyTitle: "Why choose me?",
+        whyLead: "Technika + cit. Preto výsledok vyzerá konzistentne na všetkých platformách.",
+        m1t: "Over 10+ years",
+        m1v: "10+",
+        m1s: "Skúsenosti a proces od nápadu po final.",
+        m2t: "Satisfied clients",
+        m2v: "200+",
+        m2s: "Výsledky, ktoré klienti chcú zdieľať.",
+        m3t: "HD images",
+        m3v: "HD",
+        m3s: "Detail a čistota v každom zábere.",
+        m4t: "Signature look",
+        m4v: "One",
+        m4s: "Jednotná “editorial” retuš DNA.",
+
+        tTitle: "Customer testimonials",
+        tLead: "Krátke recenzie, presne ako v template — len pre tvoje fotky.",
+        q1: "This photography website template changed how I showcase my portfolio.",
+        q1n: "Emily Carter",
+        q1r: "Professional Photographer",
+        q2: "This template is a game-changer for my photography business.",
+        q2n: "Sarah James",
+        q2r: "Lifestyle Photographer",
+        q3: "Simple, elegant, and super easy to customize.",
+        q3n: "Daniel Kim",
+        q3r: "Portrait Photographer",
+
+        faqTitle: "Frequently Asked Questions",
+        faqLead: "Rýchle odpovede na to, čo ľudia najčastejšie pýtajú.",
+        f1q: "Should I book a session before my photoshoot?",
+        f1a: "Odporúčame rezervovať vopred, hlavne počas víkendov a špičky. Walk-in tiež radi privítame, ale dostupnosť je limitovaná.",
+        f2q: "What are your studio hours?",
+        f2a: "Po - Pia, 5:00 - 18:00. Pri urgentných veciach nám napíš a vieme sa prispôsobiť.",
+        f3q: "Do you offer both outdoor and indoor photography?",
+        f3a: "Áno. Prispôsobíme svetlo, mood aj harmonogram — ateliér alebo exteriér.",
+        f4q: "Is home photography available for events?",
+        f4a: "Áno. Prídeme priamo k vám na miesto a dodáme čistý editorial výstup.",
+        f5q: "Can I book a photography session online?",
+        f5a: "Áno. Použi kontakt tlačidlo a rýchlo potvrdíme dostupnosť.",
+        f6q: "Can I hold workshops at your studio?",
+        f6a: "Určite. Pripravíme harmonogram podľa témy a veľkosti skupiny.",
+
+        contactTitle: "Let’s Connect",
+        contactLead: "Napíš nám a dohodneme termín, lokalitu a štýl — rýchlo a profesionálne.",
+        c1t: "Phone",
+        c1v: "(480) 555-0103",
+        c1s: "info@thedesigns.org (alternatively)",
+        c2t: "Email",
+        c2v: "info@thedesigns.org",
+        c2s: "Odpovedáme rýchlo — zvyčajne do 24-48h.",
+        c3t: "CTA",
+        c3s: "Si pripravený na nezabudnuteľné momenty?",
+        c3btn: "Kontaktuj ma dnes",
+
+        footerYear: "2026",
+        ft1: "Portfolio",
+        ft2: "Služby",
+        ft3: "FAQ"
+      },
+      de: {
+        title: "AirLens Photo - thedesigns.org",
+        subline: "Fotoportfolio • künstlerisches Gefühl • SK/DE",
+        navPortfolio: "Portfolio",
+        navServices: "Leistungen",
+        navTestimonials: "Stimmen",
+        navFaq: "FAQ",
+        navContact: "Kontakt",
+        kicker: "YOUR VISION",
+        h1: "I capture images that blend imagination and emotion.",
+        lead: "Bilder mit Story. Sanfte “soft focus” Hover Effekte und eine editorial Stimmung.",
+        btnWork: "Check out my work",
+        btnContact: "Kontakt",
+        portfolioTitle: "Portfolio",
+        portfolioLead: "Kunstvolle Aufnahmen aus Ägypten. Hover = soft color reveal (B/W → Ton).",
+        p1t: "Weddings",
+        p1d: "Story moments • soft focus mood",
+        p2t: "Editorial",
+        p2d: "Staub & Licht • editorial Rhythmus",
+        p3t: "Portrait",
+        p3d: "Haut & Sonne • minimaler Aufbau",
+        p4t: "Street",
+        p4d: "Hitzelinien • stiller Walk",
+        p5t: "Fashion",
+        p5d: "Editorial Frame • Texture & Kontrast",
+        p6t: "Brand",
+        p6d: "Schwarzweiß Klarheit • warmes Reveal",
+
+        servicesTitle: "Here's what I offer.",
+        servicesLead: "Leistungen von Foto bis Postproduktion — alles im gleichen Signature-Look.",
+        s1t: "Video Editing Services",
+        s1d: "Kurze Showreels + Schnitt für Social Media.",
+        s2t: "Photo Editing",
+        s2d: "Soft Retusche, konsistente Farben, klare Details.",
+        s3t: "Wading Photography",
+        s3d: "Spezielle Locations und editorial Kompositionen.",
+        s4t: "Professional Headshots",
+        s4d: "Porträts, die hochwertig wirken — ganz ohne Overload.",
+        s5t: "Fashion & Editorial",
+        s5d: "Textur, Licht und Style — ohne Chaos.",
+        s6t: "Brand & Commercial",
+        s6d: "Produktfotos und Brand-Aufnahmen mit einer visuellen DNA.",
+
+        whyTitle: "Why choose me?",
+        whyLead: "Technik + Gefühl. Darum wirkt das Ergebnis überall konsistent.",
+        m1t: "Über 10+ Jahre",
+        m1v: "10+",
+        m1s: "Erfahrung und Prozess von Idee bis Final.",
+        m2t: "Zufriedene Kunden",
+        m2v: "200+",
+        m2s: "Ergebnisse, die man gern teilt.",
+        m3t: "HD Bilder",
+        m3v: "HD",
+        m3s: "Detail & Klarheit in jedem Shot.",
+        m4t: "Signature Look",
+        m4v: "One",
+        m4s: "Einheitliche “editorial” Retusche DNA.",
+
+        tTitle: "Customer testimonials",
+        tLead: "Kurze Stimmen — wie im Template, aber mit deinem Stil.",
+        q1: "This photography website template changed how I showcase my portfolio.",
+        q1n: "Emily Carter",
+        q1r: "Professional Photographer",
+        q2: "This template is a game-changer for my photography business.",
+        q2n: "Sarah James",
+        q2r: "Lifestyle Photographer",
+        q3: "Simple, elegant, and super easy to customize.",
+        q3n: "Daniel Kim",
+        q3r: "Portrait Photographer",
+
+        faqTitle: "Frequently Asked Questions",
+        faqLead: "Schnelle Antworten auf die häufigsten Fragen.",
+        f1q: "Should I book a session before my photoshoot?",
+        f1a: "Wir empfehlen eine Reservierung im Voraus — besonders am Wochenende. Walk-in geht auch, aber die Verfügbarkeit ist begrenzt.",
+        f2q: "What are your studio hours?",
+        f2a: "Mo - Fr, 5:00 - 18:00. Bei dringenden Anfragen melde dich, wir finden eine Lösung.",
+        f3q: "Do you offer both outdoor and indoor photography?",
+        f3a: "Ja. Wir matchen Licht, Stimmung und Zeitplan — Atelier oder Outdoor.",
+        f4q: "Is home photography available for events?",
+        f4a: "Ja. Wir kommen zu deinem Event und liefern ein sauberes editorial Ergebnis.",
+        f5q: "Can I book a photography session online?",
+        f5a: "Ja. Nutze den Kontakt und wir bestätigen schnell die Verfügbarkeit.",
+        f6q: "Can I hold workshops at your studio?",
+        f6a: "Gerne. Wir planen Workshops nach Thema und Gruppengröße.",
+
+        contactTitle: "Let’s Connect",
+        contactLead: "Schreib uns — Termin, Location und Stil klären wir schnell & professionell.",
+        c1t: "Telefon",
+        c1v: "(480) 555-0103",
+        c1s: "info@thedesigns.org (alternatively)",
+        c2t: "E-Mail",
+        c2v: "info@thedesigns.org",
+        c2s: "Wir antworten schnell — meist innerhalb 24-48h.",
+        c3t: "CTA",
+        c3s: "Bereit für unvergessliche Momente?",
+        c3btn: "Kontakt heute",
+
+        footerYear: "2026",
+        ft1: "Portfolio",
+        ft2: "Leistungen",
+        ft3: "FAQ"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".lang-btn");
+    const targets = document.querySelectorAll("[data-i18n]");
+
+    function setLanguage(lang){
+      const pack = dictionary[lang];
+      if(!pack) return;
+      document.documentElement.lang = lang;
+      targets.forEach((el)=>{
+        const key = el.getAttribute("data-i18n");
+        if(pack[key]) el.textContent = pack[key];
+      });
+      buttons.forEach((btn)=> btn.classList.toggle("active", btn.dataset.lang === lang));
+      if (pack.title) document.title = pack.title;
+    }
+
+    buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
+
+    // Hero parallax for background “bokeh dust” overlay.
+    const hero = document.getElementById("heroMedia");
+    if(hero && window.matchMedia && window.matchMedia("(hover: hover)").matches){
+      let raf = 0;
+      let target = 0;
+      const apply = ()=>{
+        hero.style.setProperty("--py", `${target}px`);
+        raf = 0;
+      };
+      hero.addEventListener("mousemove", (e)=>{
+        const r = hero.getBoundingClientRect();
+        const y = (e.clientY - r.top) / r.height; // 0..1
+        target = (y - 0.5) * 18;
+        if(!raf) raf = requestAnimationFrame(apply);
+      });
+      hero.addEventListener("mouseleave", ()=>{
+        target = 0;
+        if(!raf) raf = requestAnimationFrame(apply);
+      });
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="title">Foto - Umelecké & organické</title>
   <meta name="description" content="Umelecké a organické fotenie. Editorial layout, galéria, SK/DE." />
   <style>
