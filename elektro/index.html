@@ -1,528 +1,671 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title">Automatizácia & elektro - thedesigns.org</title>
-  <meta name="description" content="Automatizácia a elektro projekty s portfóliom realizácií.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Elektro & Automatizácia - Industriál</title>
+  <meta name="description" content="Industriálna automatizácia pre elektrikárov: scanning/pulse UI, proces, služby, systémy. SK/DE." />
   <style>
-    :root {
-      --text: #ecf2ff;
-      --glass: rgba(255, 255, 255, 0.1);
-      --border: rgba(255, 255, 255, 0.3);
-      --shadow: rgba(0, 0, 0, 0.4);
-      --blur: 16px;
+    :root{
+      --bg0:#03060c;
+      --bg1:#071021;
+      --ink:#d7f3ff;
+      --muted: rgba(215,243,255,0.72);
+      --hair: rgba(215,243,255,0.14);
+      --glass: rgba(12,22,40,0.62);
+      --shadow: rgba(0,0,0,0.65);
+      --blue:#36f6ff;
+      --steel:#7aa8ff;
+      --violet:#9b6bff;
+      --green:#66ffb8;
+      --warn:#ffcc66;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--text);
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
-        radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
-        radial-gradient(circle at 52% 85%, #ff2f8f 0%, transparent 38%),
-        linear-gradient(135deg, #080a1d 0%, #141938 100%);
-      overflow-x: hidden;
+        radial-gradient(circle at 12% 18%, rgba(54,246,255,0.18), transparent 42%),
+        radial-gradient(circle at 86% 22%, rgba(155,107,255,0.18), transparent 46%),
+        radial-gradient(circle at 55% 90%, rgba(102,255,184,0.10), transparent 52%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: soft-light;
-      opacity: 0.3;
+
+    .gridlines{
+      position:fixed; inset:0; pointer-events:none;
+      background:
+        linear-gradient(to right, rgba(215,243,255,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(215,243,255,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.75;
+      mask-image: radial-gradient(circle at 50% 18%, #000 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.05) 100%);
+      z-index:0;
     }
-    .lang-switch {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 20;
+    .scanX{
+      position:fixed; inset:-20% -20% auto -20%;
+      height: 340px;
+      pointer-events:none;
+      background: linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.18) 42%, rgba(54,246,255,0.06) 58%, transparent 100%);
+      transform: translateX(-55vw) rotate(8deg);
+      animation: scanXmove 7.5s linear infinite;
+      opacity: 0.65;
+      z-index:1;
+      filter: blur(0.25px);
     }
-    .lang-btn {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(20, 24, 55, 0.45);
-      color: var(--text);
+    @keyframes scanXmove{
+      0%{transform: translateX(-60vw) rotate(8deg)}
+      50%{opacity:0.9}
+      100%{transform: translateX(60vw) rotate(8deg)}
+    }
+    .pulseRing{
+      position:fixed;
+      width: 18px; height: 18px;
       border-radius: 999px;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: all 0.25s ease;
+      border: 1px solid rgba(54,246,255,0.7);
+      box-shadow: 0 0 22px rgba(54,246,255,0.33);
+      pointer-events:none;
+      transform: translate(-50%,-50%);
+      z-index: 999;
+      opacity:0;
     }
-    .lang-btn:hover,
-    .lang-btn.active {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.75);
+    .pulseRing.on{
+      opacity:0.85;
+      animation: pulseGlow 0.95s ease-out both;
     }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      padding: 1rem 1rem 0.5rem;
-      z-index: 10;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(8,10,29,0.65) 0%, rgba(8,10,29,0) 100%);
-    }
-    .back {
-      display: inline-flex;
-      gap: 0.6rem;
-      align-items: center;
-      text-decoration: none;
-      color: var(--text);
-      opacity: 0.95;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.07);
-      padding: 0.6rem 0.95rem;
-      border-radius: 999px;
-      transition: transform 0.2s ease;
-    }
-    .back:hover { transform: translateY(-2px); }
-
-    .wrap {
-      width: min(980px, 92%);
-      margin: 0 auto;
-      padding: 4rem 0 3rem;
+    @keyframes pulseGlow{
+      0%{transform: translate(-50%,-50%) scale(1); border-color: rgba(54,246,255,0.75); box-shadow: 0 0 18px rgba(54,246,255,0.26)}
+      70%{transform: translate(-50%,-50%) scale(5); border-color: rgba(54,246,255,0.08); box-shadow: 0 0 38px rgba(54,246,255,0.05)}
+      100%{opacity:0}
     }
 
-    .card {
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      background: var(--glass);
-      backdrop-filter: blur(var(--blur));
-      -webkit-backdrop-filter: blur(var(--blur));
-      box-shadow: 0 30px 60px -30px var(--shadow);
-      overflow: hidden;
+    header{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(3,6,12,0.85), rgba(3,6,12,0.20));
+      border-bottom: 1px solid rgba(215,243,255,0.10);
     }
-
-    .hero {
-      padding: 2.2rem 1.6rem 1.7rem;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      background: linear-gradient(160deg, rgba(255, 50, 150, 0.22), rgba(30, 15, 38, 0.05));
+    .container{width:min(1240px,92%); margin:0 auto;}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding: 14px 0;
     }
-
-    .section {
-      padding: 0 1.6rem 0.8rem;
+    .nav-left{display:flex; gap:10px; align-items:center;}
+    .back{
+      text-decoration:none;
+      color: var(--ink);
+      border:1px solid rgba(215,243,255,0.14);
+      background: rgba(7,12,24,0.52);
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: transform .16s ease, border-color .16s ease;
+      font-weight: 800;
+      letter-spacing:0.02em;
     }
-
-    .section-title {
-      margin: 1.6rem 0 0.95rem;
-      font-size: 1.08rem;
-      letter-spacing: 0.01em;
-      opacity: 0.95;
-      text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 1.1rem;
-    }
-
-    .service-card {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.16);
-      padding: 1rem 1rem;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-      min-height: 66px;
-      display: flex;
-      align-items: center;
-    }
-
-    .service-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(0,255,255,0.35);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .service-card strong {
-      display: block;
-      font-size: 0.98rem;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 1.1rem;
-    }
-
-    .step {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.16);
-      padding: 0.9rem 1rem;
-    }
-
-    .step .num {
-      font-weight: 900;
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-bottom: 0.35rem;
-      letter-spacing: 0.04em;
+    .back:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.45)}
+    .brand{display:flex; flex-direction:column; gap:2px}
+    .brand b{
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
+    .brand span{color:var(--muted); font-size:0.9rem}
 
-    .step span {
-      display: block;
-      font-size: 0.95rem;
-      opacity: 0.92;
-    }
-
-    .tags-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 1.2rem;
-    }
-
-    .tag {
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.20);
-      background: rgba(255,255,255,0.04);
-      padding: 0.72rem 0.9rem;
-      font-size: 0.92rem;
-      opacity: 0.95;
-    }
-
-    /* Industriálny scanning/pulse panel */
-    .scan-panel {
-      margin: 1.2rem 0 0;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.22);
-      background:
-        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0 1px, transparent 1px 10px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 10px),
-        radial-gradient(circle at 15% 25%, rgba(0, 255, 255, 0.15), transparent 45%),
-        radial-gradient(circle at 85% 70%, rgba(180, 200, 255, 0.12), transparent 48%),
-        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
-      height: 260px;
-      position: relative;
-      overflow: hidden;
-      user-select: none;
-      outline: none;
-    }
-
-    .scan-panel::before {
-      /* Pulse glow */
-      content: "";
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.24), transparent 55%);
-      opacity: 0.55;
-      animation: pulseGlow 2.2s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulseGlow {
-      0% { transform: scale(1); opacity: 0.35; }
-      50% { transform: scale(1.02); opacity: 0.62; }
-      100% { transform: scale(1); opacity: 0.35; }
-    }
-
-    .scan-line {
-      position: absolute;
-      left: -40%;
-      top: 52%;
-      width: 180%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.95) 35%, rgba(255, 255, 255, 0.75) 50%, rgba(0, 255, 255, 0.45) 70%, transparent 100%);
-      box-shadow: 0 0 22px rgba(0,255,255,0.5);
-      transform: rotate(0deg);
-      animation: scanX 1.6s linear infinite;
-      pointer-events: none;
-    }
-
-    @keyframes scanX {
-      0% { transform: translateX(-10%) translateY(-1px); opacity: 0; }
-      15% { opacity: 1; }
-      100% { transform: translateX(16%) translateY(1px); opacity: 0; }
-    }
-
-    .scan-emit {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.65;
-      background:
-        linear-gradient(90deg, rgba(0,255,255,0) 0%, rgba(0,255,255,0.12) 45%, rgba(0,255,255,0) 100%);
-      background-size: 200% 100%;
-      animation: emitMove 2.4s linear infinite;
-    }
-
-    @keyframes emitMove {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
-    }
-
-    .sq {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      border: 1px solid rgba(0,255,255,0.55);
-      background: rgba(0, 255, 255, 0.08);
-      box-shadow: 0 0 18px rgba(0,255,255,0.2);
-      opacity: 0.9;
-    }
-
-    .sq.s1 { left: 6%; top: 28%; animation: sqMove1 1.25s linear infinite; }
-    .sq.s2 { left: 72%; top: 18%; animation: sqMove2 1.35s linear infinite; }
-    .sq.s3 { left: 56%; top: 72%; animation: sqMove3 1.2s linear infinite; }
-
-    /* L-shaped, right-angle motion */
-    @keyframes sqMove1 {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(60px,0); }
-      55% { transform: translate(60px,70px); }
-      80% { transform: translate(0,70px); }
-      100% { transform: translate(0,0); }
-    }
-    @keyframes sqMove2 {
-      0% { transform: translate(0,0); }
-      30% { transform: translate(-62px,0); }
-      60% { transform: translate(-62px,58px); }
-      85% { transform: translate(0,58px); }
-      100% { transform: translate(0,0); }
-    }
-    @keyframes sqMove3 {
-      0% { transform: translate(0,0); }
-      22% { transform: translate(52px,0); }
-      50% { transform: translate(52px,-58px); }
-      78% { transform: translate(-18px,-58px); }
-      100% { transform: translate(0,0); }
-    }
-
-    .kpi-row {
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 14px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      z-index: 2;
-    }
-
-    .kpi {
-      border-radius: 16px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.14);
-      padding: 0.7rem 0.75rem;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: transform 0.25s ease;
-    }
-    .kpi strong {
-      display: block;
-      font-size: 1.2rem;
-      letter-spacing: 0.02em;
-      margin-bottom: 0.15rem;
-      text-shadow: 0 10px 26px rgba(0,0,0,0.35);
-    }
-    .kpi span {
+    .lang-switch{display:flex; gap:8px; align-items:center}
+    .lang-btn{
+      border:1px solid rgba(215,243,255,0.14);
+      background: rgba(7,12,24,0.45);
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 10px 12px;
       font-size: 0.78rem;
-      opacity: 0.9;
+      letter-spacing:0.14em;
+      text-transform: uppercase;
+      cursor:pointer;
+      transition: background .16s ease, border-color .16s ease, transform .16s ease;
+      font-family: var(--mono);
+    }
+    .lang-btn:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.45)}
+    .lang-btn.active{background: rgba(54,246,255,0.12); border-color: rgba(54,246,255,0.55)}
+
+    main{position:relative; z-index:2;}
+    .hero{
+      padding: 54px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .kicker{
+      font-family: var(--mono);
+      letter-spacing:0.18em;
+      text-transform: uppercase;
+      font-size:0.74rem;
+      color: rgba(215,243,255,0.72);
+    }
+    h1{
+      font-size: clamp(2.2rem, 3.4vw, 3.5rem);
+      line-height:1.03;
+      margin-top: 14px;
+      letter-spacing:-0.02em;
+      font-weight: 900;
+      text-transform: none;
+    }
+    .lead{
+      margin-top: 12px;
+      color: rgba(215,243,255,0.78);
+      font-size: 1.03rem;
+      line-height:1.6;
+      max-width: 68ch;
     }
 
-    .scan-panel:hover .scan-line,
-    .scan-panel:focus-visible .scan-line {
-      animation-duration: 0.9s;
+    .block{
+      border:1px solid rgba(215,243,255,0.14);
+      background: rgba(10,16,32,0.40);
+      border-radius: 16px;
+      box-shadow: 0 30px 70px -45px var(--shadow);
+      overflow:hidden;
+      position:relative;
     }
+    .block::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(from 180deg,
+        rgba(54,246,255,0) 0%,
+        rgba(54,246,255,0.45) 18%,
+        rgba(155,107,255,0.30) 44%,
+        rgba(102,255,184,0.25) 68%,
+        rgba(54,246,255,0) 100%);
+      opacity:0.22;
+      filter: blur(14px);
+      pointer-events:none;
+    }
+    .block-inner{position:relative; z-index:1; padding: 16px;}
 
-    .scan-panel:hover .sq,
-    .scan-panel:focus-visible .sq {
-      animation-duration: 0.85s;
-    }
-
-    .scan-panel:hover .kpi,
-    .scan-panel:focus-visible .kpi {
-      transform: translateY(-4px);
-    }
-
-    h1 {
-      font-size: clamp(2rem, 2.8vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-      text-shadow: 0 10px 26px rgba(0,0,0,0.4);
-    }
-    .lead {
-      opacity: 0.9;
-      max-width: 62ch;
-      font-size: 1.02rem;
-    }
-
-    .grid {
-      display: grid;
+    .meters{
+      display:grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
-      padding: 1.6rem;
+      gap:10px;
+      margin-top: 12px;
     }
-    .item {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.04);
-      padding: 1rem 1rem;
-    }
-    .item strong { display: block; margin-bottom: 0.35rem; }
-
-    .cta-row {
-      padding: 0 1.6rem 1.8rem;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: #02101c;
-      font-weight: 800;
-      background: linear-gradient(120deg, rgba(255, 50, 150, 0.8), rgba(125, 247, 200, 0.75));
-      padding: 0.95rem 1.15rem;
+    .meter{
+      border:1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.35);
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      padding: 12px;
     }
-    .btn:hover { transform: translateY(-3px); }
-    .smalllink {
-      color: var(--text);
-      opacity: 0.9;
-      text-decoration: underline;
-      align-self: center;
+    .meter b{
+      font-family: var(--mono);
+      letter-spacing:0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: rgba(215,243,255,0.9);
+    }
+    .meter .val{
+      margin-top: 10px;
+      display:flex; align-items:baseline; gap:10px;
+    }
+    .meter .big{
+      font-family: var(--mono);
+      font-weight: 900;
+      letter-spacing:0.06em;
+      font-size: 1.4rem;
+      color: var(--blue);
+      text-shadow: 0 0 22px rgba(54,246,255,0.22);
+    }
+    .meter .sub{
+      color: rgba(215,243,255,0.72);
+      font-size: 0.92rem;
+      line-height:1.35;
+      max-width: 18ch;
+    }
+    .bar{
+      margin-top: 12px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(215,243,255,0.08);
+      overflow:hidden;
+      border:1px solid rgba(215,243,255,0.10);
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width: var(--w, 60%);
+      background: linear-gradient(90deg, rgba(54,246,255,0.85), rgba(102,255,184,0.75));
+      box-shadow: 0 0 26px rgba(54,246,255,0.18);
+      animation: barPulse 2.6s ease-in-out infinite;
+    }
+    @keyframes barPulse{
+      0%,100%{filter:saturate(1) brightness(1)}
+      50%{filter:saturate(1.2) brightness(1.15)}
     }
 
-    @media (max-width: 860px) {
-      .wrap { padding-top: 3.2rem; }
-      .scan-panel { height: 230px; }
-      .kpi-row { grid-template-columns: 1fr; }
-      .service-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .tags-grid { grid-template-columns: 1fr; }
+    .sections{padding: 18px 0 64px;}
+    .section{
+      margin-top: 18px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(10,16,32,0.26);
+      border-radius: 16px;
+      overflow:hidden;
+    }
+    .section-head{
+      padding: 14px 14px;
+      display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+      border-bottom:1px solid rgba(215,243,255,0.10);
+      background: rgba(7,12,24,0.26);
+    }
+    .section-head h2{
+      font-family: var(--mono);
+      letter-spacing:0.16em;
+      text-transform: uppercase;
+      font-size:0.88rem;
+      color: rgba(215,243,255,0.9);
+    }
+    .section-head p{
+      color: rgba(215,243,255,0.64);
+      font-size:0.93rem;
+      line-height:1.4;
+      max-width: 72ch;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .service{
+      border-radius: 14px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.30);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      min-height: 122px;
+    }
+    .service:hover{
+      transform: translateY(-2px);
+      border-color: rgba(54,246,255,0.35);
+      background: rgba(7,12,24,0.44);
+    }
+    .service::after{
+      content:"";
+      position:absolute;
+      inset:-50% -20%;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.18) 45%, rgba(54,246,255,0.06) 55%, transparent 100%);
+      transform: translateX(-35%);
+      opacity:0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+      z-index:1;
+    }
+    .service:hover::after{
+      opacity:1;
+      animation: emitMove 0.85s ease both;
+    }
+    @keyframes emitMove{
+      0%{transform: translateX(-35%) skewX(-10deg)}
+      100%{transform: translateX(35%) skewX(-10deg)}
+    }
+    .service .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(215,243,255,0.12);
+      background: rgba(10,16,32,0.26);
+      font-family: var(--mono);
+      letter-spacing:0.14em;
+      text-transform: uppercase;
+      font-size:0.72rem;
+      color: rgba(215,243,255,0.82);
+      position:relative;
+      z-index:2;
+    }
+    .service .tag i{
+      width:6px; height:6px;
+      border-radius:99px;
+      background: var(--blue);
+      box-shadow: 0 0 18px rgba(54,246,255,0.28);
+      display:inline-block;
+    }
+    .service b{
+      display:block;
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 1rem;
+      letter-spacing:0.02em;
+      position:relative;
+      z-index:2;
+    }
+    .service span{
+      display:block;
+      margin-top: 8px;
+      color: rgba(215,243,255,0.68);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      position:relative;
+      z-index:2;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .step{
+      border-radius: 14px;
+      border:1px dashed rgba(215,243,255,0.22);
+      background: rgba(7,12,24,0.22);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .step::before{
+      content:"";
+      position:absolute; top:-2px; left:-2px; right:-2px; height:1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.65) 50%, transparent 100%);
+      opacity:0.8;
+    }
+    .step .n{
+      font-family: var(--mono);
+      letter-spacing:0.18em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: rgba(54,246,255,0.92);
+    }
+    .step b{display:block;margin-top:10px;font-size:1.02rem;font-weight:900}
+    .step span{display:block;margin-top:8px;color:rgba(215,243,255,0.70);font-size:0.93rem;line-height:1.48}
+
+    .tags{
+      padding: 14px 14px;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+    }
+    .tag{
+      border-radius: 14px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.30);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease;
+      min-height: 92px;
+    }
+    .tag:hover{
+      transform: translateY(-2px);
+      border-color: rgba(54,246,255,0.38);
+    }
+    .tag::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        repeating-linear-gradient(90deg, rgba(54,246,255,0.0) 0px, rgba(54,246,255,0.0) 8px, rgba(54,246,255,0.12) 9px),
+        linear-gradient(120deg, transparent 0%, rgba(54,246,255,0.16) 45%, transparent 70%);
+      opacity:0;
+      transition: opacity .16s ease;
+      pointer-events:none;
+    }
+    .tag:hover::after{opacity:1; animation: sqMove 0.7s ease both;}
+    @keyframes sqMove{
+      0%{transform: translateX(-10px) skewX(-6deg)}
+      100%{transform: translateX(10px) skewX(-6deg)}
+    }
+    .tag b{
+      display:block;
+      font-family: var(--mono);
+      letter-spacing:0.08em;
+      text-transform: uppercase;
+      font-size:0.78rem;
+      color: rgba(215,243,255,0.90);
+      position:relative; z-index:1;
+    }
+    .tag span{
+      display:block;
+      margin-top: 8px;
+      color: rgba(215,243,255,0.66);
+      font-size:0.92rem;
+      line-height:1.45;
+      position:relative; z-index:1;
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .service-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .steps{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .tags{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .meters{grid-template-columns: 1fr;}
+    }
+    @media (max-width: 680px){
+      .service-grid{grid-template-columns: 1fr;}
+      .steps{grid-template-columns: 1fr;}
+      .tags{grid-template-columns: 1fr;}
     }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="scanX" aria-hidden="true"></div>
+  <div class="pulseRing" id="pulseRing" aria-hidden="true"></div>
 
-  <div class="lang-switch">
-    <button class="lang-btn active" type="button" data-lang="sk">SK</button>
-    <button class="lang-btn" type="button" data-lang="de">DE</button>
-  </div>
-
-  <div class="topbar">
-    <a class="back" href="../" aria-label="Back to hub">
-      <span data-i18n="back">Späť</span>
-    </a>
-  </div>
-
-  <main class="wrap">
-    <section class="card">
-      <div class="hero">
-        <h1 data-i18n="h1">Automatizácia & elektro</h1>
-        <p class="lead" data-i18n="lead">
-          Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.
-        </p>
-
-        <div class="scan-panel" id="scanPanel" tabindex="0" role="img" aria-label="Scanning pulse vizualizácia">
-          <div class="scan-emit" aria-hidden="true"></div>
-          <div class="scan-line" aria-hidden="true"></div>
-          <span class="sq s1" aria-hidden="true"></span>
-          <span class="sq s2" aria-hidden="true"></span>
-          <span class="sq s3" aria-hidden="true"></span>
-          <div class="kpi-row" aria-hidden="true">
-            <div class="kpi">
-              <strong>98%</strong>
-              <span data-i18n="k1">Efektivita</span>
-            </div>
-            <div class="kpi">
-              <strong>99%</strong>
-              <span data-i18n="k2">Spoľahlivosť</span>
-            </div>
-            <div class="kpi">
-              <strong>2-4w</strong>
-              <span data-i18n="k3">Rýchlosť</span>
-            </div>
-          </div>
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <a class="back" href="../" data-i18n="back">Späť</a>
+        <div class="brand">
+          <b>ELEKTRO / AUTOMATIZÁCIA</b>
+          <span data-i18n="subline">Industriálny scanning, rýchle iterácie, čistá logistika.</span>
         </div>
       </div>
 
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+        <button class="lang-btn" type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker" data-i18n="kicker">Industrial scanning / pulse</div>
+          <h1 data-i18n="h1">Automatizácia, ktorá drží rytmus.</h1>
+          <p class="lead" data-i18n="lead">
+            Od návrhu po nasadenie: presná kabeláž, logika, testy a dokumentácia. Všetko v “pravých uhloch” a s merateľným výsledkom.
+          </p>
+          <div class="meters" aria-label="Metrics">
+            <div class="meter">
+              <b data-i18n="m1t">24/7 SCADA</b>
+              <div class="val">
+                <div class="big" data-i18n="m1v">99.9%</div>
+                <div class="sub" data-i18n="m1s">Dostupnosť & monitoring</div>
+              </div>
+              <div class="bar" aria-hidden="true"><i style="--w:92%"></i></div>
+            </div>
+            <div class="meter">
+              <b data-i18n="m2t">PLC / Inverter</b>
+              <div class="val">
+                <div class="big" data-i18n="m2v">≤10ms</div>
+                <div class="sub" data-i18n="m2s">Regulácia & odozva</div>
+              </div>
+              <div class="bar" aria-hidden="true"><i style="--w:78%; background: linear-gradient(90deg, rgba(155,107,255,0.88), rgba(54,246,255,0.75));"></i></div>
+            </div>
+            <div class="meter">
+              <b data-i18n="m3t">Bezpečnosť</b>
+              <div class="val">
+                <div class="big" data-i18n="m3v">ISO-ready</div>
+                <div class="sub" data-i18n="m3s">Normy, testy, revízie</div>
+              </div>
+              <div class="bar" aria-hidden="true"><i style="--w:86%; background: linear-gradient(90deg, rgba(102,255,184,0.85), rgba(54,246,255,0.75));"></i></div>
+            </div>
+            <div class="meter">
+              <b data-i18n="m4t">Projekt → Real</b>
+              <div class="val">
+                <div class="big" data-i18n="m4v">včas</div>
+                <div class="sub" data-i18n="m4s">Výstupy & dokumenty</div>
+              </div>
+              <div class="bar" aria-hidden="true"><i style="--w:74%; background: linear-gradient(90deg, rgba(255,204,102,0.85), rgba(54,246,255,0.7));"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="block" aria-label="Pulse console">
+          <div class="block-inner">
+            <div class="kicker" data-i18n="consoleTitle">Signal console</div>
+            <div style="height:10px"></div>
+            <div style="font-family:var(--mono); letter-spacing:0.12em; text-transform:uppercase; font-size:0.78rem; color:rgba(215,243,255,0.78)">
+              <span data-i18n="consoleLine1">SCAN:</span> <span style="color:var(--blue)" data-i18n="consoleVal1">AUTO</span>
+            </div>
+            <div style="margin-top:10px; font-family:var(--mono); line-height:1.7; color:rgba(215,243,255,0.75)">
+              <div>CPU: <b style="color:rgba(102,255,184,0.9)" data-i18n="c1v">CLEAN</b></div>
+              <div>SAFETY: <b style="color:rgba(54,246,255,0.9)" data-i18n="c2v">LOCKED</b></div>
+              <div>DATA: <b style="color:rgba(155,107,255,0.9)" data-i18n="c3v">STREAM</b></div>
+              <div style="margin-top:8px; color:rgba(215,243,255,0.62)" data-i18n="consoleHint">Hover / klik na blok = pulse výstup.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sections">
       <div class="section">
-        <h2 class="section-title" data-i18n="leistungen">Služby & kompetencie</h2>
+        <div class="section-head">
+          <h2 data-i18n="servicesTitle">Služby</h2>
+          <p data-i18n="servicesLead">Systémy, ktoré bežia stabilne. Žiadne “random” — všetko je merané a zdokumentované.</p>
+        </div>
         <div class="service-grid">
-          <div class="service-card"><strong data-i18n="s1">Strojová bezpečnosť</strong></div>
-          <div class="service-card"><strong data-i18n="s2">SPS programovanie</strong></div>
-          <div class="service-card"><strong data-i18n="s3">Elektrokonštrukcia</strong></div>
-          <div class="service-card"><strong data-i18n="s4">Priemysel 4.0</strong></div>
-          <div class="service-card"><strong data-i18n="s5">Inžiniering</strong></div>
-          <div class="service-card"><strong data-i18n="s6">Automatizačná technika</strong></div>
-          <div class="service-card"><strong data-i18n="s7">Vývoj softvéru / IT</strong></div>
-          <div class="service-card"><strong data-i18n="s8">Výroba rozvádzačov</strong></div>
-          <div class="service-card"><strong data-i18n="s9">Retrofit / modernizácie</strong></div>
-          <div class="service-card"><strong data-i18n="s10">Programovanie robotov</strong></div>
-          <div class="service-card"><strong data-i18n="s11">Uvedenie do prevádzky</strong></div>
-          <div class="service-card"><strong data-i18n="s12">Podpora & servis</strong></div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i></i><span data-i18n="sv1t">CONTROL</span></div>
+            <b data-i18n="sv1">PLC / Logika</b>
+            <span data-i18n="sv1s">Programovanie a prepojenie riadení.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv2t">POWER</span></div>
+            <b data-i18n="sv2">Rozvádzače</b>
+            <span data-i18n="sv2s">Kabeláž, štítky, testy a revízie.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv3t">MOTION</span></div>
+            <b data-i18n="sv3">Pohony & frekvenčné meniče</b>
+            <span data-i18n="sv3s">Regulácia pohybu a lineárna dynamika.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv4t">SAFETY</span></div>
+            <b data-i18n="sv4">Bezpečnosť strojov</b>
+            <span data-i18n="sv4s">Protokoly, interlocky, testy.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i></i><span data-i18n="sv5t">IOT</span></div>
+            <b data-i18n="sv5">SCADA / Monitoring</b>
+            <span data-i18n="sv5s">Vizualizácia, alerty, logy.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv6t">INTEGR.</span></div>
+            <b data-i18n="sv6">Integrácie</b>
+            <span data-i18n="sv6s">ERP / CRM / dáta / exporty.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv7t">DOC</span></div>
+            <b data-i18n="sv7">Dokumentácia</b>
+            <span data-i18n="sv7s">Schémy, návody, protokoly.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv8t">TEST</span></div>
+            <b data-i18n="sv8">Testy & uvedenie</b>
+            <span data-i18n="sv8s">Odladíme, spustíme, doladíme.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i></i><span data-i18n="sv9t">NET</span></div>
+            <b data-i18n="sv9">Sieť & komunikácia</b>
+            <span data-i18n="sv9s">Ethernet, protokoly, prenos dát.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv10t">OPT</span></div>
+            <b data-i18n="sv10">Optimalizácia</b>
+            <span data-i18n="sv10s">Performance, stabilita, iterácie.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv11t">RET.</span></div>
+            <b data-i18n="sv11">Modernizácia</b>
+            <span data-i18n="sv11s">Upgrade bez chaosu a prestojov.</span>
+          </div>
+          <div class="service" tabindex="0">
+            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv12t">OPS</span></div>
+            <b data-i18n="sv12">Servis</b>
+            <span data-i18n="sv12s">Zálohy, údržba, kontrola.</span>
+          </div>
         </div>
       </div>
 
       <div class="section">
-        <h2 class="section-title" data-i18n="prozess">Proces od návrhu po reálny výsledok</h2>
-        <div class="steps-grid">
-          <div class="step">
-            <div class="num">01</div>
-            <span data-i18n="t1">Analýza & koncept</span>
+        <div class="section-head">
+          <h2 data-i18n="processTitle">Proces</h2>
+          <p data-i18n="processLead">Fast, lineárne animácie v našom workflow: audit -> návrh -> build -> test -> live.</p>
+        </div>
+        <div class="steps">
+          <div class="step" tabindex="0">
+            <div class="n">01</div>
+            <b data-i18n="t1">Návrh & meranie</b>
+            <span data-i18n="t1t">Požiadavky, vstupy, limity, cieľové parametre.</span>
           </div>
-          <div class="step">
-            <div class="num">02</div>
-            <span data-i18n="t2">Konštrukcia rozvádzačov</span>
+          <div class="step" tabindex="0">
+            <div class="n">02</div>
+            <b data-i18n="t2">Architektúra systému</b>
+            <span data-i18n="t2t">PLC logika, komunikácia, bezpečnosť.</span>
           </div>
-          <div class="step">
-            <div class="num">03</div>
-            <span data-i18n="t3">Programovanie & integrácia</span>
+          <div class="step" tabindex="0">
+            <div class="n">03</div>
+            <b data-i18n="t3">Výroba & kabeláž</b>
+            <span data-i18n="t3t">Rozvádzače, štítky, kontrolné body.</span>
           </div>
-          <div class="step">
-            <div class="num">04</div>
-            <span data-i18n="t4">Montáž & testovanie</span>
+          <div class="step" tabindex="0">
+            <div class="n">04</div>
+            <b data-i18n="t4">Program & simulácia</b>
+            <span data-i18n="t4t">Test scenáre, ladenie, stabilita.</span>
           </div>
-          <div class="step">
-            <div class="num">05</div>
-            <span data-i18n="t5">Uvedenie do prevádzky</span>
+          <div class="step" tabindex="0">
+            <div class="n">05</div>
+            <b data-i18n="t5">Uvedenie do praxe</b>
+            <span data-i18n="t5t">Spustenie, odchyt chýb, finálne nastavenia.</span>
           </div>
-          <div class="step">
-            <div class="num">06</div>
-            <span data-i18n="t6">Podpora po odovzdaní</span>
+          <div class="step" tabindex="0">
+            <div class="n">06</div>
+            <b data-i18n="t6">Dokumentácia & servis</b>
+            <span data-i18n="t6t">Schémy, protokoly, servisné okno.</span>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <h2 class="section-title" data-i18n="systemTitle">Systémy / Systeme</h2>
-        <div class="tags-grid">
-          <div class="tag" data-i18n="sys1">Automatizačná technika</div>
-          <div class="tag" data-i18n="sys2">Riadiaca technika</div>
-          <div class="tag" data-i18n="sys3">Priemyselná robotika</div>
-          <div class="tag" data-i18n="sys4">Strojová bezpečnosť</div>
-          <div class="tag" data-i18n="sys5">Meracia technika</div>
-          <div class="tag" data-i18n="sys6">Vizualizácia</div>
-          <div class="tag" data-i18n="sys7">Pohon</div>
-          <div class="tag" data-i18n="sys8">Spracovanie obrazu</div>
+        <div class="section-head">
+          <h2 data-i18n="systemTitle">Systémy</h2>
+          <p data-i18n="systemLead">Technológie, ktoré typicky integrujeme do “power flow” projektu.</p>
         </div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn" href="mailto:info@thedesigns.org" aria-label="Kontakt">
-          <span data-i18n="cta">Kontakt</span>
-        </a>
-        <a class="smalllink" href="../weby/" data-i18n="hint">Chceš aj web?</a>
+        <div class="tags">
+          <div class="tag" tabindex="0"><b data-i18n="sys1">PLC</b><span data-i18n="sys1t">Siemens / kompatibilné</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys2">SCADA</b><span data-i18n="sys2t">Vizualizácia & alarmy</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys3">HMI</b><span data-i18n="sys3t">User flow pre operátorov</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys4">Inverter</b><span data-i18n="sys4t">Regulácia pohonov</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys5">Safety</b><span data-i18n="sys5t">Interlocky & protokoly</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys6">Network</b><span data-i18n="sys6t">Ethernet / polia</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys7">Data</b><span data-i18n="sys7t">Logy, exporty, reporty</span></div>
+          <div class="tag" tabindex="0"><b data-i18n="sys8">Docs</b><span data-i18n="sys8t">Schémy, návody</span></div>
+        </div>
       </div>
     </section>
   </main>
@@ -530,110 +673,257 @@
   <script>
     const dictionary = {
       sk: {
-        title: "Automatizácia & elektro - thedesigns.org",
+        title: "Elektro & Automatizácia - Industriál",
         back: "Späť",
-        h1: "Automatizácia & elektro",
-        lead: "Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.",
-        k1: "Efektivita",
-        k2: "Spoľahlivosť",
-        k3: "Rýchlosť",
-        leistungen: "Služby & kompetencie",
-        prozess: "Proces od návrhu po reálny výsledok",
-        s1: "Strojová bezpečnosť",
-        s2: "SPS programovanie",
-        s3: "Elektrokonštrukcia",
-        s4: "Priemysel 4.0",
-        s5: "Inžiniering",
-        s6: "Automatizačná technika",
-        s7: "Vývoj softvéru / IT",
-        s8: "Výroba rozvádzačov",
-        s9: "Retrofit / modernizácie",
-        s10: "Programovanie robotov",
-        s11: "Uvedenie do prevádzky",
-        s12: "Podpora & servis",
-        t1: "Analýza & koncept",
-        t2: "Konštrukcia rozvádzačov",
-        t3: "Programovanie & integrácia",
-        t4: "Montáž & testovanie",
-        t5: "Uvedenie do prevádzky",
-        t6: "Podpora po odovzdaní",
-        systemTitle: "Systémy / Systeme",
-        sys1: "Automatizačná technika",
-        sys2: "Riadiaca technika",
-        sys3: "Priemyselná robotika",
-        sys4: "Strojová bezpečnosť",
-        sys5: "Meracia technika",
-        sys6: "Vizualizácia",
-        sys7: "Pohon",
-        sys8: "Spracovanie obrazu",
-        cta: "Kontakt",
-        hint: "Chceš aj web?"
+        subline: "Industriálny scanning, rýchle iterácie, čistá logistika.",
+        kicker: "Industrial scanning / pulse",
+        h1: "Automatizácia, ktorá drží rytmus.",
+        lead: "Od návrhu po nasadenie: presná kabeláž, logika, testy a dokumentácia. Všetko v “pravých uhloch” a s merateľným výsledkom.",
+        consoleTitle: "Signal console",
+        consoleLine1: "SCAN:",
+        consoleVal1: "AUTO",
+        consoleHint: "Hover / klik na blok = pulse výstup.",
+        servicesTitle: "Služby",
+        servicesLead: "Systémy, ktoré bežia stabilne. Žiadne “random” — všetko je merané a zdokumentované.",
+        processTitle: "Proces",
+        processLead: "Fast, lineárne animácie v našom workflow: audit -> návrh -> build -> test -> live.",
+        systemTitle: "Systémy",
+        systemLead: "Technológie, ktoré typicky integrujeme do “power flow” projektu.",
+
+        m1t: "24/7 SCADA",
+        m1v: "99.9%",
+        m1s: "Dostupnosť & monitoring",
+        m2t: "PLC / Inverter",
+        m2v: "≤10ms",
+        m2s: "Regulácia & odozva",
+        m3t: "Bezpečnosť",
+        m3v: "ISO-ready",
+        m3s: "Normy, testy, revízie",
+        m4t: "Projekt → Real",
+        m4v: "včas",
+        m4s: "Výstupy & dokumenty",
+
+        c1v: "CLEAN",
+        c2v: "LOCKED",
+        c3v: "STREAM",
+
+        sv1t: "CONTROL",
+        sv1: "PLC / Logika",
+        sv1s: "Programovanie a prepojenie riadení.",
+        sv2t: "POWER",
+        sv2: "Rozvádzače",
+        sv2s: "Kabeláž, štítky, testy a revízie.",
+        sv3t: "MOTION",
+        sv3: "Pohony & frekvenčné meniče",
+        sv3s: "Regulácia pohybu a lineárna dynamika.",
+        sv4t: "SAFETY",
+        sv4: "Bezpečnosť strojov",
+        sv4s: "Protokoly, interlocky, testy.",
+        sv5t: "IOT",
+        sv5: "SCADA / Monitoring",
+        sv5s: "Vizualizácia, alerty, logy.",
+        sv6t: "INTEGR.",
+        sv6: "Integrácie",
+        sv6s: "ERP / CRM / dáta / exporty.",
+        sv7t: "DOC",
+        sv7: "Dokumentácia",
+        sv7s: "Schémy, návody, protokoly.",
+        sv8t: "TEST",
+        sv8: "Testy & uvedenie",
+        sv8s: "Odladíme, spustíme, doladíme.",
+        sv9t: "NET",
+        sv9: "Sieť & komunikácia",
+        sv9s: "Ethernet, protokoly, prenos dát.",
+        sv10t: "OPT",
+        sv10: "Optimalizácia",
+        sv10s: "Performance, stabilita, iterácie.",
+        sv11t: "RET.",
+        sv11: "Modernizácia",
+        sv11s: "Upgrade bez chaosu a prestojov.",
+        sv12t: "OPS",
+        sv12: "Servis",
+        sv12s: "Zálohy, údržba, kontrola.",
+
+        t1: "Návrh & meranie",
+        t1t: "Požiadavky, vstupy, limity, cieľové parametre.",
+        t2: "Architektúra systému",
+        t2t: "PLC logika, komunikácia, bezpečnosť.",
+        t3: "Výroba & kabeláž",
+        t3t: "Rozvádzače, štítky, kontrolné body.",
+        t4: "Program & simulácia",
+        t4t: "Test scenáre, ladenie, stabilita.",
+        t5: "Uvedenie do praxe",
+        t5t: "Spustenie, odchyt chýb, finálne nastavenia.",
+        t6: "Dokumentácia & servis",
+        t6t: "Schémy, protokoly, servisné okno.",
+
+        sys1: "PLC",
+        sys1t: "Siemens / kompatibilné",
+        sys2: "SCADA",
+        sys2t: "Vizualizácia & alarmy",
+        sys3: "HMI",
+        sys3t: "User flow pre operátorov",
+        sys4: "Inverter",
+        sys4t: "Regulácia pohonov",
+        sys5: "Safety",
+        sys5t: "Interlocky & protokoly",
+        sys6: "Network",
+        sys6t: "Ethernet / polia",
+        sys7: "Data",
+        sys7t: "Logy, exporty, reporty",
+        sys8: "Docs",
+        sys8t: "Schémy, návody",
       },
       de: {
-        title: "Automatisierung & Elektro - thedesigns.org",
+        title: "Elektro & Automatisierung - Industriell",
         back: "Zurück",
-        h1: "Automatisierung & Elektro",
-        lead: "Wir realisieren Automatisierung und Elektroprojekte. Struktur, Dokumentation und ein Portfolio realer Umsetzungen.",
-        k1: "Effizienz",
-        k2: "Zuverlässigkeit",
-        k3: "Tempo",
-        leistungen: "Leistungen & Kompetenzen",
-        prozess: "Ablauf von der Idee bis zum Betrieb",
-        s1: "Maschinensicherheit",
-        s2: "SPS-Programmierung",
-        s3: "Elektrokonstruktion",
-        s4: "Industrie 4.0",
-        s5: "Engineering",
-        s6: "Automatisierungstechnik",
-        s7: "Softwareentwicklung / IT",
-        s8: "Schaltschrankbau",
-        s9: "Retrofit / Modernisierung",
-        s10: "Roboterprogrammierung",
-        s11: "Inbetriebnahme",
-        s12: "Support & Service",
-        t1: "Analyse & Konzept",
-        t2: "Schaltschrankbau",
-        t3: "Programmierung & Integration",
-        t4: "Montage & Tests",
+        subline: "Industrielles Scanning, schnelle Iterationen, saubere Logistik.",
+        kicker: "Industrial scanning / pulse",
+        h1: "Automatisierung, die den Takt hält.",
+        lead: "Von der Planung bis zum Betrieb: saubere Verdrahtung, Logik, Tests und Dokumentation. Alles in klaren “rechten Winkeln” und mit messbarem Ergebnis.",
+        consoleTitle: "Signal Console",
+        consoleLine1: "SCAN:",
+        consoleVal1: "AUTO",
+        consoleHint: "Hover / Klick auf Block = Pulse Output.",
+        servicesTitle: "Leistungen",
+        servicesLead: "Systeme, die stabil laufen. Kein “Random” — alles messbar und dokumentiert.",
+        processTitle: "Prozess",
+        processLead: "Fast, lineare Animationen im Workflow: Audit -> Design -> Build -> Test -> Live.",
+        systemTitle: "Systeme",
+        systemLead: "Technologien, die wir typischerweise in ein “Power-Flow”-Projekt integrieren.",
+
+        m1t: "24/7 SCADA",
+        m1v: "99.9%",
+        m1s: "Verfügbarkeit & Monitoring",
+        m2t: "PLC / Inverter",
+        m2v: "≤10ms",
+        m2s: "Regelung & Reaktionszeit",
+        m3t: "Sicherheit",
+        m3v: "ISO-ready",
+        m3s: "Normen, Tests, Revisionen",
+        m4t: "Projekt → Real",
+        m4v: "pünktlich",
+        m4s: "Outputs & Dokumente",
+
+        c1v: "CLEAN",
+        c2v: "LOCKED",
+        c3v: "STREAM",
+
+        sv1t: "CONTROL",
+        sv1: "PLC / Logik",
+        sv1s: "Programmierung und Verknüpfung der Steuerungen.",
+        sv2t: "POWER",
+        sv2: "Schaltschränke",
+        sv2s: "Verdrahtung, Beschriftung, Tests und Revisionen.",
+        sv3t: "MOTION",
+        sv3: "Antriebe & Frequenzumrichter",
+        sv3s: "Bewegungsregelung und lineare Dynamik.",
+        sv4t: "SAFETY",
+        sv4: "Maschinensicherheit",
+        sv4s: "Protokolle, Interlocks, Tests.",
+        sv5t: "IOT",
+        sv5: "SCADA / Monitoring",
+        sv5s: "Visualisierung, Alerts, Logs.",
+        sv6t: "INTEGR.",
+        sv6: "Integrationen",
+        sv6s: "ERP / CRM / Daten / Exporte.",
+        sv7t: "DOC",
+        sv7: "Dokumentation",
+        sv7s: "Schaltpläne, Anleitungen, Protokolle.",
+        sv8t: "TEST",
+        sv8: "Tests & Inbetriebnahme",
+        sv8s: "Feintuning, Start, finaler Feinschliff.",
+        sv9t: "NET",
+        sv9: "Netzwerk & Kommunikation",
+        sv9s: "Ethernet, Protokolle, Datenübertragung.",
+        sv10t: "OPT",
+        sv10: "Optimierung",
+        sv10s: "Performance, Stabilität, Iterationen.",
+        sv11t: "RET.",
+        sv11: "Modernisierung",
+        sv11s: "Upgrade ohne Chaos und Stillstand.",
+        sv12t: "OPS",
+        sv12: "Service",
+        sv12s: "Backups, Wartung, Kontrolle.",
+
+        t1: "Design & Messung",
+        t1t: "Anforderungen, Inputs, Limits, Zielparameter.",
+        t2: "Systemarchitektur",
+        t2t: "PLC-Logik, Kommunikation, Sicherheit.",
+        t3: "Produktion & Verdrahtung",
+        t3t: "Schaltschränke, Beschriftung, Kontrollpunkte.",
+        t4: "Programm & Simulation",
+        t4t: "Test-Szenarien, Tuning, Stabilität.",
         t5: "Inbetriebnahme",
-        t6: "Support nach Übergabe",
-        systemTitle: "Systeme / Systèmes",
-        sys1: "Automatisierungstechnik",
-        sys2: "Steuerungstechnik",
-        sys3: "Industrierobotik",
-        sys4: "Maschinensicherheit",
-        sys5: "Messtechnik",
-        sys6: "Visualisierung",
-        sys7: "Antriebstechnik",
-        sys8: "Bildverarbeitungssysteme",
-        cta: "Kontakt",
-        hint: "Auch eine Website?"
+        t5t: "Start, Fehlererfassung, finale Einstellungen.",
+        t6: "Dokumentation & Service",
+        t6t: "Schaltpläne, Protokolle, Service-Fenster.",
+
+        sys1: "PLC",
+        sys1t: "Siemens / kompatible",
+        sys2: "SCADA",
+        sys2t: "Visualisierung & Alarme",
+        sys3: "HMI",
+        sys3t: "User-Flow für Operatoren",
+        sys4: "Inverter",
+        sys4t: "Regelung der Antriebe",
+        sys5: "Safety",
+        sys5t: "Interlocks & Protokolle",
+        sys6: "Network",
+        sys6t: "Ethernet / Felder",
+        sys7: "Data",
+        sys7t: "Logs, Exporte, Reports",
+        sys8: "Docs",
+        sys8t: "Schaltpläne, Anleitungen",
       }
     };
 
     const buttons = document.querySelectorAll(".lang-btn");
     const targets = document.querySelectorAll("[data-i18n]");
-    const titleEl = document.querySelector("[data-i18n='title']");
+    const ring = document.getElementById("pulseRing");
 
-    function setLanguage(lang) {
+    function setLanguage(lang){
       const pack = dictionary[lang];
-      if (!pack) return;
-
+      if(!pack) return;
       document.documentElement.lang = lang;
-      targets.forEach((el) => {
+      targets.forEach((el)=>{
         const key = el.getAttribute("data-i18n");
-        if (pack[key]) el.textContent = pack[key];
+        if(pack[key]) el.textContent = pack[key];
       });
-
-      if (titleEl && pack.title) document.title = pack.title;
-
-      buttons.forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
+      if(pack.title) document.title = pack.title;
+      buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
     }
 
-    buttons.forEach((btn) => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
-    // Default is SK (active button already set)
+    buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
+
+    // Pulse ring on hover/click: gives the “industrial signal” feel.
+    const makePulse = (x, y) => {
+      if (!ring) return;
+      ring.style.left = `${x}px`;
+      ring.style.top = `${y}px`;
+      ring.classList.remove("on");
+      // Force reflow so animation restarts.
+      // eslint-disable-next-line no-unused-expressions
+      ring.offsetHeight;
+      ring.classList.add("on");
+    };
+
+    const interactive = document.querySelectorAll(".service, .step, .tag, .back");
+    interactive.forEach((el)=>{
+      el.addEventListener("mousemove", (e)=>{
+        if(e.buttons) return; // don't spam while dragging
+        makePulse(e.clientX, e.clientY);
+      }, { passive: true });
+      el.addEventListener("click", (e)=>{
+        makePulse(e.clientX, e.clientY);
+      });
+    });
+    // Keep a subtle pulse on touch.
+    window.addEventListener("touchstart", (e)=>{
+      if(!e.touches || !e.touches[0]) return;
+      makePulse(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
   </script>
 </body>
 </html>
+
