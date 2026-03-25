@@ -58,9 +58,9 @@ header{position:sticky;top:0;z-index:90;backdrop-filter:blur(16px);-webkit-backd
 .hero-award b{color:var(--ink)}
 
 /* Spinning circle badge */
-.spin{position:absolute;right:6%;top:18%;width:clamp(90px,9vw,130px);height:clamp(90px,9vw,130px);animation:sp 14s linear infinite}
+.spin{position:absolute;right:6%;top:18%;width:clamp(90px,9vw,130px);height:clamp(90px,9vw,130px)}
+.spin svg{width:100%;height:100%;animation:sp 14s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.spin svg{width:100%;height:100%}
 .spin text{fill:rgba(255,255,255,.4);font-size:9.5px;font-family:var(--mono);letter-spacing:.22em;text-transform:uppercase}
 
 /* ── ABOUT ── */
@@ -212,14 +212,93 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 .ft-col a:hover{color:var(--ink)}
 .ft-bottom{margin-top:36px;padding-top:20px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;color:var(--mute);font-size:.82rem;flex-wrap:wrap;gap:10px}
 
-/* Scroll reveal */
-.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+/* Custom cursor */
+.cur{position:fixed;width:18px;height:18px;border:1.5px solid rgba(255,255,255,.55);border-radius:999px;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,opacity .2s;mix-blend-mode:difference;opacity:0}
+body.has-cur{cursor:none}
+body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
+.cur.big{width:56px;height:56px;border-color:rgba(255,255,255,.25)}
+.cur.vis{opacity:1}
+
+/* Hero text slide-up */
+.hero-h span{overflow:hidden}
+.hero-h span b{display:block;transform:translateY(105%);animation:hSlide 1s cubic-bezier(.22,1,.36,1) forwards}
+.hero-h span:nth-child(2) b{animation-delay:.12s}
+@keyframes hSlide{to{transform:none}}
+.hero-sub,.hero-btns,.hero-award,.hero-top{opacity:0;transform:translateY(18px);animation:hFade .8s ease forwards}
+.hero-sub{animation-delay:.35s}
+.hero-btns{animation-delay:.5s}
+.hero-award{animation-delay:.65s}
+.hero-top{animation-delay:.1s}
+@keyframes hFade{to{opacity:1;transform:none}}
+
+/* Nav hover underline */
+.hb-nav a{position:relative}
+.hb-nav a::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.hb-nav a:hover::after{transform:scaleX(1)}
+
+/* Scroll reveal + stagger */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
 .rv.v{opacity:1;transform:none}
+.sg>*{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.sg.v>*:nth-child(1){transition-delay:0s;opacity:1;transform:none}
+.sg.v>*:nth-child(2){transition-delay:.1s;opacity:1;transform:none}
+.sg.v>*:nth-child(3){transition-delay:.2s;opacity:1;transform:none}
+.sg.v>*:nth-child(4){transition-delay:.3s;opacity:1;transform:none}
+.sg.v>*:nth-child(5){transition-delay:.35s;opacity:1;transform:none}
+.sg.v>*:nth-child(6){transition-delay:.4s;opacity:1;transform:none}
+.sg.v>*:nth-child(7){transition-delay:.45s;opacity:1;transform:none}
+
+/* Team card hover zoom */
+.tm-img{transition:transform .5s ease}
+.tm:hover .tm-img{transform:scale(1.04)}
+
+/* News card image hover zoom */
+.nc-img{transition:transform .5s ease}
+.nc:hover .nc-img{transform:scale(1.06)}
+
+/* Testimonials auto-scroll */
+.tst-scroll{display:flex;gap:16px;animation:tstSlide 24s linear infinite;width:max-content}
+.tst-scroll .qc{min-width:min(520px,80vw);flex-shrink:0}
+@keyframes tstSlide{to{transform:translateX(-50%)}}
+
+/* Button hover text effect */
+.hb-cta,.prc-btn,.cta-ban a,.about-btn,.pill{position:relative;overflow:hidden}
+.hb-cta::before,.prc-btn::before,.cta-ban a::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.08);transform:translateX(-101%);transition:transform .3s ease}
+.hb-cta:hover::before,.prc-btn:hover::before,.cta-ban a:hover::before{transform:none}
+
+/* Pricing tab pills */
+.pri-tabs{display:flex;gap:0;border:1px solid var(--hair);border-radius:999px;overflow:hidden;width:fit-content;margin-bottom:28px}
+.pri-tab{padding:10px 22px;font-size:.86rem;font-weight:600;border:none;background:0;color:var(--mute);cursor:pointer;transition:all .2s;font-family:var(--body)}
+.pri-tab.on{background:rgba(255,255,255,.08);color:var(--ink)}
+.pri-tab:hover{color:var(--ink)}
+
+/* Newsletter form */
+.nl-form{display:flex;gap:8px;margin-top:14px;max-width:320px}
+.nl-in{flex:1;padding:10px 14px;border:1px solid var(--hair);border-radius:999px;background:0;color:var(--ink);font-size:.86rem;outline:none;transition:border-color .2s;font-family:var(--body)}
+.nl-in:focus{border-color:rgba(255,255,255,.3)}
+.nl-in::placeholder{color:rgba(255,255,255,.3)}
+.nl-btn{padding:10px 16px;border:none;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.8rem;cursor:pointer;transition:opacity .15s;font-family:var(--body)}
+.nl-btn:hover{opacity:.85}
+
+/* News "Learn more" link */
+.nc-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-weight:600;font-size:.84rem;color:var(--mute);text-decoration:none;transition:color .15s}
+.nc-link:hover{color:var(--ink)}
+.nc-link::after{content:'\2192';transition:transform .15s}
+.nc-link:hover::after{transform:translateX(3px)}
+
+/* Service card inner glow on hover */
+.sv::before{content:'';position:absolute;inset:-1px;border-radius:var(--r2);background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.sv{position:relative;overflow:hidden}
+.sv:hover::before{opacity:1}
+
+/* Work card title slide */
+.wk-info{transform:translateY(8px);transition:transform .4s ease}
+.wk-card:hover .wk-info{transform:none}
 
 /* Responsive */
 @media(max-width:1040px){
   .about-g,.fq-g{grid-template-columns:1fr}
-  .kpis,.tst-g{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr}
   .team-g,.pri-g,.news-g{grid-template-columns:1fr}
   .wk-row{grid-template-columns:1fr}
   .ft-g{grid-template-columns:1fr 1fr}
@@ -232,6 +311,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 </style>
 </head>
 <body>
+<div class="cur" id="cur"></div>
 
 <header>
 <div class="w hb">
@@ -260,7 +340,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
     <div><span class="hero-brand">AirLens</span></div>
     <div><span class="hero-tag" data-i18n="htag">Agency</span></div>
   </div>
-  <h1 class="hero-h"><span>Studio</span><span>Creative</span></h1>
+  <h1 class="hero-h"><span><b>Studio</b></span><span><b>Creative</b></span></h1>
   <div class="spin" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="cp" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#cp">CREATIVE &#8226; STUDIO &#8226; DESIGN &#8226; PHOTO &#8226; </textPath></text></svg></div>
   <p class="hero-sub" data-i18n="hsub">Digital experiences that connect, scale and perform.</p>
   <div class="hero-btns">
@@ -311,7 +391,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 <div class="w">
   <div class="sl" data-i18n="sLbl">Services</div>
   <h2 class="st" data-i18n="sT">Smart Solutions for Bold Brands</h2>
-  <div class="srv-list">
+  <div class="srv-list sg rv">
     <div class="sv">
       <div class="sv-top"><h3 data-i18n="s1h">Brand Strategy</h3><span class="sv-n">01</span></div>
       <p data-i18n="s1p">Clear positioning, messaging, and direction that define your brand's purpose, vision, growth, and long-term market leadership.</p>
@@ -340,7 +420,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 <div class="w">
   <div class="sl" data-i18n="tmLbl">Team</div>
   <h2 class="st" data-i18n="tmT">Our Talented Team of Creative Specialists</h2>
-  <div class="team-g">
+  <div class="team-g sg rv">
     <div class="tm"><div class="tm-img"></div><div class="tm-info"><b data-i18n="t1n">Sophia Mitchell</b><span data-i18n="t1r">Chief Executive Officer (CEO)</span><span class="tm-desc" data-i18n="t1d">Rapid Solutions for Modern Teams</span></div></div>
     <div class="tm"><div class="tm-img"></div><div class="tm-info"><b data-i18n="t2n">David Thompson</b><span data-i18n="t2r">Lead Web Developer</span><span class="tm-desc" data-i18n="t2d">Creative Strategies for Growing Brands</span></div></div>
     <div class="tm"><div class="tm-img"></div><div class="tm-info"><b data-i18n="t3n">Emily Carter</b><span data-i18n="t3r">Content & Copywriting Specialist</span><span class="tm-desc" data-i18n="t3d">Smart Execution for Bold Businesses</span></div></div>
@@ -381,9 +461,13 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
     <div><div class="sl" data-i18n="tsLbl">Testimonials</div><h2 class="st" style="margin-bottom:0" data-i18n="tsT">Hear From the Brands We've Transformed</h2></div>
     <div class="tst-rat"><b>4.9/5</b><span data-i18n="tsR">Based on 140+ client reviews<br/>on AirLens</span></div>
   </div>
-  <div class="tst-g">
+  <div style="overflow:hidden">
+  <div class="tst-scroll" id="tstTrack">
     <div class="qc"><p data-i18n="q1">"Partnering with this creative agency was a turning point for our company. From the initial strategy workshop to the final campaign launch, their team demonstrated a rare combination of creativity, strategic thinking, and flawless execution."</p><div class="qc-who"><div class="qc-av"></div><div class="qc-m"><b data-i18n="q1n">Jonathan Miller</b><span data-i18n="q1r">Chief Marketing Officer</span></div></div></div>
     <div class="qc"><p data-i18n="q2">"The logo design, brand guidelines, website development, and campaign assets were all executed with incredible attention to detail. Their team was proactive, communicative, and genuinely invested in our success."</p><div class="qc-who"><div class="qc-av"></div><div class="qc-m"><b data-i18n="q2n">Samantha Collins</b><span data-i18n="q2r">Director of Communications</span></div></div></div>
+    <div class="qc"><p data-i18n="q1">"Partnering with this creative agency was a turning point for our company. From the initial strategy workshop to the final campaign launch, their team demonstrated a rare combination of creativity, strategic thinking, and flawless execution."</p><div class="qc-who"><div class="qc-av"></div><div class="qc-m"><b data-i18n="q1n">Jonathan Miller</b><span data-i18n="q1r">Chief Marketing Officer</span></div></div></div>
+    <div class="qc"><p data-i18n="q2">"The logo design, brand guidelines, website development, and campaign assets were all executed with incredible attention to detail. Their team was proactive, communicative, and genuinely invested in our success."</p><div class="qc-who"><div class="qc-av"></div><div class="qc-m"><b data-i18n="q2n">Samantha Collins</b><span data-i18n="q2r">Director of Communications</span></div></div></div>
+  </div>
   </div>
 </div>
 </section>
@@ -407,7 +491,8 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 <div class="w">
   <div class="sl" data-i18n="prLbl">Pricing</div>
   <h2 class="st" data-i18n="prT">Plans built to fit your next project</h2>
-  <div class="pri-g">
+  <div class="pri-tabs"><button class="pri-tab on" type="button">Basic</button><button class="pri-tab" type="button">Standard</button><button class="pri-tab" type="button">Premium</button></div>
+  <div class="pri-g sg rv">
     <div class="prc">
       <div class="prc-name" data-i18n="pr1n">Basic</div>
       <div class="prc-desc" data-i18n="pr1d">For startups and first launches</div>
@@ -466,10 +551,10 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 <div class="w">
   <div class="sl" data-i18n="nwLbl">News</div>
   <h2 class="st" data-i18n="nwT">Insights & Updates From Our Creative Studio</h2>
-  <div class="news-g">
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p></div></article>
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p></div></article>
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p></div></article>
+  <div class="news-g sg rv">
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
   </div>
 </div>
 </section>
@@ -492,7 +577,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
     <div><div class="ft-brand">AirLens</div><div class="ft-desc" data-i18n="ftDesc">We deliver strategic design solutions that elevate brands</div><div style="margin-top:14px"><a href="mailto:info@thedesigns.org" style="text-decoration:none;color:var(--mute);font-size:.88rem">info@thedesigns.org</a></div></div>
     <div class="ft-col"><h4>Pages</h4><a href="#about" data-i18n="ft1">About Us</a><a href="#work" data-i18n="ft2">Works</a><a href="#services" data-i18n="ft3">Pricing</a><a href="#news" data-i18n="ft4">News</a></div>
     <div class="ft-col"><h4>Legal</h4><a href="#">License</a><a href="#">Changelog</a><a href="#">Style Guide</a></div>
-    <div class="ft-col"><h4 data-i18n="ftNl">Stay in the Loop</h4><p style="color:var(--mute);font-size:.84rem;line-height:1.5" data-i18n="ftNlP">Stay informed about our latest news, updates by subscribing to our newsletter.</p></div>
+    <div class="ft-col"><h4 data-i18n="ftNl">Stay in the Loop</h4><p style="color:var(--mute);font-size:.84rem;line-height:1.5" data-i18n="ftNlP">Stay informed about our latest news, updates by subscribing to our newsletter.</p><form class="nl-form" onsubmit="return false"><input class="nl-in" type="email" placeholder="your@email.com" aria-label="Email"/><button class="nl-btn" type="submit" data-i18n="nlBtn">Subscribe</button></form></div>
   </div>
   <div class="ft-bottom"><span>&copy; 2026 AirLens &bull; thedesigns.org</span><span>Designed by AirLens</span></div>
 </div>
@@ -501,7 +586,7 @@ footer{padding:48px 0 36px;border-top:1px solid var(--hair)}
 <script>
 const D={
 sk:{
-title:"AirLens \u2014 Design Studio",back:"\u2190 Domov",
+title:"AirLens \u2014 Design Studio",back:"\u2190 Domov",nMore:"Zistiť viac",nlBtn:"Odoberať",
 nA:"O n\u00e1s",nS:"Slu\u017eby",nW:"Pr\u00e1ce",nN:"Novinky",nC:"Kontakt",nCta:"Za\u010da\u0165",
 htag:"Agency",hsub:"Digit\u00e1lne z\u00e1\u017eitky, ktor\u00e9 sp\u00e1jaj\u00fa, \u0161k\u00e1luj\u00fa a funguj\u00fa.",haward:"Best Digital Campaign, Wobbly Awards",
 aLbl:"O n\u00e1s",aH:"Premie\u0148ame n\u00e1pady na siln\u00e9 digit\u00e1lne z\u00e1\u017eitky na obrazovke",aP:"Odv\u00e1\u017ene n\u00e1pady premie\u0148ame na p\u00f4sobiv\u00e9 digit\u00e1lne z\u00e1\u017eitky, ktor\u00e9 zaujm\u00fa publikum a prin\u00e1\u0161aj\u00fa v\u00fdsledky. Od strat\u00e9gie a dizajnu po v\u00fdvoj a realiz\u00e1ciu \u2014 tvor\u00edme komplexn\u00e9 rie\u0161enia, ktor\u00e9 o\u017eivia va\u0161u zna\u010dku na ka\u017edej obrazovke.",aBtn:"Viac o n\u00e1s",
@@ -543,7 +628,7 @@ ctName:"Business Director at AirLens\u00ae",ctPh:"Telef\u00f3n",ctCal:"Napl\u00e
 ftDesc:"Dod\u00e1vame strategick\u00e9 dizajnov\u00e9 rie\u0161enia, ktor\u00e9 posúvajú zna\u010dky",ft1:"O n\u00e1s",ft2:"Pr\u00e1ce",ft3:"Cenn\u00edk",ft4:"Novinky",ftNl:"Zostaňte v obraze",ftNlP:"Zostaňte informovan\u00ed o na\u0161ich najnov\u0161\u00edch novink\u00e1ch a aktualiz\u00e1ciach prihl\u00e1sen\u00edm sa na na\u0161 newsletter."
 },
 de:{
-title:"AirLens \u2014 Design Studio",back:"\u2190 Home",
+title:"AirLens \u2014 Design Studio",back:"\u2190 Home",nMore:"Mehr erfahren",nlBtn:"Abonnieren",
 nA:"\u00dcber uns",nS:"Leistungen",nW:"Arbeiten",nN:"News",nC:"Kontakt",nCta:"Starten",
 htag:"Agency",hsub:"Digitale Erlebnisse, die verbinden, skalieren und performen.",haward:"Best Digital Campaign, Wobbly Awards",
 aLbl:"\u00dcber uns",aH:"Ideen in kraftvolle digitale Bildschirmerlebnisse verwandeln",aP:"Wir verwandeln mutige Ideen in wirkungsvolle digitale Erlebnisse, die Zielgruppen begeistern und Ergebnisse liefern. Von Strategie und Design bis Entwicklung und Umsetzung \u2014 wir schaffen nahtlose L\u00f6sungen, die Ihre Marke auf jedem Bildschirm zum Leben erwecken.",aBtn:"Mehr \u00fcber uns",
@@ -596,6 +681,52 @@ document.querySelectorAll(".kpi").forEach(b=>cio.observe(b));
 
 const rio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("v");rio.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll(".rv").forEach(e=>rio.observe(e));
+
+/* ── CUSTOM CURSOR ── */
+(function(){
+  const c=document.getElementById("cur");if(!c||"ontouchstart" in window)return;
+  document.body.classList.add("has-cur");
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;if(!c.classList.contains("vis"))c.classList.add("vis");});
+  const hoverEls="a,button,summary,.pill,.prc,.sv,.wk-card,.tm,.nc,.qc";
+  document.addEventListener("mouseover",e=>{if(e.target.closest(hoverEls))c.classList.add("big");});
+  document.addEventListener("mouseout",e=>{if(e.target.closest(hoverEls))c.classList.remove("big");});
+  (function loop(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;c.style.left=cx+"px";c.style.top=cy+"px";requestAnimationFrame(loop)})();
+})();
+
+/* ── STAGGER OBSERVER ── */
+const sgo=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("v");sgo.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll(".sg").forEach(e=>sgo.observe(e));
+
+/* ── PRICING TABS ── */
+document.querySelectorAll(".pri-tab").forEach((btn,i,all)=>{
+  btn.addEventListener("click",()=>{
+    all.forEach(b=>b.classList.remove("on"));btn.classList.add("on");
+    document.querySelectorAll(".prc").forEach((card,ci)=>{
+      card.style.transform=ci===i?"translateY(-4px) scale(1.02)":"";
+      card.style.borderColor=ci===i?"rgba(255,255,255,.2)":"";
+    });
+  });
+});
+
+/* ── TESTIMONIALS SCROLL DUPLICATION ── */
+(function(){const t=document.getElementById("tstTrack");if(t)t.innerHTML+=t.innerHTML;})();
+
+/* ── PARALLAX ON SCROLL ── */
+(function(){
+  const hero=document.querySelector(".hero-h");
+  const spin=document.querySelector(".spin");
+  if(!hero)return;
+  let ticking=false;
+  window.addEventListener("scroll",()=>{
+    if(!ticking){requestAnimationFrame(()=>{
+      const s=window.scrollY;
+      hero.style.transform="translateY("+s*.08+"px)";
+      if(spin)spin.style.transform="rotate("+(s*.15)+"deg) translateY("+s*.04+"px)";
+      ticking=false;
+    });ticking=true;}
+  });
+})();
 </script>
 </body>
 </html>
