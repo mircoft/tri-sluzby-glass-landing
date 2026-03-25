@@ -9,6 +9,15 @@
   <meta property="og:description" content="Design studio, profesionálna tvorba webov a automatizácia.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thedesigns.org">
+  <meta property="og:site_name" content="thedesigns.org">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="thedesigns.org">
+  <meta name="twitter:description" content="Design studio, profesionálna tvorba webov a automatizácia.">
+  <link rel="canonical" href="https://thedesigns.org/">
+  <meta name="theme-color" content="#050b18">
+  <meta name="application-name" content="thedesigns.org">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%23081225'/><text x='50' y='62' text-anchor='middle' font-size='42' fill='%2355a7ff' font-family='system-ui' font-weight='900'>td</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,7 +305,12 @@
         l1: "01", t1: "Design Studio", d1: "Künstlerische und professionelle Fotografie. Hochzeiten, Events und visuelle Identität.",
         l2: "02", t2: "Websites & Shops", d2: "Professionelle Web- und Shop-Entwicklung nach Maß. Design, Code, SEO und Wachstum.",
         l3: "03", t3: "Automatisierung", d3: "Industrielle Automatisierung, SPS-Programmierung und Montagen in der gesamten EU.",
-        foot: "© 2026 — Design, Web und Automatisierung."
+        foot: "© 2026 — Design, Web und Automatisierung.",
+        pageTitle: "thedesigns.org — Design, Web, Automatisierung",
+        metaDesc: "Professionelles Design Studio, maßgeschneiderte Web- und Shop-Entwicklung und industrielle Automatisierung.",
+        ogTitle: "thedesigns.org",
+        ogDesc: "Professionelles Design Studio, Web- und Shop-Entwicklung und Automatisierung.",
+        ogLocale: "de_DE"
       }
     };
     const buttons = document.querySelectorAll(".lang-btn");
@@ -316,6 +330,12 @@
       if(pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
       const ogd = document.querySelector('meta[property="og:description"]');
       if(pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
+      const ogl = document.querySelector('meta[property="og:locale"]');
+      if(pack.ogLocale && ogl) ogl.setAttribute("content", pack.ogLocale);
+      const twt = document.querySelector('meta[name="twitter:title"]');
+      if(pack.ogTitle && twt) twt.setAttribute("content", pack.ogTitle);
+      const twd = document.querySelector('meta[name="twitter:description"]');
+      if(pack.ogDesc && twd) twd.setAttribute("content", pack.ogDesc);
       buttons.forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
       try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }

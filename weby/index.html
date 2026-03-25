@@ -9,6 +9,15 @@
   <meta property="og:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thedesigns.org/weby/">
+  <meta property="og:site_name" content="thedesigns.org">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Weby a e-shopy na mieru — thedesigns.org">
+  <meta name="twitter:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.">
+  <link rel="canonical" href="https://thedesigns.org/weby/">
+  <meta name="theme-color" content="#060f21">
+  <meta name="application-name" content="thedesigns.org">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%23081225'/><text x='50' y='62' text-anchor='middle' font-size='42' fill='%2355a7ff' font-family='system-ui' font-weight='900'>td</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -543,7 +552,11 @@
         contactTitle: "Kontakt",
         contactLead: "Sende dein Briefing und wir liefern eine konkrete Lösung.",
         footBrand: "thedesigns.org — Websites & Shops",
-        footCopy: "© 2026 — Premium-Webproduktion für Performance und Wachstum."
+        footCopy: "© 2026 — Premium-Webproduktion für Performance und Wachstum.",
+        metaDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum.",
+        ogTitle: "Websites und Shops nach Maß — thedesigns.org",
+        ogDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum.",
+        ogLocale: "de_DE"
       }
     };
     const buttons = document.querySelectorAll(".lang-btn");
@@ -563,6 +576,12 @@
       if(pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
       const ogd = document.querySelector('meta[property="og:description"]');
       if(pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
+      const ogl = document.querySelector('meta[property="og:locale"]');
+      if(pack.ogLocale && ogl) ogl.setAttribute("content", pack.ogLocale);
+      const twt = document.querySelector('meta[name="twitter:title"]');
+      if(pack.ogTitle && twt) twt.setAttribute("content", pack.ogTitle);
+      const twd = document.querySelector('meta[name="twitter:description"]');
+      if(pack.ogDesc && twd) twd.setAttribute("content", pack.ogDesc);
       buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
       try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }
