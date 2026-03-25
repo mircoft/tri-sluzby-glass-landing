@@ -504,7 +504,11 @@
       background:
         linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)),
         radial-gradient(circle at 20% 25%, rgba(255,255,255,0.22), transparent 45%),
-        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55)),
+        url(var(--img));
+      background-size: auto, auto, auto, cover;
+      background-position: 0 0, 0 0, 0 0, center;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
       filter: grayscale(1) contrast(1.1) saturate(0.2) brightness(0.98);
       transform: translateY(calc(var(--py, 0px) * 0.5));
       opacity: 0.95;
@@ -516,7 +520,11 @@
         radial-gradient(circle at 55% 25%, rgba(255, 255, 255, 0.14), transparent 26%),
         radial-gradient(circle at 80% 55%, rgba(120, 190, 255, 0.18), transparent 24%),
         radial-gradient(circle at 40% 78%, rgba(255, 90, 170, 0.16), transparent 26%),
-        linear-gradient(180deg, rgba(15,20,55,0.1), rgba(15,20,55,0.55));
+        linear-gradient(180deg, rgba(15,20,55,0.1), rgba(15,20,55,0.55)),
+        url(var(--img));
+      background-size: auto, auto, auto, auto, auto, cover;
+      background-position: 0 0, 0 0, 0 0, 0 0, 0 0, center;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
       filter: blur(18px) saturate(1.05);
       opacity: 0.95;
       transform: translateY(calc(var(--py, 0px) * 1.05)) scale(1.04);
@@ -720,7 +728,7 @@
       <div class="section">
         <h2 class="section-title" data-i18n="galleryTitle">Ukážky (hover = soft focus)</h2>
         <div class="gallery-grid" id="gallery">
-          <a class="gallery-tile" href="#" aria-label="Referencia 1">
+          <a class="gallery-tile" href="#" aria-label="Referencia 1" style="--img: './img/egypt/egypt_1009.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -729,7 +737,7 @@
               <span class="name" data-i18n="g1name">Detail rúk & emócie</span>
             </div>
           </a>
-          <a class="gallery-tile" href="#" aria-label="Referencia 2">
+          <a class="gallery-tile" href="#" aria-label="Referencia 2" style="--img: './img/egypt/egypt_1025.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -738,7 +746,7 @@
               <span class="name" data-i18n="g2name">Svadobný deň v prirodzenej línii</span>
             </div>
           </a>
-          <a class="gallery-tile" href="#" aria-label="Referencia 3">
+          <a class="gallery-tile" href="#" aria-label="Referencia 3" style="--img: './img/egypt/egypt_1050.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -747,7 +755,7 @@
               <span class="name" data-i18n="g3name">Tlačené sety & fotoknihy</span>
             </div>
           </a>
-          <a class="gallery-tile" href="#" aria-label="Referencia 4">
+          <a class="gallery-tile" href="#" aria-label="Referencia 4" style="--img: './img/egypt/egypt_1069.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -756,7 +764,7 @@
               <span class="name" data-i18n="g4name">Čisté detaily & svetlo</span>
             </div>
           </a>
-          <a class="gallery-tile" href="#" aria-label="Referencia 5">
+          <a class="gallery-tile" href="#" aria-label="Referencia 5" style="--img: './img/egypt/egypt_1073.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -765,7 +773,7 @@
               <span class="name" data-i18n="g5name">Emócia na prvý záber</span>
             </div>
           </a>
-          <a class="gallery-tile" href="#" aria-label="Referencia 6">
+          <a class="gallery-tile" href="#" aria-label="Referencia 6" style="--img: './img/egypt/egypt_1082.jpg';">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
