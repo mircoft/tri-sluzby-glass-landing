@@ -112,9 +112,36 @@
       outline:2px solid rgba(85,167,255,.8);
       outline-offset:3px;
     }
+    .skip-link{
+      position:absolute;
+      left:-9999px;
+      top:0;
+      z-index:100;
+      padding:10px 14px;
+      background:rgba(5,11,24,.96);
+      color:var(--text);
+      border:1px solid var(--hair);
+      border-radius:10px;
+      font-size:.86rem;
+      font-weight:600;
+      text-decoration:none;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+    }
+    main{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      width:100%;
+      max-width:100%;
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n="skip">Preskočiť na obsah</a>
+  <main id="main">
   <div class="code" aria-hidden="true">404</div>
   <h1 data-i18n="h1">Táto stránka neexistuje.</h1>
   <p class="sub" data-i18n="sub">Adresa môže byť zastaralá alebo ste sa pomýlili v URL. Vyberte jednu z častí webu nižšie.</p>
@@ -129,9 +156,11 @@
     <a href="/elektro/" data-i18n="nav3">Automatizácia</a>
   </nav>
   <p class="home"><a href="/" data-i18n="back">← Späť na úvod</a></p>
+  </main>
   <script>
     const T = {
       sk: {
+        skip: "Preskočiť na obsah",
         h1: "Táto stránka neexistuje.",
         sub: "Adresa môže byť zastaralá alebo ste sa pomýlili v URL. Vyberte jednu z častí webu nižšie.",
         nav0: "Úvod",
@@ -141,6 +170,7 @@
         back: "← Späť na úvod"
       },
       de: {
+        skip: "Zum Inhalt springen",
         h1: "Diese Seite existiert nicht.",
         sub: "Die Adresse ist veraltet oder die URL war falsch. Wählen Sie unten einen Bereich.",
         nav0: "Start",
@@ -161,10 +191,15 @@
         if (p[k]) el.textContent = p[k];
       });
       btns.forEach(function (b) { b.classList.toggle("on", b.dataset.lang === lang); });
+      try { localStorage.setItem("td-lang", lang); } catch (e) {}
     }
     btns.forEach(function (b) {
       b.addEventListener("click", function () { setL(b.dataset.lang); });
     });
+    try {
+      var saved = localStorage.getItem("td-lang");
+      if (saved === "de" || saved === "sk") setL(saved);
+    } catch (e) {}
   </script>
 </body>
 </html>
