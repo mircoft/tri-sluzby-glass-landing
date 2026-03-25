@@ -3,251 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tri stlpce - thedesigns.org</title>
-  <meta name="description" content="Tri projekty pod jednou doménou: svadobné fotenie, weby/e-shopy na mieru a automatizácia/elektro.">
+  <title>thedesigns.org</title>
+  <meta name="description" content="Design studio, profesionalna tvorba webov a automatizacia. Tri smery pod jednou strechou.">
+  <meta property="og:title" content="thedesigns.org">
+  <meta property="og:description" content="Design studio, profesionalna tvorba webov a automatizacia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedesigns.org">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='18' width='100' height='100' fill='%23081225'/><text x='50' y='62' text-anchor='middle' font-size='42' fill='%2355a7ff' font-family='system-ui' font-weight='900'>td</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --text: #ecf2ff;
-      --glass: rgba(255, 255, 255, 0.1);
-      --border: rgba(255, 255, 255, 0.3);
-      --shadow: rgba(0, 0, 0, 0.4);
-      --blur: 16px;
+    :root{
+      --bg:#050b18;
+      --text:#ecf4ff;
+      --muted:rgba(236,244,255,.72);
+      --hair:rgba(255,255,255,.12);
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100vh;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      overflow-x: hidden;
-      overflow-y: auto;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06), transparent 42%),
-        radial-gradient(circle at 80% 20%, rgba(54,246,255,0.05), transparent 46%),
-        linear-gradient(180deg, #05060a 0%, #0c1020 55%, #05060a 100%);
+        radial-gradient(circle at 15% 12%,rgba(85,167,255,.22),transparent 42%),
+        radial-gradient(circle at 80% 18%,rgba(140,90,255,.18),transparent 44%),
+        radial-gradient(circle at 50% 85%,rgba(120,255,200,.10),transparent 48%),
+        linear-gradient(180deg,var(--bg) 0%,#0a1730 100%);
+    }
+    .container{width:min(1240px,92%);margin:0 auto}
+
+    .top{
+      position:fixed;top:0;left:0;right:0;z-index:30;
+      padding:14px 0;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      background:linear-gradient(180deg,rgba(5,11,24,.88),rgba(5,11,24,.35));
+      border-bottom:1px solid var(--hair);
+    }
+    .top-inner{
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{
+      font-family:var(--mono);
+      font-size:.84rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(236,244,255,.88);
+    }
+    .lang{display:flex;gap:8px}
+    .lang-btn{
+      border:1px solid var(--hair);
+      border-radius:10px;
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      padding:8px 10px;
+      font-size:.74rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-family:var(--mono);
+      cursor:pointer;
+      transition:.16s ease;
+    }
+    .lang-btn.active,.lang-btn:hover{border-color:rgba(85,167,255,.62)}
+    .lang-btn.active{background:rgba(85,167,255,.16)}
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:90px 0 40px;
+      text-align:center;
+    }
+    .hero-kicker{
+      font-family:var(--mono);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      color:rgba(236,244,255,.68);
+      margin-bottom:14px;
+    }
+    .hero h1{
+      font-size:clamp(2.4rem,5vw,4.2rem);
+      line-height:1.06;
+      letter-spacing:-.03em;
+      max-width:18ch;
+      margin:0 auto;
+    }
+    .hero-sub{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:1.06rem;
+      line-height:1.6;
+      max-width:52ch;
     }
 
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: soft-light;
-      opacity: 0.18;
+    .cols{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:36px;
+      width:100%;
+      max-width:1080px;
+    }
+    .col{
+      position:relative;
+      border:1px solid var(--hair);
+      border-radius:20px;
+      overflow:hidden;
+      text-decoration:none;
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      min-height:clamp(280px,42vh,420px);
+      transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+    }
+    .col:hover{
+      transform:translateY(-8px) scale(1.015);
+      box-shadow:0 30px 60px -20px rgba(0,0,0,.65);
+      border-color:rgba(255,255,255,.45);
+    }
+    .col-bg{
+      position:absolute;inset:0;
+      transition:transform .4s ease;
+    }
+    .col:hover .col-bg{transform:scale(1.06)}
+    .col-1 .col-bg{
+      background:
+        linear-gradient(180deg,transparent 30%,rgba(5,11,24,.92) 100%),
+        linear-gradient(160deg,rgba(100,40,255,.48),rgba(20,15,45,.3));
+    }
+    .col-2 .col-bg{
+      background:
+        linear-gradient(180deg,transparent 30%,rgba(5,11,24,.92) 100%),
+        linear-gradient(160deg,rgba(25,140,255,.45),rgba(10,25,50,.3));
+    }
+    .col-3 .col-bg{
+      background:
+        linear-gradient(180deg,transparent 30%,rgba(5,11,24,.92) 100%),
+        linear-gradient(160deg,rgba(255,60,120,.38),rgba(30,12,35,.3));
+    }
+    .col-content{
+      position:relative;z-index:1;
+      padding:20px;
+    }
+    .col-label{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:999px;
+      font-family:var(--mono);
+      font-size:.68rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+      background:rgba(0,0,0,.18);
+      backdrop-filter:blur(6px);
+    }
+    .col h2{
+      font-size:clamp(1.4rem,2vw,1.9rem);
+      line-height:1.12;
+      letter-spacing:-.01em;
+      margin-bottom:6px;
+    }
+    .col p{
+      color:rgba(236,244,255,.82);
+      font-size:.92rem;
+      line-height:1.5;
+      max-width:28ch;
+    }
+    .col-arrow{
+      position:absolute;
+      top:16px;right:16px;
+      width:36px;height:36px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:10px;
+      background:rgba(0,0,0,.2);
+      backdrop-filter:blur(6px);
+      display:flex;align-items:center;justify-content:center;
+      opacity:.7;
+      transition:opacity .2s ease,border-color .2s ease;
+      z-index:2;
+    }
+    .col:hover .col-arrow{opacity:1;border-color:rgba(255,255,255,.55)}
+    .col-arrow svg{width:16px;height:16px;fill:none;stroke:var(--text);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    footer{
+      padding:28px 0 36px;
+      text-align:center;
+      color:rgba(236,244,255,.58);
+      font-size:.88rem;
+      border-top:1px solid var(--hair);
+      margin-top:40px;
+    }
+    footer b{
+      display:block;
+      font-family:var(--mono);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:.76rem;
+      margin-bottom:8px;
+      color:rgba(236,244,255,.72);
     }
 
-    .wrap {
-      min-height: 100vh;
-      width: min(1320px, 94%);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    .lang-switch {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 20;
-    }
-
-    .lang-btn {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(20, 24, 55, 0.45);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .lang-btn:hover,
-    .lang-btn.active {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.75);
-    }
-
-    .col {
-      flex: 1;
-      min-height: 78vh;
-      position: relative;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 18px 40px -22px var(--shadow);
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      align-items: flex-end;
-      padding: 2rem;
-      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-      isolation: isolate;
-    }
-
-    .col::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(140deg, rgba(255,255,255,0.22), rgba(255,255,255,0), rgba(255,255,255,0.18));
-      opacity: 0.75;
-      z-index: -1;
-      transition: opacity 0.45s ease;
-    }
-
-    .col:hover,
-    .col:focus-visible {
-      transform: translateY(-14px) scale(1.02);
-      box-shadow: 0 35px 70px -24px rgba(0, 0, 0, 0.75);
-      border-color: rgba(255, 255, 255, 0.65);
-      outline: none;
-    }
-
-    .col:hover::before,
-    .col:focus-visible::before { opacity: 0.9; }
-
-    .label {
-      display: inline-block;
-      padding: 0.5rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      background: rgba(8, 8, 20, 0.25);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.95rem;
-    }
-
-    h2 {
-      font-size: clamp(1.6rem, 2.1vw, 2.4rem);
-      line-height: 1.15;
-      text-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-      margin-bottom: 0.45rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-      opacity: 0.88;
-      max-width: 26ch;
-    }
-
-    .one { background: linear-gradient(160deg, rgba(96, 36, 255, 0.38), rgba(15, 20, 55, 0.2)); }
-    .two { background: linear-gradient(160deg, rgba(16, 170, 255, 0.36), rgba(10, 30, 45, 0.2)); }
-    .three { background: linear-gradient(160deg, rgba(255, 50, 150, 0.3), rgba(30, 15, 38, 0.2)); }
-
-    footer {
-      position: fixed;
-      left: 1rem;
-      bottom: 1rem;
-      opacity: 0.75;
-      font-size: 0.82rem;
-      z-index: 5;
-      user-select: none;
-    }
-
-    @media (max-width: 980px) {
-      body { overflow: auto; }
-      .wrap { min-height: auto; flex-direction: column; padding: 1rem 0.85rem 2rem; }
-      .col { width: 100%; min-height: 30vh; }
-      footer { position: static; margin: 1rem; }
+    @media(max-width:900px){
+      .cols{grid-template-columns:1fr;max-width:480px}
+      .col{min-height:220px}
+      .hero h1{font-size:clamp(1.8rem,6vw,2.8rem)}
     }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="lang-switch">
-    <button class="lang-btn active" type="button" data-lang="sk">SK</button>
-    <button class="lang-btn" type="button" data-lang="de">DE</button>
+  <div class="top">
+    <div class="container top-inner">
+      <div class="logo">thedesigns.org</div>
+      <div class="lang" aria-label="Language switch">
+        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+        <button class="lang-btn" type="button" data-lang="de">DE</button>
+      </div>
+    </div>
   </div>
 
-  <main class="wrap">
-    <a class="col one" href="./foto/" aria-label="Svadobné fotenie">
-      <div>
-        <span class="label" data-i18n="label1">Sektor 01</span>
-        <h2 data-i18n="title1">Svadobné fotenie</h2>
-        <p data-i18n="text1">Klikni a prejdite na svadobné fotenie.</p>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-kicker" data-i18n="kicker">Design / Web / Automatizacia</div>
+      <h1 data-i18n="h1">Tri smery. Jedna uroven kvality.</h1>
+      <p class="hero-sub" data-i18n="sub">Profesionalne design studio, tvorba webov a e-shopov na mieru a priemyselna automatizacia pod jednou strechou.</p>
+      <div class="cols">
+        <a class="col col-1" href="./foto/">
+          <div class="col-bg"></div>
+          <div class="col-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="col-content">
+            <span class="col-label" data-i18n="l1">01</span>
+            <h2 data-i18n="t1">Design Studio</h2>
+            <p data-i18n="d1">Umelecka a profesionalna fotografia. Svadby, eventy a vizualna identita.</p>
+          </div>
+        </a>
+        <a class="col col-2" href="./weby/">
+          <div class="col-bg"></div>
+          <div class="col-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="col-content">
+            <span class="col-label" data-i18n="l2">02</span>
+            <h2 data-i18n="t2">Weby & E-shopy</h2>
+            <p data-i18n="d2">Profesionalna tvorba webov a obchodov na mieru. Design, kod, SEO a rast.</p>
+          </div>
+        </a>
+        <a class="col col-3" href="./elektro/">
+          <div class="col-bg"></div>
+          <div class="col-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+          <div class="col-content">
+            <span class="col-label" data-i18n="l3">03</span>
+            <h2 data-i18n="t3">Automatizacia</h2>
+            <p data-i18n="d3">Priemyselna automatizacia, SPS programovanie a montaze v celej EU.</p>
+          </div>
+        </a>
       </div>
-    </a>
-
-    <a class="col two" href="./weby/" aria-label="Weby a e-shopy na mieru">
-      <div>
-        <span class="label" data-i18n="label2">Sektor 02</span>
-        <h2 data-i18n="title2">Weby & e-shopy</h2>
-        <p data-i18n="text2">Klikni a prejdite na výrobu e-shopov.</p>
-      </div>
-    </a>
-
-    <a class="col three" href="./elektro/" aria-label="Automatizácia a elektro projekty">
-      <div>
-        <span class="label" data-i18n="label3">Sektor 03</span>
-        <h2 data-i18n="title3">Automatizácia & elektro</h2>
-        <p data-i18n="text3">Klikni a prejdite na elektro portfólio.</p>
-      </div>
-    </a>
+    </section>
   </main>
 
   <footer>
-    <span>thedesigns.org</span>
+    <div class="container">
+      <b>thedesigns.org</b>
+      <div>© 2026</div>
+    </div>
   </footer>
 
   <script>
     const dictionary = {
       sk: {
-        label1: "Sektor 01",
-        title1: "Svadobné fotenie",
-        text1: "Klikni a prejdite na svadobné fotenie.",
-        label2: "Sektor 02",
-        title2: "Weby & e-shopy",
-        text2: "Klikni a prejdite na výrobu e-shopov.",
-        label3: "Sektor 03",
-        title3: "Automatizácia & elektro",
-        text3: "Klikni a prejdite na elektro portfólio."
+        kicker: "Design / Web / Automatizacia",
+        h1: "Tri smery. Jedna uroven kvality.",
+        sub: "Profesionalne design studio, tvorba webov a e-shopov na mieru a priemyselna automatizacia pod jednou strechou.",
+        l1: "01", t1: "Design Studio", d1: "Umelecka a profesionalna fotografia. Svadby, eventy a vizualna identita.",
+        l2: "02", t2: "Weby & E-shopy", d2: "Profesionalna tvorba webov a obchodov na mieru. Design, kod, SEO a rast.",
+        l3: "03", t3: "Automatizacia", d3: "Priemyselna automatizacia, SPS programovanie a montaze v celej EU."
       },
       de: {
-        label1: "Bereich 01",
-        title1: "Hochzeitsfotografie",
-        text1: "Klicke und gehe zu Hochzeitsfotografie.",
-        label2: "Bereich 02",
-        title2: "Webseiten & Shops",
-        text2: "Klicke und gehe zu Webshop-Entwicklung.",
-        label3: "Bereich 03",
-        title3: "Automatisierung & Elektro",
-        text3: "Klicke und gehe zu Elektro-Projekten."
+        kicker: "Design / Web / Automatisierung",
+        h1: "Drei Bereiche. Ein Qualitaetsstandard.",
+        sub: "Professionelles Design Studio, massgeschneiderte Web- und Shop-Entwicklung und industrielle Automatisierung unter einem Dach.",
+        l1: "01", t1: "Design Studio", d1: "Kuenstlerische und professionelle Fotografie. Hochzeiten, Events und visuelle Identitaet.",
+        l2: "02", t2: "Websites & Shops", d2: "Professionelle Web- und Shop-Entwicklung nach Mass. Design, Code, SEO und Wachstum.",
+        l3: "03", t3: "Automatisierung", d3: "Industrielle Automatisierung, SPS-Programmierung und Montagen in der gesamten EU."
       }
     };
-
     const buttons = document.querySelectorAll(".lang-btn");
     const targets = document.querySelectorAll("[data-i18n]");
-
-    function setLanguage(lang) {
+    function setLanguage(lang){
       const pack = dictionary[lang];
-      if (!pack) return;
-
+      if(!pack) return;
       document.documentElement.lang = lang;
-      targets.forEach((el) => {
+      targets.forEach(el=>{
         const key = el.getAttribute("data-i18n");
-        if (pack[key]) el.textContent = pack[key];
+        if(pack[key]) el.textContent = pack[key];
       });
-
-      buttons.forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
+      buttons.forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
     }
-
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-    });
+    buttons.forEach(btn=>btn.addEventListener("click",()=>setLanguage(btn.dataset.lang)));
   </script>
 </body>
 </html>
