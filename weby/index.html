@@ -1,507 +1,546 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title">Weby & e-shopy na mieru - thedesigns.org</title>
-  <meta name="description" content="Výroba e-shopov a webov na mieru s dôrazom na výkon, UX a SEO.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="title">Weby & e-shopy - Precízna výroba</title>
+  <meta name="description" content="Technická a precízna výroba webov/e-shopov. Výkon, SEO, UX, systém." />
   <style>
-    :root {
-      --text: #ecf2ff;
-      --glass: rgba(255, 255, 255, 0.1);
-      --border: rgba(255, 255, 255, 0.3);
-      --shadow: rgba(0, 0, 0, 0.4);
-      --blur: 16px;
+    :root{
+      --bg0:#05070f;
+      --bg1:#070b1a;
+      --ink:#e9f2ff;
+      --muted: rgba(233,242,255,0.72);
+      --hair: rgba(233,242,255,0.13);
+      --glass: rgba(13,19,45,0.55);
+      --shadow: rgba(0,0,0,0.55);
+      --cyan:#36f6ff;
+      --violet:#8a5bff;
+      --green:#66ffb8;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--text);
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
-        radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
-        radial-gradient(circle at 52% 85%, #ff2f8f 0%, transparent 38%),
-        linear-gradient(135deg, #080a1d 0%, #141938 100%);
-      overflow-x: hidden;
+        radial-gradient(circle at 18% 22%, rgba(54,246,255,0.16), transparent 44%),
+        radial-gradient(circle at 82% 14%, rgba(138,91,255,0.18), transparent 46%),
+        radial-gradient(circle at 50% 86%, rgba(102,255,184,0.10), transparent 50%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: soft-light;
-      opacity: 0.3;
+    .gridlines{
+      position:fixed; inset:0; pointer-events:none; opacity:0.55;
+      background:
+        linear-gradient(to right, rgba(233,242,255,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(233,242,255,0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 50% 20%, #000 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.05) 100%);
     }
-    .lang-switch {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 20;
+    .scan{
+      position:fixed; inset:-30% -20%;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.12) 45%, rgba(54,246,255,0.06) 55%, transparent 100%);
+      transform: rotate(12deg) translateX(-40%);
+      animation: scanMove 8s linear infinite;
+      pointer-events:none;
+      opacity:0.55;
+      filter: blur(0.2px);
     }
-    .lang-btn {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(20, 24, 55, 0.45);
-      color: var(--text);
+    @keyframes scanMove{
+      0%{transform: rotate(12deg) translateX(-55%);}
+      100%{transform: rotate(12deg) translateX(55%);}
+    }
+
+    .container{width:min(1240px,92%); margin:0 auto;}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(5,7,15,0.82), rgba(5,7,15,0.18));
+      border-bottom:1px solid rgba(233,242,255,0.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap:12px;
+    }
+    .nav-left{display:flex; gap:10px; align-items:center;}
+    .back{
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid rgba(233,242,255,0.14);
+      background: rgba(10,14,30,0.45);
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: transform .16s ease, border-color .16s ease;
+      font-weight:750;
+      letter-spacing:0.04em;
+    }
+    .back:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.55);}
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .brand b{
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      letter-spacing:0.12em;
+    }
+    .brand span{color:var(--muted); font-size:0.9rem;}
+
+    .lang-switch{display:flex; gap:8px;}
+    .lang-btn{
+      border:1px solid rgba(233,242,255,0.14);
+      background: rgba(10,14,30,0.45);
+      color:var(--ink);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size:0.78rem;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      font-family: var(--mono);
+    }
+    .lang-btn:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.55);}
+    .lang-btn.active{background: rgba(54,246,255,0.12); border-color: rgba(54,246,255,0.55);}
+
+    .hero{
+      padding: 54px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .kicker{
+      font-family: var(--mono);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      color: rgba(233,242,255,0.74);
+    }
+    h1{
+      font-size: clamp(2.2rem, 3.2vw, 3.4rem);
+      line-height: 1.02;
+      margin-top: 14px;
+      letter-spacing: -0.02em;
+    }
+    .lead{
+      margin-top: 12px;
+      color: rgba(233,242,255,0.78);
+      font-size: 1.03rem;
+      line-height: 1.55;
+      max-width: 64ch;
+    }
+    .pillrow{
+      margin-top: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 10px 12px;
       border-radius: 999px;
-      padding: 0.5rem 0.8rem;
+      border: 1px solid rgba(233,242,255,0.14);
+      background: rgba(10,14,30,0.35);
+      font-family: var(--mono);
       font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      transition: all 0.25s ease;
+      letter-spacing:0.03em;
+      color: rgba(233,242,255,0.86);
     }
-    .lang-btn:hover,
-    .lang-btn.active {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.75);
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      padding: 1rem 1rem 0.5rem;
-      z-index: 10;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(8,10,29,0.65) 0%, rgba(8,10,29,0) 100%);
-    }
-    .back {
-      display: inline-flex;
-      gap: 0.6rem;
-      align-items: center;
-      text-decoration: none;
-      color: var(--text);
-      opacity: 0.95;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.07);
-      padding: 0.6rem 0.95rem;
-      border-radius: 999px;
-      transition: transform 0.2s ease;
-    }
-    .back:hover { transform: translateY(-2px); }
-
-    .wrap {
-      width: min(980px, 92%);
-      margin: 0 auto;
-      padding: 4rem 0 3rem;
+    .dot{
+      width: 6px; height: 6px; border-radius: 99px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(54,246,255,0.42);
     }
 
-    .card {
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      background: var(--glass);
-      backdrop-filter: blur(var(--blur));
-      -webkit-backdrop-filter: blur(var(--blur));
-      box-shadow: 0 30px 60px -30px var(--shadow);
-      overflow: hidden;
+    .panel{
+      border-radius: 16px;
+      border: 1px solid rgba(233,242,255,0.14);
+      background: linear-gradient(180deg, rgba(13,19,45,0.65), rgba(10,14,30,0.35));
+      box-shadow: 0 30px 70px -40px var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(from 180deg,
+        rgba(54,246,255,0) 0%,
+        rgba(54,246,255,0.45) 18%,
+        rgba(138,91,255,0.35) 44%,
+        rgba(102,255,184,0.30) 68%,
+        rgba(54,246,255,0) 100%);
+      opacity:0.35;
+      filter: blur(16px);
+      pointer-events:none;
+    }
+    .panel-inner{position:relative; z-index:1; padding: 16px 16px;}
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .stat{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.25);
+      padding: 12px 12px;
+    }
+    .stat b{
+      display:block;
+      font-family: var(--mono);
+      letter-spacing:0.08em;
+      font-size:0.9rem;
+      color: rgba(233,242,255,0.92);
+    }
+    .stat span{
+      display:block;
+      margin-top:6px;
+      color: rgba(233,242,255,0.72);
+      font-size: 0.88rem;
+      line-height:1.35;
     }
 
-    .hero {
-      padding: 2.2rem 1.6rem 1.7rem;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      background: linear-gradient(160deg, rgba(16, 170, 255, 0.26), rgba(10, 30, 45, 0.05));
-    }
-
-    h1 {
-      font-size: clamp(2rem, 2.8vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-      text-shadow: 0 10px 26px rgba(0,0,0,0.4);
-    }
-    .lead {
-      opacity: 0.9;
-      max-width: 62ch;
-      font-size: 1.02rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 14px;
-      padding: 1.6rem;
-    }
-    .item {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.04);
-      padding: 1rem 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .item strong { display: block; margin-bottom: 0.35rem; }
-
-    /* Magnetic UX + glitch/wireframe overlays */
-    .magnetic {
-      cursor: none;
-    }
-
-    .magnetic::before {
-      content: "";
-      position: absolute;
-      inset: -3px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      background:
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 10px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 10px),
-        radial-gradient(circle at 30% 40%, rgba(0,255,255,0.22), transparent 44%),
-        radial-gradient(circle at 70% 70%, rgba(125,247,200,0.16), transparent 46%);
-      transform: scale(1.02);
-      pointer-events: none;
-    }
-
-    .magnetic::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.28) 45%, rgba(255, 255, 255, 0.22) 55%, transparent 100%);
-      clip-path: polygon(0 40%, 100% 30%, 100% 60%, 0 70%);
-      transform: translateX(-12px);
-    }
-
-    .magnetic:hover::before {
-      opacity: 1;
-    }
-
-    .magnetic:hover::after {
-      opacity: 1;
-      animation: glitchSweep 0.9s steps(2, end) 1;
-    }
-
-    @keyframes glitchSweep {
-      0% { transform: translateX(-18px); clip-path: polygon(0 55%, 100% 35%, 100% 65%, 0 75%); }
-      35% { transform: translateX(6px); clip-path: polygon(0 25%, 100% 15%, 100% 55%, 0 45%); }
-      70% { transform: translateX(14px); clip-path: polygon(0 60%, 100% 40%, 100% 78%, 0 88%); }
-      100% { transform: translateX(0px); clip-path: polygon(0 40%, 100% 30%, 100% 60%, 0 70%); }
-    }
-
-    /* Simple "wireframe" cursor dot shown only when hovering magnetic blocks. */
-    .magnetic-cursor {
-      position: fixed;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      transform: translate3d(-50%, -50%, 0);
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.15s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    }
-
-    .magnetic-cursor::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 12px;
-      height: 12px;
-      border: 1px solid rgba(0,255,255,0.55);
-      border-radius: 3px;
-      transform: translate(-50%, -50%);
-      opacity: 0.9;
-    }
-
-    .magnetic-active .magnetic-cursor {
-      opacity: 1;
-    }
-
-    .section {
-      padding: 0 1.6rem 0.2rem;
-    }
-
-    .section-title {
-      margin: 1.8rem 0 0.95rem;
-      font-size: 1.08rem;
-      letter-spacing: 0.01em;
-      opacity: 0.95;
-      text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 1.1rem;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 0 1.1rem;
-    }
-
-    .step-card {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.16);
-      padding: 0.95rem 1rem;
-      min-height: 84px;
-      overflow: hidden;
-    }
-
-    .step-card .num {
+    .actions{margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap;}
+    .btn{
+      text-decoration:none;
+      color: #07101a;
+      background: linear-gradient(120deg, rgba(54,246,255,0.92), rgba(102,255,184,0.85));
+      border: 1px solid rgba(233,242,255,0.12);
+      padding: 12px 14px;
+      border-radius: 14px;
       font-weight: 950;
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-bottom: 0.35rem;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.02em;
+      transition: transform .16s ease, filter .16s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn:hover{transform: translateY(-2px); filter: saturate(1.1);}
+    .btn.secondary{
+      color: var(--ink);
+      background: rgba(10,14,30,0.45);
+      border-color: rgba(233,242,255,0.14);
+    }
+    .btn.secondary:hover{border-color: rgba(54,246,255,0.55);}
+
+    .sections{padding: 18px 0 64px;}
+    .section{
+      margin-top: 18px;
+      border: 1px solid rgba(233,242,255,0.12);
+      border-radius: 16px;
+      background: rgba(10,14,30,0.30);
+      overflow:hidden;
+    }
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:12px;
+      padding: 14px 14px;
+      border-bottom:1px solid rgba(233,242,255,0.10);
+      background: rgba(5,7,15,0.28);
+    }
+    .section-head h2{
+      font-family: var(--mono);
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      font-size:0.88rem;
+      color: rgba(233,242,255,0.88);
+    }
+    .section-head p{
+      color: rgba(233,242,255,0.62);
+      font-size:0.9rem;
+      max-width: 70ch;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .card{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.22);
+      padding: 14px 14px;
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+    .card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.12) 50%, transparent 100%);
+      transform: translateX(-120%);
+      transition: transform .28s ease;
+      opacity: 0.0;
+      pointer-events:none;
+    }
+    .card:hover::after{transform: translateX(120%); opacity:1;}
+    .card b{
+      display:block;
+      font-size:1.02rem;
+      letter-spacing: -0.01em;
+    }
+    .card span{
+      display:block;
+      margin-top:8px;
+      color: rgba(233,242,255,0.70);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .step{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.22);
+      padding: 14px 14px;
+    }
+    .step .n{
+      font-family: var(--mono);
+      letter-spacing:0.18em;
+      color: rgba(54,246,255,0.82);
+      font-size: 0.78rem;
       text-transform: uppercase;
     }
+    .step b{display:block;margin-top:8px}
+    .step span{display:block;margin-top:8px;color: rgba(233,242,255,0.70); line-height:1.5}
 
-    .step-card strong {
-      display: block;
-      font-size: 0.98rem;
-      margin-bottom: 0.15rem;
+    .code{
+      padding: 0;
     }
-
-    .step-card span {
-      display: block;
-      font-size: 0.95rem;
-      opacity: 0.92;
+    .code-inner{
+      padding: 14px 14px;
+      position:relative;
     }
-
-    .code-card {
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.04);
-      position: relative;
-      overflow: hidden;
-      min-height: 220px;
-      padding: 1rem;
-      outline: none;
-    }
-
-    .code-card pre {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.82rem;
-      line-height: 1.45;
-      opacity: 0.95;
-      white-space: pre-wrap;
-    }
-
-    .code-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      background:
-        repeating-linear-gradient(90deg, rgba(0,255,255,0.18) 0 1px, transparent 1px 12px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.10) 0 1px, transparent 1px 10px),
-        linear-gradient(90deg, transparent 0%, rgba(0,255,255,0.35) 45%, rgba(255,255,255,0.25) 55%, transparent 100%);
-      mix-blend-mode: screen;
-    }
-
-    .code-overlay::after {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background: conic-gradient(from 180deg, transparent 0deg, rgba(255,255,255,0.25) 120deg, transparent 220deg);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      transform: translateX(-12px);
-    }
-
-    .code-card:hover .code-overlay,
-    .code-card:focus-visible .code-overlay {
-      opacity: 0.9;
-      animation: codeGlitch 1s steps(2, end) 1;
-    }
-
-    @keyframes codeGlitch {
-      0% { transform: translateX(-10px); }
-      25% { transform: translateX(7px); }
-      50% { transform: translateX(-4px); }
-      75% { transform: translateX(10px); }
-      100% { transform: translateX(0px); }
-    }
-
-    .cta-row {
-      padding: 0 1.6rem 1.8rem;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: #02101c;
-      font-weight: 800;
-      background: linear-gradient(120deg, rgba(16, 170, 255, 0.85), rgba(125, 247, 200, 0.75));
-      padding: 0.95rem 1.15rem;
+    pre{
+      margin:0;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.15);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.38);
+      padding: 14px 14px;
+      overflow:auto;
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: rgba(233,242,255,0.84);
+      position:relative;
     }
-    .btn:hover { transform: translateY(-3px); }
-    .smalllink {
-      color: var(--text);
-      opacity: 0.9;
-      text-decoration: underline;
-      align-self: center;
+    .glitch{
+      position:absolute; inset: 0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.10) 48%, transparent 100%),
+        repeating-linear-gradient(180deg, rgba(233,242,255,0.05) 0px, rgba(233,242,255,0.05) 1px, transparent 1px, transparent 6px);
+      mix-blend-mode: screen;
+      opacity: 0.0;
+      transform: translateX(-6px);
+      filter: blur(0.2px);
+    }
+    .panel:hover .glitch{
+      opacity: 0.8;
+      animation: glitchSweep .55s steps(2,end) infinite;
+    }
+    @keyframes glitchSweep{
+      0%{transform: translateX(-10px) skewX(-2deg); opacity:0.55}
+      35%{transform: translateX(10px) skewX(2deg); opacity:0.85}
+      100%{transform: translateX(-6px) skewX(-1deg); opacity:0.55}
     }
 
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-      .wrap { padding-top: 3.2rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
+    /* Magnetic cursor */
+    .mag-dot{
+      position: fixed;
+      left: 0; top: 0;
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(54,246,255,0.85);
+      box-shadow: 0 0 22px rgba(54,246,255,0.35);
+      pointer-events:none;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      opacity: 0.0;
+      transition: opacity .2s ease;
+    }
+    @media (hover: hover){
+      body.mag .mag-dot{opacity: 0.9;}
+      body.mag{cursor: none;}
+      a, button{cursor:none;}
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr;}
+      .stats{grid-template-columns:1fr;}
+      .cards{grid-template-columns:1fr;}
+      .steps{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="magnetic-cursor" aria-hidden="true"></div>
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="mag-dot" id="magDot" aria-hidden="true"></div>
 
-  <div class="lang-switch">
-    <button class="lang-btn active" type="button" data-lang="sk">SK</button>
-    <button class="lang-btn" type="button" data-lang="de">DE</button>
-  </div>
-
-  <div class="topbar">
-    <a class="back" href="../" aria-label="Back to hub">
-      <span data-i18n="back">Späť</span>
-    </a>
-  </div>
-
-  <main class="wrap">
-    <section class="card">
-      <div class="hero">
-        <h1 data-i18n="h1">Weby & e-shopy na mieru</h1>
-        <p class="lead" data-i18n="lead">
-          Navrhujeme a vyrábame weby, ktoré predávajú. Rýchlosť, UX, SEO a jednoduchá správa obsahu.
-        </p>
-      </div>
-
-      <div class="grid">
-        <div class="item magnetic" data-magnetic="1">
-          <strong data-i18n="f1">Dizajn od nuly</strong>
-          <span data-i18n="f1t">Od wireframe po finálny vizuál.</span>
-        </div>
-        <div class="item magnetic" data-magnetic="1">
-          <strong data-i18n="f2">E-shop, ktorý beží</strong>
-          <span data-i18n="f2t">Produkty, objednávky, platby a faktúry.</span>
-        </div>
-        <div class="item magnetic" data-magnetic="1">
-          <strong data-i18n="f3">Výkon a SEO</strong>
-          <span data-i18n="f3t">Technické nastavenie a analytika.</span>
-        </div>
-        <div class="item magnetic" data-magnetic="1">
-          <strong data-i18n="f4">Integrácie</strong>
-          <span data-i18n="f4t">Nástroje pre marketing a interné procesy.</span>
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <a class="back" href="../" data-i18n="back">Späť</a>
+        <div class="brand">
+          <b>WEB / E-SHOP / SYSTEM</b>
+          <span data-i18n="subline">Precízny build. Čistý výkon. Bez kompromisu.</span>
         </div>
       </div>
 
+      <div class="lang-switch" aria-label="Language switch">
+        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+        <button class="lang-btn" type="button" data-lang="de">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker" data-i18n="kicker">Custom web production</div>
+          <h1 data-i18n="h1">E-shop, landing, systém. Postavené presne.</h1>
+          <p class="lead" data-i18n="lead">
+            Dizajn + vývoj v jednom toku. Optimalizované pre rýchlosť, SEO, konverziu a dlhodobú údržbu.
+          </p>
+
+          <div class="pillrow">
+            <div class="pill"><span class="dot"></span><span data-i18n="p1">Perf / Core Web Vitals</span></div>
+            <div class="pill"><span class="dot" style="background:var(--green)"></span><span data-i18n="p2">SEO & štruktúra</span></div>
+            <div class="pill"><span class="dot" style="background:var(--violet)"></span><span data-i18n="p3">UX / UI precision</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="mailto:info@thedesigns.org" data-i18n="cta1">Kontakt</a>
+            <a class="btn secondary" href="#process" data-i18n="cta2">Proces</a>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="Technical panel">
+          <div class="panel-inner">
+            <div class="kicker" data-i18n="panelTitle">Build snapshot</div>
+            <div class="stats">
+              <div class="stat">
+                <b data-i18n="s1">TTI</b>
+                <span data-i18n="s1t">Rýchle načítanie a responzivita.</span>
+              </div>
+              <div class="stat">
+                <b data-i18n="s2">SEO</b>
+                <span data-i18n="s2t">Struktúra, schema, indexácia.</span>
+              </div>
+              <div class="stat">
+                <b data-i18n="s3">DX</b>
+                <span data-i18n="s3t">Čistý kód, systém, údržba.</span>
+              </div>
+            </div>
+          </div>
+          <div class="glitch" aria-hidden="true"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sections">
       <div class="section">
-        <h2 class="section-title" data-i18n="servicesTitle">Služby (Leistungen)</h2>
-        <div class="services-grid">
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv1">UI/UX + Wireframe</strong>
-            <span data-i18n="sv1t">Produktové flow, ktoré sa nemenia pri raste.</span>
+        <div class="section-head">
+          <h2 data-i18n="servicesTitle">Služby</h2>
+          <p data-i18n="servicesLead">Bez balastu. Len veci, ktoré posúvajú biznis a značku.</p>
+        </div>
+        <div class="cards">
+          <div class="card mag">
+            <b data-i18n="sv1">E-shopy na mieru</b>
+            <span data-i18n="sv1t">Od katalógu po checkout. Rýchle, čisté, stabilné.</span>
           </div>
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv2">E-shop, ktorý beží</strong>
-            <span data-i18n="sv2t">Checkout, produkty, objednávky a admin.</span>
+          <div class="card mag">
+            <b data-i18n="sv2">Landing & brand web</b>
+            <span data-i18n="sv2t">Konverzná štruktúra, typografia, micro-interactions.</span>
           </div>
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv3">Technické SEO</strong>
-            <span data-i18n="sv3t">Indexácia, výkon a štruktúra pre vyhľadávače.</span>
+          <div class="card mag">
+            <b data-i18n="sv3">UX / UI systém</b>
+            <span data-i18n="sv3t">Komponenty, design tokens, konzistentný layout.</span>
           </div>
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv4">Integrácie</strong>
-            <span data-i18n="sv4t">Platby, doprava, fakturácia, sklad a analytika.</span>
+          <div class="card mag">
+            <b data-i18n="sv4">SEO & obsahová architektúra</b>
+            <span data-i18n="sv4t">Technické SEO + hierarchia + interné prepojenie.</span>
           </div>
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv5">Bezpečnosť</strong>
-            <span data-i18n="sv5t">Hardening, bezpečné formuláre a základné ochrany.</span>
+          <div class="card mag">
+            <b data-i18n="sv5">Integrácie</b>
+            <span data-i18n="sv5t">Platby, fakturácia, CRM, e-mail, analytika.</span>
           </div>
-          <div class="item magnetic" data-magnetic="1">
-            <strong data-i18n="sv6">Správa obsahu</strong>
-            <span data-i18n="sv6t">Jednoduché aktualizácie pre váš tím.</span>
+          <div class="card mag">
+            <b data-i18n="sv6">Servis & iterácie</b>
+            <span data-i18n="sv6t">Monitoring, A/B, výkonové a konverzné zlepšenia.</span>
           </div>
         </div>
       </div>
 
-      <div class="section">
-        <h2 class="section-title" data-i18n="processTitle">Ablauf (Proces)</h2>
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="num">01</div>
-            <strong data-i18n="t1">Brief & analýza</strong>
-            <span data-i18n="t1t">Cieľ, publikum, konkurenčné porovnanie.</span>
+      <div class="section" id="process">
+        <div class="section-head">
+          <h2 data-i18n="processTitle">Proces</h2>
+          <p data-i18n="processLead">Rýchly, transparentný, kontrolovaný. Každý krok má výstup.</p>
+        </div>
+        <div class="steps">
+          <div class="step mag">
+            <div class="n">01</div>
+            <b data-i18n="t1">Audit & cieľ</b>
+            <span data-i18n="t1t">Kto je zákazník, čo má spraviť, čo meriame.</span>
           </div>
-          <div class="step-card">
-            <div class="num">02</div>
-            <strong data-i18n="t2">Design systém</strong>
-            <span data-i18n="t2t">UI DNA, komponenty a konzistentný look.</span>
+          <div class="step mag">
+            <div class="n">02</div>
+            <b data-i18n="t2">Architektúra</b>
+            <span data-i18n="t2t">Stránky, sekcie, navigácia, SEO základ.</span>
           </div>
-          <div class="step-card">
-            <div class="num">03</div>
-            <strong data-i18n="t3">Implementácia</strong>
-            <span data-i18n="t3t">Vývoj, integrácie a testy výkonu.</span>
+          <div class="step mag">
+            <div class="n">03</div>
+            <b data-i18n="t3">Design systém</b>
+            <span data-i18n="t3t">Komponenty, grid, typografia, stavy.</span>
           </div>
-          <div class="step-card">
-            <div class="num">04</div>
-            <strong data-i18n="t4">Go-live</strong>
-            <span data-i18n="t4t">Spustenie, monitoring a doladenie.</span>
-          </div>
-          <div class="step-card">
-            <div class="num">05</div>
-            <strong data-i18n="t5">Podpora</strong>
-            <span data-i18n="t5t">Údržba, drobné zmeny, optimalizácie.</span>
-          </div>
-          <div class="step-card">
-            <div class="num">06</div>
-            <strong data-i18n="t6">Štatistiky</strong>
-            <span data-i18n="t6t">UX merania a SEO plán do ďalších iterácií.</span>
+          <div class="step mag">
+            <div class="n">04</div>
+            <b data-i18n="t4">Build & test</b>
+            <span data-i18n="t4t">Výkon, prístupnosť, responzivita, analýza.</span>
           </div>
         </div>
       </div>
 
-      <div class="section">
-        <h2 class="section-title" data-i18n="codeTitle">Digital Glitch / Wireframe panel</h2>
-        <div style="padding: 0 0 1.2rem;">
-          <div class="code-card magnetic" data-magnetic="1" tabindex="0" aria-label="Digital glitch wireframe panel">
-            <div class="code-overlay" aria-hidden="true"></div>
-            <pre><code>/* UX Wireframe (preview) */
-route("/checkout") {
-  view "StepFlow"
-  validate inputs()
-  animate "success"
-}
-
-// SEO / performance
-measure LCP, CLS
-optimize assets()
-</code></pre>
-          </div>
+      <div class="section code">
+        <div class="section-head">
+          <h2 data-i18n="codeTitle">Wireframe / Glitch panel</h2>
+          <p data-i18n="codeLead">Hover nad panelom = glitch sweep. Takto myslím “technical polish”.</p>
         </div>
-      </div>
+        <div class="code-inner">
+          <pre class="mag"><code>const build = {
+  perf: "Core Web Vitals",
+  seo: ["schema", "sitemap", "canonical"],
+  ux: ["tokens", "components", "states"],
+  stack: ["static", "edge-friendly", "clean JS"]
+};
 
-      <div class="cta-row">
-        <a class="btn" href="mailto:info@thedesigns.org" aria-label="Kontakt">
-          <span data-i18n="cta">Kontakt</span>
-        </a>
-        <a class="smalllink" href="../foto/" data-i18n="hint">Chceš aj fotenie?</a>
+// ship → measure → iterate</code></pre>
+        </div>
       </div>
     </section>
   </main>
@@ -509,185 +548,148 @@ optimize assets()
   <script>
     const dictionary = {
       sk: {
-        title: "Weby & e-shopy na mieru - thedesigns.org",
+        title: "Weby & e-shopy - Precízna výroba",
         back: "Späť",
-        h1: "Weby & e-shopy na mieru",
-        lead: "Navrhujeme a vyrábame weby, ktoré predávajú. Rýchlosť, UX, SEO a jednoduchá správa obsahu.",
-        f1: "Dizajn od nuly",
-        f1t: "Od wireframe po finálny vizuál.",
-        f2: "E-shop, ktorý beží",
-        f2t: "Produkty, objednávky, platby a faktúry.",
-        f3: "Výkon a SEO",
-        f3t: "Technické nastavenie a analytika.",
-        f4: "Integrácie",
-        f4t: "Nástroje pre marketing a interné procesy.",
-        servicesTitle: "Služby (Leistungen)",
-        sv1: "UI/UX + Wireframe",
-        sv1t: "Produktové flow, ktoré sa nemenia pri raste.",
-        sv2: "E-shop, ktorý beží",
-        sv2t: "Checkout, produkty, objednávky a admin.",
-        sv3: "Technické SEO",
-        sv3t: "Indexácia, výkon a štruktúra pre vyhľadávače.",
-        sv4: "Integrácie",
-        sv4t: "Platby, doprava, fakturácia, sklad a analytika.",
-        sv5: "Bezpečnosť",
-        sv5t: "Hardening, bezpečné formuláre a základné ochrany.",
-        sv6: "Správa obsahu",
-        sv6t: "Jednoduché aktualizácie pre váš tím.",
-        processTitle: "Ablauf (Proces)",
-        t1: "Brief & analýza",
-        t1t: "Cieľ, publikum, konkurenčné porovnanie.",
-        t2: "Design systém",
-        t2t: "UI DNA, komponenty a konzistentný look.",
-        t3: "Implementácia",
-        t3t: "Vývoj, integrácie a testy výkonu.",
-        t4: "Go-live",
-        t4t: "Spustenie, monitoring a doladenie.",
-        t5: "Podpora",
-        t5t: "Údržba, drobné zmeny, optimalizácie.",
-        t6: "Štatistiky",
-        t6t: "UX merania a SEO plán do ďalších iterácií.",
-        codeTitle: "Digital Glitch / Wireframe panel",
-        cta: "Kontakt",
-        hint: "Chceš aj fotenie?"
+        subline: "Precízny build. Čistý výkon. Bez kompromisu.",
+        kicker: "Custom web production",
+        h1: "E-shop, landing, systém. Postavené presne.",
+        lead: "Dizajn + vývoj v jednom toku. Optimalizované pre rýchlosť, SEO, konverziu a dlhodobú údržbu.",
+        p1: "Perf / Core Web Vitals",
+        p2: "SEO & štruktúra",
+        p3: "UX / UI precision",
+        cta1: "Kontakt",
+        cta2: "Proces",
+        panelTitle: "Build snapshot",
+        s1: "TTI",
+        s1t: "Rýchle načítanie a responzivita.",
+        s2: "SEO",
+        s2t: "Struktúra, schema, indexácia.",
+        s3: "DX",
+        s3t: "Čistý kód, systém, údržba.",
+        servicesTitle: "Služby",
+        servicesLead: "Bez balastu. Len veci, ktoré posúvajú biznis a značku.",
+        sv1: "E-shopy na mieru",
+        sv1t: "Od katalógu po checkout. Rýchle, čisté, stabilné.",
+        sv2: "Landing & brand web",
+        sv2t: "Konverzná štruktúra, typografia, micro-interactions.",
+        sv3: "UX / UI systém",
+        sv3t: "Komponenty, design tokens, konzistentný layout.",
+        sv4: "SEO & obsahová architektúra",
+        sv4t: "Technické SEO + hierarchia + interné prepojenie.",
+        sv5: "Integrácie",
+        sv5t: "Platby, fakturácia, CRM, e-mail, analytika.",
+        sv6: "Servis & iterácie",
+        sv6t: "Monitoring, A/B, výkonové a konverzné zlepšenia.",
+        processTitle: "Proces",
+        processLead: "Rýchly, transparentný, kontrolovaný. Každý krok má výstup.",
+        t1: "Audit & cieľ",
+        t1t: "Kto je zákazník, čo má spraviť, čo meriame.",
+        t2: "Architektúra",
+        t2t: "Stránky, sekcie, navigácia, SEO základ.",
+        t3: "Design systém",
+        t3t: "Komponenty, grid, typografia, stavy.",
+        t4: "Build & test",
+        t4t: "Výkon, prístupnosť, responzivita, analýza.",
+        codeTitle: "Wireframe / Glitch panel",
+        codeLead: "Hover nad panelom = glitch sweep. Takto myslím “technical polish”."
       },
       de: {
-        title: "Websites & Onlineshops nach Maß - thedesigns.org",
+        title: "Web & Shops - Präziser Build",
         back: "Zurück",
-        h1: "Webseiten & Onlineshops nach Maß",
-        lead: "Wir entwerfen und entwickeln Websites, die verkaufen. Geschwindigkeit, UX, SEO und eine einfache Content-Verwaltung.",
-        f1: "Design von Null an",
-        f1t: "Von Wireframe bis zum finalen Look.",
-        f2: "E-Shop der läuft",
-        f2t: "Produkte, Bestellungen, Zahlungen und Rechnungen.",
-        f3: "Performance und SEO",
-        f3t: "Technisches Setup und Analytics.",
-        f4: "Integrationen",
-        f4t: "Marketing-Tools und interne Prozesse.",
-        servicesTitle: "Leistungen (Služby)",
-        sv1: "UI/UX + Wireframe",
-        sv1t: "Produkt-Flow, das mit dem Wachstum skaliert.",
-        sv2: "E-Shop der läuft",
-        sv2t: "Checkout, Produkte, Bestellungen und Admin.",
-        sv3: "Technisches SEO",
-        sv3t: "Indexierung, Performance und Struktur für Suchmaschinen.",
-        sv4: "Integrationen",
-        sv4t: "Zahlungen, Versand, Rechnungen, Lager und Analytics.",
-        sv5: "Sicherheit",
-        sv5t: "Hardening, sichere Formulare und grundlegende Schutzmechanismen.",
-        sv6: "Content-Verwaltung",
-        sv6t: "Einfache Updates für dein Team.",
-        processTitle: "Ablauf (Proces)",
-        t1: "Brief & Analyse",
-        t1t: "Ziel, Zielgruppe und Wettbewerbs-Check.",
-        t2: "Design-System",
-        t2t: "UI DNA, Komponenten und konsistenter Look.",
-        t3: "Implementierung",
-        t3t: "Entwicklung, Integrationen und Performance-Tests.",
-        t4: "Go-live",
-        t4t: "Launch, Monitoring und Feinschliff.",
-        t5: "Support",
-        t5t: "Wartung, kleine Änderungen, Optimierungen.",
-        t6: "Statistiken",
-        t6t: "UX-Messungen und SEO-Plan für die nächsten Iterationen.",
-        codeTitle: "Digital Glitch / Wireframe Panel",
-        cta: "Kontakt",
-        hint: "Auch Fotografie?"
+        subline: "Präziser Build. Saubere Performance. Ohne Kompromisse.",
+        kicker: "Custom Web Production",
+        h1: "Shop, Landing, System. Präzise gebaut.",
+        lead: "Design + Entwicklung in einem Flow. Optimiert für Speed, SEO, Conversion und langfristige Wartung.",
+        p1: "Perf / Core Web Vitals",
+        p2: "SEO & Struktur",
+        p3: "UX / UI Präzision",
+        cta1: "Kontakt",
+        cta2: "Prozess",
+        panelTitle: "Build Snapshot",
+        s1: "TTI",
+        s1t: "Schnelles Laden und Responsivität.",
+        s2: "SEO",
+        s2t: "Struktur, Schema, Indexierung.",
+        s3: "DX",
+        s3t: "Sauberer Code, System, Wartung.",
+        servicesTitle: "Leistungen",
+        servicesLead: "Kein Ballast. Nur Dinge, die Business und Marke nach vorne bringen.",
+        sv1: "Shops nach Maß",
+        sv1t: "Vom Katalog bis Checkout. Schnell, sauber, stabil.",
+        sv2: "Landing & Brand Website",
+        sv2t: "Conversion-Struktur, Typografie, Micro-Interactions.",
+        sv3: "UX / UI System",
+        sv3t: "Komponenten, Design Tokens, konsistenter Layout.",
+        sv4: "SEO & Content Architektur",
+        sv4t: "Technisches SEO + Hierarchie + internes Linking.",
+        sv5: "Integrationen",
+        sv5t: "Payments, Faktura, CRM, E-Mail, Analytics.",
+        sv6: "Service & Iterationen",
+        sv6t: "Monitoring, A/B, Performance- und Conversion-Optimierung.",
+        processTitle: "Prozess",
+        processLead: "Schnell, transparent, kontrolliert. Jeder Schritt hat ein Ergebnis.",
+        t1: "Audit & Ziel",
+        t1t: "Wer ist der Kunde, was soll passieren, was messen wir.",
+        t2: "Architektur",
+        t2t: "Seiten, Sektionen, Navigation, SEO-Basis.",
+        t3: "Design System",
+        t3t: "Komponenten, Grid, Typografie, States.",
+        t4: "Build & Test",
+        t4t: "Performance, Accessibility, Responsive, Analyse.",
+        codeTitle: "Wireframe / Glitch Panel",
+        codeLead: "Hover über dem Panel = Glitch Sweep. So sieht “technical polish” aus."
       }
     };
 
     const buttons = document.querySelectorAll(".lang-btn");
     const targets = document.querySelectorAll("[data-i18n]");
-    const titleEl = document.querySelector("[data-i18n='title']");
-
-    // Magnetic effect for "precision" UX + animated glitch/wireframe on hover.
-    const magneticEls = document.querySelectorAll(".magnetic");
-    const cursorEl = document.querySelector(".magnetic-cursor");
-    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (!prefersReducedMotion && cursorEl && magneticEls.length) {
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let active = false;
-
-      function updateCursor() {
-        cursorEl.style.left = `${mouseX}px`;
-        cursorEl.style.top = `${mouseY}px`;
-      }
-
-      window.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        updateCursor();
-      });
-
-      const strength = 0.08; // overall "pull" intensity
-      const maxDist = 240;
-
-      function magnetize(el) {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = mouseX - cx;
-        const dy = mouseY - cy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist > maxDist) return { tx: 0, ty: 0, on: false };
-
-        const falloff = (1 - dist / maxDist);
-        const normX = dx / (dist || 1);
-        const normY = dy / (dist || 1);
-        return {
-          tx: normX * falloff * rect.width * strength,
-          ty: normY * falloff * rect.height * strength,
-          on: true
-        };
-      }
-
-      let raf = 0;
-      function tick() {
-        raf = 0;
-        active = false;
-        magneticEls.forEach((el) => {
-          const { tx, ty, on } = magnetize(el);
-          if (on) active = true;
-          el.style.transform = on ? `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)` : "";
-        });
-
-        document.body.classList.toggle("magnetic-active", active);
-      }
-
-      // Keep it light: magnetize only on pointer move.
-      window.addEventListener("mousemove", () => {
-        if (!raf) raf = requestAnimationFrame(tick);
-      });
-
-      // On leave, reset.
-      window.addEventListener("mouseleave", () => {
-        magneticEls.forEach((el) => { el.style.transform = ""; });
-        document.body.classList.remove("magnetic-active");
-      });
-    }
-
-    function setLanguage(lang) {
+    function setLanguage(lang){
       const pack = dictionary[lang];
-      if (!pack) return;
-
+      if(!pack) return;
       document.documentElement.lang = lang;
-      targets.forEach((el) => {
+      targets.forEach((el)=>{
         const key = el.getAttribute("data-i18n");
-        if (pack[key]) el.textContent = pack[key];
+        if(pack[key]) el.textContent = pack[key];
       });
-      if (titleEl && pack.title) document.title = pack.title;
+      if(pack.title) document.title = pack.title;
+      buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
+    }
+    buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
 
-      buttons.forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
+    // Magnetic cursor + subtle pull
+    const dot = document.getElementById("magDot");
+    let mx = window.innerWidth/2, my = window.innerHeight/2;
+    let dx = mx, dy = my;
+    const lerp = (a,b,t)=>a+(b-a)*t;
+
+    const canHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+    if(canHover){
+      document.body.classList.add("mag");
+      window.addEventListener("mousemove", (e)=>{ mx = e.clientX; my = e.clientY; });
+      const tick = ()=>{
+        dx = lerp(dx, mx, 0.18);
+        dy = lerp(dy, my, 0.18);
+        dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%, -50%)`;
+        requestAnimationFrame(tick);
+      };
+      tick();
+
+      const mags = document.querySelectorAll(".mag");
+      mags.forEach((el)=>{
+        let r;
+        el.addEventListener("mousemove", (e)=>{
+          r = el.getBoundingClientRect();
+          const ox = (e.clientX - (r.left + r.width/2)) / r.width;
+          const oy = (e.clientY - (r.top + r.height/2)) / r.height;
+          el.style.transform = `translate(${ox*10}px, ${oy*10}px)`;
+          el.style.borderColor = "rgba(54,246,255,0.45)";
+        });
+        el.addEventListener("mouseleave", ()=>{
+          el.style.transform = "";
+          el.style.borderColor = "";
+        });
       });
     }
-
-    buttons.forEach((btn) => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
-
-    // Default to SK (already active button)
   </script>
 </body>
 </html>
