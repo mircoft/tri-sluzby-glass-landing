@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultra Cool 3 Stlpce</title>
-  <meta name="description" content="Cista stranka s tromi klikatelnymi sklenenymi banermi a efektami.">
+  <title>Tri stlpce - thedesigns.org</title>
+  <meta name="description" content="Tri projekty pod jednou doménou: svadobné fotenie, weby/e-shopy na mieru a automatizácia/elektro.">
   <style>
     :root {
       --text: #ecf2ff;
@@ -14,11 +14,7 @@
       --blur: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
@@ -138,14 +134,9 @@
     }
 
     .col:hover::before,
-    .col:focus-visible::before {
-      opacity: 0.9;
-    }
-
+    .col:focus-visible::before { opacity: 0.9; }
     .col:hover::after,
-    .col:focus-visible::after {
-      transform: rotate(28deg);
-    }
+    .col:focus-visible::after { transform: rotate(28deg); }
 
     .label {
       display: inline-block;
@@ -176,21 +167,21 @@
     .two { background: linear-gradient(160deg, rgba(16, 170, 255, 0.36), rgba(10, 30, 45, 0.2)); }
     .three { background: linear-gradient(160deg, rgba(255, 50, 150, 0.3), rgba(30, 15, 38, 0.2)); }
 
+    footer {
+      position: fixed;
+      left: 1rem;
+      bottom: 1rem;
+      opacity: 0.75;
+      font-size: 0.82rem;
+      z-index: 5;
+      user-select: none;
+    }
+
     @media (max-width: 980px) {
-      body {
-        overflow: auto;
-      }
-
-      .wrap {
-        min-height: auto;
-        flex-direction: column;
-        padding: 1rem 0.85rem 2rem;
-      }
-
-      .col {
-        width: 100%;
-        min-height: 30vh;
-      }
+      body { overflow: auto; }
+      .wrap { min-height: auto; flex-direction: column; padding: 1rem 0.85rem 2rem; }
+      .col { width: 100%; min-height: 30vh; }
+      footer { position: static; margin: 1rem; }
     }
   </style>
 </head>
@@ -205,50 +196,55 @@
     <a class="col one" href="./foto/" aria-label="Svadobné fotenie">
       <div>
         <span class="label" data-i18n="label1">Sektor 01</span>
-        <h2 data-i18n="title1">Svadobne fotenie</h2>
-        <p data-i18n="text1">Klikni a prejdi do sekcie s portfoliom.</p>
+        <h2 data-i18n="title1">Svadobné fotenie</h2>
+        <p data-i18n="text1">Klikni a prejdite na svadobné fotenie.</p>
       </div>
     </a>
 
     <a class="col two" href="./weby/" aria-label="Weby a e-shopy na mieru">
       <div>
         <span class="label" data-i18n="label2">Sektor 02</span>
-        <h2 data-i18n="title2">E-shopy na mieru</h2>
-        <p data-i18n="text2">Klikni a prejdi do sekcie web developmentu.</p>
+        <h2 data-i18n="title2">Weby & e-shopy</h2>
+        <p data-i18n="text2">Klikni a prejdite na výrobu e-shopov.</p>
       </div>
     </a>
 
     <a class="col three" href="./elektro/" aria-label="Automatizácia a elektro projekty">
       <div>
         <span class="label" data-i18n="label3">Sektor 03</span>
-        <h2 data-i18n="title3">Automatizacia</h2>
-        <p data-i18n="text3">Klikni a prejdi do sekcie realizacii projektov.</p>
+        <h2 data-i18n="title3">Automatizácia & elektro</h2>
+        <p data-i18n="text3">Klikni a prejdite na elektro portfólio.</p>
       </div>
     </a>
   </main>
+
+  <footer>
+    <span>thedesigns.org</span>
+  </footer>
+
   <script>
     const dictionary = {
       sk: {
         label1: "Sektor 01",
-        title1: "Svadobne fotenie",
-        text1: "Klikni a prejdi do sekcie s portfoliom.",
+        title1: "Svadobné fotenie",
+        text1: "Klikni a prejdite na svadobné fotenie.",
         label2: "Sektor 02",
-        title2: "E-shopy na mieru",
-        text2: "Klikni a prejdi do sekcie web developmentu.",
+        title2: "Weby & e-shopy",
+        text2: "Klikni a prejdite na výrobu e-shopov.",
         label3: "Sektor 03",
-        title3: "Automatizacia",
-        text3: "Klikni a prejdi do sekcie realizacii projektov."
+        title3: "Automatizácia & elektro",
+        text3: "Klikni a prejdite na elektro portfólio."
       },
       de: {
         label1: "Bereich 01",
         title1: "Hochzeitsfotografie",
-        text1: "Klicke und gehe zur Portfolio-Sektion.",
+        text1: "Klicke und gehe zu Hochzeitsfotografie.",
         label2: "Bereich 02",
-        title2: "Massgeschneiderte Shops",
-        text2: "Klicke und gehe zur Web-Development-Sektion.",
+        title2: "Webseiten & Shops",
+        text2: "Klicke und gehe zu Webshop-Entwicklung.",
         label3: "Bereich 03",
-        title3: "Automatisierung",
-        text3: "Klicke und gehe zur Projekt-Sektion."
+        title3: "Automatisierung & Elektro",
+        text3: "Klicke und gehe zu Elektro-Projekten."
       }
     };
 

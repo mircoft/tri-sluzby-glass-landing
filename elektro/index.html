@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">Automatizácia & elektro - thedesigns.org</title>
+  <meta name="description" content="Automatizácia a elektro projekty s portfóliom realizácií.">
+  <style>
+    :root {
+      --text: #ecf2ff;
+      --glass: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.3);
+      --shadow: rgba(0, 0, 0, 0.4);
+      --blur: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
+        radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
+        radial-gradient(circle at 52% 85%, #ff2f8f 0%, transparent 38%),
+        linear-gradient(135deg, #080a1d 0%, #141938 100%);
+      overflow-x: hidden;
+    }
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 3px 3px;
+      mix-blend-mode: soft-light;
+      opacity: 0.3;
+    }
+    .lang-switch {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 20;
+    }
+    .lang-btn {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(20, 24, 55, 0.45);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .lang-btn:hover,
+    .lang-btn.active {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.75);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      padding: 1rem 1rem 0.5rem;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(8,10,29,0.65) 0%, rgba(8,10,29,0) 100%);
+    }
+    .back {
+      display: inline-flex;
+      gap: 0.6rem;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text);
+      opacity: 0.95;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.6rem 0.95rem;
+      border-radius: 999px;
+      transition: transform 0.2s ease;
+    }
+    .back:hover { transform: translateY(-2px); }
+
+    .wrap {
+      width: min(980px, 92%);
+      margin: 0 auto;
+      padding: 4rem 0 3rem;
+    }
+
+    .card {
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      box-shadow: 0 30px 60px -30px var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 2.2rem 1.6rem 1.7rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(160deg, rgba(255, 50, 150, 0.22), rgba(30, 15, 38, 0.05));
+    }
+
+    h1 {
+      font-size: clamp(2rem, 2.8vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 10px 26px rgba(0,0,0,0.4);
+    }
+    .lead {
+      opacity: 0.9;
+      max-width: 62ch;
+      font-size: 1.02rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      padding: 1.6rem;
+    }
+    .item {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+      padding: 1rem 1rem;
+    }
+    .item strong { display: block; margin-bottom: 0.35rem; }
+
+    .cta-row {
+      padding: 0 1.6rem 1.8rem;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #02101c;
+      font-weight: 800;
+      background: linear-gradient(120deg, rgba(255, 50, 150, 0.8), rgba(125, 247, 200, 0.75));
+      padding: 0.95rem 1.15rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .smalllink {
+      color: var(--text);
+      opacity: 0.9;
+      text-decoration: underline;
+      align-self: center;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { padding-top: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="lang-switch">
+    <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+    <button class="lang-btn" type="button" data-lang="de">DE</button>
+  </div>
+
+  <div class="topbar">
+    <a class="back" href="../" aria-label="Back to hub">
+      <span data-i18n="back">Späť</span>
+    </a>
+  </div>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="hero">
+        <h1 data-i18n="h1">Automatizácia & elektro</h1>
+        <p class="lead" data-i18n="lead">
+          Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="item">
+          <strong data-i18n="f1">Návrh a implementácia</strong>
+          <span data-i18n="f1t">Automatizované riešenia na mieru.</span>
+        </div>
+        <div class="item">
+          <strong data-i18n="f2">Silnoprúd / slaboprúd</strong>
+          <span data-i18n="f2t">Komerčné aj rezidenčné projekty.</span>
+        </div>
+        <div class="item">
+          <strong data-i18n="f3">Dokumentácia</strong>
+          <span data-i18n="f3t">Revízne podklady a podpora pri odovzdaní.</span>
+        </div>
+        <div class="item">
+          <strong data-i18n="f4">Portfólio kvality</strong>
+          <span data-i18n="f4t">Zameranie na čistú montáž a výsledok.</span>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="mailto:info@thedesigns.org" aria-label="Kontakt">
+          <span data-i18n="cta">Kontakt</span>
+        </a>
+        <a class="smalllink" href="../weby/" data-i18n="hint">Chceš aj web?</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const dictionary = {
+      sk: {
+        title: "Automatizácia & elektro - thedesigns.org",
+        back: "Späť",
+        h1: "Automatizácia & elektro",
+        lead: "Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.",
+        f1: "Návrh a implementácia",
+        f1t: "Automatizované riešenia na mieru.",
+        f2: "Silnoprúd / slaboprúd",
+        f2t: "Komerčné aj rezidenčné projekty.",
+        f3: "Dokumentácia",
+        f3t: "Revízne podklady a podpora pri odovzdaní.",
+        f4: "Portfólio kvality",
+        f4t: "Zameranie na čistú montáž a výsledok.",
+        cta: "Kontakt",
+        hint: "Chceš aj web?"
+      },
+      de: {
+        title: "Automatisierung & Elektro - thedesigns.org",
+        back: "Zurück",
+        h1: "Automatisierung & Elektro",
+        lead: "Wir realisieren Automatisierung und Elektroprojekte. Struktur, Dokumentation und ein Portfolio realer Umsetzungen.",
+        f1: "Konzept & Umsetzung",
+        f1t: "Maßgeschneiderte Automatisierungslösungen.",
+        f2: "Starkstrom / Schwachstrom",
+        f2t: "Gewerbe- und Wohnprojekte.",
+        f3: "Dokumentation",
+        f3t: "Revisionsunterlagen und Unterstützung bei der Übergabe.",
+        f4: "Qualitäts-Portfolio",
+        f4t: "Fokus auf saubere Montage und Ergebnis.",
+        cta: "Kontakt",
+        hint: "Auch eine Website?"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".lang-btn");
+    const targets = document.querySelectorAll("[data-i18n]");
+    const titleEl = document.querySelector("[data-i18n='title']");
+
+    function setLanguage(lang) {
+      const pack = dictionary[lang];
+      if (!pack) return;
+
+      document.documentElement.lang = lang;
+      targets.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (pack[key]) el.textContent = pack[key];
+      });
+
+      if (titleEl && pack.title) document.title = pack.title;
+
+      buttons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    buttons.forEach((btn) => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+    // Default is SK (active button already set)
+  </script>
+</body>
+</html>
