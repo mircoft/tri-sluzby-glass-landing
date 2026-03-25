@@ -224,6 +224,109 @@
       transform: translateY(calc(var(--py, 0px) * 0.35)) scale(1.01);
     }
 
+    /* Showreel card (Nexora-like short production effects) */
+    .showreel-card {
+      margin: 1rem 0 0;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .showreel-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from 180deg, rgba(96, 36, 255, 0) 0%, rgba(96, 36, 255, 0.55) 18%, rgba(125, 247, 200, 0.55) 44%, rgba(255, 50, 150, 0.45) 68%, rgba(96, 36, 255, 0) 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 0;
+      filter: blur(12px);
+    }
+
+    .showreel-card:hover::before,
+    .showreel-card:focus-visible::before {
+      opacity: 0.9;
+    }
+
+    .showreel-inner {
+      padding: 1.05rem 1.05rem;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.12), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 45%),
+        linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.38));
+    }
+
+    .play {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.06);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      flex: 0 0 auto;
+    }
+
+    .showreel-card:hover .play,
+    .showreel-card:focus-visible .play {
+      transform: translateY(-2px) scale(1.03);
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .play svg {
+      width: 20px;
+      height: 20px;
+      fill: rgba(255,255,255,0.9);
+    }
+
+    .showreel-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .showreel-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 10px 26px rgba(0,0,0,0.45);
+    }
+
+    .showreel-lead {
+      opacity: 0.9;
+      font-size: 0.95rem;
+      max-width: 52ch;
+    }
+
+    .showreel-cta {
+      text-decoration: none;
+      font-weight: 900;
+      color: #02101c;
+      background: linear-gradient(120deg, rgba(125, 247, 200, 0.75), rgba(96, 36, 255, 0.85));
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 0.75rem 0.95rem;
+      border-radius: 14px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+      flex: 0 0 auto;
+    }
+
+    .showreel-card:hover .showreel-cta,
+    .showreel-card:focus-visible .showreel-cta {
+      transform: translateY(-2px);
+    }
+
     h1 {
       font-size: clamp(2rem, 2.8vw, 3rem);
       line-height: 1.1;
@@ -350,7 +453,7 @@
       text-decoration: none;
       color: var(--text);
       display: block;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
       user-select: none;
     }
 
@@ -362,11 +465,38 @@
       outline: none;
     }
 
+    /* Sheen sweep (Nexora-like nice short hover) */
+    .gallery-tile::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -60%;
+      width: 60%;
+      height: 180%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 45%, transparent 70%);
+      transform: rotate(12deg) translateX(-40px);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gallery-tile:hover::after,
+    .gallery-tile:focus-visible::after {
+      opacity: 1;
+      animation: sheen 0.65s ease both;
+    }
+
+    @keyframes sheen {
+      0% { transform: rotate(12deg) translateX(-50px); }
+      100% { transform: rotate(12deg) translateX(220px); }
+    }
+
     .gallery-layer {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      transition: filter 0.55s ease, transform 0.55s ease, opacity 0.55s ease;
+      transition: filter 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
       will-change: filter, transform;
     }
 
@@ -510,6 +640,23 @@
             <div class="photo-hint" data-i18n="badge2">Soft Focus → Jemné vyostrenie</div>
           </div>
         </div>
+
+        <div class="showreel-card" tabindex="0" role="group" aria-label="Showreel">
+          <div class="showreel-inner">
+            <div class="play" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+              </svg>
+            </div>
+            <div class="showreel-text">
+              <div class="showreel-title" data-i18n="showreelTitle">Showreel - Wedding Stories</div>
+              <div class="showreel-lead" data-i18n="showreelLead">
+                Umelecké momenty v krátkom “soft focus” štýle. Hover = jemné vyostrenie.
+              </div>
+            </div>
+            <a class="showreel-cta" href="#gallery" data-i18n="showreelCta">Pozrieť ukážky</a>
+          </div>
+        </div>
       </div>
 
       <div class="grid">
@@ -572,7 +719,7 @@
 
       <div class="section">
         <h2 class="section-title" data-i18n="galleryTitle">Ukážky (hover = soft focus)</h2>
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="gallery">
           <a class="gallery-tile" href="#" aria-label="Referencia 1">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
@@ -598,6 +745,33 @@
             <div class="gallery-text">
               <span class="mini" data-i18n="g3mini">Print</span>
               <span class="name" data-i18n="g3name">Tlačené sety & fotoknihy</span>
+            </div>
+          </a>
+          <a class="gallery-tile" href="#" aria-label="Referencia 4">
+            <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-base" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
+            <div class="gallery-text">
+              <span class="mini" data-i18n="g4mini">Editorial</span>
+              <span class="name" data-i18n="g4name">Čisté detaily & svetlo</span>
+            </div>
+          </a>
+          <a class="gallery-tile" href="#" aria-label="Referencia 5">
+            <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-base" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
+            <div class="gallery-text">
+              <span class="mini" data-i18n="g5mini">Moments</span>
+              <span class="name" data-i18n="g5name">Emócia na prvý záber</span>
+            </div>
+          </a>
+          <a class="gallery-tile" href="#" aria-label="Referencia 6">
+            <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-base" aria-hidden="true"></div>
+            <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
+            <div class="gallery-text">
+              <span class="mini" data-i18n="g6mini">Couple</span>
+              <span class="name" data-i18n="g6name">Prirodzený pár v pohybe</span>
             </div>
           </a>
         </div>
@@ -650,6 +824,15 @@
         g2name: "Svadobný deň v prirodzenej línii",
         g3mini: "Print",
         g3name: "Tlačené sety & fotoknihy",
+        showreelTitle: "Showreel - Wedding Stories",
+        showreelLead: "Umelecké momenty v krátkom “soft focus” štýle. Hover = jemné vyostrenie.",
+        showreelCta: "Pozrieť ukážky",
+        g4mini: "Editorial",
+        g4name: "Čisté detaily & svetlo",
+        g5mini: "Moments",
+        g5name: "Emócia na prvý záber",
+        g6mini: "Couple",
+        g6name: "Prirodzený pár v pohybe",
         cta: "Kontakt",
         hint: "Chceš aj web?"
       },
@@ -689,6 +872,15 @@
         g2name: "Der Hochzeitstag in natürlicher Linie",
         g3mini: "Print",
         g3name: "Print-Sets & Fotobücher",
+        showreelTitle: "Showreel - Wedding Stories",
+        showreelLead: "Kunstvolle Momente im kurzen “Soft Focus”-Stil. Hover = sanftes Schärfen.",
+        showreelCta: "Zur Galerie",
+        g4mini: "Editorial",
+        g4name: "Klare Details & Licht",
+        g5mini: "Moments",
+        g5name: "Emotion im ersten Frame",
+        g6mini: "Couple",
+        g6name: "Natürliches Paar in Bewegung",
         cta: "Kontakt",
         hint: "Auch eine Website?"
       }
