@@ -270,7 +270,7 @@
   <footer>
     <div class="container">
       <b>thedesigns.org</b>
-      <div>© 2026</div>
+      <div data-i18n="foot">© 2026 — Design, web a automatizácia.</div>
     </div>
   </footer>
 
@@ -290,7 +290,8 @@
         sub: "Professionelles Design Studio, maßgeschneiderte Web- und Shop-Entwicklung und industrielle Automatisierung unter einem Dach.",
         l1: "01", t1: "Design Studio", d1: "Künstlerische und professionelle Fotografie. Hochzeiten, Events und visuelle Identität.",
         l2: "02", t2: "Websites & Shops", d2: "Professionelle Web- und Shop-Entwicklung nach Maß. Design, Code, SEO und Wachstum.",
-        l3: "03", t3: "Automatisierung", d3: "Industrielle Automatisierung, SPS-Programmierung und Montagen in der gesamten EU."
+        l3: "03", t3: "Automatisierung", d3: "Industrielle Automatisierung, SPS-Programmierung und Montagen in der gesamten EU.",
+        foot: "© 2026 — Design, Web und Automatisierung."
       }
     };
     const buttons = document.querySelectorAll(".lang-btn");
@@ -304,8 +305,13 @@
         if(pack[key]) el.textContent = pack[key];
       });
       buttons.forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
+      try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }
     buttons.forEach(btn=>btn.addEventListener("click",()=>setLanguage(btn.dataset.lang)));
+    try{
+      const saved = localStorage.getItem("td-lang");
+      if(saved && dictionary[saved]) setLanguage(saved);
+    }catch(e){}
   </script>
 </body>
 </html>

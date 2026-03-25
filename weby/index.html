@@ -395,8 +395,8 @@
 
   <footer>
     <div class="container">
-      <div style="font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;">thedesigns.org - Weby a e-shopy</div>
-      <div style="margin-top:10px;">© 2026 - Premium web production for performance and growth.</div>
+      <div style="font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;" data-i18n="footBrand">thedesigns.org — Weby a e-shopy</div>
+      <div style="margin-top:10px;" data-i18n="footCopy">© 2026 — Prémiová webová produkcia zameraná na výkon a rast.</div>
     </div>
   </footer>
 
@@ -468,7 +468,9 @@
         p3l1: "Kompletný build + rastový plán",
         p3l2: "Pokročilé SEO, servis, iterácie",
         contactTitle: "Kontakt",
-        contactLead: "Pošli zadanie a dohodneme konkrétne riešenie."
+        contactLead: "Pošli zadanie a dohodneme konkrétne riešenie.",
+        footBrand: "thedesigns.org — Weby a e-shopy",
+        footCopy: "© 2026 — Prémiová webová produkcia zameraná na výkon a rast."
       },
       de: {
         title: "Websites und Shops nach Maß",
@@ -520,7 +522,7 @@
         c2: "B2B Website",
         c2t: "Professionelle Darstellung von Leistungen und Lead Funnel.",
         c3: "Service Plattform",
-        c3t: "Modulares System, bereit fuer weiteres Wachstum.",
+        c3t: "Modulares System, bereit für weiteres Wachstum.",
         pricingTitle: "Pakete",
         pricingLead: "Transparente Preise je nach Projektumfang.",
         p1n: "Start",
@@ -536,7 +538,9 @@
         p3l1: "Kompletter Build plus Wachstumsplan",
         p3l2: "Erweitertes SEO, Service, Iterationen",
         contactTitle: "Kontakt",
-        contactLead: "Sende dein Briefing und wir liefern eine konkrete Lösung."
+        contactLead: "Sende dein Briefing und wir liefern eine konkrete Lösung.",
+        footBrand: "thedesigns.org — Websites & Shops",
+        footCopy: "© 2026 — Premium-Webproduktion für Performance und Wachstum."
       }
     };
     const buttons = document.querySelectorAll(".lang-btn");
@@ -551,8 +555,13 @@
       });
       if(pack.title) document.title = pack.title;
       buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
+      try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }
     buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
+    try{
+      const saved = localStorage.getItem("td-lang");
+      if(saved && dictionary[saved]) setLanguage(saved);
+    }catch(e){}
   </script>
 </body>
 </html>

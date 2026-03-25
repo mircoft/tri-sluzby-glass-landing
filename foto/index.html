@@ -598,8 +598,9 @@ de:{title:"AirLens \u2014 Design Studio",back:"\u2190 Home",nMore:"Mehr erfahren
 
 /* Language */
 const lbs=document.querySelectorAll(".lb"),els=document.querySelectorAll("[data-i18n]");
-function sL(l){const p=D[l];if(!p)return;document.documentElement.lang=l;els.forEach(e=>{const k=e.getAttribute("data-i18n");if(p[k]!==undefined){if(e.tagName==="INPUT")e.placeholder=p[k];else e.textContent=p[k];}});if(p.title)document.title=p.title;lbs.forEach(b=>b.classList.toggle("on",b.dataset.lang===l));}
-lbs.forEach(b=>b.addEventListener("click",()=>sL(b.dataset.lang)));sL("sk");
+function sL(l){const p=D[l];if(!p)return;document.documentElement.lang=l;els.forEach(e=>{const k=e.getAttribute("data-i18n");if(p[k]!==undefined){if(e.tagName==="INPUT")e.placeholder=p[k];else e.textContent=p[k];}});if(p.title)document.title=p.title;lbs.forEach(b=>b.classList.toggle("on",b.dataset.lang===l));try{localStorage.setItem("td-lang",l);}catch(e){}}
+lbs.forEach(b=>b.addEventListener("click",()=>sL(b.dataset.lang)));
+try{const s=localStorage.getItem("td-lang");sL(s==="de"?"de":"sk");}catch(e){sL("sk");}
 
 /* Duplicate marquees & testimonials */
 ["loop1","loop2","tstTrack","clRow"].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML+=e.innerHTML;});
