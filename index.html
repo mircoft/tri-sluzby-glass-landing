@@ -282,7 +282,12 @@
         sub: "Profesionálne design studio, tvorba webov a e-shopov na mieru a priemyselná automatizácia pod jednou strechou.",
         l1: "01", t1: "Design Studio", d1: "Umelecká a profesionálna fotografia. Svadby, eventy a vizuálna identita.",
         l2: "02", t2: "Weby & E-shopy", d2: "Profesionálna tvorba webov a obchodov na mieru. Design, kód, SEO a rast.",
-        l3: "03", t3: "Automatizácia", d3: "Priemyselná automatizácia, SPS programovanie a montáže v celej EÚ."
+        l3: "03", t3: "Automatizácia", d3: "Priemyselná automatizácia, SPS programovanie a montáže v celej EÚ.",
+        foot: "© 2026 — Design, web a automatizácia.",
+        pageTitle: "thedesigns.org — Design, web, automatizácia",
+        metaDesc: "Design studio, profesionálna tvorba webov a automatizácia. Tri smery pod jednou strechou.",
+        ogTitle: "thedesigns.org",
+        ogDesc: "Design studio, profesionálna tvorba webov a automatizácia."
       },
       de: {
         kicker: "Design / Web / Automatisierung",
@@ -304,6 +309,13 @@
         const key = el.getAttribute("data-i18n");
         if(pack[key]) el.textContent = pack[key];
       });
+      if(pack.pageTitle) document.title = pack.pageTitle;
+      const md = document.querySelector('meta[name="description"]');
+      if(pack.metaDesc && md) md.setAttribute("content", pack.metaDesc);
+      const ogt = document.querySelector('meta[property="og:title"]');
+      if(pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
+      const ogd = document.querySelector('meta[property="og:description"]');
+      if(pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
       buttons.forEach(btn=>btn.classList.toggle("active",btn.dataset.lang===lang));
       try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }

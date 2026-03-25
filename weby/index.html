@@ -470,7 +470,10 @@
         contactTitle: "Kontakt",
         contactLead: "Pošli zadanie a dohodneme konkrétne riešenie.",
         footBrand: "thedesigns.org — Weby a e-shopy",
-        footCopy: "© 2026 — Prémiová webová produkcia zameraná na výkon a rast."
+        footCopy: "© 2026 — Prémiová webová produkcia zameraná na výkon a rast.",
+        metaDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.",
+        ogTitle: "Weby a e-shopy na mieru — thedesigns.org",
+        ogDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast."
       },
       de: {
         title: "Websites und Shops nach Maß",
@@ -554,6 +557,12 @@
         if(pack[key]) el.textContent = pack[key];
       });
       if(pack.title) document.title = pack.title;
+      const md = document.querySelector('meta[name="description"]');
+      if(pack.metaDesc && md) md.setAttribute("content", pack.metaDesc);
+      const ogt = document.querySelector('meta[property="og:title"]');
+      if(pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
+      const ogd = document.querySelector('meta[property="og:description"]');
+      if(pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
       buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
       try{ localStorage.setItem("td-lang", lang); }catch(e){}
     }
