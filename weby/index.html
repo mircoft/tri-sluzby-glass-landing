@@ -128,8 +128,93 @@
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(255,255,255,0.04);
       padding: 1rem 1rem;
+      position: relative;
+      overflow: hidden;
     }
     .item strong { display: block; margin-bottom: 0.35rem; }
+
+    /* Magnetic UX + glitch/wireframe overlays */
+    .magnetic {
+      cursor: none;
+    }
+
+    .magnetic::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 10px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 10px),
+        radial-gradient(circle at 30% 40%, rgba(0,255,255,0.22), transparent 44%),
+        radial-gradient(circle at 70% 70%, rgba(125,247,200,0.16), transparent 46%);
+      transform: scale(1.02);
+      pointer-events: none;
+    }
+
+    .magnetic::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.28) 45%, rgba(255, 255, 255, 0.22) 55%, transparent 100%);
+      clip-path: polygon(0 40%, 100% 30%, 100% 60%, 0 70%);
+      transform: translateX(-12px);
+    }
+
+    .magnetic:hover::before {
+      opacity: 1;
+    }
+
+    .magnetic:hover::after {
+      opacity: 1;
+      animation: glitchSweep 0.9s steps(2, end) 1;
+    }
+
+    @keyframes glitchSweep {
+      0% { transform: translateX(-18px); clip-path: polygon(0 55%, 100% 35%, 100% 65%, 0 75%); }
+      35% { transform: translateX(6px); clip-path: polygon(0 25%, 100% 15%, 100% 55%, 0 45%); }
+      70% { transform: translateX(14px); clip-path: polygon(0 60%, 100% 40%, 100% 78%, 0 88%); }
+      100% { transform: translateX(0px); clip-path: polygon(0 40%, 100% 30%, 100% 60%, 0 70%); }
+    }
+
+    /* Simple "wireframe" cursor dot shown only when hovering magnetic blocks. */
+    .magnetic-cursor {
+      position: fixed;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transform: translate3d(-50%, -50%, 0);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    }
+
+    .magnetic-cursor::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgba(0,255,255,0.55);
+      border-radius: 3px;
+      transform: translate(-50%, -50%);
+      opacity: 0.9;
+    }
+
+    .magnetic-active .magnetic-cursor {
+      opacity: 1;
+    }
 
     .cta-row {
       padding: 0 1.6rem 1.8rem;
@@ -168,6 +253,7 @@
 </head>
 <body>
   <div class="noise"></div>
+  <div class="magnetic-cursor" aria-hidden="true"></div>
 
   <div class="lang-switch">
     <button class="lang-btn active" type="button" data-lang="sk">SK</button>
@@ -190,19 +276,19 @@
       </div>
 
       <div class="grid">
-        <div class="item">
+        <div class="item magnetic" data-magnetic="1">
           <strong data-i18n="f1">Dizajn od nuly</strong>
           <span data-i18n="f1t">Od wireframe po finálny vizuál.</span>
         </div>
-        <div class="item">
+        <div class="item magnetic" data-magnetic="1">
           <strong data-i18n="f2">E-shop, ktorý beží</strong>
           <span data-i18n="f2t">Produkty, objednávky, platby a faktúry.</span>
         </div>
-        <div class="item">
+        <div class="item magnetic" data-magnetic="1">
           <strong data-i18n="f3">Výkon a SEO</strong>
           <span data-i18n="f3t">Technické nastavenie a analytika.</span>
         </div>
-        <div class="item">
+        <div class="item magnetic" data-magnetic="1">
           <strong data-i18n="f4">Integrácie</strong>
           <span data-i18n="f4t">Nástroje pre marketing a interné procesy.</span>
         </div>
@@ -256,6 +342,75 @@
     const buttons = document.querySelectorAll(".lang-btn");
     const targets = document.querySelectorAll("[data-i18n]");
     const titleEl = document.querySelector("[data-i18n='title']");
+
+    // Magnetic effect for "precision" UX + animated glitch/wireframe on hover.
+    const magneticEls = document.querySelectorAll(".magnetic");
+    const cursorEl = document.querySelector(".magnetic-cursor");
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion && cursorEl && magneticEls.length) {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let active = false;
+
+      function updateCursor() {
+        cursorEl.style.left = `${mouseX}px`;
+        cursorEl.style.top = `${mouseY}px`;
+      }
+
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        updateCursor();
+      });
+
+      const strength = 0.08; // overall "pull" intensity
+      const maxDist = 240;
+
+      function magnetize(el) {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = mouseX - cx;
+        const dy = mouseY - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist > maxDist) return { tx: 0, ty: 0, on: false };
+
+        const falloff = (1 - dist / maxDist);
+        const normX = dx / (dist || 1);
+        const normY = dy / (dist || 1);
+        return {
+          tx: normX * falloff * rect.width * strength,
+          ty: normY * falloff * rect.height * strength,
+          on: true
+        };
+      }
+
+      let raf = 0;
+      function tick() {
+        raf = 0;
+        active = false;
+        magneticEls.forEach((el) => {
+          const { tx, ty, on } = magnetize(el);
+          if (on) active = true;
+          el.style.transform = on ? `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)` : "";
+        });
+
+        document.body.classList.toggle("magnetic-active", active);
+      }
+
+      // Keep it light: magnetize only on pointer move.
+      window.addEventListener("mousemove", () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+
+      // On leave, reset.
+      window.addEventListener("mouseleave", () => {
+        magneticEls.forEach((el) => { el.style.transform = ""; });
+        document.body.classList.remove("magnetic-active");
+      });
+    }
 
     function setLanguage(lang) {
       const pack = dictionary[lang];

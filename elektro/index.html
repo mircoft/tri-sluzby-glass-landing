@@ -105,6 +105,161 @@
       background: linear-gradient(160deg, rgba(255, 50, 150, 0.22), rgba(30, 15, 38, 0.05));
     }
 
+    /* Industriálny scanning/pulse panel */
+    .scan-panel {
+      margin: 1.2rem 0 0;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background:
+        repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.08) 0 1px, transparent 1px 10px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 10px),
+        radial-gradient(circle at 15% 25%, rgba(0, 255, 255, 0.15), transparent 45%),
+        radial-gradient(circle at 85% 70%, rgba(180, 200, 255, 0.12), transparent 48%),
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      outline: none;
+    }
+
+    .scan-panel::before {
+      /* Pulse glow */
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.24), transparent 55%);
+      opacity: 0.55;
+      animation: pulseGlow 2.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.02); opacity: 0.62; }
+      100% { transform: scale(1); opacity: 0.35; }
+    }
+
+    .scan-line {
+      position: absolute;
+      left: -40%;
+      top: 52%;
+      width: 180%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.95) 35%, rgba(255, 255, 255, 0.75) 50%, rgba(0, 255, 255, 0.45) 70%, transparent 100%);
+      box-shadow: 0 0 22px rgba(0,255,255,0.5);
+      transform: rotate(0deg);
+      animation: scanX 1.6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scanX {
+      0% { transform: translateX(-10%) translateY(-1px); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateX(16%) translateY(1px); opacity: 0; }
+    }
+
+    .scan-emit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.65;
+      background:
+        linear-gradient(90deg, rgba(0,255,255,0) 0%, rgba(0,255,255,0.12) 45%, rgba(0,255,255,0) 100%);
+      background-size: 200% 100%;
+      animation: emitMove 2.4s linear infinite;
+    }
+
+    @keyframes emitMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+
+    .sq {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,255,255,0.55);
+      background: rgba(0, 255, 255, 0.08);
+      box-shadow: 0 0 18px rgba(0,255,255,0.2);
+      opacity: 0.9;
+    }
+
+    .sq.s1 { left: 6%; top: 28%; animation: sqMove1 1.25s linear infinite; }
+    .sq.s2 { left: 72%; top: 18%; animation: sqMove2 1.35s linear infinite; }
+    .sq.s3 { left: 56%; top: 72%; animation: sqMove3 1.2s linear infinite; }
+
+    /* L-shaped, right-angle motion */
+    @keyframes sqMove1 {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(60px,0); }
+      55% { transform: translate(60px,70px); }
+      80% { transform: translate(0,70px); }
+      100% { transform: translate(0,0); }
+    }
+    @keyframes sqMove2 {
+      0% { transform: translate(0,0); }
+      30% { transform: translate(-62px,0); }
+      60% { transform: translate(-62px,58px); }
+      85% { transform: translate(0,58px); }
+      100% { transform: translate(0,0); }
+    }
+    @keyframes sqMove3 {
+      0% { transform: translate(0,0); }
+      22% { transform: translate(52px,0); }
+      50% { transform: translate(52px,-58px); }
+      78% { transform: translate(-18px,-58px); }
+      100% { transform: translate(0,0); }
+    }
+
+    .kpi-row {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .kpi {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 0.7rem 0.75rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.25s ease;
+    }
+    .kpi strong {
+      display: block;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.15rem;
+      text-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    }
+    .kpi span {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .scan-panel:hover .scan-line,
+    .scan-panel:focus-visible .scan-line {
+      animation-duration: 0.9s;
+    }
+
+    .scan-panel:hover .sq,
+    .scan-panel:focus-visible .sq {
+      animation-duration: 0.85s;
+    }
+
+    .scan-panel:hover .kpi,
+    .scan-panel:focus-visible .kpi {
+      transform: translateY(-4px);
+    }
+
     h1 {
       font-size: clamp(2rem, 2.8vw, 3rem);
       line-height: 1.1;
@@ -163,6 +318,8 @@
     @media (max-width: 860px) {
       .grid { grid-template-columns: 1fr; }
       .wrap { padding-top: 3.2rem; }
+      .scan-panel { height: 230px; }
+      .kpi-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -187,6 +344,28 @@
         <p class="lead" data-i18n="lead">
           Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.
         </p>
+
+        <div class="scan-panel" id="scanPanel" tabindex="0" role="img" aria-label="Scanning pulse vizualizácia">
+          <div class="scan-emit" aria-hidden="true"></div>
+          <div class="scan-line" aria-hidden="true"></div>
+          <span class="sq s1" aria-hidden="true"></span>
+          <span class="sq s2" aria-hidden="true"></span>
+          <span class="sq s3" aria-hidden="true"></span>
+          <div class="kpi-row" aria-hidden="true">
+            <div class="kpi">
+              <strong>98%</strong>
+              <span data-i18n="k1">Efektivita</span>
+            </div>
+            <div class="kpi">
+              <strong>99%</strong>
+              <span data-i18n="k2">Spoľahlivosť</span>
+            </div>
+            <div class="kpi">
+              <strong>2-4w</strong>
+              <span data-i18n="k3">Rýchlosť</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="grid">
@@ -224,6 +403,9 @@
         back: "Späť",
         h1: "Automatizácia & elektro",
         lead: "Realizujeme automatizáciu a elektro projekty. Štruktúra, dokumentácia a portfólio reálnych realizácií.",
+        k1: "Efektivita",
+        k2: "Spoľahlivosť",
+        k3: "Rýchlosť",
         f1: "Návrh a implementácia",
         f1t: "Automatizované riešenia na mieru.",
         f2: "Silnoprúd / slaboprúd",
@@ -240,6 +422,9 @@
         back: "Zurück",
         h1: "Automatisierung & Elektro",
         lead: "Wir realisieren Automatisierung und Elektroprojekte. Struktur, Dokumentation und ein Portfolio realer Umsetzungen.",
+        k1: "Effizienz",
+        k2: "Zuverlässigkeit",
+        k3: "Tempo",
         f1: "Konzept & Umsetzung",
         f1t: "Maßgeschneiderte Automatisierungslösungen.",
         f2: "Starkstrom / Schwachstrom",
