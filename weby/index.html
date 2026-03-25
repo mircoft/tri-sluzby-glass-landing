@@ -368,6 +368,237 @@
       100%{transform: translateX(-6px) skewX(-1deg); opacity:0.55}
     }
 
+    /* ── Added sections: Works / Testimonials / Pricing / FAQ ── */
+    .works-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .work-card{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.22);
+      overflow:hidden;
+      position:relative;
+    }
+    .work-thumb{
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      position:relative;
+      border-bottom: 1px solid rgba(233,242,255,0.10);
+    }
+    .work-thumb::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(10,14,30,0.10) 0%, rgba(5,7,15,0.45) 100%);
+      pointer-events:none;
+    }
+    .work-thumb::after{
+      content:"";
+      position:absolute; inset:-20% -10%;
+      background:
+        repeating-linear-gradient(90deg, rgba(233,242,255,0.0) 0px, rgba(233,242,255,0.08) 2px, rgba(233,242,255,0.0) 6px),
+        repeating-linear-gradient(180deg, rgba(54,246,255,0.0) 0px, rgba(54,246,255,0.10) 1px, rgba(54,246,255,0.0) 6px);
+      opacity: 0;
+      mix-blend-mode: screen;
+      transform: translateX(-14px);
+      transition: opacity .18s ease, transform .18s ease;
+      filter: blur(0.2px);
+      pointer-events:none;
+    }
+    .work-card:hover .work-thumb::after{
+      opacity: 0.95;
+      transform: translateX(14px);
+      animation: wireSweep .55s steps(2,end) infinite;
+    }
+    @keyframes wireSweep{
+      0%{transform: translateX(-18px) skewX(-2deg); opacity:0.55}
+      35%{transform: translateX(18px) skewX(2deg); opacity:0.85}
+      100%{transform: translateX(-14px) skewX(-1deg); opacity:0.55}
+    }
+    .work-body{
+      padding: 12px 14px 14px;
+    }
+    .work-body b{
+      display:block;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+    }
+    .work-body span{
+      display:block;
+      margin-top: 8px;
+      color: rgba(233,242,255,0.70);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .stars{
+      display:flex;
+      gap: 3px;
+      margin-top: 10px;
+      align-items:center;
+    }
+    .stars svg{
+      width: 14px;
+      height: 14px;
+      fill: rgba(54,246,255,0.95);
+      filter: drop-shadow(0 0 10px rgba(54,246,255,0.20));
+    }
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .price-card{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.22);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .price-card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.14) 50%, transparent 100%);
+      opacity:0;
+      transform: translateX(-120%);
+      transition: opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+    }
+    .price-card:hover::after{
+      opacity: 1;
+      transform: translateX(120%);
+    }
+    .price-top b{
+      display:block;
+      font-family: var(--mono);
+      letter-spacing:0.14em;
+      text-transform: uppercase;
+      font-size: 0.86rem;
+    }
+    .price-top .p{
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: rgba(54,246,255,0.90);
+      text-shadow: 0 0 22px rgba(54,246,255,0.15);
+    }
+    .price-top span{
+      display:block;
+      margin-top: 2px;
+      color: rgba(233,242,255,0.68);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+    .price-list{
+      margin-top: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .price-li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(233,242,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .price-li i{
+      width: 7px; height: 7px;
+      border-radius: 99px;
+      background: rgba(54,246,255,0.85);
+      margin-top: 7px;
+      box-shadow: 0 0 18px rgba(54,246,255,0.22);
+      flex-shrink:0;
+    }
+
+    .faq-grid{
+      padding: 14px 14px 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .faq-item{
+      border-radius: 14px;
+      border: 1px solid rgba(233,242,255,0.12);
+      background: rgba(5,7,15,0.22);
+      overflow:hidden;
+    }
+    .faq-toggle{
+      width:100%;
+      text-align:left;
+      border:0;
+      padding: 14px 14px;
+      background: transparent;
+      color: rgba(233,242,255,0.88);
+      cursor:pointer;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      font-weight: 850;
+      font-family: var(--mono);
+      letter-spacing:0.05em;
+      text-transform: none;
+    }
+    .faq-toggle:hover{
+      color: rgba(233,242,255,1);
+    }
+    .faq-dot{
+      width: 8px; height: 8px;
+      border-radius: 99px;
+      background: rgba(54,246,255,0.55);
+      box-shadow: 0 0 22px rgba(54,246,255,0.20);
+      flex-shrink:0;
+    }
+    .faq-icon{
+      margin-left:auto;
+      width: 18px; height: 18px;
+      position:relative;
+      flex-shrink:0;
+    }
+    .faq-icon::before, .faq-icon::after{
+      content:"";
+      position:absolute;
+      left:50%; top:50%;
+      width: 100%;
+      height: 2px;
+      background: rgba(233,242,255,0.75);
+      transform: translate(-50%,-50%);
+      border-radius: 2px;
+    }
+    .faq-icon::after{
+      transform: translate(-50%,-50%) rotate(90deg);
+      transition: transform .18s ease;
+    }
+    .faq-item.open .faq-icon::after{
+      transform: translate(-50%,-50%) rotate(0deg);
+    }
+    .faq-answer{
+      max-height: 0;
+      opacity: 0;
+      overflow:hidden;
+      transition: max-height .25s ease, opacity .18s ease;
+      padding: 0 14px;
+    }
+    .faq-item.open .faq-answer{
+      max-height: 220px;
+      opacity: 1;
+      padding: 10px 14px 14px;
+    }
+    .faq-answer p{
+      color: rgba(233,242,255,0.70);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
     /* Magnetic cursor */
     .mag-dot{
       position: fixed;
@@ -393,6 +624,8 @@
       .stats{grid-template-columns:1fr;}
       .cards{grid-template-columns:1fr;}
       .steps{grid-template-columns:1fr;}
+      .works-grid{grid-template-columns:1fr;}
+      .pricing-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -542,8 +775,190 @@
 // ship → measure → iterate</code></pre>
         </div>
       </div>
+
+      <div class="section" id="works">
+        <div class="section-head">
+          <h2 data-i18n="worksTitle">Works</h2>
+          <p data-i18n="worksLead">Realizácie: e-shopy na mieru, landings a systémy, ktoré sa správajú presne ako majú.</p>
+        </div>
+        <div class="works-grid">
+          <div class="work-card mag">
+            <div class="work-thumb" style="background-image:url('../img/nx/blog1.png')"></div>
+            <div class="work-body">
+              <b data-i18n="sv1">E-shopy na mieru</b>
+              <span data-i18n="sv1t">Od katalógu po checkout. Rýchle, čisté, stabilné.</span>
+            </div>
+          </div>
+          <div class="work-card mag">
+            <div class="work-thumb" style="background-image:url('../img/nx/blog2.png')"></div>
+            <div class="work-body">
+              <b data-i18n="sv2">Landing & brand web</b>
+              <span data-i18n="sv2t">Konverzná štruktúra, typografia, micro-interactions.</span>
+            </div>
+          </div>
+          <div class="work-card mag">
+            <div class="work-thumb" style="background-image:url('../img/nx/blog3.png')"></div>
+            <div class="work-body">
+              <b data-i18n="sv3">UX / UI systém</b>
+              <span data-i18n="sv3t">Komponenty, design tokens, konzistentný layout.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="testimonials">
+        <div class="section-head">
+          <h2 data-i18n="testimonialsTitle">Recenzie</h2>
+          <p data-i18n="testimonialsLead">Keď to má fungovať na výkone aj na konverzii, tieto veci sú najdôležitejšie.</p>
+        </div>
+        <div class="cards">
+          <div class="card mag">
+            <b data-i18n="r1n">Martin P.</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r1q">“Výsledok bol rýchly, čistý a merateľný. Komunikácia bola technicky presná a bez chaosu.”</span>
+          </div>
+          <div class="card mag">
+            <b data-i18n="r2n">Laura S.</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r2q">“E-shop prestal byť problém a začal byť nástroj. SEO a štruktúra konečne dávali zmysel.”</span>
+          </div>
+          <div class="card mag">
+            <b data-i18n="r3n">Ondrej K.</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r3q">“Technická úroveň bola citeľná: výkon, prístupnosť a čistý build. Od začiatku sme vedeli, čo dostaneme.”</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="pricing">
+        <div class="section-head">
+          <h2 data-i18n="pricingTitle">Cenník</h2>
+          <p data-i18n="pricingLead">Tri balíky pre tri typy projektov. Vyber si tempo a rozsah.</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div class="price-top">
+              <b data-i18n="p1n">Basic</b>
+              <div class="p" data-i18n="p1p">€990</div>
+              <span data-i18n="p1d">Pre štart e-shopu alebo landing</span>
+            </div>
+            <div class="price-list">
+              <div class="price-li"><i></i><span data-i18n="p1l1">Core stránky + základná štruktúra</span></div>
+              <div class="price-li"><i></i><span data-i18n="p1l2">SEO setup + performance checklist</span></div>
+              <div class="price-li"><i></i><span data-i18n="p1l3">1 kolo úprav</span></div>
+            </div>
+          </div>
+          <div class="price-card">
+            <div class="price-top">
+              <b data-i18n="p2n">Standard</b>
+              <div class="p" data-i18n="p2p">€1,490</div>
+              <span data-i18n="p2d">Pre väčší shop alebo systém</span>
+            </div>
+            <div class="price-list">
+              <div class="price-li"><i></i><span data-i18n="p2l1">UX/UI systém + komponenty</span></div>
+              <div class="price-li"><i></i><span data-i18n="p2l2">Integrácie (základ)</span></div>
+              <div class="price-li"><i></i><span data-i18n="p2l3">2 kolá úprav</span></div>
+            </div>
+          </div>
+          <div class="price-card">
+            <div class="price-top">
+              <b data-i18n="p3n">Premium</b>
+              <div class="p" data-i18n="p3p">€2,190</div>
+              <span data-i18n="p3d">Pre full build + iterácie</span>
+            </div>
+            <div class="price-list">
+              <div class="price-li"><i></i><span data-i18n="p3l1">SEO & obsahová architektúra</span></div>
+              <div class="price-li"><i></i><span data-i18n="p3l2">Integrácie (pokročilé)</span></div>
+              <div class="price-li"><i></i><span data-i18n="p3l3">4 kolá úprav + finetuning</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="faq">
+        <div class="section-head">
+          <h2 data-i18n="faqTitle">Otázky</h2>
+          <p data-i18n="faqLead">Najčastejšie veci pred začiatkom projektu.</p>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" data-i18n="f1q">
+              <span class="faq-dot" aria-hidden="true"></span>
+              <span>?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><p data-i18n="f1a"></p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" data-i18n="f2q">
+              <span class="faq-dot" aria-hidden="true"></span>
+              <span>?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><p data-i18n="f2a"></p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" data-i18n="f3q">
+              <span class="faq-dot" aria-hidden="true"></span>
+              <span>?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><p data-i18n="f3a"></p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" data-i18n="f4q">
+              <span class="faq-dot" aria-hidden="true"></span>
+              <span>?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer"><p data-i18n="f4a"></p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="contact">
+        <div class="section-head">
+          <h2 data-i18n="contactTitle">Začnime</h2>
+          <p data-i18n="contactLead">Napíš nám. Odpovieme technicky a konkrétne.</p>
+        </div>
+        <div style="padding: 14px 14px 18px;">
+          <div class="actions">
+            <a class="btn" href="mailto:info@thedesigns.org" data-i18n="cta1">Kontakt</a>
+            <a class="btn secondary" href="#process" data-i18n="cta2">Proces</a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer style="padding: 34px 0 42px; color: rgba(233,242,255,0.65); text-align:center;">
+    <div style="width:min(1240px,92%); margin:0 auto;">
+      <div style="font-family: var(--mono); letter-spacing:0.12em; text-transform: uppercase; font-size:0.78rem;">
+        thedesigns.org — Weby & e-shopy
+      </div>
+      <div style="margin-top:10px; font-size:0.9rem;">
+        © 2026 • Built for speed, SEO and clean UX.
+      </div>
+    </div>
+  </footer>
 
   <script>
     const dictionary = {
@@ -591,7 +1006,54 @@
         t4: "Build & test",
         t4t: "Výkon, prístupnosť, responzivita, analýza.",
         codeTitle: "Wireframe / Glitch panel",
-        codeLead: "Hover nad panelom = glitch sweep. Takto myslím “technical polish”."
+        codeLead: "Hover nad panelom = glitch sweep. Takto myslím “technical polish”.",
+
+        worksTitle: "Works",
+        worksLead: "Vybrané realizácie: e-shopy na mieru, landings a systémy, ktoré sa správajú presne ako majú.",
+
+        testimonialsTitle: "Recenzie",
+        testimonialsLead: "Keď to má fungovať na výkone aj na konverzii, tieto veci sú najdôležitejšie.",
+        r1n: "Martin P.",
+        r1q: "“Výsledok bol rýchly, čistý a merateľný. Komunikácia bola technicky presná a bez chaosu.”",
+        r2n: "Laura S.",
+        r2q: "“E-shop prestal byť problém a začal byť nástroj. SEO a štruktúra konečne dávali zmysel.”",
+        r3n: "Ondrej K.",
+        r3q: "“Technická úroveň bola citeľná: výkon, prístupnosť a čistý build. Od začiatku sme vedeli, čo dostaneme.”",
+
+        pricingTitle: "Cenník",
+        pricingLead: "Tri balíky pre tri typy projektov. Vyber si tempo a rozsah.",
+        p1n: "Basic",
+        p1p: "€990",
+        p1d: "Pre štart e-shopu alebo landing",
+        p1l1: "Core stránky + základná štruktúra",
+        p1l2: "SEO setup + performance checklist",
+        p1l3: "1 kolo úprav",
+        p2n: "Standard",
+        p2p: "€1,490",
+        p2d: "Pre väčší shop alebo systém",
+        p2l1: "UX/UI systém + komponenty",
+        p2l2: "Integrácie (základ)",
+        p2l3: "2 kolá úprav",
+        p3n: "Premium",
+        p3p: "€2,190",
+        p3d: "Pre full build + iterácie",
+        p3l1: "SEO & obsahová architektúra",
+        p3l2: "Integrácie (pokročilé)",
+        p3l3: "4 kolá úprav + finetuning",
+
+        faqTitle: "Otázky",
+        faqLead: "Najčastejšie veci pred začiatkom projektu.",
+        f1q: "Koľko trvá projekt?",
+        f1a: "Zvyčajne 3–6 týždňov podľa rozsahu a dostupnosti podkladov.",
+        f2q: "Robíte aj integrácie platobného systému?",
+        f2a: "Áno. V riešení je platba/checkout, fakturácia a napojenie na základné trackingy.",
+        f3q: "Dodávate aj SEO a výkon?",
+        f3a: "Áno. Technické SEO (schema, štruktúra) + performance checklist sú súčasť balíkov.",
+        f4q: "Aký je proces a komunikácia?",
+        f4a: "Týždenné update-y a jasný “next step”. Transparentné testy a finálny build.",
+
+        contactTitle: "Začnime",
+        contactLead: "Napíš nám. Odpovieme technicky a konkrétne."
       },
       de: {
         title: "Web & Shops - Präziser Build",
@@ -637,7 +1099,54 @@
         t4: "Build & Test",
         t4t: "Performance, Accessibility, Responsive, Analyse.",
         codeTitle: "Wireframe / Glitch Panel",
-        codeLead: "Hover über dem Panel = Glitch Sweep. So sieht “technical polish” aus."
+        codeLead: "Hover über dem Panel = Glitch Sweep. So sieht “technical polish” aus.",
+
+        worksTitle: "Referenzen",
+        worksLead: "Ausgewählte Realisierungen: Shops nach Maß, Landingpages und Systeme, die exakt wie geplant funktionieren.",
+
+        testimonialsTitle: "Stimmen",
+        testimonialsLead: "Wenn es auf Performance und Conversion ankommt, sind diese Punkte entscheidend.",
+        r1n: "Martin P.",
+        r1q: "“Das Ergebnis war schnell, sauber und messbar. Technische Kommunikation war präzise und ohne Chaos.”",
+        r2n: "Laura S.",
+        r2q: "“Der Shop war kein Problem mehr, sondern ein Tool. SEO und Struktur haben endlich Sinn gemacht.”",
+        r3n: "Ondrej K.",
+        r3q: "“Man hat die technische Qualität sofort gesehen: Performance, Accessibility und ein sauberer Build. Von Anfang an wussten wir, was wir bekommen.”",
+
+        pricingTitle: "Preise",
+        pricingLead: "Drei Pakete für drei Projektarten. Wähle Tempo und Umfang.",
+        p1n: "Basic",
+        p1p: "€990",
+        p1d: "Für Start e-Shop oder Landing",
+        p1l1: "Core-Seiten + Basis-Struktur",
+        p1l2: "SEO Setup + Performance-Checkliste",
+        p1l3: "1 Runde Anpassungen",
+        p2n: "Standard",
+        p2p: "€1,490",
+        p2d: "Für größeren Shop oder System",
+        p2l1: "UX/UI System + Komponenten",
+        p2l2: "Integrationen (Basis)",
+        p2l3: "2 Runden Anpassungen",
+        p3n: "Premium",
+        p3p: "€2,190",
+        p3d: "Für Full Build + Iterationen",
+        p3l1: "SEO & Content-Architektur",
+        p3l2: "Integrationen (fortgeschritten)",
+        p3l3: "4 Runden Anpassungen + Finetuning",
+
+        faqTitle: "Fragen",
+        faqLead: "Die häufigsten Punkte vor Projektstart.",
+        f1q: "Wie lange dauert ein Projekt?",
+        f1a: "Meistens 3–6 Wochen, abhängig vom Umfang und von der Verfügbarkeit der Unterlagen.",
+        f2q: "Integriert ihr auch Zahlungsanbieter?",
+        f2a: "Ja. Checkout/Payments, Fakturierung und grundlegendes Tracking sind Teil der Lösung.",
+        f3q: "Gibt es auch SEO und Performance?",
+        f3a: "Ja. Technisches SEO (Schema, Struktur) + Performance-Check sind in den Paketen enthalten.",
+        f4q: "Wie läuft der Prozess und die Kommunikation?",
+        f4a: "Wöchentliche Updates und klarer „Next Step“. Transparente Tests und ein sauberer Final Build.",
+
+        contactTitle: "Starten",
+        contactLead: "Schreib uns. Wir antworten technisch und konkret."
       }
     };
 
@@ -655,6 +1164,17 @@
       buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
     }
     buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-toggle").forEach((btn)=>{
+      const item = btn.closest(".faq-item");
+      btn.setAttribute("aria-expanded", item && item.classList.contains("open") ? "true" : "false");
+      btn.addEventListener("click", ()=>{
+        if(!item) return;
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+    });
 
     // Magnetic cursor + subtle pull
     const dot = document.getElementById("magDot");

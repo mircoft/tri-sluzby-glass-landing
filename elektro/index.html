@@ -443,17 +443,236 @@
       position:relative; z-index:1;
     }
 
+    /* ── Added sections: Projects / Testimonials / Pricing / FAQ ── */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .project-card{
+      border-radius: 14px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.30);
+      overflow:hidden;
+      position:relative;
+    }
+    .project-thumb{
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      position:relative;
+      border-bottom: 1px solid rgba(215,243,255,0.10);
+    }
+    .project-thumb::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(3,6,12,0.05) 0%, rgba(7,12,24,0.55) 100%);
+      pointer-events:none;
+    }
+    .project-thumb::after{
+      content:"";
+      position:absolute; inset:-20% -10%;
+      background:
+        repeating-linear-gradient(90deg, rgba(215,243,255,0.00) 0px, rgba(54,246,255,0.12) 2px, rgba(215,243,255,0.00) 6px),
+        repeating-linear-gradient(180deg, rgba(54,246,255,0.00) 0px, rgba(215,243,255,0.10) 1px, rgba(54,246,255,0.00) 6px);
+      opacity: 0;
+      mix-blend-mode: screen;
+      transform: translateY(-10px);
+      transition: opacity .18s ease, transform .18s ease;
+      pointer-events:none;
+      filter: blur(0.2px);
+    }
+    .project-card:hover .project-thumb::after{
+      opacity: 0.95;
+      transform: translateY(10px);
+      animation: scanSweep .55s steps(2,end) infinite;
+    }
+    @keyframes scanSweep{
+      0%{transform: translateY(-18px) skewX(-2deg); opacity:0.55}
+      35%{transform: translateY(18px) skewX(2deg); opacity:0.85}
+      100%{transform: translateY(-14px) skewX(-1deg); opacity:0.55}
+    }
+    .project-body{
+      padding: 12px 14px 14px;
+    }
+    .project-body b{
+      display:block;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+    }
+    .project-body span{
+      display:block;
+      margin-top: 8px;
+      color: rgba(215,243,255,0.68);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .stars{
+      display:flex;
+      gap: 3px;
+      margin-top: 10px;
+      align-items:center;
+    }
+    .stars svg{
+      width: 14px;
+      height: 14px;
+      fill: rgba(54,246,255,0.95);
+      filter: drop-shadow(0 0 10px rgba(54,246,255,0.20));
+    }
+
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      padding: 14px 14px;
+    }
+    .price-card{
+      border-radius: 14px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.30);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .price-top b{
+      display:block;
+      font-family: var(--mono);
+      letter-spacing:0.14em;
+      text-transform: uppercase;
+      font-size: 0.86rem;
+    }
+    .price-top .p{
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--blue);
+      text-shadow: 0 0 22px rgba(54,246,255,0.16);
+    }
+    .price-top span{
+      display:block;
+      margin-top: 2px;
+      color: rgba(215,243,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+    .price-list{
+      margin-top: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .price-li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      color: rgba(215,243,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .price-li i{
+      width: 7px; height: 7px;
+      border-radius: 99px;
+      background: rgba(54,246,255,0.85);
+      margin-top: 7px;
+      box-shadow: 0 0 18px rgba(54,246,255,0.22);
+      flex-shrink:0;
+    }
+
+    .faq-grid{
+      padding: 14px 14px 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .faq-item{
+      border-radius: 14px;
+      border: 1px solid rgba(215,243,255,0.12);
+      background: rgba(7,12,24,0.22);
+      overflow:hidden;
+    }
+    .faq-toggle{
+      width:100%;
+      text-align:left;
+      border:0;
+      padding: 14px 14px;
+      background: transparent;
+      color: rgba(215,243,255,0.88);
+      cursor:pointer;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      font-weight: 850;
+      font-family: var(--mono);
+      letter-spacing:0.05em;
+      text-transform: none;
+    }
+    .faq-toggle:hover{ color: rgba(215,243,255,1); }
+    .faq-dot{
+      width: 8px; height: 8px;
+      border-radius: 99px;
+      background: rgba(54,246,255,0.55);
+      box-shadow: 0 0 22px rgba(54,246,255,0.20);
+      flex-shrink:0;
+    }
+    .faq-icon{
+      margin-left:auto;
+      width: 18px; height: 18px;
+      position:relative;
+      flex-shrink:0;
+    }
+    .faq-icon::before, .faq-icon::after{
+      content:"";
+      position:absolute; left:50%; top:50%;
+      width: 100%;
+      height: 2px;
+      background: rgba(215,243,255,0.75);
+      transform: translate(-50%,-50%);
+      border-radius: 2px;
+    }
+    .faq-icon::after{
+      transform: translate(-50%,-50%) rotate(90deg);
+      transition: transform .18s ease;
+    }
+    .faq-item.open .faq-icon::after{
+      transform: translate(-50%,-50%) rotate(0deg);
+    }
+    .faq-answer{
+      max-height: 0;
+      opacity: 0;
+      overflow:hidden;
+      transition: max-height .25s ease, opacity .18s ease;
+      padding: 0 14px;
+    }
+    .faq-item.open .faq-answer{
+      max-height: 220px;
+      opacity: 1;
+      padding: 10px 14px 14px;
+    }
+    .faq-answer p{
+      color: rgba(215,243,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
     @media (max-width: 1100px){
       .hero-grid{grid-template-columns: 1fr;}
       .service-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
       .steps{grid-template-columns: repeat(2, minmax(0,1fr));}
       .tags{grid-template-columns: repeat(2, minmax(0,1fr));}
       .meters{grid-template-columns: 1fr;}
+      .projects-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .pricing-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
     }
     @media (max-width: 680px){
       .service-grid{grid-template-columns: 1fr;}
       .steps{grid-template-columns: 1fr;}
       .tags{grid-template-columns: 1fr;}
+      .projects-grid{grid-template-columns: 1fr;}
+      .pricing-grid{grid-template-columns: 1fr;}
     }
   </style>
 </head>
@@ -668,7 +887,199 @@
         </div>
       </div>
     </section>
+
+    <div class="section" id="projects">
+      <div class="section-head">
+        <h2 data-i18n="worksTitle">Projekty</h2>
+        <p data-i18n="worksLead">Ukážky práce: PLC logika, rozvádzače, SCADA a monitoring v reálnom nasadení.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/srv1.png')"></div>
+          <div class="project-body">
+            <b data-i18n="sv1">PLC / Logika</b>
+            <span data-i18n="sv1s">Programovanie a prepojenie riadení.</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/srv2.png')"></div>
+          <div class="project-body">
+            <b data-i18n="sv2">Rozvádzače</b>
+            <span data-i18n="sv2s">Kabeláž, štítky, testy a revízie.</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/srv3.png')"></div>
+          <div class="project-body">
+            <b data-i18n="sv3">Pohony & frekvenčné meniče</b>
+            <span data-i18n="sv3s">Regulácia pohybu a lineárna dynamika.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="testimonials">
+      <div class="section-head">
+        <h2 data-i18n="testimonialsTitle">Recenzie</h2>
+        <p data-i18n="testimonialsLead">Odbornosť sa ukáže až v reálnom provoze.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/blog1.png')"></div>
+          <div class="project-body">
+            <b data-i18n="r1n">Ing. Novák</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r1q">“Systém beží stabilne. Dokumentácia aj testy boli úplne presné.”</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/blog2.png')"></div>
+          <div class="project-body">
+            <b data-i18n="r2n">Jana K.</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r2q">“Komunikácia bola jasná a iterácie rýchle. Zero surprises pri spustení.”</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb" style="background-image:url('../img/nx/blog3.png')"></div>
+          <div class="project-body">
+            <b data-i18n="r3n">Pavol R.</b>
+            <div class="stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
+            </div>
+            <span data-i18n="r3q">“Testy, bezpečnosť a výkon boli zvládnuté. Spustili sme to bez prestojov.”</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="pricing">
+      <div class="section-head">
+        <h2 data-i18n="pricingTitle">Cenník</h2>
+        <p data-i18n="pricingLead">Balíky podľa typu projektu a rozsahu výstupov.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-top">
+            <b data-i18n="p1n">Audit</b>
+            <div class="p" data-i18n="p1p">€350</div>
+            <span data-i18n="p1d">Diagnostika a návrh ďalšieho kroku</span>
+          </div>
+          <div class="price-list">
+            <div class="price-li"><i></i><span data-i18n="p1l1">Meranie, review, riziká</span></div>
+            <div class="price-li"><i></i><span data-i18n="p1l2">Prioritizovaný roadmap</span></div>
+            <div class="price-li"><i></i><span data-i18n="p1l3">Zhrnutie + report</span></div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-top">
+            <b data-i18n="p2n">Projekt</b>
+            <div class="p" data-i18n="p2p">€1,090</div>
+            <span data-i18n="p2d">Výroba logiky a integrácií</span>
+          </div>
+          <div class="price-list">
+            <div class="price-li"><i></i><span data-i18n="p2l1">PLC / SCADA návrh</span></div>
+            <div class="price-li"><i></i><span data-i18n="p2l2">Testy & simulácie</span></div>
+            <div class="price-li"><i></i><span data-i18n="p2l3">Dokumentácia + odovzdanie</span></div>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-top">
+            <b data-i18n="p3n">Uvedenie</b>
+            <div class="p" data-i18n="p3p">€1,590</div>
+            <span data-i18n="p3d">Spustenie, ladenie a servisné okno</span>
+          </div>
+          <div class="price-list">
+            <div class="price-li"><i></i><span data-i18n="p3l1">Inbetriebnahme & tuning</span></div>
+            <div class="price-li"><i></i><span data-i18n="p3l2">Safety / interlock kontrola</span></div>
+            <div class="price-li"><i></i><span data-i18n="p3l3">Servis + final report</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="faq">
+      <div class="section-head">
+        <h2 data-i18n="faqTitle">Otázky</h2>
+        <p data-i18n="faqLead">Čo potrebujeme vedieť pred začiatkom.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-toggle" type="button">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <span data-i18n="f1q">?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer"><p data-i18n="f1a"></p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" type="button">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <span data-i18n="f2q">?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer"><p data-i18n="f2a"></p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" type="button">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <span data-i18n="f3q">?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer"><p data-i18n="f3a"></p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" type="button">
+            <span class="faq-dot" aria-hidden="true"></span>
+            <span data-i18n="f4q">?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer"><p data-i18n="f4a"></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="section-head">
+        <h2 data-i18n="contactTitle">Kontakt</h2>
+        <p data-i18n="contactLead">Napíš nám. Odpovieme technicky.</p>
+      </div>
+      <div style="padding: 14px 14px 18px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="back" href="mailto:info@thedesigns.org" data-i18n="contactBtn">Kontakt</a>
+          <a class="back" href="#process" data-i18n="processTitle">Proces</a>
+        </div>
+      </div>
+    </div>
+
   </main>
+
+  <footer style="padding: 34px 0 42px; color: rgba(215,243,255,0.65); text-align:center;">
+    <div style="width:min(1240px,92%); margin:0 auto;">
+      <div style="font-family: var(--mono); letter-spacing:0.12em; text-transform: uppercase; font-size:0.78rem;">
+        thedesigns.org — Elektro & Automatizácia
+      </div>
+      <div style="margin-top:10px; font-size:0.9rem;">
+        © 2026 • Industriálna logistika, čistý proces a merateľné výsledky.
+      </div>
+    </div>
+  </footer>
 
   <script>
     const dictionary = {
@@ -773,6 +1184,54 @@
         sys7t: "Logy, exporty, reporty",
         sys8: "Docs",
         sys8t: "Schémy, návody",
+
+        worksTitle: "Projekty",
+        worksLead: "Ukážky práce: PLC logika, rozvádzače, SCADA a monitoring v reálnom nasadení.",
+
+        testimonialsTitle: "Recenzie",
+        testimonialsLead: "Odbornosť sa ukáže až v reálnom provoze.",
+        r1n: "Ing. Novák",
+        r1q: "“Systém beží stabilne. Dokumentácia aj testy boli úplne presné.”",
+        r2n: "Jana K.",
+        r2q: "“Komunikácia bola jasná a iterácie rýchle. Zero surprises pri spustení.”",
+        r3n: "Pavol R.",
+        r3q: "“Testy, bezpečnosť a výkon boli zvládnuté. Spustili sme to bez prestojov.”",
+
+        pricingTitle: "Cenník",
+        pricingLead: "Balíky podľa typu projektu a rozsahu výstupov.",
+        p1n: "Audit",
+        p1p: "€350",
+        p1d: "Diagnostika a návrh ďalšieho kroku",
+        p1l1: "Meranie, review, riziká",
+        p1l2: "Prioritizovaný roadmap",
+        p1l3: "Zhrnutie + report",
+        p2n: "Projekt",
+        p2p: "€1,090",
+        p2d: "Výroba logiky a integrácií",
+        p2l1: "PLC / SCADA návrh",
+        p2l2: "Testy & simulácie",
+        p2l3: "Dokumentácia + odovzdanie",
+        p3n: "Uvedenie",
+        p3p: "€1,590",
+        p3d: "Spustenie, ladenie a servisné okno",
+        p3l1: "Inbetriebnahme & tuning",
+        p3l2: "Safety / interlock kontrola",
+        p3l3: "Servis + final report",
+
+        faqTitle: "Otázky",
+        faqLead: "Čo potrebujeme vedieť pred začiatkom.",
+        f1q: "Čo potrebujete od nás, aby ste začali?",
+        f1a: "Ideálne: schémy, aktuálne verzie logiky, požiadavky na bezpečnosť a cieľové parametre projektu.",
+        f2q: "Robíte aj diagnostiku existujúceho systému?",
+        f2a: "Áno. Robíme audit a navrhneme kroky pre stabilitu a bezpečnosť bez “random” zásahov.",
+        f3q: "Ako vyzerá priebeh a testovanie?",
+        f3a: "Lineárny workflow: návrh -> výroba -> simulácie/testy -> uvedenie. Každý krok má výstup.",
+        f4q: "Zabezpečíte dokumentáciu a servis?",
+        f4a: "Áno. Dodáme schémy, protokoly, servisné okno a finálny report pre prevádzku.",
+
+        contactTitle: "Kontakt",
+        contactLead: "Napíš nám. Odpovieme technicky.",
+        contactBtn: "Kontakt",
       },
       de: {
         title: "Elektro & Automatisierung - Industriell",
@@ -875,6 +1334,54 @@
         sys7t: "Logs, Exporte, Reports",
         sys8: "Docs",
         sys8t: "Schaltpläne, Anleitungen",
+
+        worksTitle: "Projekte",
+        worksLead: "Beispiele: PLC-Logik, Schalttafeln, SCADA und Monitoring im echten Betrieb.",
+
+        testimonialsTitle: "Stimmen",
+        testimonialsLead: "Fachwissen zeigt sich erst im realen Betrieb.",
+        r1n: "Ing. Novák",
+        r1q: "“Das System läuft stabil. Dokumentation und Tests waren komplett präzise.”",
+        r2n: "Jana K.",
+        r2q: "“Kommunikation war klar und Iterationen schnell. Zero surprises beim Start.”",
+        r3n: "Pavol R.",
+        r3q: "“Tests, Safety und Performance waren sauber umgesetzt. Wir konnten ohne Stillstand starten.”",
+
+        pricingTitle: "Preise",
+        pricingLead: "Pakete nach Projektart und Umfang der Outputs.",
+        p1n: "Audit",
+        p1p: "€350",
+        p1d: "Diagnose und Next-Step Vorschlag",
+        p1l1: "Messung, Review, Risiken",
+        p1l2: "Priorisierter Roadmap",
+        p1l3: "Zusammenfassung + Report",
+        p2n: "Projekt",
+        p2p: "€1,090",
+        p2d: "Erstellung der Logik und Integrationen",
+        p2l1: "PLC / SCADA Entwurf",
+        p2l2: "Tests & Simulationen",
+        p2l3: "Dokumentation + Übergabe",
+        p3n: "Inbetriebnahme",
+        p3p: "€1,590",
+        p3d: "Start, Tuning und Service-Fenster",
+        p3l1: "Inbetriebnahme & Tuning",
+        p3l2: "Safety / Interlock-Check",
+        p3l3: "Service + Final Report",
+
+        faqTitle: "Fragen",
+        faqLead: "Was wir vor dem Start wissen müssen.",
+        f1q: "Was braucht ihr von uns, um zu starten?",
+        f1a: "Idealerweise: Schaltpläne, aktuelle Logik-Versionen, Sicherheitsanforderungen und Zielparameter des Projekts.",
+        f2q: "Macht ihr auch Diagnose von bestehenden Systemen?",
+        f2a: "Ja. Wir machen Audit und schlagen Schritte für Stabilität und Safety vor – ohne “Random” Aktionen.",
+        f3q: "Wie sieht der Ablauf und das Testen aus?",
+        f3a: "Lineare Reihenfolge: Entwurf -> Produktion -> Simulationen/Tests -> Inbetriebnahme. Jeder Schritt hat ein Ergebnis.",
+        f4q: "Gibt es Dokumentation und Service?",
+        f4a: "Ja. Wir liefern Schaltpläne, Protokolle, ein Service-Fenster und einen finalen Report für den Betrieb.",
+
+        contactTitle: "Kontakt",
+        contactLead: "Schreib uns. Wir antworten technisch.",
+        contactBtn: "Kontakt"
       }
     };
 
@@ -895,6 +1402,17 @@
     }
 
     buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-toggle").forEach((btn)=>{
+      const item = btn.closest(".faq-item");
+      btn.setAttribute("aria-expanded", item && item.classList.contains("open") ? "true" : "false");
+      btn.addEventListener("click", ()=>{
+        if(!item) return;
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+    });
 
     // Pulse ring on hover/click: gives the “industrial signal” feel.
     const makePulse = (x, y) => {
