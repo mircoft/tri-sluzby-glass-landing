@@ -9,17 +9,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Stack+Sans+Headline:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0a0a0a;--ink:#fff;--mute:rgba(255,255,255,.5);--hair:rgba(255,255,255,.1);--card:rgba(255,255,255,.04);--mx:1200px;--head:'Anton SC','Anton',system-ui,sans-serif;--sans:'Stack Sans Headline','Inter',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--r:16px;--r2:20px}
+:root{--bg:#0a1628;--bg2:#0d1b30;--ink:#fff;--accent:#3b82f6;--mute:rgba(185,210,255,.5);--hair:rgba(100,160,255,.12);--card:rgba(60,130,255,.06);--mx:1200px;--head:'Anton SC','Anton',system-ui,sans-serif;--sans:'Stack Sans Headline','Inter',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--r:16px;--r2:20px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:var(--body);color:var(--ink);background:var(--bg);overflow-x:hidden;font-size:15px;line-height:1.6}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-::selection{background:rgba(255,255,255,.12)}
+::selection{background:rgba(59,130,246,.3)}
 .ct{width:min(var(--mx),92%);margin:0 auto}
 
 /* ── HEADER ── */
-header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(10,10,10,.75);border-bottom:1px solid var(--hair)}
+header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(10,22,40,.82);border-bottom:1px solid var(--hair)}
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
 .hdr-logo{font-family:var(--sans);font-size:1.3rem;letter-spacing:.03em;font-weight:600}
 .hdr-nav{display:flex;gap:6px;align-items:center}
@@ -28,16 +28,16 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .hdr-link:hover span{transform:translateY(-100%);color:var(--ink)}
 .hdr-r{display:flex;gap:10px;align-items:center}
 .lb{border:1px solid var(--hair);background:0;color:var(--mute);border-radius:999px;padding:6px 10px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:var(--body);font-weight:600;transition:all .15s}
-.lb.on{color:var(--ink);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
+.lb.on{color:var(--ink);background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35)}
 
 /* Primary button */
-.pbtn{display:inline-flex;align-items:center;gap:0;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.88rem;overflow:hidden;transition:opacity .15s}
+.pbtn{display:inline-flex;align-items:center;gap:0;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.88rem;overflow:hidden;transition:opacity .15s}
 .pbtn:hover{opacity:.9}
 .pbtn-txt{position:relative;overflow:hidden;height:1.2em;padding:10px 0 10px 18px}
 .pbtn-txt span{display:block;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .pbtn:hover .pbtn-txt span{transform:translateY(-100%)}
 .pbtn-arr{width:36px;height:36px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
-.pbtn-arr svg{width:14px;height:14px;transition:transform .3s;fill:var(--bg)}
+.pbtn-arr svg{width:14px;height:14px;transition:transform .3s;fill:#fff}
 .pbtn:hover .pbtn-arr svg{transform:translate(14px,-14px)}
 .pbtn.dark{background:var(--bg);color:var(--ink);border:1px solid var(--hair)}
 .pbtn.dark .pbtn-arr svg{fill:var(--ink)}
@@ -45,7 +45,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .pbtn.outline .pbtn-arr svg{fill:var(--ink)}
 
 /* ── HERO ── */
-.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 40px;overflow:hidden}
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 40px;overflow:hidden;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(59,130,246,.08) 0%,transparent 60%)}
 .hero-top{display:flex;justify-content:space-between;align-items:flex-start;padding:120px 0 20px}
 .hero-name{font-family:var(--body);font-size:.95rem;font-weight:500;overflow:hidden}
 .hero-desig{font-size:.85rem;color:var(--mute);font-weight:500}
@@ -63,11 +63,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .hero-social{display:flex;align-items:center;gap:12px;margin-top:16px}
 .hero-social span{font-size:.82rem;color:var(--mute)}
 .hero-social-line{width:30px;height:1px;background:var(--hair)}
-.hero-reel{background:rgba(255,255,255,.04);border:1px solid var(--hair);border-radius:var(--r2);padding:16px;min-width:280px;max-width:340px}
+.hero-reel{background:rgba(59,130,246,.06);border:1px solid var(--hair);border-radius:var(--r2);padding:16px;min-width:280px;max-width:340px}
 .hero-reel-top{display:flex;align-items:center;gap:12px;font-size:.82rem;color:var(--mute);margin-bottom:12px}
 .hero-reel-top span:first-child{font-weight:600;color:var(--ink)}
 .hero-reel-line{flex:1;height:1px;background:var(--hair)}
-.hero-reel-vid{width:100%;height:160px;border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));overflow:hidden}
+.hero-reel-vid{width:100%;height:160px;border-radius:12px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(59,130,246,.03));overflow:hidden}
 .hero-reel-award{margin-top:10px;font-size:.78rem;color:var(--mute)}
 
 /* ── SECTION TITLE ── */
@@ -76,7 +76,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .stl-sub p{font-size:.76rem;color:var(--mute);text-transform:uppercase;letter-spacing:.2em;font-weight:600}
 .stl-sub svg{width:12px;height:12px;fill:var(--mute)}
 .stl h2{font-family:var(--sans);font-size:clamp(2rem,4vw,3.4rem);text-transform:uppercase;line-height:1.05;letter-spacing:-.01em;font-weight:700}
-.stl h2 em{font-style:normal;color:var(--mute)}
+.stl h2 em{font-style:normal;color:rgba(59,130,246,.6)}
 
 /* ── ABOUT ── */
 .about-sec{padding:120px 0 80px}
@@ -88,7 +88,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .about-img-2 img{width:100%;height:100%;object-fit:cover}
 .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
 .kpi{padding:28px;border:1px solid var(--hair);border-radius:var(--r2);background:var(--card)}
-.kpi-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);margin-bottom:12px;display:flex;align-items:center;justify-content:center}
+.kpi-icon{width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,.1);margin-bottom:12px;display:flex;align-items:center;justify-content:center}
 .kpi-icon svg{width:20px;height:20px;fill:var(--mute)}
 .kpi-label{font-size:.72rem;color:var(--mute);text-transform:uppercase;letter-spacing:.18em;font-weight:600;margin-bottom:10px}
 .kpi-num{display:flex;align-items:baseline}
@@ -106,7 +106,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .cl-logo{height:28px;opacity:.5;filter:grayscale(1) invert(1);transition:opacity .2s}
 .cl-logo:hover{opacity:1}
 .cl-shadow{position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
-.cl-shadow.r{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.cl-shadow.r{right:0;background:linear-gradient(to left,var(--bg) 20%,transparent)}
 .cl-badges{display:flex;gap:8px;flex-shrink:0}
 .cl-badge{width:56px;height:56px;border-radius:999px;object-fit:contain;opacity:.7;transition:opacity .2s}
 .cl-badge:hover{opacity:1}
@@ -114,7 +114,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 /* ── SERVICES ── */
 .srv-sec{padding:80px 0}
 .srv-block{border-top:1px solid var(--hair);padding:40px 0;transition:background .3s}
-.srv-block:hover{background:rgba(255,255,255,.02)}
+.srv-block:hover{background:rgba(59,130,246,.04)}
 .srv-inner{max-width:var(--mx);margin:0 auto;width:92%}
 .srv-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:24px}
 .srv-title{font-family:var(--sans);font-size:clamp(1.6rem,3vw,2.5rem);text-transform:uppercase;letter-spacing:-.01em;font-weight:600}
@@ -131,11 +131,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .team-sec{padding:80px 0}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .tm{border-radius:var(--r2);overflow:hidden;border:1px solid var(--hair);background:var(--card);transition:border-color .2s}
-.tm:hover{border-color:rgba(255,255,255,.18)}
+.tm:hover{border-color:rgba(59,130,246,.3)}
 .tm-img-box{position:relative;height:320px;overflow:hidden}
 .tm-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .tm:hover .tm-img-box img{transform:scale(1.04)}
-.tm-float{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(10,10,10,.85);backdrop-filter:blur(8px);border-radius:12px;padding:12px 16px;transform:translateY(120%);opacity:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s}
+.tm-float{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(10,22,40,.88);backdrop-filter:blur(8px);border-radius:12px;padding:12px 16px;transform:translateY(120%);opacity:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s}
 .tm:hover .tm-float{transform:none;opacity:1}
 .tm-float p{font-size:.84rem;color:rgba(255,255,255,.8)}
 .tm-info{padding:18px 20px}
@@ -145,9 +145,9 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 /* ── AWARDS ── */
 .awards-sec{padding:0;border-top:1px solid var(--hair)}
 .award-row{border-bottom:1px solid var(--hair);padding:28px 0;transition:background .2s}
-.award-row:hover{background:rgba(255,255,255,.02)}
+.award-row:hover{background:rgba(59,130,246,.04)}
 .award-inner{display:flex;align-items:center;gap:24px}
-.award-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.award-icon{width:40px;height:40px;border-radius:10px;background:rgba(59,130,246,.1);flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .award-icon svg{width:18px;height:18px;fill:var(--mute)}
 .award-texts{flex:1;display:flex;flex-wrap:wrap;gap:8px 24px}
 .award-texts p{font-size:.92rem;color:var(--mute)}
@@ -158,7 +158,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .work-item{position:relative;border-radius:var(--r2);overflow:hidden;min-height:clamp(360px,50vw,560px);display:flex;align-items:flex-end;margin-bottom:16px;border:1px solid var(--hair)}
 .work-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.8) brightness(.7);transition:filter .6s,transform .6s;transform:scale(1.02)}
 .work-item:hover img{filter:grayscale(.2) brightness(.85);transform:scale(1)}
-.work-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 60%);pointer-events:none}
+.work-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,22,40,.85) 0%,transparent 60%);pointer-events:none}
 .work-content{position:relative;z-index:2;padding:40px}
 .work-content h2{font-family:var(--sans);font-size:clamp(1.6rem,3vw,2.4rem);text-transform:uppercase;margin-bottom:8px;transform:translateY(8px);transition:transform .4s;font-weight:700}
 .work-item:hover .work-content h2{transform:none}
@@ -178,12 +178,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 @keyframes tstScroll{to{transform:translateX(-50%)}}
 .tst-card{min-width:400px;max-width:400px;border:1px solid var(--hair);border-radius:var(--r2);background:var(--card);padding:24px;display:flex;flex-direction:column;gap:20px;flex-shrink:0}
 .tst-author{display:flex;align-items:center;gap:12px}
-.tst-av{width:48px;height:48px;border-radius:999px;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.03))}
+.tst-av{width:48px;height:48px;border-radius:999px;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.04))}
 .tst-av img{width:100%;height:100%;object-fit:cover}
 .tst-meta b{display:block;font-size:.9rem;font-weight:600}
 .tst-meta span{color:var(--mute);font-size:.8rem}
 .tst-stars{margin-left:auto;display:flex;gap:2px}
-.tst-stars svg{width:14px;height:14px;fill:#d4a843}
+.tst-stars svg{width:14px;height:14px;fill:#60a5fa}
 .tst-quote{color:rgba(255,255,255,.7);line-height:1.7;font-size:.95rem}
 
 /* ── MARQUEE ── */
@@ -194,8 +194,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 @keyframes loopL{to{transform:translateX(-50%)}}
 @keyframes loopR{to{transform:translateX(50%)}}
 .loop-row._2{transform:translateX(-50%)}
-.loop-w{font-family:var(--head);font-size:clamp(2.5rem,5vw,4.5rem);text-transform:uppercase;padding:0 16px;flex-shrink:0;color:rgba(255,255,255,.1)}
-.loop-w.hi{color:var(--ink)}
+.loop-w{font-family:var(--head);font-size:clamp(2.5rem,5vw,4.5rem);text-transform:uppercase;padding:0 16px;flex-shrink:0;color:rgba(100,160,255,.12)}
+.loop-w.hi{color:var(--accent)}
 .loop-dot{width:28px;height:28px;border-radius:99px;flex-shrink:0;align-self:center;margin:0 8px}
 .loop-dot img{width:100%;height:100%;object-fit:contain;opacity:.3}
 
@@ -205,11 +205,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .pri-tab{flex:1;padding:20px;border:1px solid var(--hair);border-bottom:none;background:0;color:var(--mute);cursor:pointer;font-family:var(--body);text-align:left;transition:all .2s}
 .pri-tab:first-child{border-radius:var(--r2) 0 0 0}
 .pri-tab:last-child{border-radius:0 var(--r2) 0 0}
-.pri-tab.on{background:rgba(255,255,255,.04);color:var(--ink)}
+.pri-tab.on{background:rgba(59,130,246,.08);color:var(--ink)}
 .pri-tab h3{font-family:var(--sans);font-size:1.1rem;text-transform:uppercase;margin-bottom:2px;font-weight:600}
 .pri-tab p{font-size:.82rem}
-.pri-tab-dot{width:8px;height:8px;border-radius:99px;background:rgba(255,255,255,.15);display:inline-block;margin-top:8px;transition:background .2s}
-.pri-tab.on .pri-tab-dot{background:var(--ink)}
+.pri-tab-dot{width:8px;height:8px;border-radius:99px;background:rgba(59,130,246,.2);display:inline-block;margin-top:8px;transition:background .2s}
+.pri-tab.on .pri-tab-dot{background:var(--accent)}
 .pri-pane{display:none;border:1px solid var(--hair);border-radius:0 0 var(--r2) var(--r2);padding:32px}
 .pri-pane.on{display:block}
 .pri-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:28px}
@@ -224,27 +224,27 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .pri-img-box img{width:100%;height:100%;object-fit:cover}
 
 /* ── FAQ ── */
-.faq-sec{padding:80px 0;background:#f5f5f5;color:#0a0a0a}
-.faq-sec .stl h2{color:#0a0a0a}
-.faq-sec .stl h2 em{color:rgba(0,0,0,.4)}
-.faq-sec .stl-sub p{color:rgba(0,0,0,.5)}
+.faq-sec{padding:80px 0;background:var(--bg2);color:var(--ink)}
+.faq-sec .stl h2{color:var(--ink)}
+.faq-sec .stl h2 em{color:var(--mute)}
+.faq-sec .stl-sub p{color:var(--mute)}
 .faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;align-items:start}
-.faq-heading{font-family:var(--head);font-size:clamp(3rem,6vw,5rem);text-transform:uppercase;line-height:.95;background:linear-gradient(180deg,#0a0a0a 30%,rgba(10,10,10,.3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.faq-sub{font-size:.9rem;color:rgba(0,0,0,.5);margin-bottom:16px}
+.faq-heading{font-family:var(--head);font-size:clamp(3rem,6vw,5rem);text-transform:uppercase;line-height:.95;background:linear-gradient(180deg,var(--accent) 30%,rgba(59,130,246,.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.faq-sub{font-size:.9rem;color:var(--mute);margin-bottom:16px}
 .faq-list{display:flex;flex-direction:column}
-.faq-item{border-bottom:1px solid rgba(0,0,0,.1);overflow:hidden}
-.faq-toggle{display:flex;align-items:center;gap:14px;padding:20px 0;cursor:pointer;transition:color .15s;color:rgba(0,0,0,.75);font-weight:600;font-size:.98rem}
-.faq-toggle:hover{color:#0a0a0a}
-.faq-dot{width:8px;height:8px;border-radius:99px;background:rgba(0,0,0,.25);flex-shrink:0;transition:background .2s}
-.faq-item.open .faq-dot{background:#0a0a0a}
+.faq-item{border-bottom:1px solid var(--hair);overflow:hidden}
+.faq-toggle{display:flex;align-items:center;gap:14px;padding:20px 0;cursor:pointer;transition:color .15s;color:rgba(185,210,255,.75);font-weight:600;font-size:.98rem}
+.faq-toggle:hover{color:var(--ink)}
+.faq-dot{width:8px;height:8px;border-radius:99px;background:rgba(59,130,246,.3);flex-shrink:0;transition:background .2s}
+.faq-item.open .faq-dot{background:var(--accent)}
 .faq-icon{margin-left:auto;width:18px;height:18px;position:relative;flex-shrink:0}
-.faq-icon span{position:absolute;background:#0a0a0a;border-radius:2px;transition:transform .3s}
+.faq-icon span{position:absolute;background:var(--ink);border-radius:2px;transition:transform .3s}
 .faq-icon span._1{width:100%;height:2px;top:50%;left:0;transform:translateY(-50%)}
 .faq-icon span._2{width:2px;height:100%;left:50%;top:0;transform:translateX(-50%)}
 .faq-item.open .faq-icon span._2{transform:translateX(-50%) rotate(90deg)}
 .faq-answer{max-height:0;opacity:0;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s,padding .3s;padding:0 0 0 22px;overflow:hidden}
 .faq-item.open .faq-answer{max-height:200px;opacity:1;padding-bottom:20px}
-.faq-answer p{color:rgba(0,0,0,.55);line-height:1.7;font-size:.92rem}
+.faq-answer p{color:var(--mute);line-height:1.7;font-size:.92rem}
 
 /* ── CTA ── */
 .cta-sec{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 20px}
@@ -254,13 +254,13 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .cta-content{position:relative;z-index:2}
 .cta-sub{color:var(--mute);font-size:.92rem;margin-bottom:8px}
 .cta-h{font-family:var(--sans);font-size:clamp(2.4rem,5vw,4rem);text-transform:uppercase;line-height:1;margin-bottom:28px;font-weight:700}
-.cta-h em{font-style:normal;color:var(--mute)}
+.cta-h em{font-style:normal;color:var(--accent)}
 
 /* ── NEWS ── */
 .news-sec{padding:80px 0}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .nc{border:1px solid var(--hair);border-radius:var(--r2);background:var(--card);overflow:hidden;transition:border-color .2s}
-.nc:hover{border-color:rgba(255,255,255,.18)}
+.nc:hover{border-color:rgba(59,130,246,.3)}
 .nc-meta{display:flex;align-items:center;gap:8px;padding:18px 20px 12px;font-size:.78rem;color:var(--mute)}
 .nc h3{font-family:var(--sans);font-size:1.05rem;text-transform:uppercase;letter-spacing:.01em;padding:0 20px;line-height:1.2;min-height:2.4em;font-weight:600}
 .nc-img{height:200px;margin:14px 20px 0;border-radius:12px;overflow:hidden}
@@ -282,20 +282,20 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 .ft-nl-txt{color:var(--mute);font-size:.84rem;line-height:1.5;margin-bottom:14px}
 .nl-form{display:flex;gap:6px}
 .nl-in{flex:1;padding:10px 14px;border:1px solid var(--hair);border-radius:999px;background:0;color:var(--ink);font-size:.86rem;outline:none;font-family:var(--body)}
-.nl-in::placeholder{color:rgba(255,255,255,.25)}
-.nl-in:focus{border-color:rgba(255,255,255,.3)}
-.nl-btn{padding:10px 14px;border:none;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.78rem;cursor:pointer;font-family:var(--body)}
+.nl-in::placeholder{color:rgba(185,210,255,.25)}
+.nl-in:focus{border-color:rgba(59,130,246,.4)}
+.nl-btn{padding:10px 14px;border:none;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;cursor:pointer;font-family:var(--body)}
 .ft-bottom{margin-top:40px;padding:20px 0;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;color:var(--mute);font-size:.8rem;flex-wrap:wrap;gap:10px}
 .ft-social{display:flex;align-items:center;gap:12px}
 .ft-social span{font-size:.82rem}
 .ft-social-line{width:24px;height:1px;background:var(--hair)}
-.ft-float{text-align:center;padding:40px 0 20px;font-family:var(--head);font-size:clamp(3rem,8vw,7rem);text-transform:uppercase;color:rgba(255,255,255,.04);letter-spacing:.02em;line-height:1}
+.ft-float{text-align:center;padding:40px 0 20px;font-family:var(--head);font-size:clamp(3rem,8vw,7rem);text-transform:uppercase;color:rgba(59,130,246,.06);letter-spacing:.02em;line-height:1}
 
 /* ── STICKY INFO ── */
 .sticky-info{position:fixed;bottom:24px;right:24px;z-index:80;display:flex;align-items:flex-end;gap:12px;max-width:380px}
 .sticky-av{width:52px;height:52px;border-radius:999px;overflow:hidden;flex-shrink:0;border:2px solid var(--hair)}
 .sticky-av img{width:100%;height:100%;object-fit:cover}
-.sticky-card{background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border:1px solid var(--hair);border-radius:var(--r2);padding:18px;font-size:.84rem;display:none}
+.sticky-card{background:rgba(10,22,40,.94);backdrop-filter:blur(12px);border:1px solid var(--hair);border-radius:var(--r2);padding:18px;font-size:.84rem;display:none}
 .sticky-card.open{display:block}
 .sticky-name{font-weight:700;margin-bottom:2px}
 .sticky-role{color:var(--mute);font-size:.78rem;margin-bottom:14px}
@@ -303,8 +303,8 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 .sticky-row small{display:block;color:var(--mute);font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;margin-bottom:2px}
 .sticky-row a{font-weight:600;font-size:.88rem}
 .sticky-dot-wrap{position:relative;cursor:pointer}
-.sticky-dot{width:12px;height:12px;border-radius:99px;background:#4ade80;position:absolute;bottom:4px;right:4px;z-index:2}
-.sticky-dot-pulse{position:absolute;bottom:0;right:0;width:20px;height:20px;border-radius:99px;background:rgba(74,222,128,.3);animation:dotPulse 2s ease infinite}
+.sticky-dot{width:12px;height:12px;border-radius:99px;background:var(--accent);position:absolute;bottom:4px;right:4px;z-index:2}
+.sticky-dot-pulse{position:absolute;bottom:0;right:0;width:20px;height:20px;border-radius:99px;background:rgba(59,130,246,.35);animation:dotPulse 2s ease infinite}
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.8);opacity:0}}
 
 /* ── BACK BUTTON ── */
@@ -351,9 +351,9 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 
 <section class="hero" id="hero">
   <div class="hero-imgs">
-    <div class="hero-img-box _1"><img src="../img/nx/hero1.png" alt="" loading="eager"/></div>
-    <div class="hero-img-box _2"><img src="../img/nx/hero2.png" alt="" loading="lazy"/></div>
-    <div class="hero-img-box _3"><img src="../img/nx/hero3.png" alt="" loading="lazy"/></div>
+    <div class="hero-img-box _1"><img src="images/prismatic.png" alt="" loading="eager"/></div>
+    <div class="hero-img-box _2"><img src="images/glass.png" alt="" loading="lazy"/></div>
+    <div class="hero-img-box _3"><img src="images/gradient.png" alt="" loading="lazy"/></div>
   </div>
   <div class="ct hero-top">
     <div class="hero-name" data-i18n="hName">AirLens</div>
@@ -380,11 +380,11 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
   <div class="stl"><div class="stl-sub"><p data-i18n="aLbl">About Us</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="aH">Transforming Ideas into Powerful <em>Digital Screen Experiences</em></h2></div>
   <div class="about-grid">
-    <div class="about-img"><img src="../img/nx/about1.png" alt="" loading="lazy"/></div>
+    <div class="about-img"><img src="images/rush.png" alt="" loading="lazy"/></div>
     <div>
       <p class="about-txt" data-i18n="aP">We turn bold ideas into impactful digital experiences that captivate audiences and drive results. From strategy and design to development and execution, we create seamless solutions that bring your brand to life on every screen.</p>
       <a class="pbtn dark" href="#services"><span class="pbtn-txt"><span data-i18n="aBtn">More About Us</span><span data-i18n="aBtn">More About Us</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-      <div class="about-img-2"><img src="../img/nx/about2.png" alt="" loading="lazy"/></div>
+      <div class="about-img-2"><img src="images/light.png" alt="" loading="lazy"/></div>
       <div class="kpi-grid">
         <div class="kpi">
           <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
@@ -415,10 +415,10 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 <section class="srv-sec" id="services">
 <div class="ct"><div class="stl"><div class="stl-sub"><p data-i18n="sLbl">Services</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
 <h2 data-i18n="sT">Smart Solutions for <em>Bold Brands</em></h2></div></div>
-<div class="srv-block" data-i="0"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s1h">Brand Strategy</h2><span class="srv-count">01</span></div><div class="srv-content"><div class="srv-img"><img src="../img/nx/srv1.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s1p">Clear positioning, messaging, and direction that define your brand's purpose, vision, growth, and long-term market leadership.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s1a">Market Research</span><span class="srv-tag" data-i18n="s1b">Brand Positioning</span><span class="srv-tag" data-i18n="s1c">Messaging Strategy</span></div></div></div></div></div>
-<div class="srv-block" data-i="1"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s2h">Visual Identity</h2><span class="srv-count">02</span></div><div class="srv-content"><div class="srv-img"><img src="../img/nx/srv2.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s2p">Logos, typography, and brand systems built for consistency, strong recognition, timeless appeal, and scalable flexibility.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s2a">Logo design</span><span class="srv-tag" data-i18n="s2b">Typography</span><span class="srv-tag" data-i18n="s2c">Brand guidelines</span></div></div></div></div></div>
-<div class="srv-block" data-i="2"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s3h">Photography</h2><span class="srv-count">03</span></div><div class="srv-content"><div class="srv-img"><img src="../img/nx/srv3.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s3p">Professional photography — editorial, product, brand, events. Weddings as a complementary service with the same quality standard.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s3a">Editorial</span><span class="srv-tag" data-i18n="s3b">Product</span><span class="srv-tag" data-i18n="s3c">Weddings</span></div></div></div></div></div>
-<div class="srv-block" data-i="3"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s4h">Creative Direction</h2><span class="srv-count">04</span></div><div class="srv-content"><div class="srv-img"><img src="../img/nx/srv4.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s4p">Strategic guidance and art direction to keep every touchpoint aligned, cohesive, innovative, visually compelling, and impactful.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s4a">Art Direction</span><span class="srv-tag" data-i18n="s4b">Campaign Concepting</span><span class="srv-tag" data-i18n="s4c">Content Supervision</span></div></div></div></div></div>
+<div class="srv-block" data-i="0"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s1h">Brand Strategy</h2><span class="srv-count">01</span></div><div class="srv-content"><div class="srv-img"><img src="images/nautilus.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s1p">Clear positioning, messaging, and direction that define your brand's purpose, vision, growth, and long-term market leadership.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s1a">Market Research</span><span class="srv-tag" data-i18n="s1b">Brand Positioning</span><span class="srv-tag" data-i18n="s1c">Messaging Strategy</span></div></div></div></div></div>
+<div class="srv-block" data-i="1"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s2h">Visual Identity</h2><span class="srv-count">02</span></div><div class="srv-content"><div class="srv-img"><img src="images/ethereal.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s2p">Logos, typography, and brand systems built for consistency, strong recognition, timeless appeal, and scalable flexibility.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s2a">Logo design</span><span class="srv-tag" data-i18n="s2b">Typography</span><span class="srv-tag" data-i18n="s2c">Brand guidelines</span></div></div></div></div></div>
+<div class="srv-block" data-i="2"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s3h">Photography</h2><span class="srv-count">03</span></div><div class="srv-content"><div class="srv-img"><img src="images/cloud.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s3p">Professional photography — editorial, product, brand, events. Weddings as a complementary service with the same quality standard.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s3a">Editorial</span><span class="srv-tag" data-i18n="s3b">Product</span><span class="srv-tag" data-i18n="s3c">Weddings</span></div></div></div></div></div>
+<div class="srv-block" data-i="3"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s4h">Creative Direction</h2><span class="srv-count">04</span></div><div class="srv-content"><div class="srv-img"><img src="images/fluid.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s4p">Strategic guidance and art direction to keep every touchpoint aligned, cohesive, innovative, visually compelling, and impactful.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s4a">Art Direction</span><span class="srv-tag" data-i18n="s4b">Campaign Concepting</span><span class="srv-tag" data-i18n="s4c">Content Supervision</span></div></div></div></div></div>
 </section>
 
 <section class="team-sec">
@@ -442,9 +442,9 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 
 <section class="work-sec" id="work">
 <div class="ct">
-  <div class="work-item"><img src="../img/nx/blog1.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w1h">Digital Brand Evolution</h2><p data-i18n="w1p">Bold visual systems that build recognition, strengthen positioning, and create lasting consistency.</p></div></div>
-  <div class="work-item"><img src="../img/nx/blog2.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w2h">Immersive Web Experience</h2><p data-i18n="w2p">Modern, high-impact websites crafted to engage audiences and drive meaningful interaction.</p></div></div>
-  <div class="work-item"><img src="../img/nx/blog3.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w3h">Strategic Visual Identity</h2><p data-i18n="w3p">Distinct logos and brand elements designed for clarity, personality, and long-term impact.</p></div></div>
+  <div class="work-item"><img src="images/mountain.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w1h">Digital Brand Evolution</h2><p data-i18n="w1p">Bold visual systems that build recognition, strengthen positioning, and create lasting consistency.</p></div></div>
+  <div class="work-item"><img src="images/metal.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w2h">Immersive Web Experience</h2><p data-i18n="w2p">Modern, high-impact websites crafted to engage audiences and drive meaningful interaction.</p></div></div>
+  <div class="work-item"><img src="images/reflective.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w3h">Strategic Visual Identity</h2><p data-i18n="w3p">Distinct logos and brand elements designed for clarity, personality, and long-term impact.</p></div></div>
 </div>
 </section>
 
@@ -456,7 +456,7 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 <div class="tst-wrap">
   <div class="tst-left ct">
     <div class="tst-rating"><b>4.9<em>/5</em></b><br/><span data-i18n="tsR">Based on 140+ client reviews on AirLens</span></div>
-    <div class="tst-img"><img src="../img/nx/tstimg.png" alt="" loading="lazy"/></div>
+    <div class="tst-img"><img src="images/textured.png" alt="" loading="lazy"/></div>
   </div>
   <div class="tst-cards" id="tstTrack">
     <div class="tst-card"><div class="tst-author"><div class="tst-av"><img src="../img/nx/tst1.png" alt=""/></div><div class="tst-meta"><b data-i18n="q1n">Jonathan Miller</b><span data-i18n="q1r">Chief Marketing Officer</span></div><div class="tst-stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg></div></div><p class="tst-quote" data-i18n="q1">"Partnering with this creative agency was a turning point for our company. From the initial strategy workshop to the final campaign launch, their team demonstrated a rare combination of creativity, strategic thinking, and flawless execution."</p></div>
@@ -481,15 +481,15 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
   </div>
   <div class="pri-pane on" data-pane="0">
     <div class="pri-top"><div><div class="pri-price">$39<small data-i18n="prPer">Per Month</small></div><p class="pri-note" data-i18n="prNote">* Minimal booking period — 2 months.</p></div></div>
-    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="../img/nx/pri1.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
+    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="images/device.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
   </div>
   <div class="pri-pane" data-pane="1">
     <div class="pri-top"><div><div class="pri-price">$49<small data-i18n="prPer">Per Month</small></div><p class="pri-note" data-i18n="prNote">* Minimal booking period — 2 months.</p></div></div>
-    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="../img/nx/pri2.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
+    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="images/ethereal.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
   </div>
   <div class="pri-pane" data-pane="2">
     <div class="pri-top"><div><div class="pri-price">$39<small data-i18n="prPer">Per Month</small></div><p class="pri-note" data-i18n="prNote">* Minimal booking period — 2 months.</p></div></div>
-    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="../img/nx/pri3.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
+    <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="images/mountain.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
   </div>
 </div>
 </section>
@@ -510,7 +510,7 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
 </section>
 
 <section class="cta-sec">
-<div class="cta-imgs"><div><img src="../img/nx/cta1.png" alt=""/></div><div><img src="../img/nx/cta2.png" alt=""/></div><div><img src="../img/nx/cta3.png" alt=""/></div><div><img src="../img/nx/cta4.png" alt=""/></div><div><img src="../img/nx/cta5.png" alt=""/></div><div><img src="../img/nx/cta6.png" alt=""/></div><div><img src="../img/nx/cta7.png" alt=""/></div><div><img src="../img/nx/cta8.png" alt=""/></div><div><img src="../img/nx/cta9.png" alt=""/></div></div>
+<div class="cta-imgs"><div><img src="images/prismatic.png" alt=""/></div><div><img src="images/rush.png" alt=""/></div><div><img src="images/glass.png" alt=""/></div><div><img src="images/gradient.png" alt=""/></div><div><img src="images/nautilus.png" alt=""/></div><div><img src="images/light.png" alt=""/></div><div><img src="images/device.png" alt=""/></div><div><img src="images/cloud.png" alt=""/></div><div><img src="images/fluid.png" alt=""/></div></div>
 <div class="cta-content">
   <p class="cta-sub" data-i18n="ctaP">Building lasting partnerships, scaling brands,</p>
   <h2 class="cta-h" data-i18n="ctaH">Let us inspire your <em>next project</em></h2>
@@ -523,9 +523,9 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
   <div class="stl"><div class="stl-sub"><p data-i18n="nwLbl">News</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="nwT">Insights & Updates From <em>Our Creative Studio</em></h2></div>
   <div class="news-grid">
-    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><div class="nc-img"><img src="../img/nx/blog1.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
-    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><div class="nc-img"><img src="../img/nx/blog2.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
-    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><div class="nc-img"><img src="../img/nx/blog3.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
+    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><div class="nc-img"><img src="images/fluid.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
+    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><div class="nc-img"><img src="images/nautilus.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
+    <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><div class="nc-img"><img src="images/textured.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
   </div>
 </div>
 </section>
@@ -568,6 +568,9 @@ footer{padding:60px 0 0;border-top:1px solid var(--hair)}
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/webflow-chunk.js" type="text/javascript"></script>
+<script src="https://assets-global.website-files.com/js/webflow.js" type="text/javascript"></script>
 <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"></script>
 <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"></script>
 <script>
