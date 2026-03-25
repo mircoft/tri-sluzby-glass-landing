@@ -48,7 +48,7 @@ header{position:sticky;top:0;z-index:90;backdrop-filter:blur(16px);-webkit-backd
 .hero-brand{font-family:var(--heading);font-size:clamp(1.2rem,1.6vw,1.5rem)}
 .hero-tag{font-size:.78rem;color:var(--mute);font-weight:500}
 .hero-h{font-family:var(--heading);font-size:clamp(5rem,14vw,14rem);line-height:.88;letter-spacing:-.04em;font-weight:400}
-.hero-h span{display:block}
+.hero-h span{display:block;overflow:hidden}
 .hero-sub{margin-top:clamp(20px,3vh,36px);color:var(--mute);font-size:clamp(.95rem,1.1vw,1.1rem);max-width:48ch;line-height:1.7}
 .hero-btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;border:1px solid var(--hair);font-weight:600;font-size:.88rem;text-decoration:none;transition:border-color .15s,background .15s}
@@ -219,8 +219,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
 .cur.big{width:56px;height:56px;border-color:rgba(255,255,255,.25)}
 .cur.vis{opacity:1}
 
-/* Hero text slide-up */
-.hero-h span{overflow:hidden}
+/* Hero text slide-up (fallback for no-JS; JS letter-split overrides) */
 .hero-h span b{display:block;transform:translateY(105%);animation:hSlide 1s cubic-bezier(.22,1,.36,1) forwards}
 .hero-h span:nth-child(2) b{animation-delay:.12s}
 @keyframes hSlide{to{transform:none}}
@@ -281,10 +280,10 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
 .nl-btn:hover{opacity:.85}
 
 /* News "Learn more" link */
-.nc-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-weight:600;font-size:.84rem;color:var(--mute);text-decoration:none;transition:color .15s}
+.nc-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-weight:600;font-size:.84rem;color:var(--mute);text-decoration:none;transition:color .15s;overflow:visible}
 .nc-link:hover{color:var(--ink)}
-.nc-link::after{content:'\2192';transition:transform .15s}
-.nc-link:hover::after{transform:translateX(3px)}
+.nc-link>.arrow{transition:transform .15s;flex-shrink:0}
+.nc-link:hover>.arrow{transform:translateX(3px)}
 
 /* Service card inner glow on hover */
 .sv::before{content:'';position:absolute;inset:-1px;border-radius:var(--r2);background:linear-gradient(135deg,rgba(255,255,255,.04),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
@@ -294,6 +293,31 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
 /* Work card title slide */
 .wk-info{transform:translateY(8px);transition:transform .4s ease}
 .wk-card:hover .wk-info{transform:none}
+
+/* ── PRELOADER ── */
+.loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+.loader span{font-family:var(--heading);font-size:clamp(2rem,5vw,4rem);opacity:.5;animation:ldPulse 1s ease infinite alternate}
+@keyframes ldPulse{to{opacity:1;letter-spacing:.1em}}
+.loader.done{opacity:0;visibility:hidden;pointer-events:none}
+
+/* ── DOUBLE-TEXT BUTTON HOVER ── */
+.bt{display:inline-flex;flex-direction:column;overflow:hidden;height:1.15em;line-height:1.15}
+.bt span{display:block;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+a:hover .bt span,button:hover .bt span{transform:translateY(-100%)}
+
+/* ── IMAGE CLIP-REVEAL ON SCROLL ── */
+.wk-card.clip-hidden img{clip-path:inset(12% 0 0 0)}
+.wk-card img{clip-path:inset(0);transition:clip-path .9s cubic-bezier(.4,0,.2,1),filter .5s,transform .5s}
+
+/* ── FAQ SMOOTH OPEN ── */
+.fq-list details p{overflow:hidden;max-height:0;margin-top:0;opacity:0;transition:max-height .45s cubic-bezier(.4,0,.2,1),opacity .3s ease,margin-top .3s ease}
+.fq-list details[open] p{max-height:300px;opacity:1;margin-top:14px}
+
+/* ── MAGNETIC BUTTON ── */
+.mag{transition:transform .18s ease-out}
+
+/* ── LETTER SPLIT HERO ── */
+.hero-h .ch{display:inline-block;transform:translateY(110%);animation:hSlide .8s cubic-bezier(.22,1,.36,1) forwards}
 
 /* Responsive */
 @media(max-width:1040px){
@@ -311,6 +335,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
 </style>
 </head>
 <body>
+<div class="loader" id="loader"><span>AirLens</span></div>
 <div class="cur" id="cur"></div>
 
 <header>
@@ -329,7 +354,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
   <div class="hb-r">
     <button class="lb on" type="button" data-lang="sk">SK</button>
     <button class="lb" type="button" data-lang="de">DE</button>
-    <a class="hb-cta" href="#contact" data-i18n="nCta">Get Started</a>
+    <a class="hb-cta mag" href="#contact"><span class="bt"><span data-i18n="nCta">Get Started</span><span data-i18n="nCta">Get Started</span></span></a>
   </div>
 </div>
 </header>
@@ -358,7 +383,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
     <div><h2 data-i18n="aH">Transforming Ideas into Powerful Digital Screen Experiences</h2></div>
     <div>
       <p data-i18n="aP">We turn bold ideas into impactful digital experiences that captivate audiences and drive results. From strategy and design to development and execution, we create seamless solutions that bring your brand to life on every screen.</p>
-      <a class="about-btn" href="#services" data-i18n="aBtn">More About Us</a>
+      <a class="about-btn mag" href="#services"><span class="bt"><span data-i18n="aBtn">More About Us</span><span data-i18n="aBtn">More About Us</span></span></a>
     </div>
   </div>
 </div>
@@ -499,7 +524,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
       <div class="prc-price">$39 <small data-i18n="prPer">Per Month</small></div>
       <div class="prc-note" data-i18n="prNote">* Minimal booking period — 2 months.</div>
       <ul><li data-i18n="pf1">Brand & Identity starter kit</li><li data-i18n="pf2">Website design (core pages)</li><li data-i18n="pf3">Standard revisions</li><li data-i18n="pf4">SEO setup essentials</li><li data-i18n="pf5">Unlimited stock images</li><li data-i18n="pf6">Native source files included</li><li data-i18n="pf7">Final handoff files</li></ul>
-      <a class="prc-btn" href="#contact" data-i18n="prBtn">Get Started</a>
+      <a class="prc-btn mag" href="#contact"><span class="bt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span></a>
     </div>
     <div class="prc">
       <div class="prc-name" data-i18n="pr2n">Standard</div>
@@ -507,7 +532,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
       <div class="prc-price">$49 <small data-i18n="prPer">Per Month</small></div>
       <div class="prc-note" data-i18n="prNote">* Minimal booking period — 2 months.</div>
       <ul><li data-i18n="pf1">Brand & Identity starter kit</li><li data-i18n="pf2">Website design (core pages)</li><li data-i18n="pf3">Standard revisions</li><li data-i18n="pf4">SEO setup essentials</li><li data-i18n="pf5">Unlimited stock images</li><li data-i18n="pf6">Native source files included</li><li data-i18n="pf7">Final handoff files</li></ul>
-      <a class="prc-btn" href="#contact" data-i18n="prBtn">Get Started</a>
+      <a class="prc-btn mag" href="#contact"><span class="bt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span></a>
     </div>
     <div class="prc">
       <div class="prc-name" data-i18n="pr3n">Premium</div>
@@ -515,7 +540,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
       <div class="prc-price">$39 <small data-i18n="prPer">Per Month</small></div>
       <div class="prc-note" data-i18n="prNote">* Minimal booking period — 2 months.</div>
       <ul><li data-i18n="pf1">Brand & Identity starter kit</li><li data-i18n="pf2">Website design (core pages)</li><li data-i18n="pf3">Standard revisions</li><li data-i18n="pf4">SEO setup essentials</li><li data-i18n="pf5">Unlimited stock images</li><li data-i18n="pf6">Native source files included</li><li data-i18n="pf7">Final handoff files</li></ul>
-      <a class="prc-btn" href="#contact" data-i18n="prBtn">Get Started</a>
+      <a class="prc-btn mag" href="#contact"><span class="bt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span></a>
     </div>
   </div>
 </div>
@@ -543,7 +568,7 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
 <div class="w">
   <p data-i18n="ctaP">Building lasting partnerships, scaling brands,</p>
   <h2 data-i18n="ctaH">Let us inspire your next project</h2>
-  <a href="#contact" data-i18n="ctaBtn">Chat today</a>
+  <a href="#contact" class="mag"><span class="bt"><span data-i18n="ctaBtn">Chat today</span><span data-i18n="ctaBtn">Chat today</span></span></a>
 </div>
 </section>
 
@@ -552,9 +577,9 @@ body.has-cur a,body.has-cur button,body.has-cur summary{cursor:none}
   <div class="sl" data-i18n="nwLbl">News</div>
   <h2 class="st" data-i18n="nwT">Insights & Updates From Our Creative Studio</h2>
   <div class="news-g sg rv">
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
-    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><a class="nc-link" href="#" data-i18n="nMore">Learn more</a></div></article>
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><a class="nc-link" href="#"><span class="bt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="arrow">&rarr;</span></a></div></article>
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><a class="nc-link" href="#"><span class="bt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="arrow">&rarr;</span></a></div></article>
+    <article class="nc"><div class="nc-img"></div><div class="nc-body"><div class="nc-meta">Feb 21, 2026 &bull; 4 min read</div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><a class="nc-link" href="#"><span class="bt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="arrow">&rarr;</span></a></div></article>
   </div>
 </div>
 </section>
@@ -682,6 +707,21 @@ document.querySelectorAll(".kpi").forEach(b=>cio.observe(b));
 const rio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("v");rio.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll(".rv").forEach(e=>rio.observe(e));
 
+/* ── PRELOADER ── */
+window.addEventListener("load",()=>{const l=document.getElementById("loader");if(l){setTimeout(()=>l.classList.add("done"),600);setTimeout(()=>l.remove(),1300);}});
+
+/* ── LETTER-SPLIT HERO ── */
+(function(){
+  document.querySelectorAll(".hero-h span b").forEach((b,wi)=>{
+    const txt=b.textContent;b.textContent="";
+    [...txt].forEach((ch,i)=>{
+      const s=document.createElement("span");s.className="ch";s.textContent=ch===" "?"\u00A0":ch;
+      s.style.animationDelay=(wi*.25+i*.04)+"s";b.appendChild(s);
+    });
+    b.style.transform="none";b.style.animation="none";
+  });
+})();
+
 /* ── CUSTOM CURSOR ── */
 (function(){
   const c=document.getElementById("cur");if(!c||"ontouchstart" in window)return;
@@ -726,6 +766,35 @@ document.querySelectorAll(".pri-tab").forEach((btn,i,all)=>{
       ticking=false;
     });ticking=true;}
   });
+})();
+
+/* ── MAGNETIC BUTTONS ── */
+(function(){
+  if("ontouchstart" in window)return;
+  document.querySelectorAll(".mag").forEach(el=>{
+    el.addEventListener("mousemove",e=>{
+      const r=el.getBoundingClientRect();
+      const dx=(e.clientX-r.left-r.width/2)*.2;
+      const dy=(e.clientY-r.top-r.height/2)*.2;
+      el.style.transform="translate("+dx+"px,"+dy+"px)";
+    });
+    el.addEventListener("mouseleave",()=>{el.style.transform="";});
+  });
+})();
+
+/* ── IMAGE CLIP-REVEAL ── */
+(function(){
+  document.querySelectorAll(".wk-card").forEach(c=>c.classList.add("clip-hidden"));
+  const wkObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove("clip-hidden");e.target.classList.add("revealed");wkObs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll(".wk-card").forEach(c=>wkObs.observe(c));
+})();
+
+/* ── SMOOTH SCROLL (LENIS-LIKE) ── */
+(function(){
+  if("ontouchstart" in window||window.innerWidth<768)return;
+  let current=window.scrollY,target=window.scrollY,ease=.08,raf;
+  window.addEventListener("wheel",e=>{e.preventDefault();target+=e.deltaY;target=Math.max(0,Math.min(target,document.body.scrollHeight-window.innerHeight));},{passive:false});
+  (function run(){current+=(target-current)*ease;window.scrollTo(0,current);raf=requestAnimationFrame(run);})();
 })();
 </script>
 </body>
