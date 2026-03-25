@@ -465,6 +465,27 @@
       outline: none;
     }
 
+    .gallery-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(1) contrast(1.1) saturate(0.2) brightness(0.98);
+      transform: scale(1.03);
+      opacity: 0.95;
+      transition: filter 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
+      z-index: 0;
+    }
+
+    .gallery-tile:hover .gallery-img,
+    .gallery-tile:focus-visible .gallery-img {
+      filter: grayscale(0.12) contrast(1.16) saturate(1.25) brightness(1.05);
+      transform: scale(1.01);
+      opacity: 1;
+    }
+
     /* Sheen sweep (Nexora-like nice short hover) */
     .gallery-tile::after {
       content: "";
@@ -729,6 +750,7 @@
         <h2 class="section-title" data-i18n="galleryTitle">Ukážky (hover = soft focus)</h2>
         <div class="gallery-grid" id="gallery">
           <a class="gallery-tile" href="#" aria-label="Referencia 1" style="--img: '../img/egypt/egypt_1009.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1009.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -738,6 +760,7 @@
             </div>
           </a>
           <a class="gallery-tile" href="#" aria-label="Referencia 2" style="--img: '../img/egypt/egypt_1025.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1025.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -747,6 +770,7 @@
             </div>
           </a>
           <a class="gallery-tile" href="#" aria-label="Referencia 3" style="--img: '../img/egypt/egypt_1050.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1050.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -756,6 +780,7 @@
             </div>
           </a>
           <a class="gallery-tile" href="#" aria-label="Referencia 4" style="--img: '../img/egypt/egypt_1069.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1069.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -765,6 +790,7 @@
             </div>
           </a>
           <a class="gallery-tile" href="#" aria-label="Referencia 5" style="--img: '../img/egypt/egypt_1073.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1073.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
@@ -774,6 +800,7 @@
             </div>
           </a>
           <a class="gallery-tile" href="#" aria-label="Referencia 6" style="--img: '../img/egypt/egypt_1082.jpg';">
+            <img class="gallery-img" src="../img/egypt/egypt_1082.jpg" alt="" loading="lazy" decoding="async">
             <div class="gallery-layer gallery-bokeh" aria-hidden="true"></div>
             <div class="gallery-layer gallery-base" aria-hidden="true"></div>
             <div class="gallery-layer gallery-scrim" aria-hidden="true"></div>
