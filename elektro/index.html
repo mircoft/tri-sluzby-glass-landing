@@ -4,32 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SPS Automation GmbH - Dienstleistungen</title>
-  <meta name="description" content="SPS-Programmierung, Elektrokonstruktion, Industrie 4.0, Engineering und mehr. SPS Automation GmbH im Rhein-Neckar Kreis." />
+  <meta name="description" content="SPS-Programmierung, Elektrokonstruktion, Industrie 4.0, Engineering und mehr. SPS Automation GmbH – Dienstleistungen, Systeme, Branchen, Über uns, Shop, Kontakt." />
   <style>
     :root{
-      --bg:#05070f;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.04);
-      --border: rgba(255,255,255,.14);
+      --bg0:#03060c;
+      --bg1:#071021;
       --text:#eaf3ff;
-      --muted: rgba(234,243,255,.72);
-      --accent: #36f6ff;
-      --accent2:#8a5bff;
-      --radius: 18px;
-      --shadow: rgba(0,0,0,.55);
+      --muted:rgba(234,243,255,.72);
+      --hair:rgba(234,243,255,.14);
+      --hair2:rgba(234,243,255,.10);
+      --panel:rgba(255,255,255,.04);
+      --panel2:rgba(255,255,255,.02);
+      --shadow:rgba(0,0,0,.55);
+      --cyan:#36f6ff;
+      --violet:#8a5bff;
+      --radius:16px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       min-height:100vh;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
       color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
       overflow-x:hidden;
       background:
         radial-gradient(circle at 14% 10%, rgba(54,246,255,.18), transparent 42%),
         radial-gradient(circle at 86% 20%, rgba(138,91,255,.16), transparent 46%),
-        linear-gradient(180deg, #03060c 0%, #071021 55%, #03060c 100%);
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, var(--bg0) 100%);
     }
 
     .noise{
@@ -41,222 +43,258 @@
     }
 
     header{
-      position:sticky;
-      top:0;
-      z-index:20;
+      position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(5,7,15,.92), rgba(5,7,15,.35));
-      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(3,6,12,.92), rgba(3,6,12,.35));
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
-
     .container{
       width:min(1240px, 92%);
       margin:0 auto;
     }
 
-    .topbar{
+    .top{
+      padding: 16px 0 12px;
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
       gap:16px;
-      padding:14px 0;
     }
 
+    .contactTop{
+      color:rgba(234,243,255,.86);
+      font-weight:800;
+      line-height:1.6;
+      font-family: var(--mono);
+      letter-spacing:.04em;
+      font-size:.88rem;
+      white-space:nowrap;
+    }
+    .contactTop a{
+      color:rgba(234,243,255,.86);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .contactTop a:hover{color:rgba(234,243,255,1)}
+
     .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      padding-top:2px;
+      display:flex; flex-direction:column; gap:6px; padding-top:2px;
     }
     .brand b{
       font-family: var(--mono);
       text-transform: uppercase;
       letter-spacing:.18em;
-      font-size:.82rem;
+      font-size:.84rem;
     }
     .brand span{
-      color: var(--muted);
-      font-size: .92rem;
+      color:var(--muted);
+      font-size:.95rem;
       line-height:1.4;
       max-width:42ch;
     }
 
     nav{
+      padding: 0 0 14px;
       display:flex;
-      gap:18px;
+      gap:14px;
       flex-wrap:wrap;
       justify-content:flex-end;
-      padding-top:2px;
     }
     nav a{
-      color: rgba(234,243,255,.82);
+      color:rgba(234,243,255,.78);
       text-decoration:none;
-      font-weight:700;
-      font-size:.92rem;
-      padding:8px 10px;
+      font-weight:850;
+      padding: 8px 10px;
       border-radius:999px;
       border:1px solid transparent;
-      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
       white-space:nowrap;
+      font-family: var(--mono);
+      letter-spacing:.06em;
+      font-size:.82rem;
+      text-transform: uppercase;
     }
     nav a:hover{
-      border-color: rgba(255,255,255,.18);
       background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
       transform: translateY(-1px);
+      color:rgba(234,243,255,1);
     }
 
-    main{position:relative; z-index:1;}
+    main{position:relative; z-index:1; padding: 18px 0 40px;}
 
-    .hero{
-      padding: 34px 0 10px;
+    .section{
+      margin-top: 26px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius: var(--radius);
+      overflow:hidden;
     }
-
-    .kicker{
+    .section-head{
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    }
+    .section-head h2{
       font-family: var(--mono);
       text-transform: uppercase;
-      letter-spacing:.16em;
-      color: rgba(234,243,255,.72);
-      font-size:.74rem;
-      margin-bottom:10px;
+      letter-spacing: .14em;
+      font-size: .92rem;
+      margin-bottom: 6px;
     }
-
-    h1{
-      font-size: clamp(2.1rem, 4vw, 3.3rem);
-      line-height: 1.06;
-      letter-spacing: -0.02em;
-      margin-bottom:12px;
-    }
-
-    .lead{
-      color: rgba(234,243,255,.74);
-      font-size:1.02rem;
-      line-height:1.7;
-      max-width: 72ch;
+    .section-head p{
+      color: rgba(234,243,255,.70);
+      line-height: 1.6;
+      font-size: .96rem;
+      max-width: 78ch;
     }
 
     .services-grid{
-      margin-top: 22px;
-      padding-bottom: 26px;
+      padding: 16px 16px 18px;
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 14px;
     }
 
-    .service-card{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+    .service{
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
       overflow:hidden;
-      box-shadow: 0 22px 60px -45px var(--shadow);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
       position:relative;
-      isolation:isolate;
-      min-height: 220px;
-      display:flex;
-      flex-direction:column;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
     }
-
-    .service-card:hover{
-      transform: translateY(-4px);
-      border-color: rgba(54,246,255,.38);
-      background: rgba(255,255,255,.06);
+    .service:hover{
+      transform: translateY(-3px);
+      border-color: rgba(54,246,255,.35);
+      background: rgba(255,255,255,.05);
     }
-
-    /* Media placeholder (no images from foto) */
-    .service-media{
-      height: 120px;
+    .media{
+      height: 92px;
       background:
-        radial-gradient(circle at 20% 20%, rgba(54,246,255,.22), transparent 55%),
-        radial-gradient(circle at 80% 10%, rgba(138,91,255,.20), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-bottom:1px solid rgba(255,255,255,.10);
+        radial-gradient(circle at 20% 30%, rgba(54,246,255,.22), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(138,91,255,.20), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:flex-end;
+      padding: 10px 12px;
+      font-family: var(--mono);
+      color: rgba(234,243,255,.62);
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform: uppercase;
     }
-
     .service-body{
       padding: 14px 14px 16px;
       display:flex;
       flex-direction:column;
       gap:10px;
-      flex:1;
+      min-height: 112px;
     }
-
-    .service-title{
+    .service-body h3{
+      font-size: 1.03rem;
+      line-height: 1.25;
       font-family: var(--mono);
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 1.05rem;
-      font-weight: 900;
-      line-height:1.25;
-    }
-
-    .more{
-      margin-top:auto;
-      align-self:flex-start;
-      text-decoration:none;
-      padding:10px 12px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(5,7,15,.35);
-      color: rgba(234,243,255,.92);
-      font-weight: 950;
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-      font-size:.92rem;
       letter-spacing:.02em;
-      white-space:nowrap;
     }
-    .more:hover{
+    .btn{
+      margin-top:auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color: rgba(234,243,255,.94);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(3,6,12,.32);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-weight: 950;
+      font-size: .78rem;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      width: fit-content;
+    }
+    .btn:hover{
       transform: translateY(-1px);
       border-color: rgba(54,246,255,.45);
       background: rgba(255,255,255,.06);
     }
 
-    .content{
-      padding: 10px 0 48px;
-    }
-
     .two-col{
+      padding: 16px 16px 18px;
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.05fr .95fr;
       gap: 14px;
-      margin-top: 10px;
     }
 
     .panel{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      overflow:hidden;
     }
-
-    .panel h2{
+    .panel h3{
       font-family: var(--mono);
       text-transform: uppercase;
       letter-spacing:.14em;
-      font-size:.82rem;
-      color: rgba(234,243,255,.85);
-      margin-bottom:10px;
+      font-size:.86rem;
+      margin-bottom: 10px;
+      color: rgba(234,243,255,.90);
     }
-
-    .list{
+    .panel ul{
+      list-style:none;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap: 8px;
+    }
+    .panel li{
+      color: rgba(234,243,255,.70);
+      line-height: 1.35;
+      font-weight: 650;
+      padding-left: 12px;
+      position:relative;
+      font-size:.98rem;
+    }
+    .panel li::before{
+      content:"";
+      position:absolute; left:0; top: .7em;
+      width:7px; height:7px;
+      border-radius:99px;
+      background: rgba(54,246,255,.85);
+      box-shadow: 0 0 18px rgba(54,246,255,.18);
     }
 
-    .row{
-      color: rgba(234,243,255,.80);
-      line-height:1.5;
-      font-size: .98rem;
+    .about-grid{
+      padding: 16px 16px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    .muted{color: var(--muted)}
+    .contact-grid{
+      padding: 16px 16px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .addr{
+      font-weight: 750;
+    }
+    .mono{
+      font-family: var(--mono);
+      letter-spacing:.04em;
+    }
 
     footer{
-      border-top: 1px solid rgba(255,255,255,.10);
-      padding: 22px 0 34px;
-      color: rgba(234,243,255,.65);
-      background: rgba(0,0,0,.08);
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.06);
+      padding: 26px 0 40px;
+      color: rgba(234,243,255,.60);
     }
 
     .footer-grid{
@@ -265,45 +303,49 @@
       gap: 14px;
       align-items:start;
     }
-
     .footer-title{
       font-family: var(--mono);
       text-transform: uppercase;
       letter-spacing:.14em;
-      font-size:.78rem;
-      color: rgba(234,243,255,.72);
-      margin-bottom:10px;
+      font-size:.82rem;
+      color: rgba(234,243,255,.75);
+      margin-bottom: 10px;
     }
-
-    .footer-nav{
+    .footer-links{
       display:grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 12px;
     }
-
-    .footer-nav a{
-      text-decoration:none;
+    .footer-links a{
       color: rgba(234,243,255,.70);
-      font-weight: 750;
-      padding: 6px 0;
+      text-decoration:none;
+      font-weight:800;
       display:inline-block;
+      padding: 6px 0;
+      font-family: var(--mono);
+      letter-spacing:.06em;
+      text-transform: uppercase;
+      font-size:.78rem;
     }
-    .footer-nav a:hover{color: rgba(234,243,255,1)}
-
-    .cookie{
-      margin-top:14px;
-      font-size:.9rem;
-      color: rgba(234,243,255,.58);
+    .footer-links a:hover{color: rgba(234,243,255,1)}
+    .copyright{
+      margin-top: 12px;
+      color: rgba(234,243,255,.55);
+      line-height:1.6;
+      font-size:.95rem;
     }
 
     @media (max-width: 1060px){
       .services-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
-      .two-col{grid-template-columns: 1fr;}
-      .footer-grid{grid-template-columns: 1fr;}
+      .two-col{grid-template-columns:1fr;}
+      .about-grid{grid-template-columns:1fr;}
+      .contact-grid{grid-template-columns:1fr;}
+      .footer-grid{grid-template-columns:1fr;}
+      nav{justify-content:flex-start}
+      .contactTop{white-space:normal}
     }
     @media (max-width: 680px){
-      nav{justify-content:flex-start}
-      .services-grid{grid-template-columns: 1fr;}
+      .services-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -311,11 +353,20 @@
   <div class="noise" aria-hidden="true"></div>
 
   <header>
-    <div class="container topbar">
+    <div class="container top">
+      <div class="contactTop">
+        06209 / 72 57 49<br/>
+        0172 / 62 56 592<br/>
+        <a href="mailto:info@sps-automation.de">info@sps-automation.de</a>
+      </div>
+
       <div class="brand">
         <b>SPS Automation GmbH</b>
         <span>Dienstleistungen, Systeme, Branchen — alles unter einem Prozess.</span>
       </div>
+    </div>
+
+    <div class="container" style="padding:0 0 6px;">
       <nav aria-label="Hauptnavigation">
         <a href="#dienstleistungen">Dienstleistungen</a>
         <a href="#branchen">Branchen</a>
@@ -328,167 +379,205 @@
   </header>
 
   <main>
-    <section class="hero container" id="dienstleistungen">
-      <div class="kicker">Dienstleistungen</div>
-      <h1>DIENSTLEISTUNGEN</h1>
-      <p class="lead">
-        SPS Automation GmbH bietet ein breites Leistungsspektrum rund um Automatisierung, Elektrokonstruktion und Inbetriebnahme.
-        Unten finden Sie die wichtigsten Bereiche — jeweils mit „Mehr erfahren“.
-      </p>
+    <section class="section container" id="dienstleistungen">
+      <div class="section-head">
+        <h2>Dienstleistungen</h2>
+        <p>
+          SPS Automation GmbH bietet ein breites Leistungsspektrum rund um Automatisierung, Elektrokonstruktion und Inbetriebnahme.
+          Unten finden Sie die wichtigsten Bereiche — jeweils mit „Mehr erfahren“.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>SPS-Programmierung</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Elektrokonstruktion</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Industrie 4.0</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Engineering</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Automatisierungstechnik</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Softwareentwicklung/IT</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Schaltschrankbau</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Retrofit</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Inbetriebnahme</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Support</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="media">Image</div>
+          <div class="service-body">
+            <h3>Maschinensicherheit</h3>
+            <a class="btn" href="#kontakt">Mehr erfahren</a>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="container content">
-      <div class="services-grid">
-        <article class="service-card" id="maschinensicherheit">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Maschinensicherheit</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="sps-programmierung">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">SPS-Programmierung</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="elektrokonstruktion">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Elektrokonstruktion</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="industrie-4-0">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Industrie 4.0</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="engineering">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Engineering</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="automatisierungstechnik">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Automatisierungstechnik</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="softwareentwicklung-it">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Softwareentwicklung/IT</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="schaltschrankbau">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Schaltschrankbau</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="retrofit">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Retrofit</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="inbetriebnahme">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Inbetriebnahme</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
-
-        <article class="service-card" id="support">
-          <div class="service-media" aria-hidden="true"></div>
-          <div class="service-body">
-            <div class="service-title">Support</div>
-            <a class="more" href="#kontakt">Mehr erfahren</a>
-          </div>
-        </article>
+    <section class="section container" id="branchen">
+      <div class="section-head">
+        <h2>Branchen</h2>
+        <p>—</p>
       </div>
+    </section>
 
+    <section class="section container" id="systeme">
+      <div class="section-head">
+        <h2>Systeme</h2>
+        <p>Auszug der typischen Systeme und Themen, die in Projekten umgesetzt werden.</p>
+      </div>
       <div class="two-col">
-        <section class="panel" id="branchen" aria-label="Branchen">
-          <h2>Branchen</h2>
-          <div class="list">
-            <div class="row muted">— (Bereiche können später ergänzt werden.)</div>
-          </div>
-        </section>
-
-        <section class="panel" id="systeme" aria-label="Systeme">
-          <h2>Systeme</h2>
-          <div class="list">
-            <div class="row">Automatisierungstechnik</div>
-            <div class="row">Steuerungstechnik</div>
-            <div class="row">Industrierobotik</div>
-            <div class="row">Maschinensicherheit</div>
-            <div class="row">Messtechnik</div>
-            <div class="row">Visualisierung</div>
-            <div class="row">Antriebstechnik</div>
-            <div class="row">Bildverarbeitungssyteme</div>
-          </div>
-        </section>
+        <div class="panel">
+          <h3>Systeme</h3>
+          <ul>
+            <li>Automatisierungstechnik</li>
+            <li>Steuerungstechnik</li>
+            <li>Industrierobotik</li>
+            <li>Maschinensicherheit</li>
+            <li>Messtechnik</li>
+            <li>Visualisierung</li>
+            <li>Antriebstechnik</li>
+            <li>Bildverarbeitungssyteme</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Leistungen</h3>
+          <ul>
+            <li>Dienstleistungen</li>
+            <li>Branchen</li>
+            <li>Systeme</li>
+            <li>Über uns</li>
+            <li>Shop</li>
+            <li>Kontakt</li>
+          </ul>
+        </div>
       </div>
+    </section>
 
-      <div class="two-col" style="margin-top:14px;">
-        <section class="panel" id="ueber-uns" aria-label="Über uns">
-          <h2>Über uns</h2>
-          <div class="list">
-            <div class="row">Leitbild</div>
-            <div class="row">Karriere</div>
-            <div class="row">Wie wir ticken!</div>
-          </div>
-        </section>
-
-        <section class="panel" id="shop" aria-label="Shop">
-          <h2>Shop</h2>
-          <div class="list">
-            <div class="row muted">— (Shop-Inhalte später ergänzíme, zatiaľ len layout.)</div>
-          </div>
-        </section>
+    <section class="section container" id="ueber-uns">
+      <div class="section-head">
+        <h2>Über uns</h2>
+        <p>Ein kurzer Überblick zu Leitbild, Karriere und Arbeitsweise.</p>
       </div>
+      <div class="about-grid">
+        <div class="panel">
+          <h3>Über uns</h3>
+          <ul>
+            <li>Leitbild</li>
+            <li>Karriere</li>
+            <li>Wie wir ticken!</li>
+          </ul>
+        </div>
+        <div class="panel" id="shop">
+          <h3>Shop</h3>
+          <ul>
+            <li>Shop</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <section class="panel" id="kontakt" style="margin-top:14px;" aria-label="Kontakt">
-        <h2>Anschrift</h2>
-        <div class="list">
-          <div class="row"><b>SPS Automation GmbH</b></div>
-          <div class="row muted">Langen-Morgenstr. 17</div>
-          <div class="row muted">69488 Birkenau</div>
-
-          <div class="row" style="margin-top:12px;">
-            <b>Kontaktdaten</b>
-          </div>
-          <div class="row">06209 / 72 57 49</div>
-          <div class="row">0172 / 62 56 592</div>
-          <div class="row">06209 / 79 44 67</div>
-          <div class="row"><span class="muted">E-Mail:</span> info@sps-automation.de</div>
-
-          <div class="row" style="margin-top:10px;">
-            <a class="more" href="mailto:info@sps-automation.de">E-Mail senden</a>
+    <section class="section container" id="kontakt">
+      <div class="section-head">
+        <h2>Kontakt</h2>
+        <p>Anschrift und Kontaktdaten wie auf der Referenzseite.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="panel">
+          <h3>Anschrift</h3>
+          <div class="row addr" style="color:rgba(234,243,255,.80); line-height:1.7; font-size:1rem;">
+            <div style="font-weight:950;">SPS Automation GmbH</div>
+            <div style="margin-top:6px;">Langen-Morgenstr. 17</div>
+            <div class="muted" style="color:rgba(234,243,255,.68); margin-top:6px;">69488 Birkenau</div>
           </div>
         </div>
-      </section>
+        <div class="panel">
+          <h3>Kontaktdaten</h3>
+          <ul>
+            <li class="mono">06209 / 72 57 49</li>
+            <li class="mono">0172 / 62 56 592</li>
+            <li class="mono">06209 / 79 44 67</li>
+            <li><span class="muted">E-Mail:</span> info@sps-automation.de</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="mailto:info@sps-automation.de">E-Mail senden</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-grid" style="padding-top:0;">
+        <div class="panel">
+          <h3>Cookie-Einstellungen</h3>
+          <div style="color:rgba(234,243,255,.68); line-height:1.6; font-size:.98rem;">
+            (Placeholder — du neskôr pridáš skutočné cookie nastavenia.)
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Navigation</h3>
+          <ul>
+            <li>Dienstleistungen</li>
+            <li>Branchen</li>
+            <li>Systeme</li>
+            <li>Über uns</li>
+            <li>Shop</li>
+            <li>Kontakt</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -496,28 +585,27 @@
     <div class="container footer-grid">
       <div>
         <div class="footer-title">Cookie-Einstellungen</div>
-        <div style="color: rgba(234,243,255,.56); line-height:1.6; font-size:.95rem;">
-          (Placeholder — neskôr sem doplníme reálne cookie nastavenia.)
+        <div style="color:rgba(234,243,255,.56); line-height:1.6;">
+          (Placeholder)
         </div>
-        <div class="cookie">© 2022 SPS Automation GmbH. Alle Rechte vorbehalten. Im Rhein Neckar Kreis - Mannheim - Heidelberg - Ludwigshafen</div>
+        <div class="copyright">
+          © 2022 SPS Automation GmbH. Alle Rechte vorbehalten. Im Rhein Neckar Kreis - Mannheim - Heidelberg - Ludwigshafen
+        </div>
       </div>
       <div>
         <div class="footer-title">Leistungen</div>
-        <div class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-links">
           <div class="list">
-            <a href="#maschinensicherheit">Maschinensicherheit</a>
-            <a href="#sps-programmierung">SPS-Programmierung</a>
-            <a href="#elektrokonstruktion">Elektrokonstruktion</a>
-            <a href="#industrie-4-0">Industrie 4.0</a>
-            <a href="#engineering">Engineering</a>
+            <a href="#dienstleistungen">Dienstleistungen</a>
+            <a href="#branchen">Branchen</a>
+            <a href="#systeme">Systeme</a>
+            <a href="#ueber-uns">Über uns</a>
           </div>
           <div class="list">
-            <a href="#automatisierungstechnik">Automatisierungstechnik</a>
-            <a href="#softwareentwicklung-it">Softwareentwicklung/IT</a>
-            <a href="#schaltschrankbau">Schaltschrankbau</a>
-            <a href="#retrofit">Retrofit</a>
-            <a href="#inbetriebnahme">Inbetriebnahme</a>
-            <a href="#support">Support</a>
+            <a href="#shop">Shop</a>
+            <a href="#kontakt">Kontakt</a>
+            <a href="#dienstleistungen">Leistungen</a>
+            <a href="#systeme">Services</a>
           </div>
         </div>
       </div>
