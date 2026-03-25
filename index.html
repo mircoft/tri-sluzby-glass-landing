@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedesigns.org/#org","name":"thedesigns.org","url":"https://thedesigns.org/","logo":"https://thedesigns.org/icon.svg","description":"Design studio, profesionálna tvorba webov a e-shopov na mieru a priemyselná automatizácia.","email":"info@thedesigns.org"},{"@type":"WebSite","@id":"https://thedesigns.org/#website","name":"thedesigns.org","url":"https://thedesigns.org/","publisher":{"@id":"https://thedesigns.org/#org"},"inLanguage":["sk","de"]}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedesigns.org/#org","name":"thedesigns.org","url":"https://thedesigns.org/","logo":{"@type":"ImageObject","url":"https://thedesigns.org/icon.svg"},"image":"https://thedesigns.org/og-share.png","description":"Design studio, profesionálna tvorba webov a e-shopov na mieru a priemyselná automatizácia.","email":"info@thedesigns.org"},{"@type":"WebSite","@id":"https://thedesigns.org/#website","name":"thedesigns.org","url":"https://thedesigns.org/","publisher":{"@id":"https://thedesigns.org/#org"},"inLanguage":["sk","de"],"image":"https://thedesigns.org/og-share.png"}]}
   </script>
   <style>
     :root{
@@ -242,15 +242,15 @@
   </style>
 </head>
 <body>
-  <div class="top">
+  <header class="top" role="banner">
     <div class="container top-inner">
-      <div class="logo">thedesigns.org</div>
+      <a class="logo" href="/">thedesigns.org</a>
       <div class="lang" aria-label="Language switch">
         <button class="lang-btn active" type="button" data-lang="sk">SK</button>
         <button class="lang-btn" type="button" data-lang="de">DE</button>
       </div>
     </div>
-  </div>
+  </header>
 
   <main class="container">
     <section class="hero">
@@ -309,7 +309,8 @@
         pageTitle: "thedesigns.org — Design, web, automatizácia",
         metaDesc: "Design studio, profesionálna tvorba webov a automatizácia. Tri smery pod jednou strechou.",
         ogTitle: "thedesigns.org",
-        ogDesc: "Design studio, profesionálna tvorba webov a automatizácia."
+        ogDesc: "Design studio, profesionálna tvorba webov a automatizácia.",
+        ogLocale: "sk_SK"
       },
       de: {
         kicker: "Design / Web / Automatisierung",
