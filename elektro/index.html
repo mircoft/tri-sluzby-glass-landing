@@ -1,1447 +1,528 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Elektro & Automatizácia - Industriál</title>
-  <meta name="description" content="Industriálna automatizácia pre elektrikárov: scanning/pulse UI, proces, služby, systémy. SK/DE." />
+  <title>SPS Automation GmbH - Dienstleistungen</title>
+  <meta name="description" content="SPS-Programmierung, Elektrokonstruktion, Industrie 4.0, Engineering und mehr. SPS Automation GmbH im Rhein-Neckar Kreis." />
   <style>
     :root{
-      --bg0:#03060c;
-      --bg1:#071021;
-      --ink:#d7f3ff;
-      --muted: rgba(215,243,255,0.72);
-      --hair: rgba(215,243,255,0.14);
-      --glass: rgba(12,22,40,0.62);
-      --shadow: rgba(0,0,0,0.65);
-      --blue:#36f6ff;
-      --steel:#7aa8ff;
-      --violet:#9b6bff;
-      --green:#66ffb8;
-      --warn:#ffcc66;
+      --bg:#05070f;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.04);
+      --border: rgba(255,255,255,.14);
+      --text:#eaf3ff;
+      --muted: rgba(234,243,255,.72);
+      --accent: #36f6ff;
+      --accent2:#8a5bff;
+      --radius: 18px;
+      --shadow: rgba(0,0,0,.55);
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       min-height:100vh;
-      color:var(--ink);
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      background:
-        radial-gradient(circle at 12% 18%, rgba(54,246,255,0.18), transparent 42%),
-        radial-gradient(circle at 86% 22%, rgba(155,107,255,0.18), transparent 46%),
-        radial-gradient(circle at 55% 90%, rgba(102,255,184,0.10), transparent 52%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--text);
       overflow-x:hidden;
+      background:
+        radial-gradient(circle at 14% 10%, rgba(54,246,255,.18), transparent 42%),
+        radial-gradient(circle at 86% 20%, rgba(138,91,255,.16), transparent 46%),
+        linear-gradient(180deg, #03060c 0%, #071021 55%, #03060c 100%);
     }
 
-    .gridlines{
-      position:fixed; inset:0; pointer-events:none;
-      background:
-        linear-gradient(to right, rgba(215,243,255,0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(215,243,255,0.06) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.75;
-      mask-image: radial-gradient(circle at 50% 18%, #000 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.05) 100%);
-      z-index:0;
-    }
-    .scanX{
-      position:fixed; inset:-20% -20% auto -20%;
-      height: 340px;
-      pointer-events:none;
-      background: linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.18) 42%, rgba(54,246,255,0.06) 58%, transparent 100%);
-      transform: translateX(-55vw) rotate(8deg);
-      animation: scanXmove 7.5s linear infinite;
-      opacity: 0.65;
-      z-index:1;
-      filter: blur(0.25px);
-    }
-    @keyframes scanXmove{
-      0%{transform: translateX(-60vw) rotate(8deg)}
-      50%{opacity:0.9}
-      100%{transform: translateX(60vw) rotate(8deg)}
-    }
-    .pulseRing{
-      position:fixed;
-      width: 18px; height: 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(54,246,255,0.7);
-      box-shadow: 0 0 22px rgba(54,246,255,0.33);
-      pointer-events:none;
-      transform: translate(-50%,-50%);
-      z-index: 999;
-      opacity:0;
-    }
-    .pulseRing.on{
-      opacity:0.85;
-      animation: pulseGlow 0.95s ease-out both;
-    }
-    @keyframes pulseGlow{
-      0%{transform: translate(-50%,-50%) scale(1); border-color: rgba(54,246,255,0.75); box-shadow: 0 0 18px rgba(54,246,255,0.26)}
-      70%{transform: translate(-50%,-50%) scale(5); border-color: rgba(54,246,255,0.08); box-shadow: 0 0 38px rgba(54,246,255,0.05)}
-      100%{opacity:0}
+    .noise{
+      position:fixed; inset:0; pointer-events:none; z-index:0;
+      opacity:.12;
+      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 3px 3px;
+      mix-blend-mode: soft-light;
     }
 
     header{
       position:sticky;
       top:0;
-      z-index:40;
+      z-index:20;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      background: linear-gradient(180deg, rgba(3,6,12,0.85), rgba(3,6,12,0.20));
-      border-bottom: 1px solid rgba(215,243,255,0.10);
+      background: linear-gradient(180deg, rgba(5,7,15,.92), rgba(5,7,15,.35));
+      border-bottom: 1px solid rgba(255,255,255,.10);
     }
-    .container{width:min(1240px,92%); margin:0 auto;}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      padding: 14px 0;
+
+    .container{
+      width:min(1240px, 92%);
+      margin:0 auto;
     }
-    .nav-left{display:flex; gap:10px; align-items:center;}
-    .back{
-      text-decoration:none;
-      color: var(--ink);
-      border:1px solid rgba(215,243,255,0.14);
-      background: rgba(7,12,24,0.52);
-      padding: 10px 12px;
-      border-radius: 12px;
-      transition: transform .16s ease, border-color .16s ease;
-      font-weight: 800;
-      letter-spacing:0.02em;
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
     }
-    .back:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.45)}
-    .brand{display:flex; flex-direction:column; gap:2px}
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding-top:2px;
+    }
     .brand b{
       font-family: var(--mono);
-      font-size: 0.86rem;
-      letter-spacing: 0.14em;
       text-transform: uppercase;
+      letter-spacing:.18em;
+      font-size:.82rem;
     }
-    .brand span{color:var(--muted); font-size:0.9rem}
-
-    .lang-switch{display:flex; gap:8px; align-items:center}
-    .lang-btn{
-      border:1px solid rgba(215,243,255,0.14);
-      background: rgba(7,12,24,0.45);
-      color: var(--ink);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 0.78rem;
-      letter-spacing:0.14em;
-      text-transform: uppercase;
-      cursor:pointer;
-      transition: background .16s ease, border-color .16s ease, transform .16s ease;
-      font-family: var(--mono);
+    .brand span{
+      color: var(--muted);
+      font-size: .92rem;
+      line-height:1.4;
+      max-width:42ch;
     }
-    .lang-btn:hover{transform: translateY(-1px); border-color: rgba(54,246,255,0.45)}
-    .lang-btn.active{background: rgba(54,246,255,0.12); border-color: rgba(54,246,255,0.55)}
 
-    main{position:relative; z-index:2;}
+    nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      padding-top:2px;
+    }
+    nav a{
+      color: rgba(234,243,255,.82);
+      text-decoration:none;
+      font-weight:700;
+      font-size:.92rem;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+      white-space:nowrap;
+    }
+    nav a:hover{
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    main{position:relative; z-index:1;}
+
     .hero{
-      padding: 54px 0 18px;
+      padding: 34px 0 10px;
     }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      align-items:start;
-    }
+
     .kicker{
       font-family: var(--mono);
-      letter-spacing:0.18em;
       text-transform: uppercase;
-      font-size:0.74rem;
-      color: rgba(215,243,255,0.72);
+      letter-spacing:.16em;
+      color: rgba(234,243,255,.72);
+      font-size:.74rem;
+      margin-bottom:10px;
     }
+
     h1{
-      font-size: clamp(2.2rem, 3.4vw, 3.5rem);
-      line-height:1.03;
-      margin-top: 14px;
-      letter-spacing:-0.02em;
-      font-weight: 900;
-      text-transform: none;
+      font-size: clamp(2.1rem, 4vw, 3.3rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+      margin-bottom:12px;
     }
+
     .lead{
-      margin-top: 12px;
-      color: rgba(215,243,255,0.78);
-      font-size: 1.03rem;
-      line-height:1.6;
-      max-width: 68ch;
-    }
-
-    .block{
-      border:1px solid rgba(215,243,255,0.14);
-      background: rgba(10,16,32,0.40);
-      border-radius: 16px;
-      box-shadow: 0 30px 70px -45px var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .block::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: conic-gradient(from 180deg,
-        rgba(54,246,255,0) 0%,
-        rgba(54,246,255,0.45) 18%,
-        rgba(155,107,255,0.30) 44%,
-        rgba(102,255,184,0.25) 68%,
-        rgba(54,246,255,0) 100%);
-      opacity:0.22;
-      filter: blur(14px);
-      pointer-events:none;
-    }
-    .block-inner{position:relative; z-index:1; padding: 16px;}
-
-    .meters{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:10px;
-      margin-top: 12px;
-    }
-    .meter{
-      border:1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.35);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .meter b{
-      font-family: var(--mono);
-      letter-spacing:0.12em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      color: rgba(215,243,255,0.9);
-    }
-    .meter .val{
-      margin-top: 10px;
-      display:flex; align-items:baseline; gap:10px;
-    }
-    .meter .big{
-      font-family: var(--mono);
-      font-weight: 900;
-      letter-spacing:0.06em;
-      font-size: 1.4rem;
-      color: var(--blue);
-      text-shadow: 0 0 22px rgba(54,246,255,0.22);
-    }
-    .meter .sub{
-      color: rgba(215,243,255,0.72);
-      font-size: 0.92rem;
-      line-height:1.35;
-      max-width: 18ch;
-    }
-    .bar{
-      margin-top: 12px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(215,243,255,0.08);
-      overflow:hidden;
-      border:1px solid rgba(215,243,255,0.10);
-    }
-    .bar > i{
-      display:block;
-      height:100%;
-      width: var(--w, 60%);
-      background: linear-gradient(90deg, rgba(54,246,255,0.85), rgba(102,255,184,0.75));
-      box-shadow: 0 0 26px rgba(54,246,255,0.18);
-      animation: barPulse 2.6s ease-in-out infinite;
-    }
-    @keyframes barPulse{
-      0%,100%{filter:saturate(1) brightness(1)}
-      50%{filter:saturate(1.2) brightness(1.15)}
-    }
-
-    .sections{padding: 18px 0 64px;}
-    .section{
-      margin-top: 18px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(10,16,32,0.26);
-      border-radius: 16px;
-      overflow:hidden;
-    }
-    .section-head{
-      padding: 14px 14px;
-      display:flex; justify-content:space-between; align-items:baseline; gap:12px;
-      border-bottom:1px solid rgba(215,243,255,0.10);
-      background: rgba(7,12,24,0.26);
-    }
-    .section-head h2{
-      font-family: var(--mono);
-      letter-spacing:0.16em;
-      text-transform: uppercase;
-      font-size:0.88rem;
-      color: rgba(215,243,255,0.9);
-    }
-    .section-head p{
-      color: rgba(215,243,255,0.64);
-      font-size:0.93rem;
-      line-height:1.4;
+      color: rgba(234,243,255,.74);
+      font-size:1.02rem;
+      line-height:1.7;
       max-width: 72ch;
     }
 
-    .service-grid{
+    .services-grid{
+      margin-top: 22px;
+      padding-bottom: 26px;
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      padding: 14px 14px;
+      gap: 14px;
     }
-    .service{
-      border-radius: 14px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.30);
-      padding: 14px;
-      position:relative;
+
+    .service-card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
       overflow:hidden;
+      box-shadow: 0 22px 60px -45px var(--shadow);
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      min-height: 122px;
-    }
-    .service:hover{
-      transform: translateY(-2px);
-      border-color: rgba(54,246,255,0.35);
-      background: rgba(7,12,24,0.44);
-    }
-    .service::after{
-      content:"";
-      position:absolute;
-      inset:-50% -20%;
-      background:
-        linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.18) 45%, rgba(54,246,255,0.06) 55%, transparent 100%);
-      transform: translateX(-35%);
-      opacity:0;
-      transition: opacity .18s ease;
-      pointer-events:none;
-      z-index:1;
-    }
-    .service:hover::after{
-      opacity:1;
-      animation: emitMove 0.85s ease both;
-    }
-    @keyframes emitMove{
-      0%{transform: translateX(-35%) skewX(-10deg)}
-      100%{transform: translateX(35%) skewX(-10deg)}
-    }
-    .service .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(215,243,255,0.12);
-      background: rgba(10,16,32,0.26);
-      font-family: var(--mono);
-      letter-spacing:0.14em;
-      text-transform: uppercase;
-      font-size:0.72rem;
-      color: rgba(215,243,255,0.82);
       position:relative;
-      z-index:2;
+      isolation:isolate;
+      min-height: 220px;
+      display:flex;
+      flex-direction:column;
     }
-    .service .tag i{
-      width:6px; height:6px;
-      border-radius:99px;
-      background: var(--blue);
-      box-shadow: 0 0 18px rgba(54,246,255,0.28);
+
+    .service-card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(54,246,255,.38);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Media placeholder (no images from foto) */
+    .service-media{
+      height: 120px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(54,246,255,.22), transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(138,91,255,.20), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+
+    .service-body{
+      padding: 14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+
+    .service-title{
+      font-family: var(--mono);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height:1.25;
+    }
+
+    .more{
+      margin-top:auto;
+      align-self:flex-start;
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(5,7,15,.35);
+      color: rgba(234,243,255,.92);
+      font-weight: 950;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      font-size:.92rem;
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+    .more:hover{
+      transform: translateY(-1px);
+      border-color: rgba(54,246,255,.45);
+      background: rgba(255,255,255,.06);
+    }
+
+    .content{
+      padding: 10px 0 48px;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .panel{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 16px;
+    }
+
+    .panel h2{
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing:.14em;
+      font-size:.82rem;
+      color: rgba(234,243,255,.85);
+      margin-bottom:10px;
+    }
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .row{
+      color: rgba(234,243,255,.80);
+      line-height:1.5;
+      font-size: .98rem;
+    }
+
+    .muted{color: var(--muted)}
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 22px 0 34px;
+      color: rgba(234,243,255,.65);
+      background: rgba(0,0,0,.08);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    .footer-title{
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing:.14em;
+      font-size:.78rem;
+      color: rgba(234,243,255,.72);
+      margin-bottom:10px;
+    }
+
+    .footer-nav{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .footer-nav a{
+      text-decoration:none;
+      color: rgba(234,243,255,.70);
+      font-weight: 750;
+      padding: 6px 0;
       display:inline-block;
     }
-    .service b{
-      display:block;
-      margin-top: 12px;
-      font-family: var(--mono);
-      font-size: 1rem;
-      letter-spacing:0.02em;
-      position:relative;
-      z-index:2;
-    }
-    .service span{
-      display:block;
-      margin-top: 8px;
-      color: rgba(215,243,255,0.68);
-      font-size: 0.92rem;
-      line-height: 1.45;
-      position:relative;
-      z-index:2;
+    .footer-nav a:hover{color: rgba(234,243,255,1)}
+
+    .cookie{
+      margin-top:14px;
+      font-size:.9rem;
+      color: rgba(234,243,255,.58);
     }
 
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      padding: 14px 14px;
-    }
-    .step{
-      border-radius: 14px;
-      border:1px dashed rgba(215,243,255,0.22);
-      background: rgba(7,12,24,0.22);
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .step::before{
-      content:"";
-      position:absolute; top:-2px; left:-2px; right:-2px; height:1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(54,246,255,0.65) 50%, transparent 100%);
-      opacity:0.8;
-    }
-    .step .n{
-      font-family: var(--mono);
-      letter-spacing:0.18em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      color: rgba(54,246,255,0.92);
-    }
-    .step b{display:block;margin-top:10px;font-size:1.02rem;font-weight:900}
-    .step span{display:block;margin-top:8px;color:rgba(215,243,255,0.70);font-size:0.93rem;line-height:1.48}
-
-    .tags{
-      padding: 14px 14px;
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 10px;
-    }
-    .tag{
-      border-radius: 14px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.30);
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .18s ease, border-color .18s ease;
-      min-height: 92px;
-    }
-    .tag:hover{
-      transform: translateY(-2px);
-      border-color: rgba(54,246,255,0.38);
-    }
-    .tag::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        repeating-linear-gradient(90deg, rgba(54,246,255,0.0) 0px, rgba(54,246,255,0.0) 8px, rgba(54,246,255,0.12) 9px),
-        linear-gradient(120deg, transparent 0%, rgba(54,246,255,0.16) 45%, transparent 70%);
-      opacity:0;
-      transition: opacity .16s ease;
-      pointer-events:none;
-    }
-    .tag:hover::after{opacity:1; animation: sqMove 0.7s ease both;}
-    @keyframes sqMove{
-      0%{transform: translateX(-10px) skewX(-6deg)}
-      100%{transform: translateX(10px) skewX(-6deg)}
-    }
-    .tag b{
-      display:block;
-      font-family: var(--mono);
-      letter-spacing:0.08em;
-      text-transform: uppercase;
-      font-size:0.78rem;
-      color: rgba(215,243,255,0.90);
-      position:relative; z-index:1;
-    }
-    .tag span{
-      display:block;
-      margin-top: 8px;
-      color: rgba(215,243,255,0.66);
-      font-size:0.92rem;
-      line-height:1.45;
-      position:relative; z-index:1;
-    }
-
-    /* ── Added sections: Projects / Testimonials / Pricing / FAQ ── */
-    .projects-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      padding: 14px 14px;
-    }
-    .project-card{
-      border-radius: 14px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.30);
-      overflow:hidden;
-      position:relative;
-    }
-    .project-thumb{
-      height: 170px;
-      background-size: cover;
-      background-position: center;
-      position:relative;
-      border-bottom: 1px solid rgba(215,243,255,0.10);
-    }
-    .project-thumb::before{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(3,6,12,0.05) 0%, rgba(7,12,24,0.55) 100%);
-      pointer-events:none;
-    }
-    .project-thumb::after{
-      content:"";
-      position:absolute; inset:-20% -10%;
-      background:
-        repeating-linear-gradient(90deg, rgba(215,243,255,0.00) 0px, rgba(54,246,255,0.12) 2px, rgba(215,243,255,0.00) 6px),
-        repeating-linear-gradient(180deg, rgba(54,246,255,0.00) 0px, rgba(215,243,255,0.10) 1px, rgba(54,246,255,0.00) 6px);
-      opacity: 0;
-      mix-blend-mode: screen;
-      transform: translateY(-10px);
-      transition: opacity .18s ease, transform .18s ease;
-      pointer-events:none;
-      filter: blur(0.2px);
-    }
-    .project-card:hover .project-thumb::after{
-      opacity: 0.95;
-      transform: translateY(10px);
-      animation: scanSweep .55s steps(2,end) infinite;
-    }
-    @keyframes scanSweep{
-      0%{transform: translateY(-18px) skewX(-2deg); opacity:0.55}
-      35%{transform: translateY(18px) skewX(2deg); opacity:0.85}
-      100%{transform: translateY(-14px) skewX(-1deg); opacity:0.55}
-    }
-    .project-body{
-      padding: 12px 14px 14px;
-    }
-    .project-body b{
-      display:block;
-      font-size: 1.02rem;
-      letter-spacing: -0.01em;
-    }
-    .project-body span{
-      display:block;
-      margin-top: 8px;
-      color: rgba(215,243,255,0.68);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .stars{
-      display:flex;
-      gap: 3px;
-      margin-top: 10px;
-      align-items:center;
-    }
-    .stars svg{
-      width: 14px;
-      height: 14px;
-      fill: rgba(54,246,255,0.95);
-      filter: drop-shadow(0 0 10px rgba(54,246,255,0.20));
-    }
-
-    .pricing-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      padding: 14px 14px;
-    }
-    .price-card{
-      border-radius: 14px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.30);
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .price-top b{
-      display:block;
-      font-family: var(--mono);
-      letter-spacing:0.14em;
-      text-transform: uppercase;
-      font-size: 0.86rem;
-    }
-    .price-top .p{
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--blue);
-      text-shadow: 0 0 22px rgba(54,246,255,0.16);
-    }
-    .price-top span{
-      display:block;
-      margin-top: 2px;
-      color: rgba(215,243,255,0.72);
-      font-size: 0.92rem;
-      line-height: 1.35;
-    }
-    .price-list{
-      margin-top: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .price-li{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      color: rgba(215,243,255,0.72);
-      font-size: 0.92rem;
-      line-height: 1.45;
-    }
-    .price-li i{
-      width: 7px; height: 7px;
-      border-radius: 99px;
-      background: rgba(54,246,255,0.85);
-      margin-top: 7px;
-      box-shadow: 0 0 18px rgba(54,246,255,0.22);
-      flex-shrink:0;
-    }
-
-    .faq-grid{
-      padding: 14px 14px 18px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .faq-item{
-      border-radius: 14px;
-      border: 1px solid rgba(215,243,255,0.12);
-      background: rgba(7,12,24,0.22);
-      overflow:hidden;
-    }
-    .faq-toggle{
-      width:100%;
-      text-align:left;
-      border:0;
-      padding: 14px 14px;
-      background: transparent;
-      color: rgba(215,243,255,0.88);
-      cursor:pointer;
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      font-weight: 850;
-      font-family: var(--mono);
-      letter-spacing:0.05em;
-      text-transform: none;
-    }
-    .faq-toggle:hover{ color: rgba(215,243,255,1); }
-    .faq-dot{
-      width: 8px; height: 8px;
-      border-radius: 99px;
-      background: rgba(54,246,255,0.55);
-      box-shadow: 0 0 22px rgba(54,246,255,0.20);
-      flex-shrink:0;
-    }
-    .faq-icon{
-      margin-left:auto;
-      width: 18px; height: 18px;
-      position:relative;
-      flex-shrink:0;
-    }
-    .faq-icon::before, .faq-icon::after{
-      content:"";
-      position:absolute; left:50%; top:50%;
-      width: 100%;
-      height: 2px;
-      background: rgba(215,243,255,0.75);
-      transform: translate(-50%,-50%);
-      border-radius: 2px;
-    }
-    .faq-icon::after{
-      transform: translate(-50%,-50%) rotate(90deg);
-      transition: transform .18s ease;
-    }
-    .faq-item.open .faq-icon::after{
-      transform: translate(-50%,-50%) rotate(0deg);
-    }
-    .faq-answer{
-      max-height: 0;
-      opacity: 0;
-      overflow:hidden;
-      transition: max-height .25s ease, opacity .18s ease;
-      padding: 0 14px;
-    }
-    .faq-item.open .faq-answer{
-      max-height: 220px;
-      opacity: 1;
-      padding: 10px 14px 14px;
-    }
-    .faq-answer p{
-      color: rgba(215,243,255,0.72);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 1100px){
-      .hero-grid{grid-template-columns: 1fr;}
-      .service-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
-      .steps{grid-template-columns: repeat(2, minmax(0,1fr));}
-      .tags{grid-template-columns: repeat(2, minmax(0,1fr));}
-      .meters{grid-template-columns: 1fr;}
-      .projects-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
-      .pricing-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+    @media (max-width: 1060px){
+      .services-grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+      .two-col{grid-template-columns: 1fr;}
+      .footer-grid{grid-template-columns: 1fr;}
     }
     @media (max-width: 680px){
-      .service-grid{grid-template-columns: 1fr;}
-      .steps{grid-template-columns: 1fr;}
-      .tags{grid-template-columns: 1fr;}
-      .projects-grid{grid-template-columns: 1fr;}
-      .pricing-grid{grid-template-columns: 1fr;}
+      nav{justify-content:flex-start}
+      .services-grid{grid-template-columns: 1fr;}
     }
   </style>
 </head>
 <body>
-  <div class="gridlines" aria-hidden="true"></div>
-  <div class="scanX" aria-hidden="true"></div>
-  <div class="pulseRing" id="pulseRing" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
 
   <header>
-    <div class="container nav">
-      <div class="nav-left">
-        <a class="back" href="../" data-i18n="back">Späť</a>
-        <div class="brand">
-          <b>ELEKTRO / AUTOMATIZÁCIA</b>
-          <span data-i18n="subline">Industriálny scanning, rýchle iterácie, čistá logistika.</span>
-        </div>
+    <div class="container topbar">
+      <div class="brand">
+        <b>SPS Automation GmbH</b>
+        <span>Dienstleistungen, Systeme, Branchen — alles unter einem Prozess.</span>
       </div>
-
-      <div class="lang-switch" aria-label="Language switch">
-        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
-        <button class="lang-btn" type="button" data-lang="de">DE</button>
-      </div>
+      <nav aria-label="Hauptnavigation">
+        <a href="#dienstleistungen">Dienstleistungen</a>
+        <a href="#branchen">Branchen</a>
+        <a href="#systeme">Systeme</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#shop">Shop</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-grid">
-        <div>
-          <div class="kicker" data-i18n="kicker">Industrial scanning / pulse</div>
-          <h1 data-i18n="h1">Automatizácia, ktorá drží rytmus.</h1>
-          <p class="lead" data-i18n="lead">
-            Od návrhu po nasadenie: presná kabeláž, logika, testy a dokumentácia. Všetko v “pravých uhloch” a s merateľným výsledkom.
-          </p>
-          <div class="meters" aria-label="Metrics">
-            <div class="meter">
-              <b data-i18n="m1t">24/7 SCADA</b>
-              <div class="val">
-                <div class="big" data-i18n="m1v">99.9%</div>
-                <div class="sub" data-i18n="m1s">Dostupnosť & monitoring</div>
-              </div>
-              <div class="bar" aria-hidden="true"><i style="--w:92%"></i></div>
-            </div>
-            <div class="meter">
-              <b data-i18n="m2t">PLC / Inverter</b>
-              <div class="val">
-                <div class="big" data-i18n="m2v">≤10ms</div>
-                <div class="sub" data-i18n="m2s">Regulácia & odozva</div>
-              </div>
-              <div class="bar" aria-hidden="true"><i style="--w:78%; background: linear-gradient(90deg, rgba(155,107,255,0.88), rgba(54,246,255,0.75));"></i></div>
-            </div>
-            <div class="meter">
-              <b data-i18n="m3t">Bezpečnosť</b>
-              <div class="val">
-                <div class="big" data-i18n="m3v">ISO-ready</div>
-                <div class="sub" data-i18n="m3s">Normy, testy, revízie</div>
-              </div>
-              <div class="bar" aria-hidden="true"><i style="--w:86%; background: linear-gradient(90deg, rgba(102,255,184,0.85), rgba(54,246,255,0.75));"></i></div>
-            </div>
-            <div class="meter">
-              <b data-i18n="m4t">Projekt → Real</b>
-              <div class="val">
-                <div class="big" data-i18n="m4v">včas</div>
-                <div class="sub" data-i18n="m4s">Výstupy & dokumenty</div>
-              </div>
-              <div class="bar" aria-hidden="true"><i style="--w:74%; background: linear-gradient(90deg, rgba(255,204,102,0.85), rgba(54,246,255,0.7));"></i></div>
-            </div>
-          </div>
-        </div>
-
-        <aside class="block" aria-label="Pulse console">
-          <div class="block-inner">
-            <div class="kicker" data-i18n="consoleTitle">Signal console</div>
-            <div style="height:10px"></div>
-            <div style="font-family:var(--mono); letter-spacing:0.12em; text-transform:uppercase; font-size:0.78rem; color:rgba(215,243,255,0.78)">
-              <span data-i18n="consoleLine1">SCAN:</span> <span style="color:var(--blue)" data-i18n="consoleVal1">AUTO</span>
-            </div>
-            <div style="margin-top:10px; font-family:var(--mono); line-height:1.7; color:rgba(215,243,255,0.75)">
-              <div>CPU: <b style="color:rgba(102,255,184,0.9)" data-i18n="c1v">CLEAN</b></div>
-              <div>SAFETY: <b style="color:rgba(54,246,255,0.9)" data-i18n="c2v">LOCKED</b></div>
-              <div>DATA: <b style="color:rgba(155,107,255,0.9)" data-i18n="c3v">STREAM</b></div>
-              <div style="margin-top:8px; color:rgba(215,243,255,0.62)" data-i18n="consoleHint">Hover / klik na blok = pulse výstup.</div>
-            </div>
-          </div>
-        </aside>
-      </div>
+  <main>
+    <section class="hero container" id="dienstleistungen">
+      <div class="kicker">Dienstleistungen</div>
+      <h1>DIENSTLEISTUNGEN</h1>
+      <p class="lead">
+        SPS Automation GmbH bietet ein breites Leistungsspektrum rund um Automatisierung, Elektrokonstruktion und Inbetriebnahme.
+        Unten finden Sie die wichtigsten Bereiche — jeweils mit „Mehr erfahren“.
+      </p>
     </section>
 
-    <section class="sections">
-      <div class="section">
-        <div class="section-head">
-          <h2 data-i18n="servicesTitle">Služby</h2>
-          <p data-i18n="servicesLead">Systémy, ktoré bežia stabilne. Žiadne “random” — všetko je merané a zdokumentované.</p>
-        </div>
-        <div class="service-grid">
-          <div class="service" tabindex="0">
-            <div class="tag"><i></i><span data-i18n="sv1t">CONTROL</span></div>
-            <b data-i18n="sv1">PLC / Logika</b>
-            <span data-i18n="sv1s">Programovanie a prepojenie riadení.</span>
+    <section class="container content">
+      <div class="services-grid">
+        <article class="service-card" id="maschinensicherheit">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Maschinensicherheit</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv2t">POWER</span></div>
-            <b data-i18n="sv2">Rozvádzače</b>
-            <span data-i18n="sv2s">Kabeláž, štítky, testy a revízie.</span>
+        </article>
+
+        <article class="service-card" id="sps-programmierung">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">SPS-Programmierung</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv3t">MOTION</span></div>
-            <b data-i18n="sv3">Pohony & frekvenčné meniče</b>
-            <span data-i18n="sv3s">Regulácia pohybu a lineárna dynamika.</span>
+        </article>
+
+        <article class="service-card" id="elektrokonstruktion">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Elektrokonstruktion</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv4t">SAFETY</span></div>
-            <b data-i18n="sv4">Bezpečnosť strojov</b>
-            <span data-i18n="sv4s">Protokoly, interlocky, testy.</span>
+        </article>
+
+        <article class="service-card" id="industrie-4-0">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Industrie 4.0</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i></i><span data-i18n="sv5t">IOT</span></div>
-            <b data-i18n="sv5">SCADA / Monitoring</b>
-            <span data-i18n="sv5s">Vizualizácia, alerty, logy.</span>
+        </article>
+
+        <article class="service-card" id="engineering">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Engineering</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv6t">INTEGR.</span></div>
-            <b data-i18n="sv6">Integrácie</b>
-            <span data-i18n="sv6s">ERP / CRM / dáta / exporty.</span>
+        </article>
+
+        <article class="service-card" id="automatisierungstechnik">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Automatisierungstechnik</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv7t">DOC</span></div>
-            <b data-i18n="sv7">Dokumentácia</b>
-            <span data-i18n="sv7s">Schémy, návody, protokoly.</span>
+        </article>
+
+        <article class="service-card" id="softwareentwicklung-it">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Softwareentwicklung/IT</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv8t">TEST</span></div>
-            <b data-i18n="sv8">Testy & uvedenie</b>
-            <span data-i18n="sv8s">Odladíme, spustíme, doladíme.</span>
+        </article>
+
+        <article class="service-card" id="schaltschrankbau">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Schaltschrankbau</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i></i><span data-i18n="sv9t">NET</span></div>
-            <b data-i18n="sv9">Sieť & komunikácia</b>
-            <span data-i18n="sv9s">Ethernet, protokoly, prenos dát.</span>
+        </article>
+
+        <article class="service-card" id="retrofit">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Retrofit</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--violet)"></i><span data-i18n="sv10t">OPT</span></div>
-            <b data-i18n="sv10">Optimalizácia</b>
-            <span data-i18n="sv10s">Performance, stabilita, iterácie.</span>
+        </article>
+
+        <article class="service-card" id="inbetriebnahme">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Inbetriebnahme</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--green)"></i><span data-i18n="sv11t">RET.</span></div>
-            <b data-i18n="sv11">Modernizácia</b>
-            <span data-i18n="sv11s">Upgrade bez chaosu a prestojov.</span>
+        </article>
+
+        <article class="service-card" id="support">
+          <div class="service-media" aria-hidden="true"></div>
+          <div class="service-body">
+            <div class="service-title">Support</div>
+            <a class="more" href="#kontakt">Mehr erfahren</a>
           </div>
-          <div class="service" tabindex="0">
-            <div class="tag"><i style="background:var(--warn)"></i><span data-i18n="sv12t">OPS</span></div>
-            <b data-i18n="sv12">Servis</b>
-            <span data-i18n="sv12s">Zálohy, údržba, kontrola.</span>
-          </div>
-        </div>
+        </article>
       </div>
 
-      <div class="section">
-        <div class="section-head">
-          <h2 data-i18n="processTitle">Proces</h2>
-          <p data-i18n="processLead">Fast, lineárne animácie v našom workflow: audit -> návrh -> build -> test -> live.</p>
-        </div>
-        <div class="steps">
-          <div class="step" tabindex="0">
-            <div class="n">01</div>
-            <b data-i18n="t1">Návrh & meranie</b>
-            <span data-i18n="t1t">Požiadavky, vstupy, limity, cieľové parametre.</span>
+      <div class="two-col">
+        <section class="panel" id="branchen" aria-label="Branchen">
+          <h2>Branchen</h2>
+          <div class="list">
+            <div class="row muted">— (Bereiche können später ergänzt werden.)</div>
           </div>
-          <div class="step" tabindex="0">
-            <div class="n">02</div>
-            <b data-i18n="t2">Architektúra systému</b>
-            <span data-i18n="t2t">PLC logika, komunikácia, bezpečnosť.</span>
+        </section>
+
+        <section class="panel" id="systeme" aria-label="Systeme">
+          <h2>Systeme</h2>
+          <div class="list">
+            <div class="row">Automatisierungstechnik</div>
+            <div class="row">Steuerungstechnik</div>
+            <div class="row">Industrierobotik</div>
+            <div class="row">Maschinensicherheit</div>
+            <div class="row">Messtechnik</div>
+            <div class="row">Visualisierung</div>
+            <div class="row">Antriebstechnik</div>
+            <div class="row">Bildverarbeitungssyteme</div>
           </div>
-          <div class="step" tabindex="0">
-            <div class="n">03</div>
-            <b data-i18n="t3">Výroba & kabeláž</b>
-            <span data-i18n="t3t">Rozvádzače, štítky, kontrolné body.</span>
-          </div>
-          <div class="step" tabindex="0">
-            <div class="n">04</div>
-            <b data-i18n="t4">Program & simulácia</b>
-            <span data-i18n="t4t">Test scenáre, ladenie, stabilita.</span>
-          </div>
-          <div class="step" tabindex="0">
-            <div class="n">05</div>
-            <b data-i18n="t5">Uvedenie do praxe</b>
-            <span data-i18n="t5t">Spustenie, odchyt chýb, finálne nastavenia.</span>
-          </div>
-          <div class="step" tabindex="0">
-            <div class="n">06</div>
-            <b data-i18n="t6">Dokumentácia & servis</b>
-            <span data-i18n="t6t">Schémy, protokoly, servisné okno.</span>
-          </div>
-        </div>
+        </section>
       </div>
 
-      <div class="section">
-        <div class="section-head">
-          <h2 data-i18n="systemTitle">Systémy</h2>
-          <p data-i18n="systemLead">Technológie, ktoré typicky integrujeme do “power flow” projektu.</p>
-        </div>
-        <div class="tags">
-          <div class="tag" tabindex="0"><b data-i18n="sys1">PLC</b><span data-i18n="sys1t">Siemens / kompatibilné</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys2">SCADA</b><span data-i18n="sys2t">Vizualizácia & alarmy</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys3">HMI</b><span data-i18n="sys3t">User flow pre operátorov</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys4">Inverter</b><span data-i18n="sys4t">Regulácia pohonov</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys5">Safety</b><span data-i18n="sys5t">Interlocky & protokoly</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys6">Network</b><span data-i18n="sys6t">Ethernet / polia</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys7">Data</b><span data-i18n="sys7t">Logy, exporty, reporty</span></div>
-          <div class="tag" tabindex="0"><b data-i18n="sys8">Docs</b><span data-i18n="sys8t">Schémy, návody</span></div>
-        </div>
+      <div class="two-col" style="margin-top:14px;">
+        <section class="panel" id="ueber-uns" aria-label="Über uns">
+          <h2>Über uns</h2>
+          <div class="list">
+            <div class="row">Leitbild</div>
+            <div class="row">Karriere</div>
+            <div class="row">Wie wir ticken!</div>
+          </div>
+        </section>
+
+        <section class="panel" id="shop" aria-label="Shop">
+          <h2>Shop</h2>
+          <div class="list">
+            <div class="row muted">— (Shop-Inhalte später ergänzíme, zatiaľ len layout.)</div>
+          </div>
+        </section>
       </div>
+
+      <section class="panel" id="kontakt" style="margin-top:14px;" aria-label="Kontakt">
+        <h2>Anschrift</h2>
+        <div class="list">
+          <div class="row"><b>SPS Automation GmbH</b></div>
+          <div class="row muted">Langen-Morgenstr. 17</div>
+          <div class="row muted">69488 Birkenau</div>
+
+          <div class="row" style="margin-top:12px;">
+            <b>Kontaktdaten</b>
+          </div>
+          <div class="row">06209 / 72 57 49</div>
+          <div class="row">0172 / 62 56 592</div>
+          <div class="row">06209 / 79 44 67</div>
+          <div class="row"><span class="muted">E-Mail:</span> info@sps-automation.de</div>
+
+          <div class="row" style="margin-top:10px;">
+            <a class="more" href="mailto:info@sps-automation.de">E-Mail senden</a>
+          </div>
+        </div>
+      </section>
     </section>
-
-    <div class="section" id="projects">
-      <div class="section-head">
-        <h2 data-i18n="worksTitle">Projekty</h2>
-        <p data-i18n="worksLead">Ukážky práce: PLC logika, rozvádzače, SCADA a monitoring v reálnom nasadení.</p>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/srv1.png')"></div>
-          <div class="project-body">
-            <b data-i18n="sv1">PLC / Logika</b>
-            <span data-i18n="sv1s">Programovanie a prepojenie riadení.</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/srv2.png')"></div>
-          <div class="project-body">
-            <b data-i18n="sv2">Rozvádzače</b>
-            <span data-i18n="sv2s">Kabeláž, štítky, testy a revízie.</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/srv3.png')"></div>
-          <div class="project-body">
-            <b data-i18n="sv3">Pohony & frekvenčné meniče</b>
-            <span data-i18n="sv3s">Regulácia pohybu a lineárna dynamika.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="testimonials">
-      <div class="section-head">
-        <h2 data-i18n="testimonialsTitle">Recenzie</h2>
-        <p data-i18n="testimonialsLead">Odbornosť sa ukáže až v reálnom provoze.</p>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/blog1.png')"></div>
-          <div class="project-body">
-            <b data-i18n="r1n">Ing. Novák</b>
-            <div class="stars" aria-label="5 stars">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-            </div>
-            <span data-i18n="r1q">“Systém beží stabilne. Dokumentácia aj testy boli úplne presné.”</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/blog2.png')"></div>
-          <div class="project-body">
-            <b data-i18n="r2n">Jana K.</b>
-            <div class="stars" aria-label="5 stars">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-            </div>
-            <span data-i18n="r2q">“Komunikácia bola jasná a iterácie rýchle. Zero surprises pri spustení.”</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-thumb" style="background-image:url('../img/nx/blog3.png')"></div>
-          <div class="project-body">
-            <b data-i18n="r3n">Pavol R.</b>
-            <div class="stars" aria-label="5 stars">
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01z"/></svg>
-            </div>
-            <span data-i18n="r3q">“Testy, bezpečnosť a výkon boli zvládnuté. Spustili sme to bez prestojov.”</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="pricing">
-      <div class="section-head">
-        <h2 data-i18n="pricingTitle">Cenník</h2>
-        <p data-i18n="pricingLead">Balíky podľa typu projektu a rozsahu výstupov.</p>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="price-top">
-            <b data-i18n="p1n">Audit</b>
-            <div class="p" data-i18n="p1p">€350</div>
-            <span data-i18n="p1d">Diagnostika a návrh ďalšieho kroku</span>
-          </div>
-          <div class="price-list">
-            <div class="price-li"><i></i><span data-i18n="p1l1">Meranie, review, riziká</span></div>
-            <div class="price-li"><i></i><span data-i18n="p1l2">Prioritizovaný roadmap</span></div>
-            <div class="price-li"><i></i><span data-i18n="p1l3">Zhrnutie + report</span></div>
-          </div>
-        </div>
-        <div class="price-card">
-          <div class="price-top">
-            <b data-i18n="p2n">Projekt</b>
-            <div class="p" data-i18n="p2p">€1,090</div>
-            <span data-i18n="p2d">Výroba logiky a integrácií</span>
-          </div>
-          <div class="price-list">
-            <div class="price-li"><i></i><span data-i18n="p2l1">PLC / SCADA návrh</span></div>
-            <div class="price-li"><i></i><span data-i18n="p2l2">Testy & simulácie</span></div>
-            <div class="price-li"><i></i><span data-i18n="p2l3">Dokumentácia + odovzdanie</span></div>
-          </div>
-        </div>
-        <div class="price-card">
-          <div class="price-top">
-            <b data-i18n="p3n">Uvedenie</b>
-            <div class="p" data-i18n="p3p">€1,590</div>
-            <span data-i18n="p3d">Spustenie, ladenie a servisné okno</span>
-          </div>
-          <div class="price-list">
-            <div class="price-li"><i></i><span data-i18n="p3l1">Inbetriebnahme & tuning</span></div>
-            <div class="price-li"><i></i><span data-i18n="p3l2">Safety / interlock kontrola</span></div>
-            <div class="price-li"><i></i><span data-i18n="p3l3">Servis + final report</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="faq">
-      <div class="section-head">
-        <h2 data-i18n="faqTitle">Otázky</h2>
-        <p data-i18n="faqLead">Čo potrebujeme vedieť pred začiatkom.</p>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <button class="faq-toggle" type="button">
-            <span class="faq-dot" aria-hidden="true"></span>
-            <span data-i18n="f1q">?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer"><p data-i18n="f1a"></p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-toggle" type="button">
-            <span class="faq-dot" aria-hidden="true"></span>
-            <span data-i18n="f2q">?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer"><p data-i18n="f2a"></p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-toggle" type="button">
-            <span class="faq-dot" aria-hidden="true"></span>
-            <span data-i18n="f3q">?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer"><p data-i18n="f3a"></p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-toggle" type="button">
-            <span class="faq-dot" aria-hidden="true"></span>
-            <span data-i18n="f4q">?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer"><p data-i18n="f4a"></p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="contact">
-      <div class="section-head">
-        <h2 data-i18n="contactTitle">Kontakt</h2>
-        <p data-i18n="contactLead">Napíš nám. Odpovieme technicky.</p>
-      </div>
-      <div style="padding: 14px 14px 18px;">
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="back" href="mailto:info@thedesigns.org" data-i18n="contactBtn">Kontakt</a>
-          <a class="back" href="#process" data-i18n="processTitle">Proces</a>
-        </div>
-      </div>
-    </div>
-
   </main>
 
-  <footer style="padding: 34px 0 42px; color: rgba(215,243,255,0.65); text-align:center;">
-    <div style="width:min(1240px,92%); margin:0 auto;">
-      <div style="font-family: var(--mono); letter-spacing:0.12em; text-transform: uppercase; font-size:0.78rem;">
-        thedesigns.org — Elektro & Automatizácia
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Cookie-Einstellungen</div>
+        <div style="color: rgba(234,243,255,.56); line-height:1.6; font-size:.95rem;">
+          (Placeholder — neskôr sem doplníme reálne cookie nastavenia.)
+        </div>
+        <div class="cookie">© 2022 SPS Automation GmbH. Alle Rechte vorbehalten. Im Rhein Neckar Kreis - Mannheim - Heidelberg - Ludwigshafen</div>
       </div>
-      <div style="margin-top:10px; font-size:0.9rem;">
-        © 2026 • Industriálna logistika, čistý proces a merateľné výsledky.
+      <div>
+        <div class="footer-title">Leistungen</div>
+        <div class="footer-nav" aria-label="Footer navigation">
+          <div class="list">
+            <a href="#maschinensicherheit">Maschinensicherheit</a>
+            <a href="#sps-programmierung">SPS-Programmierung</a>
+            <a href="#elektrokonstruktion">Elektrokonstruktion</a>
+            <a href="#industrie-4-0">Industrie 4.0</a>
+            <a href="#engineering">Engineering</a>
+          </div>
+          <div class="list">
+            <a href="#automatisierungstechnik">Automatisierungstechnik</a>
+            <a href="#softwareentwicklung-it">Softwareentwicklung/IT</a>
+            <a href="#schaltschrankbau">Schaltschrankbau</a>
+            <a href="#retrofit">Retrofit</a>
+            <a href="#inbetriebnahme">Inbetriebnahme</a>
+            <a href="#support">Support</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
-
-  <script>
-    const dictionary = {
-      sk: {
-        title: "Elektro & Automatizácia - Industriál",
-        back: "Späť",
-        subline: "Industriálny scanning, rýchle iterácie, čistá logistika.",
-        kicker: "Industrial scanning / pulse",
-        h1: "Automatizácia, ktorá drží rytmus.",
-        lead: "Od návrhu po nasadenie: presná kabeláž, logika, testy a dokumentácia. Všetko v “pravých uhloch” a s merateľným výsledkom.",
-        consoleTitle: "Signal console",
-        consoleLine1: "SCAN:",
-        consoleVal1: "AUTO",
-        consoleHint: "Hover / klik na blok = pulse výstup.",
-        servicesTitle: "Služby",
-        servicesLead: "Systémy, ktoré bežia stabilne. Žiadne “random” — všetko je merané a zdokumentované.",
-        processTitle: "Proces",
-        processLead: "Fast, lineárne animácie v našom workflow: audit -> návrh -> build -> test -> live.",
-        systemTitle: "Systémy",
-        systemLead: "Technológie, ktoré typicky integrujeme do “power flow” projektu.",
-
-        m1t: "24/7 SCADA",
-        m1v: "99.9%",
-        m1s: "Dostupnosť & monitoring",
-        m2t: "PLC / Inverter",
-        m2v: "≤10ms",
-        m2s: "Regulácia & odozva",
-        m3t: "Bezpečnosť",
-        m3v: "ISO-ready",
-        m3s: "Normy, testy, revízie",
-        m4t: "Projekt → Real",
-        m4v: "včas",
-        m4s: "Výstupy & dokumenty",
-
-        c1v: "CLEAN",
-        c2v: "LOCKED",
-        c3v: "STREAM",
-
-        sv1t: "CONTROL",
-        sv1: "PLC / Logika",
-        sv1s: "Programovanie a prepojenie riadení.",
-        sv2t: "POWER",
-        sv2: "Rozvádzače",
-        sv2s: "Kabeláž, štítky, testy a revízie.",
-        sv3t: "MOTION",
-        sv3: "Pohony & frekvenčné meniče",
-        sv3s: "Regulácia pohybu a lineárna dynamika.",
-        sv4t: "SAFETY",
-        sv4: "Bezpečnosť strojov",
-        sv4s: "Protokoly, interlocky, testy.",
-        sv5t: "IOT",
-        sv5: "SCADA / Monitoring",
-        sv5s: "Vizualizácia, alerty, logy.",
-        sv6t: "INTEGR.",
-        sv6: "Integrácie",
-        sv6s: "ERP / CRM / dáta / exporty.",
-        sv7t: "DOC",
-        sv7: "Dokumentácia",
-        sv7s: "Schémy, návody, protokoly.",
-        sv8t: "TEST",
-        sv8: "Testy & uvedenie",
-        sv8s: "Odladíme, spustíme, doladíme.",
-        sv9t: "NET",
-        sv9: "Sieť & komunikácia",
-        sv9s: "Ethernet, protokoly, prenos dát.",
-        sv10t: "OPT",
-        sv10: "Optimalizácia",
-        sv10s: "Performance, stabilita, iterácie.",
-        sv11t: "RET.",
-        sv11: "Modernizácia",
-        sv11s: "Upgrade bez chaosu a prestojov.",
-        sv12t: "OPS",
-        sv12: "Servis",
-        sv12s: "Zálohy, údržba, kontrola.",
-
-        t1: "Návrh & meranie",
-        t1t: "Požiadavky, vstupy, limity, cieľové parametre.",
-        t2: "Architektúra systému",
-        t2t: "PLC logika, komunikácia, bezpečnosť.",
-        t3: "Výroba & kabeláž",
-        t3t: "Rozvádzače, štítky, kontrolné body.",
-        t4: "Program & simulácia",
-        t4t: "Test scenáre, ladenie, stabilita.",
-        t5: "Uvedenie do praxe",
-        t5t: "Spustenie, odchyt chýb, finálne nastavenia.",
-        t6: "Dokumentácia & servis",
-        t6t: "Schémy, protokoly, servisné okno.",
-
-        sys1: "PLC",
-        sys1t: "Siemens / kompatibilné",
-        sys2: "SCADA",
-        sys2t: "Vizualizácia & alarmy",
-        sys3: "HMI",
-        sys3t: "User flow pre operátorov",
-        sys4: "Inverter",
-        sys4t: "Regulácia pohonov",
-        sys5: "Safety",
-        sys5t: "Interlocky & protokoly",
-        sys6: "Network",
-        sys6t: "Ethernet / polia",
-        sys7: "Data",
-        sys7t: "Logy, exporty, reporty",
-        sys8: "Docs",
-        sys8t: "Schémy, návody",
-
-        worksTitle: "Projekty",
-        worksLead: "Ukážky práce: PLC logika, rozvádzače, SCADA a monitoring v reálnom nasadení.",
-
-        testimonialsTitle: "Recenzie",
-        testimonialsLead: "Odbornosť sa ukáže až v reálnom provoze.",
-        r1n: "Ing. Novák",
-        r1q: "“Systém beží stabilne. Dokumentácia aj testy boli úplne presné.”",
-        r2n: "Jana K.",
-        r2q: "“Komunikácia bola jasná a iterácie rýchle. Zero surprises pri spustení.”",
-        r3n: "Pavol R.",
-        r3q: "“Testy, bezpečnosť a výkon boli zvládnuté. Spustili sme to bez prestojov.”",
-
-        pricingTitle: "Cenník",
-        pricingLead: "Balíky podľa typu projektu a rozsahu výstupov.",
-        p1n: "Audit",
-        p1p: "€350",
-        p1d: "Diagnostika a návrh ďalšieho kroku",
-        p1l1: "Meranie, review, riziká",
-        p1l2: "Prioritizovaný roadmap",
-        p1l3: "Zhrnutie + report",
-        p2n: "Projekt",
-        p2p: "€1,090",
-        p2d: "Výroba logiky a integrácií",
-        p2l1: "PLC / SCADA návrh",
-        p2l2: "Testy & simulácie",
-        p2l3: "Dokumentácia + odovzdanie",
-        p3n: "Uvedenie",
-        p3p: "€1,590",
-        p3d: "Spustenie, ladenie a servisné okno",
-        p3l1: "Inbetriebnahme & tuning",
-        p3l2: "Safety / interlock kontrola",
-        p3l3: "Servis + final report",
-
-        faqTitle: "Otázky",
-        faqLead: "Čo potrebujeme vedieť pred začiatkom.",
-        f1q: "Čo potrebujete od nás, aby ste začali?",
-        f1a: "Ideálne: schémy, aktuálne verzie logiky, požiadavky na bezpečnosť a cieľové parametre projektu.",
-        f2q: "Robíte aj diagnostiku existujúceho systému?",
-        f2a: "Áno. Robíme audit a navrhneme kroky pre stabilitu a bezpečnosť bez “random” zásahov.",
-        f3q: "Ako vyzerá priebeh a testovanie?",
-        f3a: "Lineárny workflow: návrh -> výroba -> simulácie/testy -> uvedenie. Každý krok má výstup.",
-        f4q: "Zabezpečíte dokumentáciu a servis?",
-        f4a: "Áno. Dodáme schémy, protokoly, servisné okno a finálny report pre prevádzku.",
-
-        contactTitle: "Kontakt",
-        contactLead: "Napíš nám. Odpovieme technicky.",
-        contactBtn: "Kontakt",
-      },
-      de: {
-        title: "Elektro & Automatisierung - Industriell",
-        back: "Zurück",
-        subline: "Industrielles Scanning, schnelle Iterationen, saubere Logistik.",
-        kicker: "Industrial scanning / pulse",
-        h1: "Automatisierung, die den Takt hält.",
-        lead: "Von der Planung bis zum Betrieb: saubere Verdrahtung, Logik, Tests und Dokumentation. Alles in klaren “rechten Winkeln” und mit messbarem Ergebnis.",
-        consoleTitle: "Signal Console",
-        consoleLine1: "SCAN:",
-        consoleVal1: "AUTO",
-        consoleHint: "Hover / Klick auf Block = Pulse Output.",
-        servicesTitle: "Leistungen",
-        servicesLead: "Systeme, die stabil laufen. Kein “Random” — alles messbar und dokumentiert.",
-        processTitle: "Prozess",
-        processLead: "Fast, lineare Animationen im Workflow: Audit -> Design -> Build -> Test -> Live.",
-        systemTitle: "Systeme",
-        systemLead: "Technologien, die wir typischerweise in ein “Power-Flow”-Projekt integrieren.",
-
-        m1t: "24/7 SCADA",
-        m1v: "99.9%",
-        m1s: "Verfügbarkeit & Monitoring",
-        m2t: "PLC / Inverter",
-        m2v: "≤10ms",
-        m2s: "Regelung & Reaktionszeit",
-        m3t: "Sicherheit",
-        m3v: "ISO-ready",
-        m3s: "Normen, Tests, Revisionen",
-        m4t: "Projekt → Real",
-        m4v: "pünktlich",
-        m4s: "Outputs & Dokumente",
-
-        c1v: "CLEAN",
-        c2v: "LOCKED",
-        c3v: "STREAM",
-
-        sv1t: "CONTROL",
-        sv1: "PLC / Logik",
-        sv1s: "Programmierung und Verknüpfung der Steuerungen.",
-        sv2t: "POWER",
-        sv2: "Schaltschränke",
-        sv2s: "Verdrahtung, Beschriftung, Tests und Revisionen.",
-        sv3t: "MOTION",
-        sv3: "Antriebe & Frequenzumrichter",
-        sv3s: "Bewegungsregelung und lineare Dynamik.",
-        sv4t: "SAFETY",
-        sv4: "Maschinensicherheit",
-        sv4s: "Protokolle, Interlocks, Tests.",
-        sv5t: "IOT",
-        sv5: "SCADA / Monitoring",
-        sv5s: "Visualisierung, Alerts, Logs.",
-        sv6t: "INTEGR.",
-        sv6: "Integrationen",
-        sv6s: "ERP / CRM / Daten / Exporte.",
-        sv7t: "DOC",
-        sv7: "Dokumentation",
-        sv7s: "Schaltpläne, Anleitungen, Protokolle.",
-        sv8t: "TEST",
-        sv8: "Tests & Inbetriebnahme",
-        sv8s: "Feintuning, Start, finaler Feinschliff.",
-        sv9t: "NET",
-        sv9: "Netzwerk & Kommunikation",
-        sv9s: "Ethernet, Protokolle, Datenübertragung.",
-        sv10t: "OPT",
-        sv10: "Optimierung",
-        sv10s: "Performance, Stabilität, Iterationen.",
-        sv11t: "RET.",
-        sv11: "Modernisierung",
-        sv11s: "Upgrade ohne Chaos und Stillstand.",
-        sv12t: "OPS",
-        sv12: "Service",
-        sv12s: "Backups, Wartung, Kontrolle.",
-
-        t1: "Design & Messung",
-        t1t: "Anforderungen, Inputs, Limits, Zielparameter.",
-        t2: "Systemarchitektur",
-        t2t: "PLC-Logik, Kommunikation, Sicherheit.",
-        t3: "Produktion & Verdrahtung",
-        t3t: "Schaltschränke, Beschriftung, Kontrollpunkte.",
-        t4: "Programm & Simulation",
-        t4t: "Test-Szenarien, Tuning, Stabilität.",
-        t5: "Inbetriebnahme",
-        t5t: "Start, Fehlererfassung, finale Einstellungen.",
-        t6: "Dokumentation & Service",
-        t6t: "Schaltpläne, Protokolle, Service-Fenster.",
-
-        sys1: "PLC",
-        sys1t: "Siemens / kompatible",
-        sys2: "SCADA",
-        sys2t: "Visualisierung & Alarme",
-        sys3: "HMI",
-        sys3t: "User-Flow für Operatoren",
-        sys4: "Inverter",
-        sys4t: "Regelung der Antriebe",
-        sys5: "Safety",
-        sys5t: "Interlocks & Protokolle",
-        sys6: "Network",
-        sys6t: "Ethernet / Felder",
-        sys7: "Data",
-        sys7t: "Logs, Exporte, Reports",
-        sys8: "Docs",
-        sys8t: "Schaltpläne, Anleitungen",
-
-        worksTitle: "Projekte",
-        worksLead: "Beispiele: PLC-Logik, Schalttafeln, SCADA und Monitoring im echten Betrieb.",
-
-        testimonialsTitle: "Stimmen",
-        testimonialsLead: "Fachwissen zeigt sich erst im realen Betrieb.",
-        r1n: "Ing. Novák",
-        r1q: "“Das System läuft stabil. Dokumentation und Tests waren komplett präzise.”",
-        r2n: "Jana K.",
-        r2q: "“Kommunikation war klar und Iterationen schnell. Zero surprises beim Start.”",
-        r3n: "Pavol R.",
-        r3q: "“Tests, Safety und Performance waren sauber umgesetzt. Wir konnten ohne Stillstand starten.”",
-
-        pricingTitle: "Preise",
-        pricingLead: "Pakete nach Projektart und Umfang der Outputs.",
-        p1n: "Audit",
-        p1p: "€350",
-        p1d: "Diagnose und Next-Step Vorschlag",
-        p1l1: "Messung, Review, Risiken",
-        p1l2: "Priorisierter Roadmap",
-        p1l3: "Zusammenfassung + Report",
-        p2n: "Projekt",
-        p2p: "€1,090",
-        p2d: "Erstellung der Logik und Integrationen",
-        p2l1: "PLC / SCADA Entwurf",
-        p2l2: "Tests & Simulationen",
-        p2l3: "Dokumentation + Übergabe",
-        p3n: "Inbetriebnahme",
-        p3p: "€1,590",
-        p3d: "Start, Tuning und Service-Fenster",
-        p3l1: "Inbetriebnahme & Tuning",
-        p3l2: "Safety / Interlock-Check",
-        p3l3: "Service + Final Report",
-
-        faqTitle: "Fragen",
-        faqLead: "Was wir vor dem Start wissen müssen.",
-        f1q: "Was braucht ihr von uns, um zu starten?",
-        f1a: "Idealerweise: Schaltpläne, aktuelle Logik-Versionen, Sicherheitsanforderungen und Zielparameter des Projekts.",
-        f2q: "Macht ihr auch Diagnose von bestehenden Systemen?",
-        f2a: "Ja. Wir machen Audit und schlagen Schritte für Stabilität und Safety vor – ohne “Random” Aktionen.",
-        f3q: "Wie sieht der Ablauf und das Testen aus?",
-        f3a: "Lineare Reihenfolge: Entwurf -> Produktion -> Simulationen/Tests -> Inbetriebnahme. Jeder Schritt hat ein Ergebnis.",
-        f4q: "Gibt es Dokumentation und Service?",
-        f4a: "Ja. Wir liefern Schaltpläne, Protokolle, ein Service-Fenster und einen finalen Report für den Betrieb.",
-
-        contactTitle: "Kontakt",
-        contactLead: "Schreib uns. Wir antworten technisch.",
-        contactBtn: "Kontakt"
-      }
-    };
-
-    const buttons = document.querySelectorAll(".lang-btn");
-    const targets = document.querySelectorAll("[data-i18n]");
-    const ring = document.getElementById("pulseRing");
-
-    function setLanguage(lang){
-      const pack = dictionary[lang];
-      if(!pack) return;
-      document.documentElement.lang = lang;
-      targets.forEach((el)=>{
-        const key = el.getAttribute("data-i18n");
-        if(pack[key]) el.textContent = pack[key];
-      });
-      if(pack.title) document.title = pack.title;
-      buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
-    }
-
-    buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
-
-    // FAQ accordion
-    document.querySelectorAll(".faq-toggle").forEach((btn)=>{
-      const item = btn.closest(".faq-item");
-      btn.setAttribute("aria-expanded", item && item.classList.contains("open") ? "true" : "false");
-      btn.addEventListener("click", ()=>{
-        if(!item) return;
-        const isOpen = item.classList.toggle("open");
-        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      });
-    });
-
-    // Pulse ring on hover/click: gives the “industrial signal” feel.
-    const makePulse = (x, y) => {
-      if (!ring) return;
-      ring.style.left = `${x}px`;
-      ring.style.top = `${y}px`;
-      ring.classList.remove("on");
-      // Force reflow so animation restarts.
-      // eslint-disable-next-line no-unused-expressions
-      ring.offsetHeight;
-      ring.classList.add("on");
-    };
-
-    const interactive = document.querySelectorAll(".service, .step, .tag, .back");
-    interactive.forEach((el)=>{
-      el.addEventListener("mousemove", (e)=>{
-        if(e.buttons) return; // don't spam while dragging
-        makePulse(e.clientX, e.clientY);
-      }, { passive: true });
-      el.addEventListener("click", (e)=>{
-        makePulse(e.clientX, e.clientY);
-      });
-    });
-    // Keep a subtle pulse on touch.
-    window.addEventListener("touchstart", (e)=>{
-      if(!e.touches || !e.touches[0]) return;
-      makePulse(e.touches[0].clientX, e.touches[0].clientY);
-    }, { passive: true });
-  </script>
 </body>
 </html>
 
