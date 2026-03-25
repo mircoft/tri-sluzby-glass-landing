@@ -105,6 +105,76 @@
       background: linear-gradient(160deg, rgba(255, 50, 150, 0.22), rgba(30, 15, 38, 0.05));
     }
 
+    .section {
+      padding: 0 1.6rem 0.8rem;
+    }
+
+    .section-title {
+      margin: 1.6rem 0 0.95rem;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+      opacity: 0.95;
+      text-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0 0 1.1rem;
+    }
+
+    .service-card {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 1rem 1rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,255,255,0.35);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .service-card strong {
+      display: block;
+      font-size: 0.98rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0 0 1.1rem;
+    }
+
+    .step {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 0.9rem 1rem;
+    }
+
+    .step .num {
+      font-weight: 900;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .step span {
+      display: block;
+      font-size: 0.95rem;
+      opacity: 0.92;
+    }
+
     /* Industriálny scanning/pulse panel */
     .scan-panel {
       margin: 1.2rem 0 0;
@@ -316,10 +386,11 @@
     }
 
     @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
       .wrap { padding-top: 3.2rem; }
       .scan-panel { height: 230px; }
       .kpi-row { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -368,22 +439,51 @@
         </div>
       </div>
 
-      <div class="grid">
-        <div class="item">
-          <strong data-i18n="f1">Návrh a implementácia</strong>
-          <span data-i18n="f1t">Automatizované riešenia na mieru.</span>
+      <div class="section">
+        <h2 class="section-title" data-i18n="leistungen">Služby & kompetencie</h2>
+        <div class="service-grid">
+          <div class="service-card"><strong data-i18n="s1">Strojová bezpečnosť</strong></div>
+          <div class="service-card"><strong data-i18n="s2">SPS programovanie</strong></div>
+          <div class="service-card"><strong data-i18n="s3">Elektrokonštrukcia</strong></div>
+          <div class="service-card"><strong data-i18n="s4">Priemysel 4.0</strong></div>
+          <div class="service-card"><strong data-i18n="s5">Inžiniering</strong></div>
+          <div class="service-card"><strong data-i18n="s6">Automatizačná technika</strong></div>
+          <div class="service-card"><strong data-i18n="s7">Vývoj softvéru / IT</strong></div>
+          <div class="service-card"><strong data-i18n="s8">Výroba rozvádzačov</strong></div>
+          <div class="service-card"><strong data-i18n="s9">Retrofit / modernizácie</strong></div>
+          <div class="service-card"><strong data-i18n="s10">Programovanie robotov</strong></div>
+          <div class="service-card"><strong data-i18n="s11">Uvedenie do prevádzky</strong></div>
+          <div class="service-card"><strong data-i18n="s12">Podpora & servis</strong></div>
         </div>
-        <div class="item">
-          <strong data-i18n="f2">Silnoprúd / slaboprúd</strong>
-          <span data-i18n="f2t">Komerčné aj rezidenčné projekty.</span>
-        </div>
-        <div class="item">
-          <strong data-i18n="f3">Dokumentácia</strong>
-          <span data-i18n="f3t">Revízne podklady a podpora pri odovzdaní.</span>
-        </div>
-        <div class="item">
-          <strong data-i18n="f4">Portfólio kvality</strong>
-          <span data-i18n="f4t">Zameranie na čistú montáž a výsledok.</span>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title" data-i18n="prozess">Proces od návrhu po reálny výsledok</h2>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="num">01</div>
+            <span data-i18n="t1">Analýza & koncept</span>
+          </div>
+          <div class="step">
+            <div class="num">02</div>
+            <span data-i18n="t2">Konštrukcia rozvádzačov</span>
+          </div>
+          <div class="step">
+            <div class="num">03</div>
+            <span data-i18n="t3">Programovanie & integrácia</span>
+          </div>
+          <div class="step">
+            <div class="num">04</div>
+            <span data-i18n="t4">Montáž & testovanie</span>
+          </div>
+          <div class="step">
+            <div class="num">05</div>
+            <span data-i18n="t5">Uvedenie do prevádzky</span>
+          </div>
+          <div class="step">
+            <div class="num">06</div>
+            <span data-i18n="t6">Podpora po odovzdaní</span>
+          </div>
         </div>
       </div>
 
@@ -406,14 +506,26 @@
         k1: "Efektivita",
         k2: "Spoľahlivosť",
         k3: "Rýchlosť",
-        f1: "Návrh a implementácia",
-        f1t: "Automatizované riešenia na mieru.",
-        f2: "Silnoprúd / slaboprúd",
-        f2t: "Komerčné aj rezidenčné projekty.",
-        f3: "Dokumentácia",
-        f3t: "Revízne podklady a podpora pri odovzdaní.",
-        f4: "Portfólio kvality",
-        f4t: "Zameranie na čistú montáž a výsledok.",
+        leistungen: "Služby & kompetencie",
+        prozess: "Proces od návrhu po reálny výsledok",
+        s1: "Strojová bezpečnosť",
+        s2: "SPS programovanie",
+        s3: "Elektrokonštrukcia",
+        s4: "Priemysel 4.0",
+        s5: "Inžiniering",
+        s6: "Automatizačná technika",
+        s7: "Vývoj softvéru / IT",
+        s8: "Výroba rozvádzačov",
+        s9: "Retrofit / modernizácie",
+        s10: "Programovanie robotov",
+        s11: "Uvedenie do prevádzky",
+        s12: "Podpora & servis",
+        t1: "Analýza & koncept",
+        t2: "Konštrukcia rozvádzačov",
+        t3: "Programovanie & integrácia",
+        t4: "Montáž & testovanie",
+        t5: "Uvedenie do prevádzky",
+        t6: "Podpora po odovzdaní",
         cta: "Kontakt",
         hint: "Chceš aj web?"
       },
@@ -425,14 +537,26 @@
         k1: "Effizienz",
         k2: "Zuverlässigkeit",
         k3: "Tempo",
-        f1: "Konzept & Umsetzung",
-        f1t: "Maßgeschneiderte Automatisierungslösungen.",
-        f2: "Starkstrom / Schwachstrom",
-        f2t: "Gewerbe- und Wohnprojekte.",
-        f3: "Dokumentation",
-        f3t: "Revisionsunterlagen und Unterstützung bei der Übergabe.",
-        f4: "Qualitäts-Portfolio",
-        f4t: "Fokus auf saubere Montage und Ergebnis.",
+        leistungen: "Leistungen & Kompetenzen",
+        prozess: "Ablauf von der Idee bis zum Betrieb",
+        s1: "Maschinensicherheit",
+        s2: "SPS-Programmierung",
+        s3: "Elektrokonstruktion",
+        s4: "Industrie 4.0",
+        s5: "Engineering",
+        s6: "Automatisierungstechnik",
+        s7: "Softwareentwicklung / IT",
+        s8: "Schaltschrankbau",
+        s9: "Retrofit / Modernisierung",
+        s10: "Roboterprogrammierung",
+        s11: "Inbetriebnahme",
+        s12: "Support & Service",
+        t1: "Analyse & Konzept",
+        t2: "Schaltschrankbau",
+        t3: "Programmierung & Integration",
+        t4: "Montage & Tests",
+        t5: "Inbetriebnahme",
+        t6: "Support nach Übergabe",
         cta: "Kontakt",
         hint: "Auch eine Website?"
       }
