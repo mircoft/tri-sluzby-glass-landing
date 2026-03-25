@@ -71,7 +71,9 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       color:rgba(236,244,255,.88);
+      text-decoration:none;
     }
+    .logo:hover{color:rgba(236,244,255,1)}
     .lang{display:flex;gap:8px}
     .lang-btn{
       border:1px solid var(--hair);
@@ -239,9 +241,28 @@
       outline:2px solid rgba(85,167,255,.8);
       outline-offset:3px;
     }
+    .skip-link{
+      position:absolute;
+      left:-9999px;
+      top:0;
+      z-index:100;
+      padding:10px 14px;
+      background:rgba(5,11,24,.96);
+      color:var(--text);
+      border:1px solid var(--hair);
+      border-radius:10px;
+      font-size:.86rem;
+      font-weight:600;
+      text-decoration:none;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n="skip">Preskočiť na obsah</a>
   <header class="top" role="banner">
     <div class="container top-inner">
       <a class="logo" href="/">thedesigns.org</a>
@@ -252,7 +273,7 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main">
     <section class="hero">
       <div class="hero-kicker" data-i18n="kicker">Design / Web / Automatizácia</div>
       <h1 data-i18n="h1">Tri smery. Jedna úroveň kvality.</h1>
@@ -310,7 +331,8 @@
         metaDesc: "Design studio, profesionálna tvorba webov a automatizácia. Tri smery pod jednou strechou.",
         ogTitle: "thedesigns.org",
         ogDesc: "Design studio, profesionálna tvorba webov a automatizácia.",
-        ogLocale: "sk_SK"
+        ogLocale: "sk_SK",
+        skip: "Preskočiť na obsah"
       },
       de: {
         kicker: "Design / Web / Automatisierung",
@@ -324,7 +346,8 @@
         metaDesc: "Professionelles Design Studio, maßgeschneiderte Web- und Shop-Entwicklung und industrielle Automatisierung.",
         ogTitle: "thedesigns.org",
         ogDesc: "Professionelles Design Studio, Web- und Shop-Entwicklung und Automatisierung.",
-        ogLocale: "de_DE"
+        ogLocale: "de_DE",
+        skip: "Zum Inhalt springen"
       }
     };
     const buttons = document.querySelectorAll(".lang-btn");
