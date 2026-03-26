@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="sk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SPS Automation GmbH - Dienstleistungen</title>
-  <meta name="description" content="Industrielle Automatisierung und Montagen nach 2026-Standard: SPS-Programmierung, Elektrokonstruktion, Inbetriebnahme. No-Bullshit, digitale Transparenz, saubere Umsetzung für DE/EU." />
-  <meta property="og:title" content="SPS Automation GmbH — Dienstleistungen">
-  <meta property="og:description" content="Industrielle Automatisierung und Montagen nach 2026-Standard. Digitale Transparenz, saubere Umsetzung für DE/EU.">
+  <title>SPS Automation GmbH — služby</title>
+  <meta name="description" content="Priemyselná automatizácia, PLC/SPS, elektrotechnická konštrukcia a uvedenie do prevádzky. SPS Automation GmbH, Birkenau — DE/EÚ." />
+  <meta property="og:title" content="SPS Automation GmbH — služby">
+  <meta property="og:description" content="Priemyselná automatizácia, PLC/SPS, elektrotechnická konštrukcia a uvedenie do prevádzky. SPS Automation GmbH, Birkenau — DE/EÚ.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thedesigns.org/elektro/">
   <meta property="og:site_name" content="thedesigns.org">
-  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale" content="sk_SK">
+  <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SPS Automation GmbH — Dienstleistungen">
-  <meta name="twitter:description" content="Industrielle Automatisierung und Montagen nach 2026-Standard. Digitale Transparenz, saubere Umsetzung für DE/EU.">
+  <meta name="twitter:title" content="SPS Automation GmbH — služby">
+  <meta name="twitter:description" content="Priemyselná automatizácia, PLC/SPS, elektrotechnická konštrukcia a uvedenie do prevádzky. SPS Automation GmbH, Birkenau — DE/EÚ.">
   <meta property="og:image" content="https://thedesigns.org/og-share.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -28,7 +29,7 @@
   {"@context":"https://schema.org","@type":"ProfessionalService","name":"SPS Automation GmbH","url":"https://thedesigns.org/elektro/","description":"Industrielle Automatisierung und Montagen: SPS-Programmierung, Elektrokonstruktion, Inbetriebnahme.","image":"https://thedesigns.org/og-share.png","address":{"@type":"PostalAddress","streetAddress":"Langen-Morgenstr. 17","postalCode":"69488","addressLocality":"Birkenau","addressCountry":"DE"},"telephone":["+496209725749","+491726256592"],"email":"info@sps-automation.de","areaServed":["DE","EU"]}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"thedesigns.org","item":"https://thedesigns.org/"},{"@type":"ListItem","position":2,"name":"SPS Automation — Dienstleistungen","item":"https://thedesigns.org/elektro/"}]}
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"thedesigns.org","item":"https://thedesigns.org/"},{"@type":"ListItem","position":2,"name":"SPS Automation GmbH","item":"https://thedesigns.org/elektro/"}]}
   </script>
   <style>
     :root{
@@ -121,6 +122,44 @@
       font-weight:900;
     }
     .contactTop a:hover{color: rgba(234,243,255,1)}
+
+    .back-home{
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:800;
+      letter-spacing:.04em;
+      transition:.16s ease;
+      background:rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    .back-home:hover{border-color:rgba(54,246,255,.4)}
+
+    .top-right-col{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:10px;
+    }
+    .lang{display:flex;gap:8px}
+    .lang-btn{
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      padding:8px 12px;
+      font-size:.74rem;
+      line-height:1.35;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-family:var(--mono);
+      cursor:pointer;
+      transition:.16s ease;
+    }
+    .lang-btn.active,.lang-btn:hover{border-color:rgba(54,246,255,.45)}
+    .lang-btn.active{background:rgba(54,246,255,.12)}
 
     nav{
       padding: 0 0 14px;
@@ -414,6 +453,7 @@
     @media (max-width: 680px){
       .contactTop{white-space:normal; text-align:left}
       .topbar{flex-direction:column;gap:10px}
+      .top-right-col{align-items:flex-start;width:100%}
       h1{font-size:1.8rem}
       .whyGrid{gap:8px 10px}
       .footerLinks{grid-template-columns: 1fr;}
@@ -443,116 +483,115 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Preskočiť na obsah</a>
   <div class="noise" aria-hidden="true"></div>
 
   <header>
     <div class="container topbar">
-      <a href="../" style="text-decoration:none;color:var(--text);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-weight:800;letter-spacing:.04em;transition:.16s ease;background:rgba(255,255,255,.03);white-space:nowrap">&larr; Zurück</a>
+      <a class="back-home" href="../" data-i18n="back">&larr; Späť</a>
       <div class="brand">
         <b>SPS Automation GmbH</b>
-        <span>Automatisierungstechnik, Elektrokonstruktion und Inbetriebnahme im Rhein-Neckar Kreis.</span>
+        <span data-i18n="brandSub">Automatizačná technika, elektrotechnická konštrukcia a uvedenie do prevádzky v regióne Rhein-Neckar (Nemecko).</span>
       </div>
-      <div class="contactTop" aria-label="Kontakt">
-        <div><a href="tel:06209725749">06209 / 72 57 49</a></div>
-        <div><a href="tel:01726256592">0172 / 62 56 592</a></div>
-        <div><a href="mailto:info@sps-automation.de">info@sps-automation.de</a></div>
+      <div class="top-right-col">
+        <div class="lang" aria-label="Language switch">
+          <button class="lang-btn active" type="button" data-lang="sk">SK</button>
+          <button class="lang-btn" type="button" data-lang="de">DE</button>
+        </div>
+        <div class="contactTop" id="contactTop" aria-label="Kontakt">
+          <div><a href="tel:06209725749">06209 / 72 57 49</a></div>
+          <div><a href="tel:01726256592">0172 / 62 56 592</a></div>
+          <div><a href="mailto:info@sps-automation.de">info@sps-automation.de</a></div>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="container" id="main">
     <section class="hero" id="dienstleistungen">
-      <h1>DIENSTLEISTUNGEN</h1>
-      <div class="introLead lead">
-        Europa dreht sich 2026 nicht um Versprechen, sondern um Daten und messbare Ergebnisse. Wir spezialisieren uns
-        auf industrielle Automatisierung und Montagen für den deutschen Markt, mit Standards die hoch sind. Wir liefern
-        pünktlich — und halten Qualität vom ersten Kabel bis zur finalen Inbetriebnahme.
-      </div>
-      <div class="services" aria-label="Dienstleistungen Liste">
+      <h1 data-i18n="h1">SLUŽBY</h1>
+      <div class="introLead lead" data-i18n="intro">Špecializujeme sa na priemyselnú automatizáciu a montáže pre nemecký a európsky trh. Pracujeme podľa dohodnutých štandardov, dodávame načas a držíme kvalitu od prvého kábla až po uvedenie do prevádzky.</div>
+      <div class="services" id="services-list" aria-label="Zoznam služieb">
         <div class="svcItem">
-          <div class="svcTitle">SPS-Programmierung</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc1">Programovanie PLC (SPS)</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Elektrokonstruktion</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc2">Elektrotechnická konštrukcia</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Industrie 4.0</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc3">Priemysel 4.0</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Engineering</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc4">Inžinierstvo</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Automatisierungstechnik</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc5">Automatizačná technika</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Softwareentwicklung/IT</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc6">Vývoj softvéru / IT</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Schaltschrankbau</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc7">Výroba rozvádzačov</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Retrofit</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc8">Modernizácia (Retrofit)</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Inbetriebnahme</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc9">Uvedenie do prevádzky</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Support</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc10">Podpora (Support)</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
         <div class="svcItem">
-          <div class="svcTitle">Maschinensicherheit</div>
-          <a class="svcMore" href="#kontakt">Mehr erfahren</a>
+          <div class="svcTitle" data-i18n="svc11">Bezpečnosť strojov</div>
+          <a class="svcMore" href="#kontakt" data-i18n="moreLink">Viac informácií</a>
         </div>
       </div>
 
-      <section class="block whyBlock" aria-label="Warum wir?">
-        <div class="whyHead">Warum wir?</div>
-        <div class="whyGrid" role="table" aria-label="2026 Standard">
-          <div class="whyHead" role="columnheader">Was</div>
-          <div class="whyHead" role="columnheader">Wie (2026 Standard)</div>
-          <div class="whyHead" role="columnheader">Wo</div>
+      <section class="block whyBlock" id="why-block" aria-label="Prečo my?">
+        <div class="whyHead" data-i18n="whyH">Prečo my?</div>
+        <div class="whyGrid" role="table" aria-label="Štandard spolupráce">
+          <div class="whyHead" role="columnheader" data-i18n="wCol1">Čo</div>
+          <div class="whyHead" role="columnheader" data-i18n="wCol2">Ako (štandard)</div>
+          <div class="whyHead" role="columnheader" data-i18n="wCol3">Kde</div>
 
-          <div class="whyCell" role="cell">Komplette Montagen</div>
-          <div class="whyCell" role="cell">Plug-and-play Installationen ohne Überraschungen</div>
-          <div class="whyCell" role="cell">EU-weit, Schwerpunkte in DE</div>
+          <div class="whyCell" role="cell" data-i18n="w11">Kompletné montáže</div>
+          <div class="whyCell" role="cell" data-i18n="w12">Montáže podľa dokumentácie, bez nepríjemných prekvapení na mieste</div>
+          <div class="whyCell" role="cell" data-i18n="w13">V celej EÚ, dôraz na Nemecko</div>
 
-          <div class="whyCell" role="cell">Inbetriebnahme &amp; Service</div>
-          <div class="whyCell" role="cell">Wir erkennen Abweichungen früh — bevor es Stillstand gibt</div>
-          <div class="whyCell" role="cell">Reaktionszeit: innerhalb von 24 Stunden</div>
+          <div class="whyCell" role="cell" data-i18n="w21">Uvedenie do prevádzky a servis</div>
+          <div class="whyCell" role="cell" data-i18n="w22">Odchýlky riešime skôr, než dôjde k výpadku</div>
+          <div class="whyCell" role="cell" data-i18n="w23">Odozva: do 24 hodín (podľa dohody)</div>
 
-          <div class="whyCell" role="cell">Projektmanagement</div>
-          <div class="whyCell" role="cell">100% Transparenz durch digitales Reporting</div>
-          <div class="whyCell" role="cell">Von kleinen Linien bis zu ganzen Hallen</div>
+          <div class="whyCell" role="cell" data-i18n="w31">Riadenie projektu</div>
+          <div class="whyCell" role="cell" data-i18n="w32">Transparentnosť cez digitálne reportovanie</div>
+          <div class="whyCell" role="cell" data-i18n="w33">Od malých liniek až po celé haly</div>
         </div>
 
-        <div class="whyNotes">
-          2026 bedeutet: weniger Abfall durch saubere Planung, digitale Transparenz via Reporting, und ein Team,
-          in dem der Geschäftsführer nicht erst nach drei Telefonaten antwortet.
-        </div>
+        <div class="whyNotes" data-i18n="whyNotes">Menej zbytočnej práce vďaka čistej príprave, zrozumiteľným reportom a priamemu kontaktu — bez zbytočného čakania na spojenie.</div>
       </section>
     </section>
 
     <div class="contactBlocks">
-      <section class="block" aria-label="Anschrift">
-        <h2>Anschrift:</h2>
+      <section class="block" id="addr-block" aria-label="Adresa">
+        <h2 data-i18n="addrTitle">Adresa</h2>
         <div class="addrLine">SPS Automation GmbH</div>
         <div class="addrLine">Langen-Morgenstr. 17</div>
         <div class="addrLine">69488 Birkenau</div>
       </section>
 
-      <section class="block" aria-label="Kontaktdaten" id="kontakt">
-        <h2>Kontaktdaten</h2>
+      <section class="block" aria-label="Kontakt" id="kontakt">
+        <h2 data-i18n="contactTitle">Kontakt</h2>
         <div class="contactList">
           <div class="mono"><a href="tel:06209725749">06209 / 72 57 49</a></div>
           <div class="mono"><a href="tel:01726256592">0172 / 62 56 592</a></div>
@@ -560,7 +599,7 @@
           <div><a href="mailto:info@sps-automation.de">info@sps-automation.de</a></div>
         </div>
         <div class="sendRow">
-          <a class="more" href="mailto:info@sps-automation.de?Subject=Anfrage%20">E-Mail senden</a>
+          <a class="more" id="mailCta" href="mailto:info@sps-automation.de?subject=Dopyt%20%E2%80%94%20SPS%20Automation">Poslať e-mail</a>
         </div>
       </section>
     </div>
@@ -570,35 +609,201 @@
   <footer class="footer">
     <div class="container footerGrid">
       <div>
-        <div class="cookie">
-          © 2026 SPS Automation GmbH. Alle Rechte vorbehalten.
-        </div>
-        <div class="cookie" style="margin-top:8px;">
-          Im Rhein-Neckar-Kreis: Mannheim · Heidelberg · Ludwigshafen
-        </div>
+        <div class="cookie" data-i18n="footCopy">© 2026 SPS Automation GmbH. Všetky práva vyhradené.</div>
+        <div class="cookie" style="margin-top:8px;" data-i18n="footRegion">Okres Rhein-Neckar: Mannheim · Heidelberg · Ludwigshafen</div>
       </div>
       <div>
-        <div class="footerTitle">Leistungen</div>
-        <div class="footerLinks" aria-label="Leistungen">
+        <div class="footerTitle" data-i18n="footerTitle">Služby</div>
+        <div class="footerLinks" id="footer-svc" aria-label="Služby">
           <div>
-            <a href="#dienstleistungen">Maschinensicherheit</a><br/>
-            <a href="#dienstleistungen">SPS-Programmierung</a><br/>
-            <a href="#dienstleistungen">Elektrokonstruktion</a><br/>
-            <a href="#dienstleistungen">Industrie 4.0</a><br/>
-            <a href="#dienstleistungen">Engineering</a><br/>
-            <a href="#dienstleistungen">Automatisierungstechnik</a>
+            <a href="#dienstleistungen" data-i18n="svc11">Bezpečnosť strojov</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc1">Programovanie PLC (SPS)</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc2">Elektrotechnická konštrukcia</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc3">Priemysel 4.0</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc4">Inžinierstvo</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc5">Automatizačná technika</a>
           </div>
           <div>
-            <a href="#dienstleistungen">Softwareentwicklung/IT</a><br/>
-            <a href="#dienstleistungen">Schaltschrankbau</a><br/>
-            <a href="#dienstleistungen">Retrofit</a><br/>
-            <a href="#dienstleistungen">Inbetriebnahme</a><br/>
-            <a href="#dienstleistungen">Support</a>
+            <a href="#dienstleistungen" data-i18n="svc6">Vývoj softvéru / IT</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc7">Výroba rozvádzačov</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc8">Modernizácia (Retrofit)</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc9">Uvedenie do prevádzky</a><br/>
+            <a href="#dienstleistungen" data-i18n="svc10">Podpora (Support)</a>
           </div>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    const dictionary = {
+      sk: {
+        skip: "Preskočiť na obsah",
+        back: "← Späť",
+        brandSub: "Automatizačná technika, elektrotechnická konštrukcia a uvedenie do prevádzky v regióne Rhein-Neckar (Nemecko).",
+        h1: "SLUŽBY",
+        intro: "Špecializujeme sa na priemyselnú automatizáciu a montáže pre nemecký a európsky trh. Pracujeme podľa dohodnutých štandardov, dodávame načas a držíme kvalitu od prvého kábla až po uvedenie do prevádzky.",
+        moreLink: "Viac informácií",
+        svc1: "Programovanie PLC (SPS)",
+        svc2: "Elektrotechnická konštrukcia",
+        svc3: "Priemysel 4.0",
+        svc4: "Inžinierstvo",
+        svc5: "Automatizačná technika",
+        svc6: "Vývoj softvéru / IT",
+        svc7: "Výroba rozvádzačov",
+        svc8: "Modernizácia (Retrofit)",
+        svc9: "Uvedenie do prevádzky",
+        svc10: "Podpora (Support)",
+        svc11: "Bezpečnosť strojov",
+        whyH: "Prečo my?",
+        wCol1: "Čo",
+        wCol2: "Ako (štandard)",
+        wCol3: "Kde",
+        w11: "Kompletné montáže",
+        w12: "Montáže podľa dokumentácie, bez nepríjemných prekvapení na mieste",
+        w13: "V celej EÚ, dôraz na Nemecko",
+        w21: "Uvedenie do prevádzky a servis",
+        w22: "Odchýlky riešime skôr, než dôjde k výpadku",
+        w23: "Odozva: do 24 hodín (podľa dohody)",
+        w31: "Riadenie projektu",
+        w32: "Transparentnosť cez digitálne reportovanie",
+        w33: "Od malých liniek až po celé haly",
+        whyNotes: "Menej zbytočnej práce vďaka čistej príprave, zrozumiteľným reportom a priamemu kontaktu — bez zbytočného čakania na spojenie.",
+        addrTitle: "Adresa",
+        contactTitle: "Kontakt",
+        emailSend: "Poslať e-mail",
+        footCopy: "© 2026 SPS Automation GmbH. Všetky práva vyhradené.",
+        footRegion: "Okres Rhein-Neckar: Mannheim · Heidelberg · Ludwigshafen",
+        footerTitle: "Služby",
+        servicesAria: "Zoznam služieb",
+        whyAria: "Prečo s nami spolupracovať",
+        addrAria: "Adresa",
+        contactAria: "Kontaktné údaje",
+        footerSvcAria: "Služby",
+        contactTopAria: "Kontakt",
+        title: "SPS Automation GmbH — služby",
+        metaDesc: "Priemyselná automatizácia, PLC/SPS, elektrotechnická konštrukcia a uvedenie do prevádzky. SPS Automation GmbH, Birkenau — DE/EÚ.",
+        ogTitle: "SPS Automation GmbH — služby",
+        ogDesc: "Priemyselná automatizácia, PLC/SPS, elektrotechnická konštrukcia a uvedenie do prevádzky. SPS Automation GmbH, Birkenau — DE/EÚ.",
+        ogLocale: "sk_SK",
+        mailSubject: "Dopyt — SPS Automation (thedesigns.org)"
+      },
+      de: {
+        skip: "Zum Inhalt springen",
+        back: "← Zurück",
+        brandSub: "Automatisierungstechnik, Elektrokonstruktion und Inbetriebnahme im Rhein-Neckar-Kreis.",
+        h1: "DIENSTLEISTUNGEN",
+        intro: "Wir sind auf industrielle Automatisierung und Montagen für den deutschen und europäischen Markt spezialisiert. Wir arbeiten nach vereinbarten Standards, liefern termintreu und sichern Qualität vom ersten Kabel bis zur Inbetriebnahme.",
+        moreLink: "Mehr erfahren",
+        svc1: "SPS-Programmierung",
+        svc2: "Elektrokonstruktion",
+        svc3: "Industrie 4.0",
+        svc4: "Engineering",
+        svc5: "Automatisierungstechnik",
+        svc6: "Softwareentwicklung/IT",
+        svc7: "Schaltschrankbau",
+        svc8: "Retrofit",
+        svc9: "Inbetriebnahme",
+        svc10: "Support",
+        svc11: "Maschinensicherheit",
+        whyH: "Warum wir?",
+        wCol1: "Was",
+        wCol2: "Wie (Standard)",
+        wCol3: "Wo",
+        w11: "Komplette Montagen",
+        w12: "Installation nach Dokumentation — ohne böse Überraschungen vor Ort",
+        w13: "EU-weit, Schwerpunkt Deutschland",
+        w21: "Inbetriebnahme & Service",
+        w22: "Abweichungen erkennen wir früh — bevor Stillstand entsteht",
+        w23: "Reaktionszeit: innerhalb von 24 Stunden (nach Absprache)",
+        w31: "Projektmanagement",
+        w32: "Transparenz durch digitales Reporting",
+        w33: "Von kleinen Linien bis zu ganzen Hallen",
+        whyNotes: "Weniger Leerlauf durch saubere Vorbereitung, nachvollziehbare Reports und direkter Austausch — ohne lange Warteschleifen.",
+        addrTitle: "Anschrift",
+        contactTitle: "Kontaktdaten",
+        emailSend: "E-Mail senden",
+        footCopy: "© 2026 SPS Automation GmbH. Alle Rechte vorbehalten.",
+        footRegion: "Im Rhein-Neckar-Kreis: Mannheim · Heidelberg · Ludwigshafen",
+        footerTitle: "Leistungen",
+        servicesAria: "Leistungen",
+        whyAria: "Warum wir",
+        addrAria: "Anschrift",
+        contactAria: "Kontaktdaten",
+        footerSvcAria: "Leistungen",
+        contactTopAria: "Kontakt",
+        title: "SPS Automation GmbH — Dienstleistungen",
+        metaDesc: "Industrielle Automatisierung, SPS-/PLC-Programmierung, Elektrokonstruktion und Inbetriebnahme. SPS Automation GmbH, Birkenau — DE/EU.",
+        ogTitle: "SPS Automation GmbH — Dienstleistungen",
+        ogDesc: "Industrielle Automatisierung, SPS-/PLC-Programmierung, Elektrokonstruktion und Inbetriebnahme. SPS Automation GmbH, Birkenau — DE/EU.",
+        ogLocale: "de_DE",
+        mailSubject: "Anfrage — SPS Automation (thedesigns.org)"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".lang-btn");
+    const targets = document.querySelectorAll("[data-i18n]");
+
+    function setLanguage(lang) {
+      const pack = dictionary[lang];
+      if (!pack) return;
+      document.documentElement.lang = lang;
+      targets.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (pack[key]) el.textContent = pack[key];
+      });
+      if (pack.title) document.title = pack.title;
+      const md = document.querySelector('meta[name="description"]');
+      if (pack.metaDesc && md) md.setAttribute("content", pack.metaDesc);
+      const ogt = document.querySelector('meta[property="og:title"]');
+      if (pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
+      const ogd = document.querySelector('meta[property="og:description"]');
+      if (pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
+      const ogl = document.querySelector('meta[property="og:locale"]');
+      if (pack.ogLocale && ogl) ogl.setAttribute("content", pack.ogLocale);
+      const twt = document.querySelector('meta[name="twitter:title"]');
+      if (pack.ogTitle && twt) twt.setAttribute("content", pack.ogTitle);
+      const twd = document.querySelector('meta[name="twitter:description"]');
+      if (pack.ogDesc && twd) twd.setAttribute("content", pack.ogDesc);
+      const mailCta = document.getElementById("mailCta");
+      if (mailCta) {
+        if (pack.mailSubject) {
+          mailCta.setAttribute(
+            "href",
+            "mailto:info@sps-automation.de?subject=" + encodeURIComponent(pack.mailSubject)
+          );
+        }
+        if (pack.emailSend) mailCta.textContent = pack.emailSend;
+      }
+      const sl = document.getElementById("services-list");
+      if (sl && pack.servicesAria) sl.setAttribute("aria-label", pack.servicesAria);
+      const wb = document.getElementById("why-block");
+      if (wb && pack.whyAria) wb.setAttribute("aria-label", pack.whyAria);
+      const ab = document.getElementById("addr-block");
+      if (ab && pack.addrAria) ab.setAttribute("aria-label", pack.addrAria);
+      const kb = document.getElementById("kontakt");
+      if (kb && pack.contactAria) kb.setAttribute("aria-label", pack.contactAria);
+      const fs = document.getElementById("footer-svc");
+      if (fs && pack.footerSvcAria) fs.setAttribute("aria-label", pack.footerSvcAria);
+      const ct = document.getElementById("contactTop");
+      if (ct && pack.contactTopAria) ct.setAttribute("aria-label", pack.contactTopAria);
+      buttons.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
+      try {
+        localStorage.setItem("td-lang", lang);
+      } catch (e) {}
+    }
+
+    buttons.forEach((btn) =>
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang))
+    );
+    try {
+      const saved = localStorage.getItem("td-lang");
+      if (saved && dictionary[saved]) setLanguage(saved);
+      else setLanguage("sk");
+    } catch (e) {
+      setLanguage("sk");
+    }
+  </script>
 </body>
 </html>
 
