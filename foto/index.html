@@ -54,13 +54,13 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .lb{border:1px solid var(--hair);background:0;color:var(--mute);border-radius:999px;padding:6px 10px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:var(--body);font-weight:600;transition:all .15s}
 .lb.on{color:var(--ink);background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35)}
 
-/* Primary button */
-.pbtn{display:inline-flex;align-items:center;gap:0;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.88rem;overflow:hidden;transition:opacity .15s}
+/* Primary button: .pbtn-txt má výšku 1 riadku; vertikálny padding tu rozbíja zarovnanie pri border-box */
+.pbtn{display:inline-flex;align-items:center;gap:0;min-height:36px;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.88rem;line-height:1.25;overflow:hidden;transition:opacity .15s}
 .pbtn:hover{opacity:.9}
-.pbtn-txt{position:relative;overflow:hidden;height:1.2em;padding:10px 0 10px 18px}
-.pbtn-txt span{display:block;transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.pbtn-txt{position:relative;overflow:hidden;flex-shrink:0;height:1.25em;line-height:1.25;padding:0 0 0 18px;display:flex;flex-direction:column;justify-content:flex-start}
+.pbtn-txt span{display:block;line-height:inherit;flex-shrink:0;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .pbtn:hover .pbtn-txt span{transform:translateY(-100%)}
-.pbtn-arr{width:36px;height:36px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.pbtn-arr{width:36px;height:36px;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
 .pbtn-arr svg{width:14px;height:14px;transition:transform .3s;fill:#fff}
 .pbtn:hover .pbtn-arr svg{transform:translate(14px,-14px)}
 .pbtn.dark{background:var(--bg);color:var(--ink);border:1px solid var(--hair)}
