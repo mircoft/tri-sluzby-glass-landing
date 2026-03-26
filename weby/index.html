@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="title">Weby a e-shopy na mieru</title>
-  <meta name="description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast." />
+  <meta name="description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní." />
   <meta property="og:title" content="Weby a e-shopy na mieru — thedesigns.org">
-  <meta property="og:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.">
+  <meta property="og:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thedesigns.org/weby/">
   <meta property="og:site_name" content="thedesigns.org">
@@ -14,7 +14,7 @@
   <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Weby a e-shopy na mieru — thedesigns.org">
-  <meta name="twitter:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.">
+  <meta name="twitter:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.">
   <meta property="og:image" content="https://thedesigns.org/og-share.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -26,7 +26,7 @@
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Weby a e-shopy na mieru","url":"https://thedesigns.org/weby/","description":"Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.","isPartOf":{"@type":"WebSite","name":"thedesigns.org","url":"https://thedesigns.org/"},"inLanguage":"sk","primaryImageOfPage":{"@type":"ImageObject","url":"https://thedesigns.org/og-share.png","width":1200,"height":630}}
+  {"@context":"https://schema.org","@type":"WebPage","name":"Weby a e-shopy na mieru","url":"https://thedesigns.org/weby/","description":"Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.","isPartOf":{"@type":"WebSite","name":"thedesigns.org","url":"https://thedesigns.org/"},"inLanguage":"sk","primaryImageOfPage":{"@type":"ImageObject","url":"https://thedesigns.org/og-share.png","width":1200,"height":630}}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Úvod","item":"https://thedesigns.org/"},{"@type":"ListItem","position":2,"name":"Weby a e-shopy","item":"https://thedesigns.org/weby/"}]}
@@ -96,6 +96,7 @@
       background:rgba(255,255,255,.03);
       padding:10px 12px;
       font-size:.76rem;
+      line-height:1.35;
       text-transform:uppercase;
       letter-spacing:.13em;
       font-family:var(--mono);
@@ -270,15 +271,34 @@
       outline:2px solid rgba(85,167,255,.8);
       outline-offset:3px;
     }
+    .skip-link{
+      position:absolute;
+      left:-9999px;
+      top:0;
+      z-index:100;
+      padding:10px 14px;
+      background:rgba(6,15,33,.96);
+      color:var(--text);
+      border:1px solid var(--hair);
+      border-radius:10px;
+      font-size:.86rem;
+      font-weight:600;
+      text-decoration:none;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-i18n="skip">Preskočiť na obsah</a>
   <header>
     <div class="container nav">
       <div class="nav-left">
         <a class="back" href="../" data-i18n="back">Späť</a>
         <div class="brand">
-          <b>WEB / E-SHOP / SYSTEM</b>
+          <b data-i18n="brandTag">WEB / E-SHOP / SYSTÉM</b>
           <span data-i18n="subline">Technicky presný build pre reálny biznis.</span>
         </div>
       </div>
@@ -293,7 +313,7 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="panel" style="padding:16px;">
-          <div class="kicker" data-i18n="kicker">Custom web production</div>
+          <div class="kicker" data-i18n="kicker">Webová produkcia na mieru</div>
           <h1 data-i18n="h1">E-shop a web, ktorý vyzerá premium a predáva.</h1>
           <p class="lead" data-i18n="lead">Stratégia, design a vývoj v jednom toku. Žiadny chaos, len čistý proces, rýchly kód a merateľný výsledok.</p>
           <div class="chips">
@@ -374,7 +394,7 @@
     <section class="section section-panel">
       <div class="section-head">
         <h2 data-i18n="pricingTitle">Balíky</h2>
-        <p data-i18n="pricingLead">Transparentné ceny podľa rozsahu projektu.</p>
+        <p data-i18n="pricingLead">Transparentné ceny podľa rozsahu projektu. Presná ponuka po krátkom zadaní.</p>
       </div>
       <div class="grid pricing">
         <div class="card">
@@ -430,8 +450,12 @@
       sk: {
         title: "Weby a e-shopy na mieru",
         back: "Späť",
+        brandTag: "WEB / E-SHOP / SYSTÉM",
         subline: "Technicky presný build pre reálny biznis.",
-        kicker: "Custom web production",
+        chip1: "Core Web Vitals",
+        chip2: "SEO štruktúra",
+        chip3: "Konverzný UX",
+        kicker: "Webová produkcia na mieru",
         h1: "E-shop a web, ktorý vyzerá premium a predáva.",
         lead: "Stratégia, design a vývoj v jednom toku. Žiadny chaos, len čistý proces, rýchly kód a merateľný výsledok.",
         cta1: "Kontakt",
@@ -445,7 +469,7 @@
         m3t: "Jasná navigácia a obsah, ktorý vedie ku konverzii.",
         m4: "Scale",
         m4t: "Príprava na rozvoj e-shopu a ďalšie iterácie.",
-        status: "No-bullshit setup: jasný scope, jasná cena, jasný deadline.",
+        status: "Bez zbytočností: jasný rozsah, jasná cena, jasný termín.",
         servicesTitle: "Služby",
         servicesLead: "Kompletný webový stack od návrhu po spustenie.",
         sv1: "E-shop na mieru",
@@ -468,18 +492,18 @@
         t2t: "Navrhneme obsah, navigáciu a wireframe.",
         t3: "Design a vývoj",
         t3t: "Vytvoríme premium vizuál a precízny kód.",
-        t4: "Launch",
+        t4: "Spustenie",
         t4t: "Testovanie, finálne ladenie a ostré spustenie.",
         casesTitle: "Referencie",
         casesLead: "Ukážky typu projektov, ktoré robíme najčastejšie.",
-        c1: "Fashion e-shop",
-        c1t: "Vyšší conversion rate cez čisté UX a rýchly checkout.",
+        c1: "Módny e-shop",
+        c1t: "Vyššia konverzia vďaka čistému UX a rýchlemu checkoutu.",
         c2: "B2B web",
         c2t: "Profesionálna prezentácia služieb a lead funnel.",
-        c3: "Service platform",
-        c3t: "Modulárny systém, pripravený na ďalší rast.",
+        c3: "Servisná platforma",
+        c3t: "Modulárny systém pripravený na ďalší rast.",
         pricingTitle: "Balíky",
-        pricingLead: "Transparentné ceny podľa rozsahu projektu.",
+        pricingLead: "Transparentné ceny podľa rozsahu projektu. Presná ponuka po krátkom zadaní.",
         p1n: "Start",
         p1p: "od 990 EUR",
         p1l1: "Landing alebo menší web",
@@ -496,17 +520,21 @@
         contactLead: "Pošli zadanie a dohodneme konkrétne riešenie.",
         footBrand: "thedesigns.org — Weby a e-shopy",
         footCopy: "© 2026 — Prémiová webová produkcia zameraná na výkon a rast.",
-        metaDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.",
+        metaDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.",
         ogTitle: "Weby a e-shopy na mieru — thedesigns.org",
-        ogDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast.",
+        ogDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.",
         ogLocale: "sk_SK",
         skip: "Preskočiť na obsah"
       },
       de: {
         title: "Websites und Shops nach Maß",
         back: "Zurück",
+        brandTag: "WEB / SHOP / SYSTEM",
         subline: "Technisch präziser Build für echtes Business.",
-        kicker: "Custom web production",
+        chip1: "Core Web Vitals",
+        chip2: "SEO-Struktur",
+        chip3: "Conversion-UX",
+        kicker: "Maßgeschneiderte Webproduktion",
         h1: "Shop und Website, die premium wirken und verkaufen.",
         lead: "Strategie, Design und Entwicklung in einem Ablauf. Kein Chaos, sondern klarer Prozess, schneller Code und messbares Ergebnis.",
         cta1: "Kontakt",
@@ -520,7 +548,7 @@
         m3t: "Klare Navigation und Inhalte mit Conversion Fokus.",
         m4: "Scale",
         m4t: "Vorbereitung für Shop-Wachstum und weitere Iterationen.",
-        status: "No-bullshit setup: klarer Scope, klarer Preis, klarer Deadline.",
+        status: "Direkt und klar: klarer Umfang, klarer Preis, klarer Termin.",
         servicesTitle: "Leistungen",
         servicesLead: "Kompletter Web Stack von Konzept bis Launch.",
         sv1: "Shop nach Maß",
@@ -571,9 +599,9 @@
         contactLead: "Sende dein Briefing und wir liefern eine konkrete Lösung.",
         footBrand: "thedesigns.org — Websites & Shops",
         footCopy: "© 2026 — Premium-Webproduktion für Performance und Wachstum.",
-        metaDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum.",
+        metaDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum. Preise orientierend; exaktes Angebot nach Briefing.",
         ogTitle: "Websites und Shops nach Maß — thedesigns.org",
-        ogDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum.",
+        ogDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum. Preise orientierend; exaktes Angebot nach Briefing.",
         ogLocale: "de_DE",
         skip: "Zum Inhalt springen"
       }
