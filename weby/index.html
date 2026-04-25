@@ -1,642 +1,137 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n="title">Weby a e-shopy na mieru</title>
-  <meta name="description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní." />
-  <meta property="og:title" content="Weby a e-shopy na mieru — thedesigns.org">
-  <meta property="og:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thedesigns.org/weby/">
-  <meta property="og:site_name" content="thedesigns.org">
-  <meta property="og:locale" content="sk_SK">
-  <meta property="og:locale:alternate" content="de_DE">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Weby a e-shopy na mieru — thedesigns.org">
-  <meta name="twitter:description" content="Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.">
-  <meta property="og:image" content="https://thedesigns.org/og-share.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:image" content="https://thedesigns.org/og-share.png">
-  <link rel="canonical" href="https://thedesigns.org/weby/">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#060f21">
-  <meta name="application-name" content="thedesigns.org">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebPage","name":"Weby a e-shopy na mieru","url":"https://thedesigns.org/weby/","description":"Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.","isPartOf":{"@type":"WebSite","name":"thedesigns.org","url":"https://thedesigns.org/"},"inLanguage":"sk","primaryImageOfPage":{"@type":"ImageObject","url":"https://thedesigns.org/og-share.png","width":1200,"height":630}}
-  </script>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Úvod","item":"https://thedesigns.org/"},{"@type":"ListItem","position":2,"name":"Weby a e-shopy","item":"https://thedesigns.org/weby/"}]}
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weby & E-shopy | thedesigns.org</title>
+  <meta name="description" content="Weby a e-shopy, ktore realne konvertuju. Problem -> riziko -> vysledok -> brief message.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#060f21;
       --bg2:#0a1730;
-      --panel:#0f1f3f;
-      --surface:#13274c;
-      --text:#ecf4ff;
-      --muted:rgba(236,244,255,.76);
-      --hair:rgba(255,255,255,.13);
-      --accent:#55a7ff;
-      --accent2:#76d8ff;
-      --ok:#78ffc8;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      --radius:16px;
+      --txt:#eaf4ff;
+      --muted:rgba(234,244,255,.74);
+      --line:rgba(255,255,255,.12);
+      --acc:#55a7ff;
+      --acc2:#7f6bff;
+      --r:14px;
+      --mx:min(1220px,92%);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
     body{
       min-height:100vh;
-      color:var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--txt);
       background:
-        radial-gradient(circle at 10% 8%, rgba(85,167,255,.24), transparent 40%),
-        radial-gradient(circle at 84% 14%, rgba(118,216,255,.20), transparent 42%),
-        radial-gradient(circle at 50% 90%, rgba(120,255,200,.10), transparent 52%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+        radial-gradient(circle at 84% -10%, rgba(85,167,255,.18), transparent 45%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      line-height:1.55;
+      overflow-x:hidden;
     }
-    .container{width:min(1180px,92%);margin:0 auto}
-    header{
-      position:sticky; top:0; z-index:30;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--hair);
-      background:linear-gradient(180deg, rgba(6,15,33,.9), rgba(6,15,33,.4));
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0; gap:12px;
-    }
-    .nav-left{display:flex; align-items:center; gap:10px;}
-    .back,.lang-btn,.btn{
-      border:1px solid var(--hair);
-      border-radius:12px;
-      text-decoration:none;
-      transition:.16s ease;
-      font-weight:800;
-    }
-    .back{
-      color:var(--text);
-      background:rgba(255,255,255,.03);
-      padding:10px 12px;
-      letter-spacing:.04em;
-    }
-    .back:hover{border-color:rgba(85,167,255,.62);transform:translateY(-1px)}
-    .brand b{display:block;font-family:var(--mono);font-size:.84rem;letter-spacing:.12em}
-    .brand span{display:block;color:var(--muted);font-size:.9rem}
-    .lang{display:flex; gap:8px}
-    .lang-btn{
-      color:var(--text);
-      background:rgba(255,255,255,.03);
-      padding:10px 12px;
-      font-size:.76rem;
-      line-height:1.35;
-      text-transform:uppercase;
-      letter-spacing:.13em;
-      font-family:var(--mono);
-      cursor:pointer;
-    }
-    .lang-btn.active,.lang-btn:hover{border-color:rgba(85,167,255,.62)}
-    .lang-btn.active{background:rgba(85,167,255,.16)}
+    .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .top{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(6,15,33,.9);backdrop-filter:blur(10px)}
+    .top .ct{width:var(--mx);margin:0 auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 0}
+    .logo b{display:block;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#a8d1ff}
+    .logo span{display:block;margin-top:4px;color:var(--muted);font-size:.9rem}
+    .ghost{border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);text-decoration:none;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04)}
 
-    .hero{padding:56px 0 20px}
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    .kicker{
-      font-family:var(--mono);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.74rem;
-      color:rgba(236,244,255,.74);
-    }
-    h1{
-      margin-top:10px;
-      line-height:1.05;
-      letter-spacing:-.02em;
-      font-size:clamp(2rem,4vw,3.35rem);
-      max-width:20ch;
-    }
-    .lead{
-      margin-top:14px;
-      color:var(--muted);
-      line-height:1.65;
-      max-width:64ch;
-      font-size:1.03rem;
-    }
-    .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      border:1px solid var(--hair);
-      border-radius:999px;
-      padding:8px 10px;
-      font-family:var(--mono);
-      font-size:.76rem;
-      letter-spacing:.05em;
-      color:rgba(236,244,255,.86);
-      background:rgba(255,255,255,.02);
-    }
-    .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:12px 14px;display:inline-flex;align-items:center;justify-content:center}
-    .btn.primary{
-      color:#041229;
-      border-color:rgba(255,255,255,.2);
-      background:linear-gradient(120deg,var(--accent),var(--accent2));
-    }
-    .btn.primary:hover{transform:translateY(-1px)}
-    .btn.secondary{color:var(--text);background:rgba(255,255,255,.03)}
-    .btn.secondary:hover{border-color:rgba(85,167,255,.62)}
+    .wrap{width:var(--mx);margin:0 auto;padding:64px 0 120px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start}
+    .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:#a8d1ff;font-weight:700}
+    h1{margin-top:12px;font-size:clamp(2rem,4.5vw,3.7rem);line-height:1.04;letter-spacing:-.03em;max-width:16ch;font-weight:800}
+    .lead{margin-top:14px;color:var(--muted);max-width:56ch;font-size:1.03rem}
+    .model{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .m{border:1px solid var(--line);border-radius:12px;padding:14px;background:rgba(0,0,0,.2)}
+    .m b{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin-bottom:8px}
+    .m p{color:var(--muted);font-size:.92rem}
+    .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 16px;border-radius:10px;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:.84rem;font-weight:800;border:1px solid var(--line)}
+    .btn.p{background:linear-gradient(120deg,var(--acc),var(--acc2));border-color:rgba(255,255,255,.14);color:#041022}
+    .btn.s{background:rgba(255,255,255,.04);color:var(--txt)}
 
-    .panel{
-      border:1px solid var(--hair);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(15,31,63,.92), rgba(15,31,63,.58));
-      overflow:hidden;
-    }
-    .panel-head{
-      padding:12px 14px;
-      border-bottom:1px solid var(--hair);
-      background:rgba(0,0,0,.1);
-      font-family:var(--mono);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.74rem;
-      color:rgba(236,244,255,.76);
-    }
-    .bench{padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .metric{
-      border:1px solid var(--hair);
-      border-radius:12px;
-      background:rgba(0,0,0,.12);
-      padding:12px;
-    }
-    .metric b{display:block;font-family:var(--mono);font-size:.84rem;letter-spacing:.08em}
-    .metric span{display:block;margin-top:7px;color:var(--muted);font-size:.9rem;line-height:1.45}
-    .status{
-      margin:0 12px 12px;
-      border:1px solid rgba(120,255,200,.28);
-      background:rgba(120,255,200,.08);
-      border-radius:12px;
-      padding:10px 12px;
-      color:rgba(222,255,242,.92);
-      font-size:.9rem;
-      line-height:1.45;
-    }
+    .pec{border:1px solid var(--line);border-radius:var(--r);background:rgba(0,0,0,.3);overflow:hidden}
+    .pec-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .pec-head b{color:var(--acc)}
+    .pec-body{padding:14px;display:grid;gap:10px}
+    .hot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-    .section{margin-top:16px}
-    .section-panel{
-      border:1px solid var(--hair);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(19,39,76,.78), rgba(19,39,76,.48));
-      overflow:hidden;
-    }
-    .section-head{
-      display:flex;justify-content:space-between;gap:12px;align-items:baseline;
-      padding:14px 14px;
-      border-bottom:1px solid var(--hair);
-      background:rgba(0,0,0,.1);
-    }
-    .section-head h2{
-      font-family:var(--mono);
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-size:.84rem;
-    }
-    .section-head p{color:var(--muted);font-size:.92rem}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px}
-    .card{
-      border:1px solid var(--hair);
-      border-radius:14px;
-      background:rgba(0,0,0,.12);
-      padding:14px;
-    }
-    .card b{display:block;font-size:1.02rem}
-    .card span{display:block;margin-top:8px;color:var(--muted);font-size:.93rem;line-height:1.55}
-    .steps{grid-template-columns:repeat(4,minmax(0,1fr))}
-    .n{
-      font-family:var(--mono);
-      font-size:.76rem;
-      letter-spacing:.16em;
-      color:rgba(118,216,255,.95);
-      text-transform:uppercase;
-    }
-    .cases{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .case-img{
-      height:150px;
-      border-radius:10px;
-      border:1px solid var(--hair);
-      margin-bottom:10px;
-      background-size:cover;
-      background-position:center;
-    }
-    .pricing{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .price{
-      margin-top:7px;
-      font-family:var(--mono);
-      font-size:1.9rem;
-      color:rgba(118,216,255,.95);
-    }
-    .list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
-    .list div{font-size:.92rem;line-height:1.45;color:var(--muted)}
-    .contact-inner{padding:16px 14px}
-    footer{
-      margin-top:24px;
-      border-top:1px solid var(--hair);
-      padding:30px 0 40px;
-      text-align:center;
-      color:rgba(236,244,255,.66);
-      font-size:.92rem;
-    }
-    @media (max-width:1000px){
-      .hero-grid,.grid,.steps,.cases,.pricing,.bench{grid-template-columns:1fr}
-    }
-    @media (max-width:600px){
-      .hero{padding:40px 0 16px}
-      h1{font-size:1.8rem}
-      .nav{flex-wrap:wrap}
-      .nav-left{flex:1;min-width:0}
-      .brand span{font-size:.82rem}
-      .grid,.steps,.cases,.pricing{padding:10px}
-      .price{font-size:1.5rem}
-    }
-    a:focus-visible,button:focus-visible{
-      outline:2px solid rgba(85,167,255,.8);
-      outline-offset:3px;
-    }
-    .skip-link{
-      position:absolute;
-      left:-9999px;
-      top:0;
-      z-index:100;
-      padding:10px 14px;
-      background:rgba(6,15,33,.96);
-      color:var(--text);
-      border:1px solid var(--hair);
-      border-radius:10px;
-      font-size:.86rem;
-      font-weight:600;
-      text-decoration:none;
-    }
-    .skip-link:focus{
-      left:16px;
-      top:16px;
+    .shot{position:relative;border:1px solid var(--line);border-radius:12px;min-height:150px;overflow:hidden;background:#0a1730}
+    .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(165deg,rgba(85,167,255,.16),rgba(6,15,33,.45))}
+
+    .grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .card{border:1px solid var(--line);border-radius:12px;padding:16px;background:rgba(255,255,255,.04)}
+    .card h3{font-size:.98rem;margin-bottom:8px;font-weight:700}
+    .card p{font-size:.9rem;color:var(--muted)}
+
+    .brief{margin-top:24px;border:1px solid var(--line);border-radius:var(--r);padding:24px;background:linear-gradient(135deg,rgba(85,167,255,.13),rgba(10,23,48,.9))}
+    .brief h2{font-size:clamp(1.35rem,2.6vw,2rem);max-width:24ch;line-height:1.1}
+    .brief p{margin-top:10px;color:var(--muted);max-width:62ch}
+
+    footer{margin-top:22px;border-top:1px solid var(--line);padding:22px 0 92px;text-align:center;color:var(--muted);font-size:.86rem}
+
+    @media (max-width:980px){
+      .hero,.model,.grid,.hot{grid-template-columns:1fr}
+      .shot{min-height:190px}
     }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main" data-i18n="skip">Preskočiť na obsah</a>
-  <header>
-    <div class="container nav">
-      <div class="nav-left">
-        <a class="back" href="../" data-i18n="back">Späť</a>
-        <div class="brand">
-          <b data-i18n="brandTag">WEB / E-SHOP / SYSTÉM</b>
-          <span data-i18n="subline">Technicky presný build pre reálny biznis.</span>
-        </div>
-      </div>
-      <div class="lang" aria-label="Language switch">
-        <button class="lang-btn active" type="button" data-lang="sk">SK</button>
-        <button class="lang-btn" type="button" data-lang="de">DE</button>
-      </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="ct">
+      <div class="logo"><b>thedesigns.org</b><span>Weby & e-shopy</span></div>
+      <a class="ghost" href="../">Domov</a>
     </div>
   </header>
 
-  <main class="container" id="main">
+  <main class="wrap">
     <section class="hero">
-      <div class="hero-grid">
-        <div class="panel" style="padding:16px;">
-          <div class="kicker" data-i18n="kicker">Webová produkcia na mieru</div>
-          <h1 data-i18n="h1">E-shop a web, ktorý vyzerá premium a predáva.</h1>
-          <p class="lead" data-i18n="lead">Stratégia, design a vývoj v jednom toku. Žiadny chaos, len čistý proces, rýchly kód a merateľný výsledok.</p>
-          <div class="chips">
-            <div class="chip">Core Web Vitals</div>
-            <div class="chip">SEO štruktúra</div>
-            <div class="chip">Konverzný UX</div>
-          </div>
-          <div class="hero-actions">
-            <a class="btn primary" href="mailto:info@thedesigns.org" data-i18n="cta1">Kontakt</a>
-            <a class="btn secondary" href="#process" data-i18n="cta2">Proces</a>
+      <div>
+        <p class="k">Weby & e-shopy</p>
+        <h1>Web, ktory predava dalsi krok bez chaosu.</h1>
+        <p class="lead">Jasna ponuka, dokaz a jedna hlavna akcia. Ciel je konverzia, nie iba pekny layout.</p>
+        <div class="model">
+          <div class="m"><b>Problem</b><p>Navstevnik nepochopi ponuku do 10 sekund.</p></div>
+          <div class="m"><b>Riziko</b><p>Traffic a cas obchodu sa prepaluju bez vysledku.</p></div>
+          <div class="m"><b>Vysledok</b><p>Viac kvalifikovanych dopytov z rovnakeho trafficu.</p></div>
+        </div>
+        <div class="cta">
+          <a class="btn p" href="#brief">Poslat brief</a>
+          <a class="btn s" href="mailto:hello@thedesigns.org?subject=Web%20projekt">Poslat zadanie</a>
+        </div>
+      </div>
+
+      <aside class="pec">
+        <div class="pec-head"><span>Preview</span><b>UI / E-shop</b></div>
+        <div class="pec-body">
+          <div class="hot">
+            <div class="shot"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Web analytics dashboard" loading="lazy"></div>
+            <div class="shot"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=80" alt="Ecommerce checkout" loading="lazy"></div>
           </div>
         </div>
-        <aside class="panel">
-          <div class="panel-head" data-i18n="benchTitle">Projektový benchmark</div>
-          <div class="bench">
-            <div class="metric"><b data-i18n="m1">Speed</b><span data-i18n="m1t">Ľahké stránky, rýchly prvý render, stabilný chod.</span></div>
-            <div class="metric"><b data-i18n="m2">SEO</b><span data-i18n="m2t">Technický poriadok pre indexáciu a organický rast.</span></div>
-            <div class="metric"><b data-i18n="m3">UX</b><span data-i18n="m3t">Jasná navigácia a obsah, ktorý vedie ku konverzii.</span></div>
-            <div class="metric"><b data-i18n="m4">Scale</b><span data-i18n="m4t">Príprava na rozvoj e-shopu a ďalšie iterácie.</span></div>
-          </div>
-          <div class="status" data-i18n="status">No-bullshit setup: jasný scope, jasná cena, jasný deadline.</div>
-        </aside>
-      </div>
+      </aside>
     </section>
 
-    <section class="section section-panel">
-      <div class="section-head">
-        <h2 data-i18n="servicesTitle">Služby</h2>
-        <p data-i18n="servicesLead">Kompletný webový stack od návrhu po spustenie.</p>
-      </div>
-      <div class="grid">
-        <div class="card"><b data-i18n="sv1">E-shop na mieru</b><span data-i18n="sv1t">Od produktov po checkout. Stabilné, rýchle, pripravené na kampane.</span></div>
-        <div class="card"><b data-i18n="sv2">Firemný web</b><span data-i18n="sv2t">Silná prezentácia služieb, referencií a dôkazov kvality.</span></div>
-        <div class="card"><b data-i18n="sv3">UX/UI systém</b><span data-i18n="sv3t">Konzistentné komponenty, typografia a logická hierarchia.</span></div>
-        <div class="card"><b data-i18n="sv4">SEO architektúra</b><span data-i18n="sv4t">Meta, štruktúra, interný linking a technický základ.</span></div>
-        <div class="card"><b data-i18n="sv5">Integrácie</b><span data-i18n="sv5t">Platby, CRM, mailing, analytika a ďalšie systémy.</span></div>
-        <div class="card"><b data-i18n="sv6">Rast a servis</b><span data-i18n="sv6t">Po spustení meranie, iterácie a performance tuning.</span></div>
-      </div>
+    <section class="grid">
+      <article class="card"><h3>Pre koho</h3><p>B2B firmy, e-shopy a rebrand projekty.</p></article>
+      <article class="card"><h3>Co dodame</h3><p>Strukturu, copy, UX a meranie eventov.</p></article>
+      <article class="card"><h3>Dokaz</h3><p>Scope, milniky, handover a tuning po launchi.</p></article>
     </section>
 
-    <section class="section section-panel" id="process">
-      <div class="section-head">
-        <h2 data-i18n="processTitle">Proces</h2>
-        <p data-i18n="processLead">Profesionálne riadenie projektu bez improvizácie.</p>
-      </div>
-      <div class="grid steps">
-        <div class="card"><div class="n">01</div><b data-i18n="t1">Brief a cieľ</b><span data-i18n="t1t">Definujeme cieľ, publikum a KPI projektu.</span></div>
-        <div class="card"><div class="n">02</div><b data-i18n="t2">Štruktúra</b><span data-i18n="t2t">Navrhneme obsah, navigáciu a wireframe.</span></div>
-        <div class="card"><div class="n">03</div><b data-i18n="t3">Design a vývoj</b><span data-i18n="t3t">Vytvoríme premium vizuál a precízny kód.</span></div>
-        <div class="card"><div class="n">04</div><b data-i18n="t4">Launch</b><span data-i18n="t4t">Testovanie, finálne ladenie a ostré spustenie.</span></div>
-      </div>
-    </section>
-
-    <section class="section section-panel">
-      <div class="section-head">
-        <h2 data-i18n="casesTitle">Referencie</h2>
-        <p data-i18n="casesLead">Ukážky typu projektov, ktoré robíme najčastejšie.</p>
-      </div>
-      <div class="grid cases">
-        <div class="card">
-          <div class="case-img" style="background-image:url('../img/nx/blog1.png')"></div>
-          <b data-i18n="c1">Fashion e-shop</b>
-          <span data-i18n="c1t">Vyšší conversion rate cez čisté UX a rýchly checkout.</span>
-        </div>
-        <div class="card">
-          <div class="case-img" style="background-image:url('../img/nx/blog2.png')"></div>
-          <b data-i18n="c2">B2B web</b>
-          <span data-i18n="c2t">Profesionálna prezentácia služieb a lead funnel.</span>
-        </div>
-        <div class="card">
-          <div class="case-img" style="background-image:url('../img/nx/blog3.png')"></div>
-          <b data-i18n="c3">Service platform</b>
-          <span data-i18n="c3t">Modulárny systém, pripravený na ďalší rast.</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-panel">
-      <div class="section-head">
-        <h2 data-i18n="pricingTitle">Balíky</h2>
-        <p data-i18n="pricingLead">Transparentné ceny podľa rozsahu projektu. Presná ponuka po krátkom zadaní.</p>
-      </div>
-      <div class="grid pricing">
-        <div class="card">
-          <b data-i18n="p1n">Start</b>
-          <div class="price" data-i18n="p1p">od 990 EUR</div>
-          <div class="list">
-            <div data-i18n="p1l1">Landing alebo menší web</div>
-            <div data-i18n="p1l2">SEO základ + performance setup</div>
-          </div>
-        </div>
-        <div class="card">
-          <b data-i18n="p2n">Business</b>
-          <div class="price" data-i18n="p2p">od 1490 EUR</div>
-          <div class="list">
-            <div data-i18n="p2l1">E-shop alebo väčší firemný web</div>
-            <div data-i18n="p2l2">Integrácie a UI systém</div>
-          </div>
-        </div>
-        <div class="card">
-          <b data-i18n="p3n">Pro</b>
-          <div class="price" data-i18n="p3p">od 2190 EUR</div>
-          <div class="list">
-            <div data-i18n="p3l1">Kompletný build + rastový plán</div>
-            <div data-i18n="p3l2">Pokročilé SEO, servis, iterácie</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-panel" id="contact">
-      <div class="section-head">
-        <h2 data-i18n="contactTitle">Kontakt</h2>
-        <p data-i18n="contactLead">Pošli zadanie a dohodneme konkrétne riešenie.</p>
-      </div>
-      <div class="contact-inner">
-        <div class="hero-actions">
-          <a class="btn primary" href="mailto:info@thedesigns.org" data-i18n="cta1">Kontakt</a>
-          <a class="btn secondary" href="#process" data-i18n="cta2">Proces</a>
-        </div>
+    <section class="brief" id="brief">
+      <h2>Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
+      <p>Napisete co predavate, komu a aky je ciel. Dostanete navrh priorit, rozsahu a nacasovania.</p>
+      <div class="cta">
+        <a class="btn p" href="mailto:hello@thedesigns.org?subject=Web%20brief%20message">Poslat brief message</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <div style="font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;" data-i18n="footBrand">thedesigns.org — Weby a e-shopy</div>
-      <div style="margin-top:10px;" data-i18n="footCopy">© 2026 — Prémiová webová produkcia zameraná na výkon a rast.</div>
-    </div>
-  </footer>
-
-  <script>
-    const dictionary = {
-      sk: {
-        title: "Weby a e-shopy na mieru",
-        back: "Späť",
-        brandTag: "WEB / E-SHOP / SYSTÉM",
-        subline: "Technicky presný build pre reálny biznis.",
-        chip1: "Core Web Vitals",
-        chip2: "SEO štruktúra",
-        chip3: "Konverzný UX",
-        kicker: "Webová produkcia na mieru",
-        h1: "E-shop a web, ktorý vyzerá premium a predáva.",
-        lead: "Stratégia, design a vývoj v jednom toku. Žiadny chaos, len čistý proces, rýchly kód a merateľný výsledok.",
-        cta1: "Kontakt",
-        cta2: "Proces",
-        benchTitle: "Projektový benchmark",
-        m1: "Speed",
-        m1t: "Ľahké stránky, rýchly prvý render, stabilný chod.",
-        m2: "SEO",
-        m2t: "Technický poriadok pre indexáciu a organický rast.",
-        m3: "UX",
-        m3t: "Jasná navigácia a obsah, ktorý vedie ku konverzii.",
-        m4: "Scale",
-        m4t: "Príprava na rozvoj e-shopu a ďalšie iterácie.",
-        status: "Bez zbytočností: jasný rozsah, jasná cena, jasný termín.",
-        servicesTitle: "Služby",
-        servicesLead: "Kompletný webový stack od návrhu po spustenie.",
-        sv1: "E-shop na mieru",
-        sv1t: "Od produktov po checkout. Stabilné, rýchle, pripravené na kampane.",
-        sv2: "Firemný web",
-        sv2t: "Silná prezentácia služieb, referencií a dôkazov kvality.",
-        sv3: "UX/UI systém",
-        sv3t: "Konzistentné komponenty, typografia a logická hierarchia.",
-        sv4: "SEO architektúra",
-        sv4t: "Meta, štruktúra, interný linking a technický základ.",
-        sv5: "Integrácie",
-        sv5t: "Platby, CRM, mailing, analytika a ďalšie systémy.",
-        sv6: "Rast a servis",
-        sv6t: "Po spustení meranie, iterácie a performance tuning.",
-        processTitle: "Proces",
-        processLead: "Profesionálne riadenie projektu bez improvizácie.",
-        t1: "Brief a cieľ",
-        t1t: "Definujeme cieľ, publikum a KPI projektu.",
-        t2: "Štruktúra",
-        t2t: "Navrhneme obsah, navigáciu a wireframe.",
-        t3: "Design a vývoj",
-        t3t: "Vytvoríme premium vizuál a precízny kód.",
-        t4: "Spustenie",
-        t4t: "Testovanie, finálne ladenie a ostré spustenie.",
-        casesTitle: "Referencie",
-        casesLead: "Ukážky typu projektov, ktoré robíme najčastejšie.",
-        c1: "Módny e-shop",
-        c1t: "Vyššia konverzia vďaka čistému UX a rýchlemu checkoutu.",
-        c2: "B2B web",
-        c2t: "Profesionálna prezentácia služieb a lead funnel.",
-        c3: "Servisná platforma",
-        c3t: "Modulárny systém pripravený na ďalší rast.",
-        pricingTitle: "Balíky",
-        pricingLead: "Transparentné ceny podľa rozsahu projektu. Presná ponuka po krátkom zadaní.",
-        p1n: "Start",
-        p1p: "od 990 EUR",
-        p1l1: "Landing alebo menší web",
-        p1l2: "SEO základ + performance setup",
-        p2n: "Business",
-        p2p: "od 1490 EUR",
-        p2l1: "E-shop alebo väčší firemný web",
-        p2l2: "Integrácie a UI systém",
-        p3n: "Pro",
-        p3p: "od 2190 EUR",
-        p3l1: "Kompletný build + rastový plán",
-        p3l2: "Pokročilé SEO, servis, iterácie",
-        contactTitle: "Kontakt",
-        contactLead: "Pošli zadanie a dohodneme konkrétne riešenie.",
-        footBrand: "thedesigns.org — Weby a e-shopy",
-        footCopy: "© 2026 — Prémiová webová produkcia zameraná na výkon a rast.",
-        metaDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.",
-        ogTitle: "Weby a e-shopy na mieru — thedesigns.org",
-        ogDesc: "Profesionálna tvorba webov a e-shopov na mieru: stratégia, design, vývoj, SEO a rast. Ceny orientačné; presná ponuka po zadaní.",
-        ogLocale: "sk_SK",
-        skip: "Preskočiť na obsah"
-      },
-      de: {
-        title: "Websites und Shops nach Maß",
-        back: "Zurück",
-        brandTag: "WEB / SHOP / SYSTEM",
-        subline: "Technisch präziser Build für echtes Business.",
-        chip1: "Core Web Vitals",
-        chip2: "SEO-Struktur",
-        chip3: "Conversion-UX",
-        kicker: "Maßgeschneiderte Webproduktion",
-        h1: "Shop und Website, die premium wirken und verkaufen.",
-        lead: "Strategie, Design und Entwicklung in einem Ablauf. Kein Chaos, sondern klarer Prozess, schneller Code und messbares Ergebnis.",
-        cta1: "Kontakt",
-        cta2: "Prozess",
-        benchTitle: "Projekt Benchmark",
-        m1: "Speed",
-        m1t: "Leichte Seiten, schneller First Render, stabile Performance.",
-        m2: "SEO",
-        m2t: "Technische Ordnung für Indexierung und organisches Wachstum.",
-        m3: "UX",
-        m3t: "Klare Navigation und Inhalte mit Conversion Fokus.",
-        m4: "Scale",
-        m4t: "Vorbereitung für Shop-Wachstum und weitere Iterationen.",
-        status: "Direkt und klar: klarer Umfang, klarer Preis, klarer Termin.",
-        servicesTitle: "Leistungen",
-        servicesLead: "Kompletter Web Stack von Konzept bis Launch.",
-        sv1: "Shop nach Maß",
-        sv1t: "Von Produkt bis Checkout. Stabil, schnell, kampagnenbereit.",
-        sv2: "Unternehmenswebsite",
-        sv2t: "Starker Auftritt für Leistungen, Referenzen und Vertrauen.",
-        sv3: "UX/UI System",
-        sv3t: "Konsistente Komponenten, Typografie und Struktur.",
-        sv4: "SEO Architektur",
-        sv4t: "Meta, Struktur, internes Linking und technisches Fundament.",
-        sv5: "Integrationen",
-        sv5t: "Payment, CRM, Mailing, Analytics und weitere Systeme.",
-        sv6: "Wachstum und Service",
-        sv6t: "Nach Launch: Messung, Iterationen und Performance Tuning.",
-        processTitle: "Prozess",
-        processLead: "Professionelles Projektmanagement ohne Improvisation.",
-        t1: "Briefing und Ziel",
-        t1t: "Wir definieren Ziel, Zielgruppe und KPI.",
-        t2: "Struktur",
-        t2t: "Inhalte, Navigation und Wireframe werden geplant.",
-        t3: "Design und Entwicklung",
-        t3t: "Premium Visual und präziser Code.",
-        t4: "Launch",
-        t4t: "Tests, finales Feintuning und Livegang.",
-        casesTitle: "Referenzen",
-        casesLead: "Typische Projektbeispiele aus unserer Praxis.",
-        c1: "Fashion Shop",
-        c1t: "Höhere Conversion durch klares UX und schnellen Checkout.",
-        c2: "B2B Website",
-        c2t: "Professionelle Darstellung von Leistungen und Lead Funnel.",
-        c3: "Service Plattform",
-        c3t: "Modulares System, bereit für weiteres Wachstum.",
-        pricingTitle: "Pakete",
-        pricingLead: "Transparente Preise je nach Projektumfang.",
-        p1n: "Start",
-        p1p: "ab 990 EUR",
-        p1l1: "Landingpage oder kleine Website",
-        p1l2: "SEO Basis plus Performance Setup",
-        p2n: "Business",
-        p2p: "ab 1490 EUR",
-        p2l1: "Shop oder größere Unternehmenswebsite",
-        p2l2: "Integrationen und UI System",
-        p3n: "Pro",
-        p3p: "ab 2190 EUR",
-        p3l1: "Kompletter Build plus Wachstumsplan",
-        p3l2: "Erweitertes SEO, Service, Iterationen",
-        contactTitle: "Kontakt",
-        contactLead: "Sende dein Briefing und wir liefern eine konkrete Lösung.",
-        footBrand: "thedesigns.org — Websites & Shops",
-        footCopy: "© 2026 — Premium-Webproduktion für Performance und Wachstum.",
-        metaDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum. Preise orientierend; exaktes Angebot nach Briefing.",
-        ogTitle: "Websites und Shops nach Maß — thedesigns.org",
-        ogDesc: "Professionelle Web- und Shop-Entwicklung nach Maß: Strategie, Design, Entwicklung, SEO und Wachstum. Preise orientierend; exaktes Angebot nach Briefing.",
-        ogLocale: "de_DE",
-        skip: "Zum Inhalt springen"
-      }
-    };
-    const buttons = document.querySelectorAll(".lang-btn");
-    const targets = document.querySelectorAll("[data-i18n]");
-    function setLanguage(lang){
-      const pack = dictionary[lang];
-      if(!pack) return;
-      document.documentElement.lang = lang;
-      targets.forEach((el)=>{
-        const key = el.getAttribute("data-i18n");
-        if(pack[key]) el.textContent = pack[key];
-      });
-      if(pack.title) document.title = pack.title;
-      const md = document.querySelector('meta[name="description"]');
-      if(pack.metaDesc && md) md.setAttribute("content", pack.metaDesc);
-      const ogt = document.querySelector('meta[property="og:title"]');
-      if(pack.ogTitle && ogt) ogt.setAttribute("content", pack.ogTitle);
-      const ogd = document.querySelector('meta[property="og:description"]');
-      if(pack.ogDesc && ogd) ogd.setAttribute("content", pack.ogDesc);
-      const ogl = document.querySelector('meta[property="og:locale"]');
-      if(pack.ogLocale && ogl) ogl.setAttribute("content", pack.ogLocale);
-      const twt = document.querySelector('meta[name="twitter:title"]');
-      if(pack.ogTitle && twt) twt.setAttribute("content", pack.ogTitle);
-      const twd = document.querySelector('meta[name="twitter:description"]');
-      if(pack.ogDesc && twd) twd.setAttribute("content", pack.ogDesc);
-      buttons.forEach((btn)=>btn.classList.toggle("active", btn.dataset.lang === lang));
-      try{ localStorage.setItem("td-lang", lang); }catch(e){}
-    }
-    buttons.forEach((btn)=>btn.addEventListener("click", ()=>setLanguage(btn.dataset.lang)));
-    try{
-      const saved = localStorage.getItem("td-lang");
-      if(saved && dictionary[saved]) setLanguage(saved);
-    }catch(e){}
-  </script>
+  <footer>© 2026 thedesigns.org — weby a e-shopy.</footer>
 </body>
 </html>
