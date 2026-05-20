@@ -34,20 +34,16 @@
 <style>
 :root{--bg:#060914;--bg2:#0b1022;--ink:#f8f8ff;--accent:#7c5cff;--accent2:#4fc3ff;--mute:rgba(216,223,255,.68);--hair:rgba(164,185,255,.2);--card:rgba(123,92,255,.09);--mx:1200px;--head:'Anton SC','Anton',system-ui,sans-serif;--sans:'Stack Sans Headline','Inter',system-ui,sans-serif;--body:'Inter',system-ui,sans-serif;--r:16px;--r2:22px}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--body);color:var(--ink);background:
-radial-gradient(circle at 12% 8%,rgba(124,92,255,.3),transparent 38%),
-radial-gradient(circle at 82% 14%,rgba(79,195,255,.28),transparent 35%),
-radial-gradient(circle at 52% 82%,rgba(255,65,188,.12),transparent 32%),
-linear-gradient(145deg,#060914 0%,#090f1f 48%,#0d1228 100%);
-overflow-x:hidden;font-size:15px;line-height:1.6}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);overflow-x:hidden;font-size:15px;line-height:1.6}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 ::selection{background:rgba(59,130,246,.3)}
 a:focus-visible,button:focus-visible{outline:2px solid rgba(59,130,246,.75);outline-offset:2px}
 .ct{width:min(var(--mx),92%);margin:0 auto}
 
-/* ── HEADER ── */
 header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(10,14,30,.72);border-bottom:1px solid var(--hair)}
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
 .hdr-logo{font-family:var(--sans);font-size:1.3rem;letter-spacing:.03em;font-weight:600}
@@ -58,13 +54,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .hdr-r{display:flex;gap:10px;align-items:center}
 .lb{border:1px solid var(--hair);background:0;color:var(--mute);border-radius:999px;padding:6px 10px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:var(--body);font-weight:600;transition:all .15s}
 .lb.on{color:var(--ink);background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.35)}
-
-/* Primary button */
 .pbtn{display:inline-flex;align-items:center;gap:0;border-radius:999px;background:linear-gradient(110deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:.88rem;overflow:hidden;transition:transform .2s,box-shadow .2s;min-height:36px;box-shadow:0 14px 30px -16px rgba(124,92,255,.85)}
 .pbtn:hover{transform:translateY(-1px);box-shadow:0 18px 36px -16px rgba(124,92,255,.95)}
 .pbtn-txt{position:relative;overflow:hidden;height:36px;padding:0 0 0 18px;display:flex;align-items:center}
 .pbtn-txt span{display:block;line-height:1;white-space:nowrap;transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.pbtn-txt span+span{display:none !important}
+.pbtn-txt span+span{display:none!important}
 .pbtn:hover .pbtn-txt span{transform:none}
 .pbtn-arr{width:36px;height:36px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
 .pbtn-arr svg{width:14px;height:14px;transition:transform .3s;fill:#fff}
@@ -73,11 +67,11 @@ header{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(16px)
 .pbtn.dark .pbtn-arr svg{fill:var(--ink)}
 .pbtn.outline{background:0;color:var(--ink);border:1px solid var(--hair)}
 .pbtn.outline .pbtn-arr svg{fill:var(--ink)}
+.back-btn{color:var(--mute);font-size:.85rem;transition:color .15s;display:flex;align-items:center;gap:6px;margin-right:8px;white-space:nowrap}
+.back-btn:hover{color:var(--ink)}
 
 /* ── HERO ── */
-.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 70px;overflow:hidden;background:
-radial-gradient(ellipse 70% 56% at 50% -4%,rgba(124,92,255,.4) 0%,rgba(124,92,255,.08) 36%,transparent 72%),
-linear-gradient(180deg,rgba(8,11,23,.3) 0%,rgba(8,11,23,.8) 82%)}
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 70px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:
 linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),
 linear-gradient(0deg,rgba(255,255,255,.03) 1px,transparent 1px);
@@ -151,7 +145,6 @@ background-size:60px 60px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.58),t
 .srv-img{border-radius:var(--r2);overflow:hidden;height:320px}
 .srv-img img{width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.06) brightness(.92);transition:filter .4s}
 .srv-block:hover .srv-img img{filter:saturate(1.18) contrast(1.1) brightness(.98)}
-/* Hide right-edge artifact on the first services image */
 .srv-block[data-i="0"] .srv-img img{object-position:44% 50%}
 .srv-desc{color:var(--mute);line-height:1.7;margin-bottom:18px}
 .srv-tags{display:flex;gap:8px;flex-wrap:wrap}
@@ -227,7 +220,6 @@ background-size:60px 60px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.58),t
 .loop-dot{width:28px;height:28px;border-radius:99px;flex-shrink:0;align-self:center;margin:0 8px}
 .loop-dot img{width:100%;height:100%;object-fit:contain;opacity:.3}
 
-/* Unified image grading to keep art direction consistent */
 .hero-img-box img,
 .about-img img,
 .about-img-2 img,
@@ -262,7 +254,7 @@ background-size:60px 60px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.58),t
 .pri-img-box img{width:100%;height:100%;object-fit:cover}
 
 /* ── FAQ ── */
-.faq-sec{padding:100px 0;background:var(--bg2);color:var(--ink)}
+.faq-sec{padding:100px 0;color:var(--ink)}
 .faq-sec .stl h2{color:var(--ink)}
 .faq-sec .stl h2 em{color:var(--mute)}
 .faq-sec .stl-sub p{color:var(--mute)}
@@ -345,11 +337,6 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 .sticky-dot-pulse{position:absolute;bottom:0;right:0;width:20px;height:20px;border-radius:99px;background:rgba(59,130,246,.35);animation:dotPulse 2s ease infinite}
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.8);opacity:0}}
 
-/* ── BACK BUTTON ── */
-.back-btn{color:var(--mute);font-size:.85rem;transition:color .15s;display:flex;align-items:center;gap:6px;margin-right:8px;white-space:nowrap}
-.back-btn:hover{color:var(--ink)}
-
-/* ── RESPONSIVE ── */
 @media(max-width:1040px){
 .about-grid,.srv-content,.faq-grid,.pri-body{grid-template-columns:1fr}
 .team-grid,.news-grid{grid-template-columns:1fr}
@@ -414,15 +401,15 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 
 <section class="about-sec" id="about">
 <div class="ct">
-  <div class="stl"><div class="stl-sub"><p data-i18n="aLbl">About Us</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+  <div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="aLbl">About Us</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="aH">Transforming Ideas into Powerful <em>Digital Screen Experiences</em></h2></div>
   <div class="about-grid">
-    <div class="about-img"><img src="images/rush.png" alt="" loading="lazy"/></div>
-    <div>
+    <div class="about-img" data-reveal="left"><img src="images/rush.png" alt="" loading="lazy"/></div>
+    <div data-reveal="right">
       <p class="about-txt" data-i18n="aP">We turn bold ideas into impactful digital experiences that captivate audiences and drive results. From strategy and design to development and execution, we create seamless solutions that bring your brand to life on every screen.</p>
       <a class="pbtn dark" href="#services"><span class="pbtn-txt"><span data-i18n="aBtn">More About Us</span><span data-i18n="aBtn">More About Us</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
-      <div class="about-img-2"><img src="images/light.png" alt="" loading="lazy"/></div>
-      <div class="kpi-grid">
+      <div class="about-img-2" data-reveal="scale"><img src="images/light.png" alt="" loading="lazy"/></div>
+      <div class="kpi-grid" data-reveal="stagger">
         <div class="kpi">
           <div class="kpi-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
           <p class="kpi-label" data-i18n="k1l">Client Satisfaction</p>
@@ -439,7 +426,7 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 </div>
 </section>
 
-<section class="cl-sec">
+<section class="cl-sec" data-reveal="fade">
   <div class="ct">
     <div class="cl-wrap">
       <p class="cl-title">Trusted by teams in design, retail, and production</p>
@@ -454,19 +441,19 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 </section>
 
 <section class="srv-sec" id="services">
-<div class="ct"><div class="stl"><div class="stl-sub"><p data-i18n="sLbl">Services</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+<div class="ct"><div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="sLbl">Services</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
 <h2 data-i18n="sT">Smart Solutions for <em>Bold Brands</em></h2></div></div>
-<div class="srv-block" data-i="0"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s1h">Brand Strategy</h2><span class="srv-count">01</span></div><div class="srv-content"><div class="srv-img"><img src="images/nautilus.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s1p">Clear positioning, messaging, and direction that define your brand's purpose, vision, growth, and long-term market leadership.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s1a">Market Research</span><span class="srv-tag" data-i18n="s1b">Brand Positioning</span><span class="srv-tag" data-i18n="s1c">Messaging Strategy</span></div></div></div></div></div>
-<div class="srv-block" data-i="1"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s2h">Visual Identity</h2><span class="srv-count">02</span></div><div class="srv-content"><div class="srv-img"><img src="images/ethereal.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s2p">Logos, typography, and brand systems built for consistency, strong recognition, timeless appeal, and scalable flexibility.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s2a">Logo design</span><span class="srv-tag" data-i18n="s2b">Typography</span><span class="srv-tag" data-i18n="s2c">Brand guidelines</span></div></div></div></div></div>
-<div class="srv-block" data-i="2"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s3h">Photography</h2><span class="srv-count">03</span></div><div class="srv-content"><div class="srv-img"><img src="images/cloud.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s3p">Professional photography — editorial, product, brand, events. Weddings as a complementary service with the same quality standard.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s3a">Editorial</span><span class="srv-tag" data-i18n="s3b">Product</span><span class="srv-tag" data-i18n="s3c">Weddings</span></div></div></div></div></div>
-<div class="srv-block" data-i="3"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s4h">Creative Direction</h2><span class="srv-count">04</span></div><div class="srv-content"><div class="srv-img"><img src="images/fluid.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s4p">Strategic guidance and art direction to keep every touchpoint aligned, cohesive, innovative, visually compelling, and impactful.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s4a">Art Direction</span><span class="srv-tag" data-i18n="s4b">Campaign Concepting</span><span class="srv-tag" data-i18n="s4c">Content Supervision</span></div></div></div></div></div>
+<div class="srv-block" data-i="0" data-reveal="fade"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s1h">Brand Strategy</h2><span class="srv-count">01</span></div><div class="srv-content"><div class="srv-img" data-reveal="wipe"><img src="images/nautilus.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s1p">Clear positioning, messaging, and direction that define your brand's purpose, vision, growth, and long-term market leadership.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s1a">Market Research</span><span class="srv-tag" data-i18n="s1b">Brand Positioning</span><span class="srv-tag" data-i18n="s1c">Messaging Strategy</span></div></div></div></div></div>
+<div class="srv-block" data-i="1" data-reveal="fade"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s2h">Visual Identity</h2><span class="srv-count">02</span></div><div class="srv-content"><div class="srv-img" data-reveal="wipe"><img src="images/ethereal.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s2p">Logos, typography, and brand systems built for consistency, strong recognition, timeless appeal, and scalable flexibility.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s2a">Logo design</span><span class="srv-tag" data-i18n="s2b">Typography</span><span class="srv-tag" data-i18n="s2c">Brand guidelines</span></div></div></div></div></div>
+<div class="srv-block" data-i="2" data-reveal="fade"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s3h">Photography</h2><span class="srv-count">03</span></div><div class="srv-content"><div class="srv-img" data-reveal="wipe"><img src="images/cloud.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s3p">Professional photography — editorial, product, brand, events. Weddings as a complementary service with the same quality standard.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s3a">Editorial</span><span class="srv-tag" data-i18n="s3b">Product</span><span class="srv-tag" data-i18n="s3c">Weddings</span></div></div></div></div></div>
+<div class="srv-block" data-i="3" data-reveal="fade"><div class="srv-inner"><div class="srv-head"><h2 class="srv-title" data-i18n="s4h">Creative Direction</h2><span class="srv-count">04</span></div><div class="srv-content"><div class="srv-img" data-reveal="wipe"><img src="images/fluid.png" alt="" loading="lazy"/></div><div><p class="srv-desc" data-i18n="s4p">Strategic guidance and art direction to keep every touchpoint aligned, cohesive, innovative, visually compelling, and impactful.</p><div class="srv-tags"><span class="srv-tag" data-i18n="s4a">Art Direction</span><span class="srv-tag" data-i18n="s4b">Campaign Concepting</span><span class="srv-tag" data-i18n="s4c">Content Supervision</span></div></div></div></div></div>
 </section>
 
-<section class="team-sec">
+<section class="team-sec" id="team">
 <div class="ct">
-  <div class="stl"><div class="stl-sub"><p data-i18n="tmLbl">Team</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+  <div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="tmLbl">Team</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="tmT">Our Talented Team of <em>Creative Specialists</em></h2></div>
-  <div class="team-grid">
+  <div class="team-grid" data-reveal="stagger">
     <div class="tm"><div class="tm-img-box"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Martin Kovac portrait" loading="lazy"/><div class="tm-float"><p data-i18n="t1d">Rapid Solutions for Modern Teams</p></div></div><div class="tm-info"><h3 data-i18n="t1n">Martin Kovac</h3><span data-i18n="t1r">Creative Director</span></div></div>
     <div class="tm"><div class="tm-img-box"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Petra Novak portrait" loading="lazy"/><div class="tm-float"><p data-i18n="t2d">Creative Strategies for Growing Brands</p></div></div><div class="tm-info"><h3 data-i18n="t2n">Petra Novak</h3><span data-i18n="t2r">Brand Strategist</span></div></div>
     <div class="tm"><div class="tm-img-box"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80" alt="Jakub Havel portrait" loading="lazy"/><div class="tm-float"><p data-i18n="t3d">Smart Execution for Bold Businesses</p></div></div><div class="tm-info"><h3 data-i18n="t3n">Jakub Havel</h3><span data-i18n="t3r">Senior Visual Designer</span></div></div>
@@ -474,24 +461,24 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 </div>
 </section>
 
-<section class="awards-sec">
-  <div class="award-row"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6L3.27 8.35l6.03-.88L12 2z"/></svg></div><div class="award-texts"><p>8x FWA of the day</p></div><div class="award-year">( 2026 )</div></div></div>
-  <div class="award-row"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4a5 5 0 0 1-10 0V3zm-3 2h3v2a7 7 0 0 0 2.2 5.1A5 5 0 0 1 4 7V5zm16 0v2a5 5 0 0 1-5.2 5.1A7 7 0 0 0 17 7V5h3zM10 15h4v2h2v2H8v-2h2v-2z"/></svg></div><div class="award-texts"><p>Recognized as a Webby Nominee</p></div><div class="award-year">( 2025 )</div></div></div>
-  <div class="award-row"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4zm-1 6v5l4 2"/></svg></div><div class="award-texts"><p>1x Studio of the Year Nominee</p><p>2x Site of the Month</p><p>9x Site of the Day</p><p>14x Honourable Mention</p></div><div class="award-year">( 2024 )</div></div></div>
-  <div class="award-row"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6h6l-4.8 4 1.8 7L12 15l-6 4 1.8-7L3 8h6l3-6z"/></svg></div><div class="award-texts"><p>2x Website of the Month</p><p>12x Innovation</p><p>4x UI Design</p></div><div class="award-year">( 2023 )</div></div></div>
+<section class="awards-sec" id="awards">
+  <div class="award-row" data-reveal="fade"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6L3.27 8.35l6.03-.88L12 2z"/></svg></div><div class="award-texts"><p>8x FWA of the day</p></div><div class="award-year">( 2026 )</div></div></div>
+  <div class="award-row" data-reveal="fade"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4a5 5 0 0 1-10 0V3zm-3 2h3v2a7 7 0 0 0 2.2 5.1A5 5 0 0 1 4 7V5zm16 0v2a5 5 0 0 1-5.2 5.1A7 7 0 0 0 17 7V5h3zM10 15h4v2h2v2H8v-2h2v-2z"/></svg></div><div class="award-texts"><p>Recognized as a Webby Nominee</p></div><div class="award-year">( 2025 )</div></div></div>
+  <div class="award-row" data-reveal="fade"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4zm-1 6v5l4 2"/></svg></div><div class="award-texts"><p>1x Studio of the Year Nominee</p><p>2x Site of the Month</p><p>9x Site of the Day</p><p>14x Honourable Mention</p></div><div class="award-year">( 2024 )</div></div></div>
+  <div class="award-row" data-reveal="fade"><div class="ct award-inner"><div class="award-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6h6l-4.8 4 1.8 7L12 15l-6 4 1.8-7L3 8h6l3-6z"/></svg></div><div class="award-texts"><p>2x Website of the Month</p><p>12x Innovation</p><p>4x UI Design</p></div><div class="award-year">( 2023 )</div></div></div>
 </section>
 
 <section class="work-sec" id="work">
 <div class="ct">
-  <div class="work-item"><img src="images/mountain.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w1h">Digital Brand Evolution</h2><p data-i18n="w1p">Bold visual systems that build recognition, strengthen positioning, and create lasting consistency.</p></div></div>
-  <div class="work-item"><img src="images/metal.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w2h">Immersive Web Experience</h2><p data-i18n="w2p">Modern, high-impact websites crafted to engage audiences and drive meaningful interaction.</p></div></div>
-  <div class="work-item"><img src="images/reflective.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w3h">Strategic Visual Identity</h2><p data-i18n="w3p">Distinct logos and brand elements designed for clarity, personality, and long-term impact.</p></div></div>
+  <div class="work-item" data-reveal="scale"><img src="images/mountain.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w1h">Digital Brand Evolution</h2><p data-i18n="w1p">Bold visual systems that build recognition, strengthen positioning, and create lasting consistency.</p></div></div>
+  <div class="work-item" data-reveal="scale"><img src="images/metal.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w2h">Immersive Web Experience</h2><p data-i18n="w2p">Modern, high-impact websites crafted to engage audiences and drive meaningful interaction.</p></div></div>
+  <div class="work-item" data-reveal="scale"><img src="images/reflective.png" alt="" loading="lazy"/><div class="work-ov"></div><div class="work-content"><h2 data-i18n="w3h">Strategic Visual Identity</h2><p data-i18n="w3p">Distinct logos and brand elements designed for clarity, personality, and long-term impact.</p></div></div>
 </div>
 </section>
 
 <section class="tst-sec" id="testimonials">
 <div class="ct">
-  <div class="stl"><div class="stl-sub"><p data-i18n="tsLbl">Testimonials</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+  <div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="tsLbl">Testimonials</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="tsT">Hear From the Brands <em>We've Transformed</em></h2></div>
 </div>
 <div class="tst-wrap">
@@ -512,14 +499,14 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 
 <section class="pri-sec" id="pricing">
 <div class="ct">
-  <div class="stl"><div class="stl-sub"><p data-i18n="prLbl">Pricing</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+  <div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="prLbl">Pricing</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="prT">Plans built to fit your <em>next project</em></h2></div>
-  <div class="pri-tabs-menu">
+  <div class="pri-tabs-menu" data-reveal="fade">
     <button class="pri-tab on" data-tab="0"><h3 data-i18n="pr1n">Basic</h3><p data-i18n="pr1d">For startups and first launches</p><div class="pri-tab-dot"></div></button>
     <button class="pri-tab" data-tab="1"><h3 data-i18n="pr2n">Standard</h3><p data-i18n="pr2d">For growing teams and serious builds</p><div class="pri-tab-dot"></div></button>
     <button class="pri-tab" data-tab="2"><h3 data-i18n="pr3n">Premium</h3><p data-i18n="pr3d">For established teams and growth</p><div class="pri-tab-dot"></div></button>
   </div>
-  <div class="pri-pane on" data-pane="0">
+  <div class="pri-pane on" data-pane="0" data-reveal="fade">
     <div class="pri-top"><div><div class="pri-price">$39<small data-i18n="prPer">Per Month</small></div><p class="pri-note" data-i18n="prNote">* Minimal booking period — 2 months.</p></div></div>
     <div class="pri-body"><div class="pri-list"><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf1">Brand & Identity starter kit</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf2">Website design (core pages)</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf3">Standard revisions</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf4">SEO setup essentials</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf5">Unlimited stock images</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf6">Native source files included</span></div><div class="pri-li"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span data-i18n="pf7">Final handoff files</span></div></div><div class="pri-img-box"><img src="images/device.png" alt="" loading="lazy"/><a class="pbtn dark" href="#contact" style="position:absolute;bottom:16px;left:16px"><span class="pbtn-txt"><span data-i18n="prBtn">Get Started</span><span data-i18n="prBtn">Get Started</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div></div>
   </div>
@@ -537,8 +524,8 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 <section class="faq-sec" id="faq">
 <div class="ct">
   <div class="faq-grid">
-    <div><p class="faq-sub" data-i18n="fqSm">Everything you might want to know—up front.</p><div class="faq-heading" data-i18n="fqH">Questions?</div></div>
-    <div class="faq-list">
+    <div data-reveal="left"><p class="faq-sub" data-i18n="fqSm">Everything you might want to know—up front.</p><div class="faq-heading" data-i18n="fqH">Questions?</div></div>
+    <div class="faq-list" data-reveal="right">
       <div class="faq-item"><div class="faq-toggle"><div class="faq-dot"></div><p data-i18n="f1q">What type of clients do you usually work with?</p><div class="faq-icon"><span class="_1"></span><span class="_2"></span></div></div><div class="faq-answer"><p data-i18n="f1a">We work with brands, startups, agencies, and individuals who value premium design and clear communication. From fashion labels to tech companies, our clients share one thing — a desire for work that stands out.</p></div></div>
       <div class="faq-item"><div class="faq-toggle"><div class="faq-dot"></div><p data-i18n="f2q">How long does a typical project take?</p><div class="faq-icon"><span class="_1"></span><span class="_2"></span></div></div><div class="faq-answer"><p data-i18n="f2a">Most branding and web projects take 4–8 weeks from kickoff to delivery. Photography sessions are typically completed within 1–2 weeks including post-production. We always set clear milestones so you know exactly what to expect.</p></div></div>
       <div class="faq-item"><div class="faq-toggle"><div class="faq-dot"></div><p data-i18n="f3q">Do you offer custom pricing packages?</p><div class="faq-icon"><span class="_1"></span><span class="_2"></span></div></div><div class="faq-answer"><p data-i18n="f3a">Absolutely. Every project is different, so we tailor our packages to match your scope, timeline, and budget. Reach out with your brief and we'll put together a transparent proposal within 48 hours.</p></div></div>
@@ -549,9 +536,9 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 </div>
 </section>
 
-<section class="cta-sec">
-<div class="cta-imgs"><div><img src="images/prismatic.png" alt=""/></div><div><img src="images/rush.png" alt=""/></div><div><img src="images/glass.png" alt=""/></div><div><img src="images/gradient.png" alt=""/></div><div><img src="images/nautilus.png" alt=""/></div><div><img src="images/light.png" alt=""/></div><div><img src="images/device.png" alt=""/></div><div><img src="images/cloud.png" alt=""/></div><div><img src="images/fluid.png" alt=""/></div></div>
-<div class="cta-content">
+<section class="cta-sec" id="cta">
+<div class="cta-imgs" data-parallax="0.3"><div><img src="images/prismatic.png" alt=""/></div><div><img src="images/rush.png" alt=""/></div><div><img src="images/glass.png" alt=""/></div><div><img src="images/gradient.png" alt=""/></div><div><img src="images/nautilus.png" alt=""/></div><div><img src="images/light.png" alt=""/></div><div><img src="images/device.png" alt=""/></div><div><img src="images/cloud.png" alt=""/></div><div><img src="images/fluid.png" alt=""/></div></div>
+<div class="cta-content" data-reveal="title">
   <p class="cta-sub" data-i18n="ctaP">Building lasting partnerships, scaling brands,</p>
   <h2 class="cta-h" data-i18n="ctaH">Let us inspire your <em>next project</em></h2>
   <a class="pbtn" href="#contact"><span class="pbtn-txt"><span data-i18n="ctaBtn">Chat today</span><span data-i18n="ctaBtn">Chat today</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
@@ -560,9 +547,9 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 
 <section class="news-sec" id="news">
 <div class="ct">
-  <div class="stl"><div class="stl-sub"><p data-i18n="nwLbl">News</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
+  <div class="stl" data-reveal="fade"><div class="stl-sub"><p data-i18n="nwLbl">News</p><svg viewBox="0 0 24 24"><path d="M12 2L2 12l10 10 10-10z"/></svg></div>
   <h2 data-i18n="nwT">Insights & Updates From <em>Our Creative Studio</em></h2></div>
-  <div class="news-grid">
+  <div class="news-grid" data-reveal="stagger">
     <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n1h">Nurturing brands through intentional design</h3><div class="nc-img"><img src="images/fluid.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n1p">We help brands grow and connect with their audience through thoughtful, strategic, and visually compelling design.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
     <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n2h">How Strategic Creativity Drives Business Growth</h3><div class="nc-img"><img src="images/nautilus.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n2p">Explore how purposeful design and innovative thinking can fuel growth, strengthen brands, and deliver measurable results.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
     <a class="nc" href="#"><div class="nc-meta"><span>Feb 21, 2026</span><span>&bull;</span><span>4 min read</span></div><h3 data-i18n="n3h">Innovative Ideas Transforming Modern Marketing</h3><div class="nc-img"><img src="images/textured.png" alt="" loading="lazy"/></div><div class="nc-body"><p data-i18n="n3p">Discover fresh strategies and creative solutions that are reshaping the way brands connect with their audience.</p><span class="pbtn dark" style="font-size:.82rem"><span class="pbtn-txt"><span data-i18n="nMore">Learn more</span><span data-i18n="nMore">Learn more</span></span><span class="pbtn-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></span></div></a>
@@ -570,7 +557,7 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
 </div>
 </section>
 
-<section id="contact" style="padding:60px 0">
+<section id="contact" style="padding:60px 0" data-reveal="fade">
 <div class="ct" style="display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap">
   <div>
     <div style="font-size:.72rem;color:var(--mute);text-transform:uppercase;letter-spacing:.2em;font-weight:600">AirLens Agency</div>
@@ -609,114 +596,98 @@ footer{padding:75px 0 0;border-top:1px solid var(--hair)}
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="../js/webflow-chunk.js" type="text/javascript"></script>
-<script src="https://assets-global.website-files.com/js/webflow.js" type="text/javascript"></script>
-<script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js"></script>
-<script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="../js/story-engine.js"></script>
 <script>
-gsap.registerPlugin(ScrollTrigger);
+/* ── STORY ENGINE ── */
+StoryEngine.init({
+  colors: { a: '#1a0a3e', b: '#0c1e4a', c: '#2a0a2e' },
+  chapters: [
+    { trigger: '#hero',         a: '#1a0a3e', b: '#0c1e4a', c: '#2a0a2e' },
+    { trigger: '#about',        a: '#1e0e48', b: '#14204a', c: '#280e3a' },
+    { trigger: '#services',     a: '#180a42', b: '#101a4e', c: '#220a34' },
+    { trigger: '#team',         a: '#1c0c50', b: '#0e2248', c: '#2e0c42' },
+    { trigger: '#work',         a: '#0e0a30', b: '#081838', c: '#1a0828' },
+    { trigger: '#testimonials', a: '#1a0e44', b: '#122040', c: '#260e38' },
+    { trigger: '#pricing',      a: '#140a3c', b: '#0c1c46', c: '#200a30' },
+    { trigger: '#faq',          a: '#0a0820', b: '#0a1430', c: '#140820' },
+    { trigger: '#cta',          a: '#1c0e4c', b: '#14224c', c: '#2c1048' },
+    { trigger: '#news',         a: '#160a3a', b: '#0e1c44', c: '#220a2e' }
+  ]
+});
 
-const D={
-sk:{title:"AirLens \u2014 Design Studio",back:"\u2190 Domov",nMore:"Zisti\u0165 viac",nlBtn:"Odobera\u0165",nA:"O n\u00e1s",nS:"Slu\u017eby",nW:"Pr\u00e1ce",nP:"Cenn\u00edk",nN:"Novinky",nCta:"Za\u010da\u0165",hName:"AirLens",hDesig:"Design Studio",hsub:"Grafick\u00fd dizajn s vä\u010d\u0161ou kontrolou št\u00fdlu, lepšou hierarchiou a r\u00fdchlej\u0161ou iter\u00e1ciou.",haward:"Best Digital Campaign, Creative Awards",aLbl:"O n\u00e1s",aH:"Premie\u0148ame n\u00e1pady na siln\u00e9 digit\u00e1lne z\u00e1\u017eitky na obrazovke",aP:"Odv\u00e1\u017ene n\u00e1pady premie\u0148ame na p\u00f4sobiv\u00e9 digit\u00e1lne z\u00e1\u017eitky, ktor\u00e9 zaujm\u00fa publikum a prin\u00e1\u0161aj\u00fa v\u00fdsledky.",aBtn:"Viac o n\u00e1s",k1l:"Spokojnos\u0165 klientov",k2l:"Projekty odovzdan\u00e9 na\u010das",sLbl:"Slu\u017eby",sT:"Inteligentn\u00e9 rie\u0161enia pre odv\u00e1\u017ene zna\u010dky",s1h:"Brand strat\u00e9gia",s1p:"Jasn\u00e1 poz\u00edcia, komunik\u00e1cia a smer, ktor\u00fd definuje \u00fa\u010del, v\u00edziu, rast a dlhodob\u00e9 vedenie.",s1a:"Prieskum trhu",s1b:"Brand poz\u00edcia",s1c:"Komunika\u010dn\u00e1 strat\u00e9gia",s2h:"Vizu\u00e1lna identita",s2p:"Log\u00e1, typografia a brand syst\u00e9my postaven\u00e9 pre konzistenciu a flexibiln\u00fa \u0161k\u00e1lovate\u013enos\u0165.",s2a:"Logo dizajn",s2b:"Typografia",s2c:"Brand guidelines",s3h:"Fotografia",s3p:"Profesion\u00e1lne fotenie \u2014 editorial, produkt, brand, eventy. Svadby ako doplnkov\u00e1 slu\u017eba.",s3a:"Editorial",s3b:"Produkt",s3c:"Svadby",s4h:"Kreat\u00edvna r\u00e9\u017eia",s4p:"Strategick\u00e9 vedenie a art direction pre ka\u017ed\u00fd touchpoint.",s4a:"Art direction",s4b:"Koncept kampan\u00ed",s4c:"Doh\u013ead nad obsahom",tmLbl:"T\u00edm",tmT:"N\u00e1\u0161 talentovan\u00fd t\u00edm kreat\u00edvnych \u0161pecialistov",t1n:"Martin Kovac",t1r:"Creative Director",t1d:"R\u00fdchle rie\u0161enia pre modern\u00e9 t\u00edmy",t2n:"Petra Novak",t2r:"Brand Strategist",t2d:"Kreat\u00edvne strat\u00e9gie pre rast\u00face zna\u010dky",t3n:"Jakub Havel",t3r:"Senior Visual Designer",t3d:"Presn\u00e1 realiz\u00e1cia pre odv\u00e1\u017ene biznisy",w1h:"Digit\u00e1lna evol\u00facia zna\u010dky",w1p:"Odv\u00e1\u017ene vizu\u00e1lne syst\u00e9my, ktor\u00e9 buduj\u00fa rozpoznate\u013enos\u0165.",w2h:"Imerzn\u00fd webov\u00fd z\u00e1\u017eitok",w2p:"Modern\u00e9 weby s vysok\u00fdm dopadom pre zaujatie publika.",w3h:"Strategick\u00e1 vizu\u00e1lna identita",w3p:"Osobit\u00e9 log\u00e1 a brand prvky navrhnut\u00e9 pre jasnos\u0165.",tsLbl:"Recenzie",tsT:"Vypo\u010dujte si zna\u010dky, ktor\u00e9 sme pretransformovali",tsR:"Na z\u00e1klade 140+ hodnoten\u00ed na AirLens",q1:"\u201ePartnerstvo s touto kreat\u00edvnou agent\u00farou bolo zlomov\u00fd moment pre na\u0161u spolo\u010dnos\u0165.\u201c",q1n:"Jonathan Miller",q1r:"Chief Marketing Officer",q2:"\u201eDizajn loga, brand guidelines, v\u00fdvoj webu \u2014 v\u0161etko s neuverite\u013enou pozornos\u0165ou k detailu.\u201c",q2n:"Samantha Collins",q2r:"Director of Communications",prLbl:"Cenn\u00edk",prT:"Pl\u00e1ny vytvoren\u00e9 pre v\u00e1\u0161 \u010fal\u0161\u00ed projekt",pr1n:"Basic",pr1d:"Pre startupy a prv\u00e9 spustenia",pr2n:"Standard",pr2d:"Pre rast\u00face t\u00edmy",pr3n:"Premium",pr3d:"Pre etablovan\u00e9 t\u00edmy",prPer:"Mesa\u010dne",prNote:"* Min. obdobie \u2014 2 mesiace.",pf1:"Brand & Identity starter kit",pf2:"Dizajn webu (hlavn\u00e9 str\u00e1nky)",pf3:"\u0160tandardn\u00e9 rev\u00edzie",pf4:"SEO setup z\u00e1klad",pf5:"Neobmedzen\u00e9 stock fotky",pf6:"Nat\u00edvne zdrojov\u00e9 s\u00fabory",pf7:"Fin\u00e1lne handoff s\u00fabory",prBtn:"Za\u010da\u0165",fqSm:"V\u0161etko, \u010do by ste chceli vedie\u0165 \u2014 vopred.",fqH:"Ot\u00e1zky?",f1q:"S ak\u00fdm typom klientov pracujete?",f1a:"Pracujeme so značkami, startupmi, agentúrami aj jednotlivcami, ktorí oceňujú prémiový dizajn a jasnú komunikáciu.",f2q:"Ako dlho trvá typický projekt?",f2a:"Branding a web projekty trvajú 4–8 týždňov. Fotenie vrátane postprodukcie 1–2 týždne. Vždy nastavíme jasné míľniky.",f3q:"Ponúkate individuálne cenové balíky?",f3a:"Samozrejme. Každý projekt je iný, preto balíky prispôsobíme vášmu rozsahu, termínu a rozpočtu. Pošlite brief a do 48 hodín dostanete transparentný návrh.",f4q:"Čo potrebujete na začiatok?",f4a:"Krátky brief s vašimi cieľmi, cieľovou skupinou a existujúcimi brand materiálmi. Ak neviete, kde začať, prevedieme vás discovery hovorom.",f5q:"Aký je váš dizajnový proces?",f5a:"Štyri fázy: Objavovanie (ciele a prieskum), Stratégia (štruktúra a smer), Tvorba (dizajn, kód, obsah) a Launch (testovanie, doladenie, odovzdanie).",ctaP:"Budujeme trval\u00e9 partnerstv\u00e1, \u0161k\u00e1lujeme zna\u010dky,",ctaH:"Nechajte n\u00e1s in\u0161pirova\u0165 v\u00e1\u0161 \u010fal\u0161\u00ed projekt",ctaBtn:"Nap\u00edsa\u0165 e\u0161te dnes",nwLbl:"Novinky",nwT:"Postrehy & aktualiz\u00e1cie z n\u00e1\u0161ho \u0161t\u00fadia",n1h:"Pestovanie zna\u010diek prostredn\u00edctvom dizajnu",n1p:"Pom\u00e1hame zna\u010dk\u00e1m r\u00e1s\u0165 cez premyslen\u00fd dizajn.",n2h:"Strategick\u00e1 kreativita a rast biznisu",n2p:"Cie\u013eavedom\u00fd dizajn m\u00f4\u017ee podn\u00edti\u0165 rast a v\u00fdsledky.",n3h:"Inovat\u00edvne n\u00e1pady v marketingu",n3p:"\u010cerstv\u00e9 strat\u00e9gie meniace sp\u00f4sob komunik\u00e1cie.",ctName:"Business Director at AirLens",ctPh:"Telef\u00f3n",ctCal:"Napl\u00e1nova\u0165 hovor",ftDesc:"Dod\u00e1vame strategick\u00e9 rie\u0161enia, ktor\u00e9 posúvajú zna\u010dky",ft1:"O n\u00e1s",ft2:"Pr\u00e1ce",ft3:"Cenn\u00edk",ft4:"Novinky",ftNl:"Zostaňte v obraze",ftNlP:"Prihl\u00e1ste sa na n\u00e1\u0161 newsletter.",nlBtn:"Odobera\u0165",metaDesc:"Profesion\u00e1lne design studio, umeleck\u00e1 fotografia, svadby a vizu\u00e1lna identita \u2014 thedesigns.org.",ogTitle:"Design Studio \u2014 thedesigns.org",ogLocale:"sk_SK",skip:"Presko\u010di\u0165 na obsah"},
-de:{title:"AirLens \u2014 Design Studio",back:"\u2190 Home",nMore:"Mehr erfahren",nlBtn:"Abonnieren",nA:"\u00dcber uns",nS:"Leistungen",nW:"Arbeiten",nP:"Preise",nN:"News",nCta:"Starten",hName:"AirLens",hDesig:"Design Studio",hsub:"Grafikdesign mit mehr Stilkontrolle, klarerer Hierarchie und schnellerer Iteration.",haward:"Best Digital Campaign, Creative Awards",aLbl:"\u00dcber uns",aH:"Ideen in kraftvolle digitale Bildschirmerlebnisse verwandeln",aP:"Wir verwandeln mutige Ideen in wirkungsvolle digitale Erlebnisse.",aBtn:"Mehr \u00fcber uns",k1l:"Kundenzufriedenheit",k2l:"P\u00fcnktlich gelieferte Projekte",sLbl:"Leistungen",sT:"Intelligente L\u00f6sungen f\u00fcr mutige Marken",s1h:"Markenstrategie",s1p:"Klare Positionierung und Richtung f\u00fcr Ihre Marke.",s1a:"Marktforschung",s1b:"Markenpositionierung",s1c:"Kommunikationsstrategie",s2h:"Visuelle Identit\u00e4t",s2p:"Logos und Markensysteme f\u00fcr Konsistenz.",s2a:"Logo-Design",s2b:"Typografie",s2c:"Brand Guidelines",s3h:"Fotografie",s3p:"Professionelle Fotografie \u2014 Editorial, Produkt, Events.",s3a:"Editorial",s3b:"Produkt",s3c:"Hochzeiten",s4h:"Kreative Regie",s4p:"Strategische F\u00fchrung und Art Direction.",s4a:"Art Direction",s4b:"Kampagnen-Konzept",s4c:"Content-Aufsicht",tmLbl:"Team",tmT:"Unser talentiertes Team kreativer Spezialisten",t1n:"Martin Kovac",t1r:"Creative Director",t1d:"Schnelle L\u00f6sungen",t2n:"Petra Novak",t2r:"Brand Strategist",t2d:"Kreative Strategien",t3n:"Jakub Havel",t3r:"Senior Visual Designer",t3d:"Pr\u00e4zise Umsetzung",w1h:"Digitale Markenevolution",w1p:"Mutige visuelle Systeme f\u00fcr Wiedererkennung.",w2h:"Immersives Web-Erlebnis",w2p:"Wirkungsvolle Websites f\u00fcr Zielgruppen.",w3h:"Strategische visuelle Identit\u00e4t",w3p:"Eigenst\u00e4ndige Logos und Markenelemente.",tsLbl:"Stimmen",tsT:"H\u00f6ren Sie von den Marken, die wir transformiert haben",tsR:"Basierend auf 140+ Bewertungen auf AirLens",q1:"\u201eDie Partnerschaft war ein Wendepunkt f\u00fcr unser Unternehmen.\u201c",q1n:"Jonathan Miller",q1r:"Chief Marketing Officer",q2:"\u201eAlles wurde mit unglaublicher Liebe zum Detail umgesetzt.\u201c",q2n:"Samantha Collins",q2r:"Director of Communications",prLbl:"Preise",prT:"Pl\u00e4ne f\u00fcr Ihr n\u00e4chstes Projekt",pr1n:"Basic",pr1d:"F\u00fcr Startups",pr2n:"Standard",pr2d:"F\u00fcr wachsende Teams",pr3n:"Premium",pr3d:"F\u00fcr etablierte Teams",prPer:"Pro Monat",prNote:"* Mindestbuchung \u2014 2 Monate.",pf1:"Brand & Identity Starter-Kit",pf2:"Website-Design (Kernseiten)",pf3:"Standard-Revisionen",pf4:"SEO-Setup",pf5:"Unbegrenzte Stock-Bilder",pf6:"Native Quelldateien",pf7:"Finale Handoff-Dateien",prBtn:"Starten",fqSm:"Alles vorab.",fqH:"Fragen?",f1q:"Mit welchem Kundentyp arbeiten Sie?",f1a:"Wir arbeiten mit Marken, Startups, Agenturen und Einzelpersonen, die Premium-Design und klare Kommunikation schätzen.",f2q:"Wie lange dauert ein Projekt?",f2a:"Branding und Web dauern 4–8 Wochen. Fotoshootings inkl. Postproduktion 1–2 Wochen. Klare Meilensteine garantiert.",f3q:"Individuelle Preispakete?",f3a:"Selbstverständlich. Jedes Projekt ist anders — wir passen unsere Pakete an Umfang, Zeitplan und Budget an. Senden Sie uns Ihr Briefing.",f4q:"Was brauchen Sie zum Start?",f4a:"Ein kurzes Briefing mit Ihren Zielen, Zielgruppe und vorhandenen Marken-Assets. Bei Unsicherheit führen wir ein Discovery-Gespräch.",f5q:"Ihr Design-Prozess?",f5a:"Vier Phasen: Discovery (Ziele & Research), Strategie (Struktur & Richtung), Kreation (Design, Code, Content) und Launch (Testing, Feinschliff, Übergabe).",ctaP:"Dauerhafte Partnerschaften, Marken skalieren,",ctaH:"Lassen Sie uns Ihr n\u00e4chstes Projekt inspirieren",ctaBtn:"Heute chatten",nwLbl:"News",nwT:"Einblicke aus unserem Studio",n1h:"Marken durch Design pflegen",n1p:"Durchdachtes Design f\u00fcr Wachstum.",n2h:"Strategische Kreativit\u00e4t",n2p:"Innovatives Denken f\u00f6rdert Wachstum.",n3h:"Innovative Marketing-Ideen",n3p:"Frische Strategien und L\u00f6sungen.",ctName:"Business Director bei AirLens",ctPh:"Telefon",ctCal:"Gespr\u00e4ch planen",ftDesc:"Strategische Designl\u00f6sungen f\u00fcr Marken",ft1:"\u00dcber uns",ft2:"Arbeiten",ft3:"Preise",ft4:"News",ftNl:"Bleiben Sie informiert",ftNlP:"Abonnieren Sie unseren Newsletter.",nlBtn:"Abonnieren",metaDesc:"Professionelles Design Studio, k\u00fcnstlerische Fotografie, Hochzeiten und visuelle Identit\u00e4t \u2014 thedesigns.org.",ogTitle:"Design Studio \u2014 thedesigns.org",ogLocale:"de_DE",skip:"Zum Inhalt springen"}
-};
+/* ── HERO ANIMATIONS (bespoke, not from engine) ── */
+gsap.fromTo('.hero-img-box._1',
+  {opacity:0,y:'160%',x:-28,scale:.2,rotation:10},
+  {opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.55,delay:.2,ease:'back.out(1.35)'});
+gsap.fromTo('.hero-img-box._2',
+  {opacity:0,y:'320%',x:65,scale:.66,rotation:-22},
+  {opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.65,delay:.45,ease:'back.out(1.25)'});
+gsap.fromTo('.hero-img-box._3',
+  {opacity:0,y:'260%',x:-78,scale:.7,rotation:24},
+  {opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.6,delay:.52,ease:'back.out(1.22)'});
 
-/* Language */
-const lbs=document.querySelectorAll(".lb"),els=document.querySelectorAll("[data-i18n]");
-function sL(l){const p=D[l];if(!p)return;document.documentElement.lang=l;els.forEach(e=>{const k=e.getAttribute("data-i18n");if(p[k]!==undefined){if(e.tagName==="INPUT")e.placeholder=p[k];else e.textContent=p[k];}});if(p.title)document.title=p.title;var md=document.querySelector('meta[name="description"]');if(p.metaDesc&&md)md.setAttribute("content",p.metaDesc);var ogd=document.querySelector('meta[property="og:description"]');if(p.metaDesc&&ogd)ogd.setAttribute("content",p.metaDesc);var ogt=document.querySelector('meta[property="og:title"]');if(p.ogTitle&&ogt)ogt.setAttribute("content",p.ogTitle);var ogl=document.querySelector('meta[property="og:locale"]');if(p.ogLocale&&ogl)ogl.setAttribute("content",p.ogLocale);var tw=document.querySelector('meta[name="twitter:title"]');if(p.ogTitle&&tw)tw.setAttribute("content",p.ogTitle);var twd=document.querySelector('meta[name="twitter:description"]');if(p.metaDesc&&twd)twd.setAttribute("content",p.metaDesc);lbs.forEach(b=>b.classList.toggle("on",b.dataset.lang===l));try{localStorage.setItem("td-lang",l);}catch(e){}}
-lbs.forEach(b=>b.addEventListener("click",()=>sL(b.dataset.lang)));
-try{const s=localStorage.getItem("td-lang");sL(s==="de"?"de":"sk");}catch(e){sL("sk");}
+gsap.to('.hero-img-box._1',{y:'+=28',x:'-=12',rotation:1.9,duration:7.8,delay:1.9,repeat:-1,yoyo:true,ease:'sine.inOut'});
+gsap.to('.hero-img-box._2',{y:'+=34',x:'-=20',rotation:-2.8,duration:9.2,delay:2.2,repeat:-1,yoyo:true,ease:'sine.inOut'});
+gsap.to('.hero-img-box._3',{y:'-=30',x:'+=22',rotation:2.3,duration:8.7,delay:2.45,repeat:-1,yoyo:true,ease:'sine.inOut'});
 
-/* Duplicate marquees & testimonials */
-["loop1","loop2","tstTrack"].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML+=e.innerHTML;});
-
-/* Pricing tabs */
-document.querySelectorAll(".pri-tab").forEach(btn=>{btn.addEventListener("click",()=>{document.querySelectorAll(".pri-tab").forEach(b=>b.classList.remove("on"));btn.classList.add("on");const i=btn.dataset.tab;document.querySelectorAll(".pri-pane").forEach(p=>p.classList.toggle("on",p.dataset.pane===i));});});
-
-/* FAQ */
-document.querySelectorAll(".faq-toggle").forEach(t=>{t.addEventListener("click",()=>{const item=t.parentElement;item.classList.toggle("open");});});
-
-/* Sticky info toggle */
-const st=document.getElementById("stickyToggle"),sc=document.getElementById("stickyCard");
-if(st&&sc)st.addEventListener("click",()=>sc.classList.toggle("open"));
-
-/* ── GSAP ANIMATIONS ── */
-/* Hero images entrance (stronger first-load motion) */
-gsap.to(".hero-img-box._1",{opacity:1,y:0,scale:1,rotation:0,duration:1.45,delay:.25,ease:"back.out(1.35)",onStart:function(){this.targets()[0].style.transform="translate(-50%,-50%) scale(.2) rotate(10deg)";this.targets()[0].style.opacity="0";}});
-gsap.fromTo(".hero-img-box._1",{opacity:0,y:"160%",x:-28,scale:.2,rotation:10},{opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.55,delay:.2,ease:"back.out(1.35)"});
-gsap.fromTo(".hero-img-box._2",{opacity:0,y:"320%",x:65,scale:.66,rotation:-22},{opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.65,delay:.45,ease:"back.out(1.25)"});
-gsap.fromTo(".hero-img-box._3",{opacity:0,y:"260%",x:-78,scale:.7,rotation:24},{opacity:1,y:0,x:0,scale:1,rotation:0,duration:1.6,delay:.52,ease:"back.out(1.22)"});
-
-/* Cinematic floating after initial load */
-gsap.to(".hero-img-box._1",{y:"+=28",x:"-=12",rotation:1.9,duration:7.8,delay:1.9,repeat:-1,yoyo:true,ease:"sine.inOut"});
-gsap.to(".hero-img-box._2",{y:"+=34",x:"-=20",rotation:-2.8,duration:9.2,delay:2.2,repeat:-1,yoyo:true,ease:"sine.inOut"});
-gsap.to(".hero-img-box._3",{y:"-=30",x:"+=22",rotation:2.3,duration:8.7,delay:2.45,repeat:-1,yoyo:true,ease:"sine.inOut"});
-
-/* Mouse parallax in hero (optimized to prevent lag/jank) */
-const heroEl=document.getElementById("hero");
+var heroEl=document.getElementById('hero');
 if(heroEl){
-  const q1x=gsap.quickTo(".hero-img-box._1","x",{duration:.75,ease:"power2.out"});
-  const q1y=gsap.quickTo(".hero-img-box._1","y",{duration:.75,ease:"power2.out"});
-  const q2x=gsap.quickTo(".hero-img-box._2","x",{duration:.85,ease:"power2.out"});
-  const q2y=gsap.quickTo(".hero-img-box._2","y",{duration:.85,ease:"power2.out"});
-  const q3x=gsap.quickTo(".hero-img-box._3","x",{duration:.9,ease:"power2.out"});
-  const q3y=gsap.quickTo(".hero-img-box._3","y",{duration:.9,ease:"power2.out"});
-
-  let rafLock=false;
-  let lastX=0;
-  let lastY=0;
-
-  const applyParallax=()=>{
-    const r=heroEl.getBoundingClientRect();
-    const dx=(lastX-r.left)/r.width-.5;
-    const dy=(lastY-r.top)/r.height-.5;
-    q1x(dx*20); q1y(dy*8);
-    q2x(dx*32); q2y(dy*20);
-    q3x(dx*-34); q3y(dy*22);
+  var q1x=gsap.quickTo('.hero-img-box._1','x',{duration:.75,ease:'power2.out'});
+  var q1y=gsap.quickTo('.hero-img-box._1','y',{duration:.75,ease:'power2.out'});
+  var q2x=gsap.quickTo('.hero-img-box._2','x',{duration:.85,ease:'power2.out'});
+  var q2y=gsap.quickTo('.hero-img-box._2','y',{duration:.85,ease:'power2.out'});
+  var q3x=gsap.quickTo('.hero-img-box._3','x',{duration:.9,ease:'power2.out'});
+  var q3y=gsap.quickTo('.hero-img-box._3','y',{duration:.9,ease:'power2.out'});
+  var rafLock=false,lastX=0,lastY=0;
+  var applyParallax=function(){
+    var r=heroEl.getBoundingClientRect();
+    var dx=(lastX-r.left)/r.width-.5;
+    var dy=(lastY-r.top)/r.height-.5;
+    q1x(dx*20);q1y(dy*8);q2x(dx*32);q2y(dy*20);q3x(dx*-34);q3y(dy*22);
     rafLock=false;
   };
-
-  heroEl.addEventListener("mousemove",(e)=>{
-    lastX=e.clientX;
-    lastY=e.clientY;
-    if(rafLock) return;
-    rafLock=true;
-    requestAnimationFrame(applyParallax);
+  heroEl.addEventListener('mousemove',function(e){
+    lastX=e.clientX;lastY=e.clientY;
+    if(rafLock)return;rafLock=true;requestAnimationFrame(applyParallax);
   },{passive:true});
-
-  heroEl.addEventListener("mouseleave",()=>{
-    q1x(0); q1y(0);
-    q2x(0); q2y(0);
-    q3x(0); q3y(0);
-  });
+  heroEl.addEventListener('mouseleave',function(){q1x(0);q1y(0);q2x(0);q2y(0);q3x(0);q3y(0);});
 }
 
-/* Hero titles */
-gsap.to(".hero-h span",{y:0,duration:1,stagger:.12,delay:.6,ease:"power3.out"});
+gsap.to('.hero-h span',{y:0,duration:1,stagger:.12,delay:.6,ease:'power3.out'});
+gsap.fromTo('.hero-sub, .hero-social, .hero-reel',{opacity:0,y:20},{opacity:1,y:0,duration:.8,stagger:.15,delay:1,ease:'power2.out'});
 
-/* Hero content fade */
-gsap.fromTo(".hero-sub, .hero-social, .hero-reel",{opacity:0,y:20},{opacity:1,y:0,duration:.8,stagger:.15,delay:1,ease:"power2.out"});
-
-/* Scroll-triggered reveals */
-gsap.utils.toArray(".stl, .about-grid, .srv-block, .tm, .award-row, .work-item, .tst-card, .nc, .pri-pane, .faq-item").forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:40},{opacity:1,y:0,duration:.7,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 85%",once:true}});
+/* Work images parallax scale */
+gsap.utils.toArray('.work-item img').forEach(function(img){
+  gsap.fromTo(img,{scale:1.1},{scale:1,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
 });
 
-/* Service blocks stagger */
-gsap.utils.toArray(".srv-content").forEach(el=>{
-  gsap.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 80%",once:true}});
-});
+/* ── LANGUAGE ── */
+var D={
+sk:{title:"AirLens \u2014 Design Studio",back:"\u2190 Domov",nMore:"Zisti\u0165 viac",nlBtn:"Odobera\u0165",nA:"O n\u00e1s",nS:"Slu\u017eby",nW:"Pr\u00e1ce",nP:"Cenn\u00edk",nN:"Novinky",nCta:"Za\u010da\u0165",hName:"AirLens",hDesig:"Design Studio",hsub:"Grafick\u00fd dizajn s v\u00e4\u010d\u0161ou kontrolou \u0161t\u00fdlu, lep\u0161ou hierarchiou a r\u00fdchlej\u0161ou iter\u00e1ciou.",haward:"Best Digital Campaign, Creative Awards",aLbl:"O n\u00e1s",aH:"Premie\u0148ame n\u00e1pady na siln\u00e9 digit\u00e1lne z\u00e1\u017eitky na obrazovke",aP:"Odv\u00e1\u017ene n\u00e1pady premie\u0148ame na p\u00f4sobiv\u00e9 digit\u00e1lne z\u00e1\u017eitky, ktor\u00e9 zaujm\u00fa publikum a prin\u00e1\u0161aj\u00fa v\u00fdsledky.",aBtn:"Viac o n\u00e1s",k1l:"Spokojnos\u0165 klientov",k2l:"Projekty odovzdan\u00e9 na\u010das",sLbl:"Slu\u017eby",sT:"Inteligentn\u00e9 rie\u0161enia pre odv\u00e1\u017ene zna\u010dky",s1h:"Brand strat\u00e9gia",s1p:"Jasn\u00e1 poz\u00edcia, komunik\u00e1cia a smer, ktor\u00fd definuje \u00fa\u010del, v\u00edziu, rast a dlhodob\u00e9 vedenie.",s1a:"Prieskum trhu",s1b:"Brand poz\u00edcia",s1c:"Komunika\u010dn\u00e1 strat\u00e9gia",s2h:"Vizu\u00e1lna identita",s2p:"Log\u00e1, typografia a brand syst\u00e9my postaven\u00e9 pre konzistenciu a flexibiln\u00fa \u0161k\u00e1lovate\u013enos\u0165.",s2a:"Logo dizajn",s2b:"Typografia",s2c:"Brand guidelines",s3h:"Fotografia",s3p:"Profesion\u00e1lne fotenie \u2014 editorial, produkt, brand, eventy. Svadby ako doplnkov\u00e1 slu\u017eba.",s3a:"Editorial",s3b:"Produkt",s3c:"Svadby",s4h:"Kreat\u00edvna r\u00e9\u017eia",s4p:"Strategick\u00e9 vedenie a art direction pre ka\u017ed\u00fd touchpoint.",s4a:"Art direction",s4b:"Koncept kampan\u00ed",s4c:"Doh\u013ead nad obsahom",tmLbl:"T\u00edm",tmT:"N\u00e1\u0161 talentovan\u00fd t\u00edm kreat\u00edvnych \u0161pecialistov",t1n:"Martin Kovac",t1r:"Creative Director",t1d:"R\u00fdchle rie\u0161enia pre modern\u00e9 t\u00edmy",t2n:"Petra Novak",t2r:"Brand Strategist",t2d:"Kreat\u00edvne strat\u00e9gie pre rast\u00face zna\u010dky",t3n:"Jakub Havel",t3r:"Senior Visual Designer",t3d:"Presn\u00e1 realiz\u00e1cia pre odv\u00e1\u017ene biznisy",w1h:"Digit\u00e1lna evol\u00facia zna\u010dky",w1p:"Odv\u00e1\u017ene vizu\u00e1lne syst\u00e9my, ktor\u00e9 buduj\u00fa rozpoznate\u013enos\u0165.",w2h:"Imerzn\u00fd webov\u00fd z\u00e1\u017eitok",w2p:"Modern\u00e9 weby s vysok\u00fdm dopadom pre zaujatie publika.",w3h:"Strategick\u00e1 vizu\u00e1lna identita",w3p:"Osobit\u00e9 log\u00e1 a brand prvky navrhnut\u00e9 pre jasnos\u0165.",tsLbl:"Recenzie",tsT:"Vypo\u010dujte si zna\u010dky, ktor\u00e9 sme pretransformovali",tsR:"Na z\u00e1klade 140+ hodnoten\u00ed na AirLens",q1:"\u201ePartnerstvo s touto kreat\u00edvnou agent\u00farou bolo zlomov\u00fd moment pre na\u0161u spolo\u010dnos\u0165.\u201c",q1n:"Jonathan Miller",q1r:"Chief Marketing Officer",q2:"\u201eDizajn loga, brand guidelines, v\u00fdvoj webu \u2014 v\u0161etko s neuverite\u013enou pozornos\u0165ou k detailu.\u201c",q2n:"Samantha Collins",q2r:"Director of Communications",prLbl:"Cenn\u00edk",prT:"Pl\u00e1ny vytvoren\u00e9 pre v\u00e1\u0161 \u010fal\u0161\u00ed projekt",pr1n:"Basic",pr1d:"Pre startupy a prv\u00e9 spustenia",pr2n:"Standard",pr2d:"Pre rast\u00face t\u00edmy",pr3n:"Premium",pr3d:"Pre etablovan\u00e9 t\u00edmy",prPer:"Mesa\u010dne",prNote:"* Min. obdobie \u2014 2 mesiace.",pf1:"Brand & Identity starter kit",pf2:"Dizajn webu (hlavn\u00e9 str\u00e1nky)",pf3:"\u0160tandardn\u00e9 rev\u00edzie",pf4:"SEO setup z\u00e1klad",pf5:"Neobmedzen\u00e9 stock fotky",pf6:"Nat\u00edvne zdrojov\u00e9 s\u00fabory",pf7:"Fin\u00e1lne handoff s\u00fabory",prBtn:"Za\u010da\u0165",fqSm:"V\u0161etko, \u010do by ste chceli vedie\u0165 \u2014 vopred.",fqH:"Ot\u00e1zky?",f1q:"S ak\u00fdm typom klientov pracujete?",f1a:"Pracujeme so zna\u010dkami, startupmi, agent\u00farami aj jednotlivcami, ktor\u00ed oce\u0148uj\u00fa pr\u00e9miov\u00fd dizajn a jasn\u00fa komunik\u00e1ciu.",f2q:"Ako dlho trv\u00e1 typick\u00fd projekt?",f2a:"Branding a web projekty trvaj\u00fa 4\u20138 t\u00fd\u017ed\u0148ov. Fotenie vr\u00e1tane postprodukcie 1\u20132 t\u00fd\u017edne. V\u017edy nastav\u00edme jasn\u00e9 m\u00ed\u013eniky.",f3q:"Pon\u00fakate individu\u00e1lne cenov\u00e9 bal\u00edky?",f3a:"Samozrejme. Ka\u017ed\u00fd projekt je in\u00fd, preto bal\u00edky prisp\u00f4sob\u00edme v\u00e1\u0161mu rozsahu, term\u00ednu a rozpo\u010dtu. Po\u0161lite brief a do 48 hod\u00edn dostanete transparentn\u00fd n\u00e1vrh.",f4q:"\u010co potrebujete na za\u010diatok?",f4a:"Kr\u00e1tky brief s va\u0161imi cie\u013emi, cie\u013eovou skupinou a existuj\u00facimi brand materi\u00e1lmi. Ak neviete, kde za\u010da\u0165, prevedieme v\u00e1s discovery hovorom.",f5q:"Ak\u00fd je v\u00e1\u0161 dizajnov\u00fd proces?",f5a:"\u0160tyri f\u00e1zy: Objavovanie (ciele a prieskum), Strat\u00e9gia (\u0161trukt\u00fara a smer), Tvorba (dizajn, k\u00f3d, obsah) a Launch (testovanie, doladenie, odovzdanie).",ctaP:"Budujeme trval\u00e9 partnerstv\u00e1, \u0161k\u00e1lujeme zna\u010dky,",ctaH:"Nechajte n\u00e1s in\u0161pirova\u0165 v\u00e1\u0161 \u010fal\u0161\u00ed projekt",ctaBtn:"Nap\u00edsa\u0165 e\u0161te dnes",nwLbl:"Novinky",nwT:"Postrehy & aktualiz\u00e1cie z n\u00e1\u0161ho \u0161t\u00fadia",n1h:"Pestovanie zna\u010diek prostredn\u00edctvom dizajnu",n1p:"Pom\u00e1hame zna\u010dk\u00e1m r\u00e1s\u0165 cez premyslen\u00fd dizajn.",n2h:"Strategick\u00e1 kreativita a rast biznisu",n2p:"Cie\u013eavedom\u00fd dizajn m\u00f4\u017ee podn\u00edti\u0165 rast a v\u00fdsledky.",n3h:"Inovat\u00edvne n\u00e1pady v marketingu",n3p:"\u010cerstv\u00e9 strat\u00e9gie meniace sp\u00f4sob komunik\u00e1cie.",ctName:"Business Director at AirLens",ctPh:"Telef\u00f3n",ctCal:"Napl\u00e1nova\u0165 hovor",ftDesc:"Dod\u00e1vame strategick\u00e9 rie\u0161enia, ktor\u00e9 pos\u00favaj\u00fa zna\u010dky",ft1:"O n\u00e1s",ft2:"Pr\u00e1ce",ft3:"Cenn\u00edk",ft4:"Novinky",ftNl:"Zosta\u0148te v obraze",ftNlP:"Prihl\u00e1ste sa na n\u00e1\u0161 newsletter.",nlBtn:"Odobera\u0165"},
+de:{title:"AirLens \u2014 Design Studio",back:"\u2190 Home",nMore:"Mehr erfahren",nlBtn:"Abonnieren",nA:"\u00dcber uns",nS:"Leistungen",nW:"Arbeiten",nP:"Preise",nN:"News",nCta:"Starten",hName:"AirLens",hDesig:"Design Studio",hsub:"Grafikdesign mit mehr Stilkontrolle, klarerer Hierarchie und schnellerer Iteration.",haward:"Best Digital Campaign, Creative Awards",aLbl:"\u00dcber uns",aH:"Ideen in kraftvolle digitale Bildschirmerlebnisse verwandeln",aP:"Wir verwandeln mutige Ideen in wirkungsvolle digitale Erlebnisse.",aBtn:"Mehr \u00fcber uns",k1l:"Kundenzufriedenheit",k2l:"P\u00fcnktlich gelieferte Projekte",sLbl:"Leistungen",sT:"Intelligente L\u00f6sungen f\u00fcr mutige Marken",s1h:"Markenstrategie",s1p:"Klare Positionierung und Richtung f\u00fcr Ihre Marke.",s1a:"Marktforschung",s1b:"Markenpositionierung",s1c:"Kommunikationsstrategie",s2h:"Visuelle Identit\u00e4t",s2p:"Logos und Markensysteme f\u00fcr Konsistenz.",s2a:"Logo-Design",s2b:"Typografie",s2c:"Brand Guidelines",s3h:"Fotografie",s3p:"Professionelle Fotografie \u2014 Editorial, Produkt, Events.",s3a:"Editorial",s3b:"Produkt",s3c:"Hochzeiten",s4h:"Kreative Regie",s4p:"Strategische F\u00fchrung und Art Direction.",s4a:"Art Direction",s4b:"Kampagnen-Konzept",s4c:"Content-Aufsicht",tmLbl:"Team",tmT:"Unser talentiertes Team kreativer Spezialisten",t1n:"Martin Kovac",t1r:"Creative Director",t1d:"Schnelle L\u00f6sungen",t2n:"Petra Novak",t2r:"Brand Strategist",t2d:"Kreative Strategien",t3n:"Jakub Havel",t3r:"Senior Visual Designer",t3d:"Pr\u00e4zise Umsetzung",w1h:"Digitale Markenevolution",w1p:"Mutige visuelle Systeme f\u00fcr Wiedererkennung.",w2h:"Immersives Web-Erlebnis",w2p:"Wirkungsvolle Websites f\u00fcr Zielgruppen.",w3h:"Strategische visuelle Identit\u00e4t",w3p:"Eigenst\u00e4ndige Logos und Markenelemente.",tsLbl:"Stimmen",tsT:"H\u00f6ren Sie von den Marken, die wir transformiert haben",tsR:"Basierend auf 140+ Bewertungen auf AirLens",q1:"\u201eDie Partnerschaft war ein Wendepunkt f\u00fcr unser Unternehmen.\u201c",q1n:"Jonathan Miller",q1r:"Chief Marketing Officer",q2:"\u201eAlles wurde mit unglaublicher Liebe zum Detail umgesetzt.\u201c",q2n:"Samantha Collins",q2r:"Director of Communications",prLbl:"Preise",prT:"Pl\u00e4ne f\u00fcr Ihr n\u00e4chstes Projekt",pr1n:"Basic",pr1d:"F\u00fcr Startups",pr2n:"Standard",pr2d:"F\u00fcr wachsende Teams",pr3n:"Premium",pr3d:"F\u00fcr etablierte Teams",prPer:"Pro Monat",prNote:"* Mindestbuchung \u2014 2 Monate.",pf1:"Brand & Identity Starter-Kit",pf2:"Website-Design (Kernseiten)",pf3:"Standard-Revisionen",pf4:"SEO-Setup",pf5:"Unbegrenzte Stock-Bilder",pf6:"Native Quelldateien",pf7:"Finale Handoff-Dateien",prBtn:"Starten",fqSm:"Alles vorab.",fqH:"Fragen?",f1q:"Mit welchem Kundentyp arbeiten Sie?",f1a:"Wir arbeiten mit Marken, Startups, Agenturen und Einzelpersonen, die Premium-Design und klare Kommunikation sch\u00e4tzen.",f2q:"Wie lange dauert ein Projekt?",f2a:"Branding und Web dauern 4\u20138 Wochen. Fotoshootings inkl. Postproduktion 1\u20132 Wochen. Klare Meilensteine garantiert.",f3q:"Individuelle Preispakete?",f3a:"Selbstverst\u00e4ndlich. Jedes Projekt ist anders \u2014 wir passen unsere Pakete an Umfang, Zeitplan und Budget an. Senden Sie uns Ihr Briefing.",f4q:"Was brauchen Sie zum Start?",f4a:"Ein kurzes Briefing mit Ihren Zielen, Zielgruppe und vorhandenen Marken-Assets. Bei Unsicherheit f\u00fchren wir ein Discovery-Gespr\u00e4ch.",f5q:"Ihr Design-Prozess?",f5a:"Vier Phasen: Discovery (Ziele & Research), Strategie (Struktur & Richtung), Kreation (Design, Code, Content) und Launch (Testing, Feinschliff, \u00dcbergabe).",ctaP:"Dauerhafte Partnerschaften, Marken skalieren,",ctaH:"Lassen Sie uns Ihr n\u00e4chstes Projekt inspirieren",ctaBtn:"Heute chatten",nwLbl:"News",nwT:"Einblicke aus unserem Studio",n1h:"Marken durch Design pflegen",n1p:"Durchdachtes Design f\u00fcr Wachstum.",n2h:"Strategische Kreativit\u00e4t",n2p:"Innovatives Denken f\u00f6rdert Wachstum.",n3h:"Innovative Marketing-Ideen",n3p:"Frische Strategien und L\u00f6sungen.",ctName:"Business Director bei AirLens",ctPh:"Telefon",ctCal:"Gespr\u00e4ch planen",ftDesc:"Strategische Designl\u00f6sungen f\u00fcr Marken",ft1:"\u00dcber uns",ft2:"Arbeiten",ft3:"Preise",ft4:"News",ftNl:"Bleiben Sie informiert",ftNlP:"Abonnieren Sie unseren Newsletter.",nlBtn:"Abonnieren"}
+};
 
-/* CTA parallax on images */
-gsap.to(".cta-imgs",{y:-60,ease:"none",scrollTrigger:{trigger:".cta-sec",start:"top bottom",end:"bottom top",scrub:true}});
+var lbs=document.querySelectorAll('.lb'),els=document.querySelectorAll('[data-i18n]');
+function sL(l){var p=D[l];if(!p)return;document.documentElement.lang=l;els.forEach(function(e){var k=e.getAttribute('data-i18n');if(p[k]!==undefined){if(e.tagName==='INPUT')e.placeholder=p[k];else e.textContent=p[k];}});if(p.title)document.title=p.title;lbs.forEach(function(b){b.classList.toggle('on',b.dataset.lang===l);});try{localStorage.setItem('td-lang',l);}catch(e){}}
+lbs.forEach(function(b){b.addEventListener('click',function(){sL(b.dataset.lang);});});
+try{var s=localStorage.getItem('td-lang');sL(s==='de'?'de':'sk');}catch(e){sL('sk');}
 
-/* Work images scale on scroll */
-gsap.utils.toArray(".work-item img").forEach(img=>{
-  gsap.fromTo(img,{scale:1.1},{scale:1,ease:"none",scrollTrigger:{trigger:img.parentElement,start:"top bottom",end:"bottom top",scrub:true}});
-});
+/* Duplicate marquees & testimonials */
+['loop1','loop2','tstTrack'].forEach(function(id){var e=document.getElementById(id);if(e)e.innerHTML+=e.innerHTML;});
+
+/* Pricing tabs */
+document.querySelectorAll('.pri-tab').forEach(function(btn){btn.addEventListener('click',function(){document.querySelectorAll('.pri-tab').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');var i=btn.dataset.tab;document.querySelectorAll('.pri-pane').forEach(function(p){p.classList.toggle('on',p.dataset.pane===i);});});});
+
+/* FAQ */
+document.querySelectorAll('.faq-toggle').forEach(function(t){t.addEventListener('click',function(){t.parentElement.classList.toggle('open');});});
+
+/* Sticky info toggle */
+var st=document.getElementById('stickyToggle'),sc=document.getElementById('stickyCard');
+if(st&&sc)st.addEventListener('click',function(){sc.classList.toggle('open');});
 </script>
 </body>
 </html>
-
-
