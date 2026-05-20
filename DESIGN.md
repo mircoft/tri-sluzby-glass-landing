@@ -62,7 +62,7 @@ thedesigns.org je **hub s tromi rovnocennými vetvami**. Vizuál je profesionál
 ## Typography
 
 - **Hub / Signal House:** DM Sans (UI), Instrument Serif (nadpisy).
-- **Everlight:** Outfit (UI), Cormorant Garamond (nadpisy).
+- **Everlight:** Outfit (UI), Fraunces (nadpisy — lepšie slovenské mäkčene).
 - **Automatizácia:** Inter (UI), JetBrains Mono (technické labely).
 
 ## Layout
