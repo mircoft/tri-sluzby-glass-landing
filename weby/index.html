@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weby & E-shopy | thedesigns.org</title>
   <meta name="description" content="Weby a e-shopy, ktore realne konvertuju. Problem -> riziko -> vysledok -> brief message.">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#060f21;
@@ -28,158 +27,114 @@
       min-height:100vh;
       font-family:Inter,system-ui,sans-serif;
       color:var(--txt);
-      background:var(--bg);
+      background:
+        radial-gradient(circle at 84% -10%, rgba(85,167,255,.18), transparent 45%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
       line-height:1.55;
       overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
     }
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-
-    .top{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(6,15,33,.88);backdrop-filter:blur(14px)}
+    .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+    .top{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(6,15,33,.9);backdrop-filter:blur(10px)}
     .top .ct{width:var(--mx);margin:0 auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 0}
     .logo b{display:block;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#a8d1ff}
     .logo span{display:block;margin-top:4px;color:var(--muted);font-size:.9rem}
-    .ghost{border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);text-decoration:none;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04);transition:border-color .2s}
-    .ghost:hover{border-color:rgba(85,167,255,.4)}
+    .ghost{border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);text-decoration:none;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04)}
 
-    /* ── CHAPTER SECTIONS ── */
-    .chapter{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 0}
-    .chapter-inner{width:var(--mx);margin:0 auto}
-
-    /* ── HERO ── */
-    .hero-chapter{padding:120px 0 100px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    .wrap{width:var(--mx);margin:0 auto;padding:64px 0 120px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start}
     .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:#a8d1ff;font-weight:700}
-    h1{margin-top:14px;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.02;letter-spacing:-.03em;max-width:16ch;font-weight:900}
-    .lead{margin-top:16px;color:var(--muted);max-width:52ch;font-size:1.06rem;line-height:1.7}
+    h1{margin-top:12px;font-size:clamp(2rem,4.5vw,3.7rem);line-height:1.04;letter-spacing:-.03em;max-width:16ch;font-weight:800}
+    .lead{margin-top:14px;color:var(--muted);max-width:56ch;font-size:1.03rem}
+    .model{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .m{border:1px solid var(--line);border-radius:12px;padding:14px;background:rgba(0,0,0,.2)}
+    .m b{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin-bottom:8px}
+    .m p{color:var(--muted);font-size:.92rem}
+    .cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 16px;border-radius:10px;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:.84rem;font-weight:800;border:1px solid var(--line)}
+    .btn.p{background:linear-gradient(120deg,var(--acc),var(--acc2));border-color:rgba(255,255,255,.14);color:#041022}
+    .btn.s{background:rgba(255,255,255,.04);color:var(--txt)}
 
-    .pec{border:1px solid var(--line);border-radius:var(--r);background:rgba(0,0,0,.3);overflow:hidden;backdrop-filter:blur(6px)}
+    .pec{border:1px solid var(--line);border-radius:var(--r);background:rgba(0,0,0,.3);overflow:hidden}
     .pec-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
     .pec-head b{color:var(--acc)}
     .pec-body{padding:14px;display:grid;gap:10px}
     .hot{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .shot{position:relative;border:1px solid var(--line);border-radius:12px;min-height:180px;overflow:hidden;background:#0a1730}
+
+    .shot{position:relative;border:1px solid var(--line);border-radius:12px;min-height:150px;overflow:hidden;background:#0a1730}
     .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
     .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(165deg,rgba(85,167,255,.16),rgba(6,15,33,.45))}
 
-    /* ── PROBLEM/RISK/RESULT ── */
-    .model{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .m{border:1px solid var(--line);border-radius:16px;padding:28px 22px;background:rgba(0,0,0,.22);backdrop-filter:blur(6px);transition:border-color .3s,transform .3s}
-    .m:hover{border-color:rgba(85,167,255,.35);transform:translateY(-4px)}
-    .m b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--acc);margin-bottom:12px;font-weight:700}
-    .m h3{font-size:1.1rem;margin-bottom:8px;font-weight:700}
-    .m p{color:var(--muted);font-size:.94rem;line-height:1.6}
+    .grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .card{border:1px solid var(--line);border-radius:12px;padding:16px;background:rgba(255,255,255,.04)}
+    .card h3{font-size:.98rem;margin-bottom:8px;font-weight:700}
+    .card p{font-size:.9rem;color:var(--muted)}
 
-    /* ── INFO CARDS ── */
-    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{border:1px solid var(--line);border-radius:16px;padding:28px 22px;background:rgba(255,255,255,.04);backdrop-filter:blur(4px);transition:border-color .3s,transform .3s}
-    .card:hover{border-color:rgba(85,167,255,.3);transform:translateY(-3px)}
-    .card h3{font-size:1.05rem;margin-bottom:10px;font-weight:700}
-    .card p{font-size:.92rem;color:var(--muted);line-height:1.6}
+    .brief{margin-top:24px;border:1px solid var(--line);border-radius:var(--r);padding:24px;background:linear-gradient(135deg,rgba(85,167,255,.13),rgba(10,23,48,.9))}
+    .brief h2{font-size:clamp(1.35rem,2.6vw,2rem);max-width:24ch;line-height:1.1}
+    .brief p{margin-top:10px;color:var(--muted);max-width:62ch}
 
-    /* ── CTA BUTTONS ── */
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 22px;border-radius:12px;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:.86rem;font-weight:800;border:1px solid var(--line);transition:transform .2s,box-shadow .2s}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.p{background:linear-gradient(120deg,var(--acc),var(--acc2));border-color:rgba(255,255,255,.14);color:#041022;box-shadow:0 14px 32px -14px rgba(85,167,255,.5)}
-    .btn.p:hover{box-shadow:0 18px 38px -14px rgba(85,167,255,.7)}
-    .btn.s{background:rgba(255,255,255,.04);color:var(--txt)}
+    footer{margin-top:22px;border-top:1px solid var(--line);padding:22px 0 92px;text-align:center;color:var(--muted);font-size:.86rem}
 
-    /* ── BRIEF ── */
-    .brief{border:1px solid rgba(85,167,255,.3);border-radius:20px;padding:48px 40px;background:linear-gradient(135deg,rgba(85,167,255,.13),rgba(10,23,48,.9));backdrop-filter:blur(6px)}
-    .brief h2{font-size:clamp(1.6rem,3vw,2.4rem);max-width:24ch;line-height:1.08;font-weight:800}
-    .brief p{margin-top:12px;color:var(--muted);max-width:62ch;font-size:1.02rem;line-height:1.7}
-
-    /* ── SECTION TITLES ── */
-    .sec-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--acc);font-weight:700;margin-bottom:14px}
-    .sec-title{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;max-width:20ch}
-
-    footer{padding:28px 0 100px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
-    footer .ct{width:var(--mx);margin:0 auto}
-
-    @media(max-width:980px){
-      .hero-grid,.model,.card-grid,.hot{grid-template-columns:1fr}
-      .chapter{min-height:auto;padding:80px 0}
-      .shot{min-height:200px}
+    @media (max-width:980px){
+      .hero,.model,.grid,.hot{grid-template-columns:1fr}
+      .shot{min-height:190px}
     }
   </style>
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
   <header class="top">
     <div class="ct">
       <div class="logo"><b>thedesigns.org</b><span>Weby & e-shopy</span></div>
-      <a class="ghost" href="../">← Domov</a>
+      <a class="ghost" href="../">Domov</a>
     </div>
   </header>
 
-  <!-- ═══ CHAPTER 1 — HERO ═══ -->
-  <section class="chapter hero-chapter" id="ch-hero">
-    <div class="chapter-inner">
-      <div class="hero-grid">
-        <div>
-          <p class="k" data-reveal="fade">Weby & e-shopy</p>
-          <h1 data-reveal="title">Web, ktory predava dalsi krok bez chaosu.</h1>
-          <p class="lead" data-reveal="fade">Jasna ponuka, dokaz a jedna hlavna akcia. Ciel je konverzia, nie iba pekny layout.</p>
-          <div class="cta-row" data-reveal="fade">
-            <a class="btn p" href="#brief">Poslat brief</a>
-            <a class="btn s" href="mailto:hello@thedesigns.org?subject=Web%20projekt">Poslat zadanie</a>
-          </div>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <p class="k">Weby & e-shopy</p>
+        <h1>Web, ktory predava dalsi krok bez chaosu.</h1>
+        <p class="lead">Jasna ponuka, dokaz a jedna hlavna akcia. Ciel je konverzia, nie iba pekny layout.</p>
+        <div class="model">
+          <div class="m"><b>Problem</b><p>Navstevnik nepochopi ponuku do 10 sekund.</p></div>
+          <div class="m"><b>Riziko</b><p>Traffic a cas obchodu sa prepaluju bez vysledku.</p></div>
+          <div class="m"><b>Vysledok</b><p>Viac kvalifikovanych dopytov z rovnakeho trafficu.</p></div>
         </div>
-        <aside class="pec" data-reveal="scale">
-          <div class="pec-head"><span>Preview</span><b>UI / E-shop</b></div>
-          <div class="pec-body">
-            <div class="hot">
-              <div class="shot"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Web analytics dashboard" loading="lazy"></div>
-              <div class="shot"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=80" alt="Ecommerce checkout" loading="lazy"></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CHAPTER 2 — PROBLÉM / RIZIKO / VÝSLEDOK ═══ -->
-  <section class="chapter" id="ch-model">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade">Preco to funguje</p>
-      <h2 class="sec-title" data-reveal="title">Kazdy web riesime cez tri otazky.</h2>
-      <div class="model" data-reveal="stagger">
-        <div class="m"><b>Problem</b><h3>Navstevnik nerozumie</h3><p>Nepochopi ponuku do 10 sekund. Odide bez akcie, traffic sa prepaluje.</p></div>
-        <div class="m"><b>Riziko</b><h3>Cas a budget hodia</h3><p>Traffic a cas obchodu sa prepaluju bez vysledku. Kazdy den bez konverzie stoji peniaze.</p></div>
-        <div class="m"><b>Vysledok</b><h3>Viac dopytov</h3><p>Viac kvalifikovanych dopytov z rovnakeho trafficu. Meratelny vysledok od prveho tyzdna.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CHAPTER 3 — PRE KOHO / ČO DODÁME / DÔKAZ ═══ -->
-  <section class="chapter" id="ch-cards">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade">Ako pracujeme</p>
-      <h2 class="sec-title" data-reveal="title">Jasny rozsah, jasny vysledok.</h2>
-      <div class="card-grid" data-reveal="stagger">
-        <article class="card"><h3>Pre koho</h3><p>B2B firmy, e-shopy a rebrand projekty. Klienti, ktori potrebuju web, co predava — nie iba vyzerá.</p></article>
-        <article class="card"><h3>Co dodame</h3><p>Strukturu, copy, UX a meranie eventov. Kompletny web od wireframe po launch s jasnym handoverom.</p></article>
-        <article class="card"><h3>Dokaz</h3><p>Scope, milniky, handover a tuning po launchi. Kazdy krok je transparentny a meratelny.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CHAPTER 4 — BRIEF CTA ═══ -->
-  <section class="chapter" id="ch-brief">
-    <div class="chapter-inner">
-      <div class="brief" data-reveal="scale" id="brief">
-        <h2>Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
-        <p>Napisete co predavate, komu a aky je ciel. Dostanete navrh priorit, rozsahu a nacasovania.</p>
-        <div class="cta-row">
-          <a class="btn p" href="mailto:hello@thedesigns.org?subject=Web%20brief%20message">Poslat brief message</a>
+        <div class="cta">
+          <a class="btn p" href="#brief">Poslat brief</a>
+          <a class="btn s" href="mailto:hello@thedesigns.org?subject=Web%20projekt">Poslat zadanie</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <footer><div class="ct">© 2026 thedesigns.org — weby a e-shopy.</div></footer>
+      <aside class="pec">
+        <div class="pec-head"><span>Preview</span><b>UI / E-shop</b></div>
+        <div class="pec-body">
+          <div class="hot">
+            <div class="shot"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Web analytics dashboard" loading="lazy"></div>
+            <div class="shot"><img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1000&q=80" alt="Ecommerce checkout" loading="lazy"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="card"><h3>Pre koho</h3><p>B2B firmy, e-shopy a rebrand projekty.</p></article>
+      <article class="card"><h3>Co dodame</h3><p>Strukturu, copy, UX a meranie eventov.</p></article>
+      <article class="card"><h3>Dokaz</h3><p>Scope, milniky, handover a tuning po launchi.</p></article>
+    </section>
+
+    <section class="brief" id="brief">
+      <h2>Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
+      <p>Napisete co predavate, komu a aky je ciel. Dostanete navrh priorit, rozsahu a nacasovania.</p>
+      <div class="cta">
+        <a class="btn p" href="mailto:hello@thedesigns.org?subject=Web%20brief%20message">Poslat brief message</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 thedesigns.org — weby a e-shopy.</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -190,12 +145,30 @@
     StoryEngine.init({
       colors: { a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
       chapters: [
-        { trigger: '#ch-hero',  a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
-        { trigger: '#ch-model', a: '#0c1e44', b: '#14306a', c: '#0a1838' },
-        { trigger: '#ch-cards', a: '#0e2248', b: '#183470', c: '#0c1c3e' },
-        { trigger: '#ch-brief', a: '#081640', b: '#102860', c: '#061232' }
+        { trigger: '.hero',  a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
+        { trigger: '.grid',  a: '#0c1e44', b: '#14306a', c: '#0a1838' },
+        { trigger: '.brief', a: '#081640', b: '#102860', c: '#061232' }
       ]
     });
+
+    /* Cinematic scroll reveals */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo('h1', {y:50,opacity:0}, {y:0,opacity:1,duration:1,delay:.2,ease:'power3.out'});
+    gsap.fromTo('.lead', {y:30,opacity:0}, {y:0,opacity:1,duration:.8,delay:.4,ease:'power2.out'});
+    gsap.fromTo('.pec', {y:40,opacity:0,scale:.95}, {y:0,opacity:1,scale:1,duration:1,delay:.3,ease:'power2.out'});
+
+    gsap.utils.toArray('.m').forEach(function(el,i){
+      gsap.fromTo(el, {y:50,opacity:0}, {y:0,opacity:1,duration:.7,delay:i*.12,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    });
+
+    gsap.utils.toArray('.card').forEach(function(el,i){
+      gsap.fromTo(el, {y:50,opacity:0}, {y:0,opacity:1,duration:.7,delay:i*.12,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    });
+
+    gsap.fromTo('.brief', {y:40,opacity:0,scale:.96}, {y:0,opacity:1,scale:1,duration:1,ease:'power2.out',
+      scrollTrigger:{trigger:'.brief',start:'top 85%',once:true}});
   </script>
 </body>
 </html>
