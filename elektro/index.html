@@ -5,123 +5,487 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Automatizacia | thedesigns.org</title>
   <meta name="description" content="PLC/SPS, elektro a commissioning pre firmy, ktore potrebuju spustit stroj bez chaosu.">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #05070f;
       --bg2: #071021;
-      --line: rgba(98,229,255,.28);
-      --line-soft: rgba(255,255,255,.12);
+      --line: rgba(98, 229, 255, 0.28);
+      --line-soft: rgba(255, 255, 255, 0.12);
       --text: #eaf4ff;
-      --muted: rgba(234,244,255,.76);
+      --muted: rgba(234, 244, 255, 0.76);
       --accent: #36f6ff;
       --accent2: #55a7ff;
       --warn: #ffb100;
       --radius: 14px;
-      --container: min(1240px,93%);
+      --container: min(1240px, 93%);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html.lenis,html.lenis body{height:auto}
-    .lenis.lenis-smooth{scroll-behavior:auto!important}
-    body{
-      min-height:100vh;
-      color:var(--text);
-      font-family:Inter,ui-sans-serif,system-ui,sans-serif;
-      background:var(--bg);
-      line-height:1.55;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 84% -10%, rgba(54, 246, 255, 0.18), transparent 46%),
+        radial-gradient(circle at 0% 0%, rgba(85, 167, 255, 0.20), transparent 40%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height: 1.55;
     }
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
 
-    .hazard{height:4px;background:repeating-linear-gradient(90deg,var(--warn),var(--warn) 14px,transparent 14px,transparent 24px);opacity:.85}
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 100% 34px, 42px 100%;
+    }
 
-    .top{position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line-soft);background:rgba(5,7,15,.88);backdrop-filter:blur(14px)}
-    .top-inner{width:var(--container);margin:0 auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0}
-    .logo{color:var(--text);text-decoration:none}
-    .logo b{display:block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
-    .logo span{display:block;margin-top:4px;font-size:.92rem;color:var(--muted);font-weight:600}
-    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .ghost,.lang-btn{text-decoration:none;color:var(--text);border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.04);cursor:pointer;font-family:inherit;transition:border-color .2s}
-    .ghost:hover{border-color:rgba(54,246,255,.4)}
-    .lang-btn[aria-pressed="true"]{border-color:rgba(54,246,255,.55);color:var(--accent)}
+    .hazard {
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--warn),
+        var(--warn) 14px,
+        transparent 14px,
+        transparent 24px
+      );
+      opacity: 0.85;
+    }
 
-    /* ── CHAPTERS ── */
-    .chapter{position:relative;min-height:100vh;display:flex;align-items:center;padding:100px 0}
-    .chapter-inner{width:var(--container);margin:0 auto}
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(5, 7, 15, 0.88);
+      backdrop-filter: blur(10px);
+    }
 
-    /* ── HERO ── */
-    .hero-chapter{padding:120px 0 100px}
-    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line-soft);border-radius:999px;padding:8px 14px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;font-weight:700;background:rgba(255,255,255,.04)}
-    .eyebrow i{width:7px;height:7px;border-radius:2px;background:linear-gradient(130deg,var(--accent),var(--accent2));box-shadow:0 0 0 5px rgba(54,246,255,.12)}
-    h1{margin-top:14px;font-size:clamp(2.2rem,4.8vw,4rem);letter-spacing:-.03em;line-height:1.04;max-width:18ch;font-weight:900}
-    .lead{margin-top:14px;color:var(--muted);max-width:60ch;font-size:1.04rem;line-height:1.7}
+    .top-inner {
+      width: var(--container);
+      margin: 0 auto;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
 
-    .model{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .model-card{border:1px solid var(--line-soft);border-radius:14px;background:rgba(0,0,0,.25);padding:20px;backdrop-filter:blur(4px);transition:border-color .3s,transform .3s}
-    .model-card:hover{border-color:rgba(54,246,255,.35);transform:translateY(-4px)}
-    .model-card b{display:block;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;margin-bottom:10px;font-weight:700}
-    .model-card h3{font-size:1rem;margin-bottom:6px;font-weight:700}
-    .model-card p{color:var(--muted);font-size:.92rem;line-height:1.6}
+    .logo {
+      color: var(--text);
+      text-decoration: none;
+    }
 
-    .cta-row{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 20px;border-radius:12px;text-decoration:none;font-size:.84rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line-soft);transition:transform .2s,box-shadow .2s}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.primary{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#031018;border-color:rgba(255,255,255,.14);box-shadow:0 14px 30px -14px rgba(54,246,255,.5)}
-    .btn.primary:hover{box-shadow:0 18px 36px -14px rgba(54,246,255,.7)}
-    .btn.secondary{color:var(--text);background:rgba(255,255,255,.05)}
+    .logo b {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-    /* ── PROJECT SHEET ── */
-    .spec{border:1px solid var(--line);border-radius:var(--radius);background:rgba(0,0,0,.34);overflow:hidden;backdrop-filter:blur(6px)}
-    .spec-head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
-    .spec-head b{color:var(--accent)}
-    .spec-body{padding:14px;display:grid;gap:12px}
-    .kv{display:grid;grid-template-columns:120px 1fr;gap:8px 12px;font-size:.92rem}
-    .kv dt{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:700}
-    .kv dd{color:rgba(234,244,255,.94)}
-    .shots{margin-top:8px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
-    .shot{position:relative;border:1px solid var(--line-soft);border-radius:12px;overflow:hidden;min-height:160px;background:#091628}
-    .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(165deg,rgba(54,246,255,.18),rgba(5,7,15,.55))}
+    .logo span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
-    /* ── CONTENT BLOCKS ── */
-    .sec-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:14px}
-    .sec-title{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:10px;max-width:22ch}
-    .sec-sub{color:var(--muted);font-size:1rem;margin-bottom:28px;max-width:56ch;line-height:1.7}
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .card{border:1px solid rgba(54,246,255,.22);border-radius:16px;padding:24px 20px;background:rgba(255,255,255,.05);backdrop-filter:blur(4px);transition:border-color .3s,transform .3s}
-    .card:hover{border-color:rgba(54,246,255,.45);transform:translateY(-3px)}
-    .card h3{font-size:1rem;margin-bottom:8px;font-weight:700;color:#f6fbff;display:flex;align-items:center;gap:8px}
-    .hico{width:22px;height:22px;border-radius:6px;border:1px solid rgba(54,246,255,.38);background:rgba(54,246,255,.12);display:inline-grid;place-items:center;color:var(--accent);font-size:.72rem;line-height:1;flex-shrink:0}
-    .card p{color:rgba(234,244,255,.92);font-size:.92rem;line-height:1.6}
+    .ghost,
+    .lang-btn {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+    }
 
-    /* ── BRIEF ── */
-    .brief-message{border:1px solid var(--line);border-radius:20px;padding:48px 40px;background:linear-gradient(130deg,rgba(54,246,255,.14),rgba(7,16,33,.9));backdrop-filter:blur(6px)}
-    .brief-message h2{font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.08;max-width:24ch;font-weight:800}
-    .brief-message p{margin-top:12px;color:var(--muted);max-width:64ch;font-size:1.02rem;line-height:1.7}
-    .brief-message .cta-row{margin-top:20px}
+    .lang-btn[aria-pressed="true"] {
+      border-color: rgba(54, 246, 255, 0.55);
+      color: var(--accent);
+    }
 
-    footer{padding:28px 0 110px;border-top:1px solid var(--line-soft);color:var(--muted);text-align:center;font-size:.86rem}
+    .wrap {
+      width: var(--container);
+      margin: 0 auto;
+      padding: 72px 0 132px;
+    }
 
-    .sticky{position:fixed;left:10px;right:10px;bottom:10px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-radius:14px;background:rgba(5,7,15,.94);backdrop-filter:blur(10px);padding:12px 16px}
-    .sticky p{color:var(--muted);font-size:.84rem;max-width:52ch}
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      align-items: start;
+    }
 
-    @media(max-width:980px){
-      .hero-grid,.shots,.grid-3,.model{grid-template-columns:1fr}
-      .chapter{min-height:auto;padding:80px 0}
-      .kv{grid-template-columns:1fr}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .eyebrow i {
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: linear-gradient(130deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 5px rgba(54, 246, 255, 0.12);
+    }
+
+    h1 {
+      margin-top: 14px;
+      font-size: clamp(2rem, 4.5vw, 3.9rem);
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+      max-width: 16ch;
+      font-weight: 800;
+    }
+
+    .lead {
+      margin-top: 14px;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1.04rem;
+    }
+
+    .model {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .model-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+    }
+
+    .model-card b {
+      display: block;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      margin-bottom: 8px;
+    }
+
+    .model-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .cta-row {
+      margin-top: 28px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--line-soft);
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent2));
+      color: #031018;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .spec {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.34);
+      overflow: hidden;
+    }
+
+    .spec-head {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .spec-head b {
+      color: var(--accent);
+    }
+
+    .spec-body {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .kv {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 8px 12px;
+      font-size: 0.92rem;
+    }
+
+    .kv dt {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .kv dd {
+      color: rgba(234, 244, 255, 0.94);
+    }
+
+    .shots {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .shot {
+      position: relative;
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 150px;
+      background: #091628;
+    }
+
+    .shot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(165deg, rgba(54, 246, 255, 0.18), rgba(5, 7, 15, 0.55));
+    }
+
+    section.block {
+      margin-top: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .block-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .block-head h2 {
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .block-head p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 46ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 22px;
+    }
+
+    .card {
+      border: 1px solid rgba(54, 246, 255, 0.22);
+      border-radius: 12px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .card h3 {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #f6fbff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hico {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(54, 246, 255, 0.38);
+      background: rgba(54, 246, 255, 0.12);
+      display: inline-grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 0.7rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .card p {
+      color: rgba(234, 244, 255, 0.92);
+      font-size: 0.9rem;
+    }
+
+    .brief-message {
+      margin-top: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      background: linear-gradient(130deg, rgba(54, 246, 255, 0.14), rgba(7, 16, 33, 0.9));
+    }
+
+    .brief-message h2 {
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      max-width: 22ch;
+      font-weight: 800;
+    }
+
+    .brief-message p {
+      margin-top: 10px;
+      color: var(--muted);
+      max-width: 64ch;
+    }
+
+    .brief-message .cta-row {
+      margin-top: 14px;
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 22px 0 106px;
+      border-top: 1px solid var(--line-soft);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.86rem;
+    }
+
+    .sticky {
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(5, 7, 15, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 10px 12px;
+    }
+
+    .sticky p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      max-width: 52ch;
+    }
+
+    /* data-reveal handled by GSAP ScrollTrigger via story-engine */
+
+    @media (max-width: 980px) {
+      .hero,
+      .shots,
+      .grid-3,
+      .model {
+        grid-template-columns: 1fr;
+      }
+
+      .wrap {
+        padding-top: 52px;
+      }
+
+      .grid-3 {
+        gap: 14px;
+      }
+
+      .kv {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="hazard" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
 
   <header class="top">
     <div class="top-inner">
@@ -130,113 +494,94 @@
         <span>/ elektro · industrial automation</span>
       </a>
       <div class="top-actions">
-        <a class="ghost" href="../">← Domov</a>
+        <a class="ghost" href="../">Domov</a>
         <button class="lang-btn" type="button" data-lang="sk" aria-pressed="true">SK</button>
         <button class="lang-btn" type="button" data-lang="de" aria-pressed="false">DE</button>
       </div>
     </div>
   </header>
 
-  <!-- ═══ CHAPTER 1 — HERO ═══ -->
-  <section class="chapter hero-chapter" id="ch-hero">
-    <div class="chapter-inner">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow" data-reveal="fade" data-i18n="ey"><i aria-hidden="true"></i>Priemyselna automatizacia</div>
-          <h1 data-reveal="title" data-i18n="h1">Dodame automatizaciu stroja tak, aby vyroba nabehla v termine.</h1>
-          <p class="lead" data-reveal="fade" data-i18n="lead">Ak hladate partnera na PLC/SPS, elektro a commissioning, ciel je jeden: stroj bezpecne spusteny, otestovany a odovzdany prevadzke.</p>
-          <div class="cta-row" data-reveal="fade">
-            <a class="btn primary" href="#brief" data-i18n="c1">Poslat technicky brief</a>
-            <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20projekt" data-i18n="c2">Poslat zadanie mailom</a>
+  <main class="wrap">
+    <section class="hero">
+      <div data-reveal>
+        <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Priemyselna automatizacia</div>
+        <h1 data-i18n="h1">Dodame automatizaciu stroja tak, aby vyroba nabehla v termine.</h1>
+        <p class="lead" data-i18n="lead">Ak hladate partnera na PLC/SPS, elektro a commissioning, ciel je jeden: stroj bezpecne spusteny, otestovany a odovzdany prevadzke.</p>
+
+        <div class="model">
+          <div class="model-card"><b data-i18n="m1h">Problem</b><p data-i18n="m1t">Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.</p></div>
+          <div class="model-card"><b data-i18n="m2h">Riziko</b><p data-i18n="m2t">Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.</p></div>
+          <div class="model-card"><b data-i18n="m3h">Vysledok</b><p data-i18n="m3t">Spustena technologia, testy, dokumentacia a jasny handover.</p></div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#brief" data-i18n="c1">Poslat technicky brief</a>
+          <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20projekt" data-i18n="c2">Poslat zadanie mailom</a>
+        </div>
+      </div>
+
+      <aside class="spec" data-reveal>
+        <div class="spec-head"><span>Project Sheet</span><b>EU / SK / DE</b></div>
+        <div class="spec-body">
+          <dl class="kv">
+            <dt>Scope</dt><dd data-i18n="s1">PLC/SPS + elektro + commissioning</dd>
+            <dt>Output</dt><dd data-i18n="s2">SW, schema, FAT/SAT test plan, odovzdanie</dd>
+            <dt>Use case</dt><dd data-i18n="s3">Nove linky, retrofit, startup support</dd>
+          </dl>
+          <div class="shots">
+            <div class="shot"><img src="https://images.unsplash.com/photo-1581092919535-7146ff1a5902?auto=format&fit=crop&w=1400&q=80" alt="commissioning on factory line"></div>
+            <div class="shot"><img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1000&q=80" alt="hmi and control"></div>
+            <div class="shot"><img src="https://images.unsplash.com/photo-1686710278078-26f028c6dad8?auto=format&fit=crop&w=1000&q=80" alt="industrial robot system"></div>
           </div>
         </div>
-        <aside class="spec" data-reveal="scale">
-          <div class="spec-head"><span>Project Sheet</span><b>EU / SK / DE</b></div>
-          <div class="spec-body">
-            <dl class="kv">
-              <dt>Scope</dt><dd data-i18n="s1">PLC/SPS + elektro + commissioning</dd>
-              <dt>Output</dt><dd data-i18n="s2">SW, schema, FAT/SAT test plan, odovzdanie</dd>
-              <dt>Use case</dt><dd data-i18n="s3">Nove linky, retrofit, startup support</dd>
-            </dl>
-            <div class="shots">
-              <div class="shot"><img src="https://images.unsplash.com/photo-1581092919535-7146ff1a5902?auto=format&fit=crop&w=1400&q=80" alt="commissioning on factory line" loading="lazy"></div>
-              <div class="shot"><img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1000&q=80" alt="hmi and control" loading="lazy"></div>
-              <div class="shot"><img src="https://images.unsplash.com/photo-1686710278078-26f028c6dad8?auto=format&fit=crop&w=1000&q=80" alt="industrial robot system" loading="lazy"></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+      </aside>
+    </section>
 
-  <!-- ═══ CHAPTER 2 — PROBLÉM / RIZIKO / VÝSLEDOK ═══ -->
-  <section class="chapter" id="ch-model">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade">Preco to funguje</p>
-      <h2 class="sec-title" data-reveal="title">Od problemu k spustenej technologii.</h2>
-      <div class="model" data-reveal="stagger">
-        <div class="model-card"><b data-i18n="m1h">Problem</b><h3>Chyba zodpovednost</h3><p data-i18n="m1t">Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.</p></div>
-        <div class="model-card"><b data-i18n="m2h">Riziko</b><h3>Prestoje a penalizacie</h3><p data-i18n="m2t">Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.</p></div>
-        <div class="model-card"><b data-i18n="m3h">Vysledok</b><h3>Spustena technologia</h3><p data-i18n="m3t">Spustena technologia, testy, dokumentacia a jasny handover.</p></div>
+    <section class="block" data-reveal>
+      <div class="block-head">
+        <h2 data-i18n="aT">Pre koho</h2>
+        <p data-i18n="aL">Pre firmy, ktore potrebuju dodat stroj alebo linku bez improvizacie na mieste.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══ CHAPTER 3 — PRE KOHO ═══ -->
-  <section class="chapter" id="ch-koho">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade" data-i18n="aT">Pre koho</p>
-      <h2 class="sec-title" data-reveal="title">Pre firmy, ktore potrebuju dodat stroj bez improvizacie.</h2>
-      <p class="sec-sub" data-reveal="fade" data-i18n="aL">Pre firmy, ktore potrebuju dodat stroj alebo linku bez improvizacie na mieste.</p>
-      <div class="grid-3" data-reveal="stagger">
+      <div class="grid-3">
         <article class="card"><h3><span class="hico" aria-hidden="true">◆</span><span data-i18n="a1h">OEM vyrobcovia</span></h3><p data-i18n="a1t">Potrebujete stabilne dodat funkcny stroj s kompletnym handoverom.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">◉</span><span data-i18n="a2h">System integratori</span></h3><p data-i18n="a2t">Hladate spolahlivy externy tim na cast projektu alebo startup.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">▣</span><span data-i18n="a3h">Fabriky</span></h3><p data-i18n="a3t">Spustate novu linku alebo retrofit a potrebujete rychly nabeh.</p></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ CHAPTER 4 — ČO DODÁME ═══ -->
-  <section class="chapter" id="ch-dodame">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade" data-i18n="xT">Co dodame</p>
-      <h2 class="sec-title" data-reveal="title">Od logiky PLC po commissioning na mieste.</h2>
-      <p class="sec-sub" data-reveal="fade" data-i18n="xL">Technicky jasny rozsah od logiky PLC po commissioning na mieste.</p>
-      <div class="grid-3" data-reveal="stagger">
+    <section class="block" data-reveal>
+      <div class="block-head">
+        <h2 data-i18n="xT">Co dodame</h2>
+        <p data-i18n="xL">Technicky jasny rozsah od logiky PLC po commissioning na mieste.</p>
+      </div>
+      <div class="grid-3">
         <article class="card"><h3><span class="hico" aria-hidden="true">⚙</span><span data-i18n="x1h">PLC/SPS software</span></h3><p data-i18n="x1t">Sekvencie, alarmy, receptury, HMI a prepojenie periferii.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">⌁</span><span data-i18n="x2h">Elektro dokumentacia</span></h3><p data-i18n="x2t">Schema, IO listy, test plan a podklady pre prevadzku.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">↗</span><span data-i18n="x3h">Commissioning</span></h3><p data-i18n="x3t">FAT/SAT, startup, odladenie cyklov a odovzdanie timu.</p></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ CHAPTER 5 — DÔKAZ ═══ -->
-  <section class="chapter" id="ch-dokaz">
-    <div class="chapter-inner">
-      <p class="sec-label" data-reveal="fade" data-i18n="pT">Dokaz pri vybere dodavatela</p>
-      <h2 class="sec-title" data-reveal="title">Milniky, testy a jasna definicia "hotovo".</h2>
-      <p class="sec-sub" data-reveal="fade" data-i18n="pL">Kazdy projekt bezi na milnikoch, testoch a jasnej definicii "hotovo".</p>
-      <div class="grid-3" data-reveal="stagger">
+    <section class="block" data-reveal>
+      <div class="block-head">
+        <h2 data-i18n="pT">Dokaz pri vybere dodavatela</h2>
+        <p data-i18n="pL">Kazdy projekt bezi na milnikoch, testoch a jasnej definicii "hotovo".</p>
+      </div>
+      <div class="grid-3">
         <article class="card"><h3><span class="hico" aria-hidden="true">△</span><span data-i18n="p1h">Rizikovy audit</span></h3><p data-i18n="p1t">Kriticke body identifikujeme pred realizaciou.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">☑</span><span data-i18n="p2h">Testovaci plan</span></h3><p data-i18n="p2t">Scenare a akceptacne podmienky su definovane dopredu.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">⇢</span><span data-i18n="p3h">Handover balik</span></h3><p data-i18n="p3t">Dokumentacia pripravi prevadzku na bezny chod.</p></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ CHAPTER 6 — BRIEF CTA ═══ -->
-  <section class="chapter" id="ch-brief">
-    <div class="chapter-inner">
-      <div class="brief-message" data-reveal="scale" id="brief">
-        <h2 data-i18n="bh">Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
-        <p data-i18n="bt">Napisete typ stroja/linky, termin, lokalitu a co je uz hotove. Dostanete konkretne dalsie kroky, rozsah a navrh nacasovania.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20brief%20message" data-i18n="bc1">Poslat brief message</a>
-          <a class="btn secondary" href="tel:+421000000000" data-i18n="bc2">Zavolat technicky call</a>
-        </div>
+    <section id="brief" class="brief-message" data-reveal>
+      <h2 data-i18n="bh">Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
+      <p data-i18n="bt">Napisete typ stroja/linky, termin, lokalitu a co je uz hotove. Dostanete konkretne dalsie kroky, rozsah a navrh nacasovania.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20brief%20message" data-i18n="bc1">Poslat brief message</a>
+        <a class="btn secondary" href="tel:+421000000000" data-i18n="bc2">Zavolat technicky call</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer data-i18n="f">© 2026 thedesigns.org — industrial automation by execution.</footer>
 
@@ -254,78 +599,105 @@
     StoryEngine.init({
       colors: { a: '#041418', b: '#081e28', c: '#040e18' },
       chapters: [
-        { trigger: '#ch-hero',   a: '#041418', b: '#081e28', c: '#040e18' },
-        { trigger: '#ch-model',  a: '#061820', b: '#0a2430', c: '#061220' },
-        { trigger: '#ch-koho',   a: '#081c24', b: '#0c2838', c: '#081428' },
-        { trigger: '#ch-dodame', a: '#0a2028', b: '#0e2e40', c: '#0a1830' },
-        { trigger: '#ch-dokaz',  a: '#081a22', b: '#0c2636', c: '#081226' },
-        { trigger: '#ch-brief',  a: '#041218', b: '#081c28', c: '#040c16' }
+        { trigger: '.hero',          a: '#041418', b: '#081e28', c: '#040e18' },
+        { trigger: '.block:nth-of-type(1)', a: '#061820', b: '#0a2430', c: '#061220' },
+        { trigger: '.block:nth-of-type(2)', a: '#081c24', b: '#0c2838', c: '#081428' },
+        { trigger: '.block:nth-of-type(3)', a: '#0a2028', b: '#0e2e40', c: '#0a1830' },
+        { trigger: '.brief-message',  a: '#041218', b: '#081c28', c: '#040c16' }
       ]
     });
 
-    /* ── i18n ── */
-    var T = {
+    /* Replace IntersectionObserver with GSAP ScrollTrigger reveals */
+    gsap.utils.toArray('[data-reveal]').forEach(function(el){
+      gsap.fromTo(el, {opacity:0,y:30}, {opacity:1,y:0,duration:.7,ease:'power2.out',
+        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    });
+
+    const T = {
       sk: {
-        ey:"Priemyselna automatizacia",h1:"Dodame automatizaciu stroja tak, aby vyroba nabehla v termine.",lead:"Ak hladate partnera na PLC/SPS, elektro a commissioning, ciel je jeden: stroj bezpecne spusteny, otestovany a odovzdany prevadzke.",
-        m1h:"Problem",m1t:"Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.",
-        m2h:"Riziko",m2t:"Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.",
-        m3h:"Vysledok",m3t:"Spustena technologia, testy, dokumentacia a jasny handover.",
-        c1:"Poslat technicky brief",c2:"Poslat zadanie mailom",
-        s1:"PLC/SPS + elektro + commissioning",s2:"SW, schema, FAT/SAT test plan, odovzdanie",s3:"Nove linky, retrofit, startup support",
-        aT:"Pre koho",aL:"Pre firmy, ktore potrebuju dodat stroj alebo linku bez improvizacie na mieste.",
-        a1h:"OEM vyrobcovia",a1t:"Potrebujete stabilne dodat funkcny stroj s kompletnym handoverom.",
-        a2h:"System integratori",a2t:"Hladate spolahlivy externy tim na cast projektu alebo startup.",
-        a3h:"Fabriky",a3t:"Spustate novu linku alebo retrofit a potrebujete rychly nabeh.",
-        xT:"Co dodame",xL:"Technicky jasny rozsah od logiky PLC po commissioning na mieste.",
-        x1h:"PLC/SPS software",x1t:"Sekvencie, alarmy, receptury, HMI a prepojenie periferii.",
-        x2h:"Elektro dokumentacia",x2t:"Schema, IO listy, test plan a podklady pre prevadzku.",
-        x3h:"Commissioning",x3t:"FAT/SAT, startup, odladenie cyklov a odovzdanie timu.",
-        pT:"Dokaz pri vybere dodavatela",pL:"Kazdy projekt bezi na milnikoch, testoch a jasnej definicii \"hotovo\".",
-        p1h:"Rizikovy audit",p1t:"Kriticke body identifikujeme pred realizaciou.",
-        p2h:"Testovaci plan",p2t:"Scenare a akceptacne podmienky su definovane dopredu.",
-        p3h:"Handover balik",p3t:"Dokumentacia pripravi prevadzku na bezny chod.",
-        bh:"Poslite brief message. Do 24 hodin mate jasny dalsi krok.",bt:"Napisete typ stroja/linky, termin, lokalitu a co je uz hotove. Dostanete konkretne dalsie kroky, rozsah a navrh nacasovania.",
-        bc1:"Poslat brief message",bc2:"Zavolat technicky call",
-        sb:"Automatizacia od scope po startup. Bez chaosu, s handoverom.",sc:"Brief message",
-        f:"\u00a9 2026 thedesigns.org \u2014 industrial automation by execution."
+        ey: "Priemyselna automatizacia",
+        h1: "Dodame automatizaciu stroja tak, aby vyroba nabehla v termine.",
+        lead: "Ak hladate partnera na PLC/SPS, elektro a commissioning, ciel je jeden: stroj bezpecne spusteny, otestovany a odovzdany prevadzke.",
+        m1h: "Problem", m1t: "Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.",
+        m2h: "Riziko", m2t: "Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.",
+        m3h: "Vysledok", m3t: "Spustena technologia, testy, dokumentacia a jasny handover.",
+        c1: "Poslat technicky brief", c2: "Poslat zadanie mailom",
+        s1: "PLC/SPS + elektro + commissioning",
+        s2: "SW, schema, FAT/SAT test plan, odovzdanie",
+        s3: "Nove linky, retrofit, startup support",
+        aT: "Pre koho", aL: "Pre firmy, ktore potrebuju dodat stroj alebo linku bez improvizacie na mieste.",
+        a1h: "OEM vyrobcovia", a1t: "Potrebujete stabilne dodat funkcny stroj s kompletnym handoverom.",
+        a2h: "System integratori", a2t: "Hladate spolahlivy externy tim na cast projektu alebo startup.",
+        a3h: "Fabriky", a3t: "Spustate novu linku alebo retrofit a potrebujete rychly nabeh.",
+        xT: "Co dodame", xL: "Technicky jasny rozsah od logiky PLC po commissioning na mieste.",
+        x1h: "PLC/SPS software", x1t: "Sekvencie, alarmy, receptury, HMI a prepojenie periferii.",
+        x2h: "Elektro dokumentacia", x2t: "Schema, IO listy, test plan a podklady pre prevadzku.",
+        x3h: "Commissioning", x3t: "FAT/SAT, startup, odladenie cyklov a odovzdanie timu.",
+        pT: "Dokaz pri vybere dodavatela", pL: "Kazdy projekt bezi na milnikoch, testoch a jasnej definicii \"hotovo\".",
+        p1h: "Rizikovy audit", p1t: "Kriticke body identifikujeme pred realizaciou.",
+        p2h: "Testovaci plan", p2t: "Scenare a akceptacne podmienky su definovane dopredu.",
+        p3h: "Handover balik", p3t: "Dokumentacia pripravi prevadzku na bezny chod.",
+        bh: "Poslite brief message. Do 24 hodin mate jasny dalsi krok.",
+        bt: "Napisete typ stroja/linky, termin, lokalitu a co je uz hotove. Dostanete konkretne dalsie kroky, rozsah a navrh nacasovania.",
+        bc1: "Poslat brief message", bc2: "Zavolat technicky call",
+        sb: "Automatizacia od scope po startup. Bez chaosu, s handoverom.",
+        sc: "Brief message",
+        f: "© 2026 thedesigns.org — industrial automation by execution."
       },
       de: {
-        ey:"Industrielle Automatisierung",h1:"Wir liefern Maschinenautomatisierung, damit die Produktion termingerecht startet.",lead:"Wenn Sie einen Partner fur PLC/SPS, Elektro und Commissioning suchen, ist das Ziel klar: sicher gestartet, getestet, an den Betrieb ubergeben.",
-        m1h:"Problem",m1t:"Das Projekt steht, weil End-to-End Verantwortung fehlt.",
-        m2h:"Risiko",m2t:"Stillstand, Vertragsstrafen und Chaos bei der Ubergabe.",
-        m3h:"Ergebnis",m3t:"Gestartete Technologie, Tests, Dokumentation und klarer Handover.",
-        c1:"Technischen Brief senden",c2:"Scope per Mail senden",
-        s1:"PLC/SPS + Elektro + Commissioning",s2:"Software, Schaltplan, FAT/SAT Testplan, Ubergabe",s3:"Neue Linien, Retrofit, Startup Support",
-        aT:"Fur wen",aL:"Fur Firmen, die Maschinen/Linien ohne Improvisation liefern mussen.",
-        a1h:"OEM Maschinenbauer",a1t:"Sie mussen eine funktionierende Maschine mit Handover liefern.",
-        a2h:"Systemintegratoren",a2t:"Sie brauchen ein verlassliches externes Team fur Teilprojekt oder Startup.",
-        a3h:"Fabriken",a3t:"Neue Linie oder Retrofit und ein schneller Produktionsstart.",
-        xT:"Was wir liefern",xL:"Klarer technischer Umfang von PLC-Logik bis Commissioning vor Ort.",
-        x1h:"PLC/SPS software",x1t:"Sequenzen, Alarme, Rezepte, HMI und Peripherie-Integration.",
-        x2h:"Elektro-Dokumentation",x2t:"Schaltplan, IO-Listen, Testplan und Unterlagen fur den Betrieb.",
-        x3h:"Commissioning",x3t:"FAT/SAT, Startup, Zyklus-Feintuning und Team-Ubergabe.",
-        pT:"Proof bei Lieferantenauswahl",pL:"Jedes Projekt folgt Meilensteinen, Tests und klarer Definition von \"fertig\".",
-        p1h:"Risiko-Audit",p1t:"Kritische Punkte werden vor der Umsetzung identifiziert.",
-        p2h:"Testplan",p2t:"Szenarien und Abnahmekriterien sind vorab definiert.",
-        p3h:"Handover-Paket",p3t:"Dokumentation bereitet den Betrieb auf den Alltag vor.",
-        bh:"Brief message senden. In 24h erhalten Sie den klaren nachsten Schritt.",bt:"Sie senden Maschinentyp/Linie, Termin, Standort und aktuellen Stand. Sie erhalten konkrete Next Steps, Umfang und Zeitvorschlag.",
-        bc1:"Brief message senden",bc2:"Technischen Call starten",
-        sb:"Automatisierung von Scope bis Startup. Ohne Chaos, mit Handover.",sc:"Brief message",
-        f:"\u00a9 2026 thedesigns.org \u2014 industrial automation by execution."
+        ey: "Industrielle Automatisierung",
+        h1: "Wir liefern Maschinenautomatisierung, damit die Produktion termingerecht startet.",
+        lead: "Wenn Sie einen Partner fur PLC/SPS, Elektro und Commissioning suchen, ist das Ziel klar: sicher gestartet, getestet, an den Betrieb ubergeben.",
+        m1h: "Problem", m1t: "Das Projekt steht, weil End-to-End Verantwortung fehlt.",
+        m2h: "Risiko", m2t: "Stillstand, Vertragsstrafen und Chaos bei der Ubergabe.",
+        m3h: "Ergebnis", m3t: "Gestartete Technologie, Tests, Dokumentation und klarer Handover.",
+        c1: "Technischen Brief senden", c2: "Scope per Mail senden",
+        s1: "PLC/SPS + Elektro + Commissioning",
+        s2: "Software, Schaltplan, FAT/SAT Testplan, Ubergabe",
+        s3: "Neue Linien, Retrofit, Startup Support",
+        aT: "Fur wen", aL: "Fur Firmen, die Maschinen/Linien ohne Improvisation liefern mussen.",
+        a1h: "OEM Maschinenbauer", a1t: "Sie mussen eine funktionierende Maschine mit Handover liefern.",
+        a2h: "Systemintegratoren", a2t: "Sie brauchen ein verlassliches externes Team fur Teilprojekt oder Startup.",
+        a3h: "Fabriken", a3t: "Neue Linie oder Retrofit und ein schneller Produktionsstart.",
+        xT: "Was wir liefern", xL: "Klarer technischer Umfang von PLC-Logik bis Commissioning vor Ort.",
+        x1h: "PLC/SPS software", x1t: "Sequenzen, Alarme, Rezepte, HMI und Peripherie-Integration.",
+        x2h: "Elektro-Dokumentation", x2t: "Schaltplan, IO-Listen, Testplan und Unterlagen fur den Betrieb.",
+        x3h: "Commissioning", x3t: "FAT/SAT, Startup, Zyklus-Feintuning und Team-Ubergabe.",
+        pT: "Proof bei Lieferantenauswahl", pL: "Jedes Projekt folgt Meilensteinen, Tests und klarer Definition von \"fertig\".",
+        p1h: "Risiko-Audit", p1t: "Kritische Punkte werden vor der Umsetzung identifiziert.",
+        p2h: "Testplan", p2t: "Szenarien und Abnahmekriterien sind vorab definiert.",
+        p3h: "Handover-Paket", p3t: "Dokumentation bereitet den Betrieb auf den Alltag vor.",
+        bh: "Brief message senden. In 24h erhalten Sie den klaren nachsten Schritt.",
+        bt: "Sie senden Maschinentyp/Linie, Termin, Standort und aktuellen Stand. Sie erhalten konkrete Next Steps, Umfang und Zeitvorschlag.",
+        bc1: "Brief message senden", bc2: "Technischen Call starten",
+        sb: "Automatisierung von Scope bis Startup. Ohne Chaos, mit Handover.",
+        sc: "Brief message",
+        f: "© 2026 thedesigns.org — industrial automation by execution."
       }
     };
 
-    var nodes=document.querySelectorAll('[data-i18n]');
-    var btns=document.querySelectorAll('[data-lang]');
-    function setLang(lang){
-      var pack=T[lang];if(!pack)return;
-      document.documentElement.lang=lang;
-      nodes.forEach(function(n){var k=n.dataset.i18n;if(pack[k])n.textContent=pack[k];});
-      btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false');});
-      try{localStorage.setItem('td-lang',lang);}catch(_){}
+    const nodes = document.querySelectorAll("[data-i18n]");
+    const btns = document.querySelectorAll("[data-lang]");
+
+    function setLang(lang) {
+      const pack = T[lang];
+      if (!pack) return;
+      document.documentElement.lang = lang;
+      nodes.forEach((n) => {
+        const key = n.dataset.i18n;
+        if (pack[key]) n.textContent = pack[key];
+      });
+      btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+      try { localStorage.setItem("td-lang", lang); } catch (_) {}
     }
-    btns.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
-    try{var saved=localStorage.getItem('td-lang');setLang(saved&&T[saved]?saved:'sk');}catch(_){setLang('sk');}
+
+    btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+    try {
+      const saved = localStorage.getItem("td-lang");
+      setLang(saved && T[saved] ? saved : "sk");
+    } catch (_) {
+      setLang("sk");
+    }
   </script>
 </body>
 </html>
