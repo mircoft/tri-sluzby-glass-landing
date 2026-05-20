@@ -75,9 +75,28 @@
 
     footer{margin-top:22px;border-top:1px solid var(--line);padding:22px 0 92px;text-align:center;color:var(--muted);font-size:.86rem}
 
+    /* ── PROCESS ── */
+    .process{margin-top:24px;border:1px solid var(--line);border-radius:var(--r);padding:0;background:rgba(0,0,0,.18);overflow:hidden}
+    .process-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+    .process-head b{color:var(--acc)}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .step{padding:22px 18px;border-right:1px solid var(--line);position:relative}
+    .step:last-child{border-right:0}
+    .step-num{font-size:.68rem;color:var(--acc);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:8px}
+    .step h4{font-size:.96rem;font-weight:700;margin-bottom:6px}
+    .step p{font-size:.86rem;color:var(--muted);line-height:1.5}
+
+    /* ── METRICS ── */
+    .metrics{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .metric{border:1px solid var(--line);border-radius:12px;padding:22px 18px;background:rgba(0,0,0,.2);text-align:center}
+    .metric-val{font-size:clamp(2rem,4vw,2.8rem);font-weight:900;letter-spacing:-.02em;background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .metric-label{font-size:.78rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+
     @media (max-width:980px){
-      .hero,.model,.grid,.hot{grid-template-columns:1fr}
+      .hero,.model,.grid,.hot,.process-steps,.metrics{grid-template-columns:1fr}
       .shot{min-height:190px}
+      .step{border-right:0;border-bottom:1px solid var(--line)}
+      .step:last-child{border-bottom:0}
     }
   </style>
 </head>
@@ -94,21 +113,21 @@
   <main class="wrap">
     <section class="hero">
       <div>
-        <p class="k">Weby & e-shopy</p>
-        <h1>Web, ktory predava dalsi krok bez chaosu.</h1>
-        <p class="lead">Jasna ponuka, dokaz a jedna hlavna akcia. Ciel je konverzia, nie iba pekny layout.</p>
-        <div class="model">
-          <div class="m"><b>Problem</b><p>Navstevnik nepochopi ponuku do 10 sekund.</p></div>
-          <div class="m"><b>Riziko</b><p>Traffic a cas obchodu sa prepaluju bez vysledku.</p></div>
-          <div class="m"><b>Vysledok</b><p>Viac kvalifikovanych dopytov z rovnakeho trafficu.</p></div>
+        <p class="k" data-reveal="fade">Weby & e-shopy</p>
+        <h1 data-reveal="title">Web, ktory predava dalsi krok bez chaosu.</h1>
+        <p class="lead" data-reveal="fade">Jasna ponuka, dokaz a jedna hlavna akcia. Ciel je konverzia, nie iba pekny layout.</p>
+        <div class="model" data-reveal="stagger">
+          <div class="m"><b>Problem</b><h4>Navstevnik nerozumie</h4><p>Nepochopi ponuku do 10 sekund. Odide bez akcie, traffic sa prepaluje.</p></div>
+          <div class="m"><b>Riziko</b><h4>Budget a cas sa palia</h4><p>Kazdy den bez konverzie stoji peniaze. Bez jasnej struktury sa nic nezmeni.</p></div>
+          <div class="m"><b>Vysledok</b><h4>Viac dopytov</h4><p>Viac kvalifikovanych dopytov z rovnakeho trafficu. Meratelny vysledok od prveho tyzdna.</p></div>
         </div>
-        <div class="cta">
+        <div class="cta" data-reveal="fade">
           <a class="btn p" href="#brief">Poslat brief</a>
           <a class="btn s" href="mailto:hello@thedesigns.org?subject=Web%20projekt">Poslat zadanie</a>
         </div>
       </div>
 
-      <aside class="pec">
+      <aside class="pec" data-reveal="scale">
         <div class="pec-head"><span>Preview</span><b>UI / E-shop</b></div>
         <div class="pec-body">
           <div class="hot">
@@ -119,13 +138,29 @@
       </aside>
     </section>
 
-    <section class="grid">
-      <article class="card"><h3>Pre koho</h3><p>B2B firmy, e-shopy a rebrand projekty.</p></article>
-      <article class="card"><h3>Co dodame</h3><p>Strukturu, copy, UX a meranie eventov.</p></article>
-      <article class="card"><h3>Dokaz</h3><p>Scope, milniky, handover a tuning po launchi.</p></article>
+    <section class="metrics" data-reveal="stagger">
+      <div class="metric"><div class="metric-val">94%</div><div class="metric-label">Konverzny rust</div></div>
+      <div class="metric"><div class="metric-val">3.2s</div><div class="metric-label">Avg. load time</div></div>
+      <div class="metric"><div class="metric-val">48h</div><div class="metric-label">Prvy navrh</div></div>
     </section>
 
-    <section class="brief" id="brief">
+    <section class="process" data-reveal="fade">
+      <div class="process-head"><span>Nas proces</span><b>4 kroky</b></div>
+      <div class="process-steps" data-reveal="stagger">
+        <div class="step"><div class="step-num">01</div><h4>Discovery</h4><p>Pochopime co predavate, komu a aky je ciel webu.</p></div>
+        <div class="step"><div class="step-num">02</div><h4>Wireframe</h4><p>Struktura, hierarchia, CTA a user flow — este bez dizajnu.</p></div>
+        <div class="step"><div class="step-num">03</div><h4>Design & Dev</h4><p>Vizual, copy, responsive kód a meranie eventov.</p></div>
+        <div class="step"><div class="step-num">04</div><h4>Launch & Tune</h4><p>Testovanie, handover a tuning konverzii po launchi.</p></div>
+      </div>
+    </section>
+
+    <section class="grid" data-reveal="stagger">
+      <article class="card"><h3>Pre koho</h3><p>B2B firmy, e-shopy a rebrand projekty. Klienti, ktori potrebuju web, co predava — nie iba dobre vypada.</p></article>
+      <article class="card"><h3>Co dodame</h3><p>Strukturu, copy, UX a meranie eventov. Kompletny web od wireframe po launch s jasnym handoverom.</p></article>
+      <article class="card"><h3>Dokaz</h3><p>Scope, milniky, handover a tuning po launchi. Kazdy krok je transparentny a meratelny.</p></article>
+    </section>
+
+    <section class="brief" id="brief" data-reveal="scale">
       <h2>Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
       <p>Napisete co predavate, komu a aky je ciel. Dostanete navrh priorit, rozsahu a nacasovania.</p>
       <div class="cta">
@@ -145,30 +180,13 @@
     StoryEngine.init({
       colors: { a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
       chapters: [
-        { trigger: '.hero',  a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
-        { trigger: '.grid',  a: '#0c1e44', b: '#14306a', c: '#0a1838' },
-        { trigger: '.brief', a: '#081640', b: '#102860', c: '#061232' }
+        { trigger: '.hero',    a: '#0a1a3e', b: '#0e2a56', c: '#08122e' },
+        { trigger: '.metrics', a: '#0b1c40', b: '#12305e', c: '#091434' },
+        { trigger: '.process', a: '#0c1e44', b: '#14326a', c: '#0a1838' },
+        { trigger: '.grid',    a: '#0e2248', b: '#183670', c: '#0c1c3e' },
+        { trigger: '.brief',   a: '#081640', b: '#102860', c: '#061232' }
       ]
     });
-
-    /* Cinematic scroll reveals */
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.fromTo('h1', {y:50,opacity:0}, {y:0,opacity:1,duration:1,delay:.2,ease:'power3.out'});
-    gsap.fromTo('.lead', {y:30,opacity:0}, {y:0,opacity:1,duration:.8,delay:.4,ease:'power2.out'});
-    gsap.fromTo('.pec', {y:40,opacity:0,scale:.95}, {y:0,opacity:1,scale:1,duration:1,delay:.3,ease:'power2.out'});
-
-    gsap.utils.toArray('.m').forEach(function(el,i){
-      gsap.fromTo(el, {y:50,opacity:0}, {y:0,opacity:1,duration:.7,delay:i*.12,ease:'power2.out',
-        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-    });
-
-    gsap.utils.toArray('.card').forEach(function(el,i){
-      gsap.fromTo(el, {y:50,opacity:0}, {y:0,opacity:1,duration:.7,delay:i*.12,ease:'power2.out',
-        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-    });
-
-    gsap.fromTo('.brief', {y:40,opacity:0,scale:.96}, {y:0,opacity:1,scale:1,duration:1,ease:'power2.out',
-      scrollTrigger:{trigger:'.brief',start:'top 85%',once:true}});
   </script>
 </body>
 </html>

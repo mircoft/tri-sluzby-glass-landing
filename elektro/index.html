@@ -459,15 +459,30 @@
       max-width: 52ch;
     }
 
-    /* data-reveal handled by GSAP ScrollTrigger via story-engine */
+    /* ── PROCESS TIMELINE ── */
+    .timeline{margin-top:18px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(0,0,0,.22);overflow:hidden}
+    .timeline-head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+    .timeline-head b{color:var(--accent)}
+    .timeline-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+    .tl-step{padding:22px 16px;border-right:1px solid var(--line-soft);position:relative}
+    .tl-step:last-child{border-right:0}
+    .tl-step::before{content:'';position:absolute;top:22px;right:0;width:8px;height:8px;border-radius:50%;background:var(--accent);transform:translateX(50%);box-shadow:0 0 0 4px rgba(54,246,255,.15)}
+    .tl-step:last-child::before{display:none}
+    .tl-num{font-size:.66rem;color:var(--accent);text-transform:uppercase;letter-spacing:.16em;font-weight:700;margin-bottom:8px}
+    .tl-step h4{font-size:.92rem;font-weight:700;margin-bottom:4px}
+    .tl-step p{font-size:.82rem;color:var(--muted);line-height:1.45}
 
     @media (max-width: 980px) {
       .hero,
       .shots,
       .grid-3,
-      .model {
+      .model,
+      .timeline-steps {
         grid-template-columns: 1fr;
       }
+      .tl-step{border-right:0;border-bottom:1px solid var(--line-soft)}
+      .tl-step:last-child{border-bottom:0}
+      .tl-step::before{display:none}
 
       .wrap {
         padding-top: 52px;
@@ -503,15 +518,15 @@
 
   <main class="wrap">
     <section class="hero">
-      <div data-reveal>
+      <div class="hero-left">
         <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Priemyselna automatizacia</div>
         <h1 data-i18n="h1">Dodame automatizaciu stroja tak, aby vyroba nabehla v termine.</h1>
         <p class="lead" data-i18n="lead">Ak hladate partnera na PLC/SPS, elektro a commissioning, ciel je jeden: stroj bezpecne spusteny, otestovany a odovzdany prevadzke.</p>
 
-        <div class="model">
-          <div class="model-card"><b data-i18n="m1h">Problem</b><p data-i18n="m1t">Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.</p></div>
-          <div class="model-card"><b data-i18n="m2h">Riziko</b><p data-i18n="m2t">Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.</p></div>
-          <div class="model-card"><b data-i18n="m3h">Vysledok</b><p data-i18n="m3t">Spustena technologia, testy, dokumentacia a jasny handover.</p></div>
+        <div class="model" data-reveal="stagger">
+          <div class="model-card"><b data-i18n="m1h">Problem</b><h4>Chyba zodpovednost</h4><p data-i18n="m1t">Projekt stoji, lebo chyba kompletna zodpovednost od SW po startup.</p></div>
+          <div class="model-card"><b data-i18n="m2h">Riziko</b><h4>Prestoje a penalizacie</h4><p data-i18n="m2t">Prestoje, penalizacie a chaos pri odovzdani zakaznikovi.</p></div>
+          <div class="model-card"><b data-i18n="m3h">Vysledok</b><h4>Spustena technologia</h4><p data-i18n="m3t">Spustena technologia, testy, dokumentacia a jasny handover.</p></div>
         </div>
 
         <div class="cta-row">
@@ -520,7 +535,7 @@
         </div>
       </div>
 
-      <aside class="spec" data-reveal>
+      <aside class="spec" data-reveal="scale">
         <div class="spec-head"><span>Project Sheet</span><b>EU / SK / DE</b></div>
         <div class="spec-body">
           <dl class="kv">
@@ -537,43 +552,54 @@
       </aside>
     </section>
 
-    <section class="block" data-reveal>
+    <section class="block" data-reveal="fade">
       <div class="block-head">
         <h2 data-i18n="aT">Pre koho</h2>
         <p data-i18n="aL">Pre firmy, ktore potrebuju dodat stroj alebo linku bez improvizacie na mieste.</p>
       </div>
-      <div class="grid-3">
+      <div class="grid-3" data-reveal="stagger">
         <article class="card"><h3><span class="hico" aria-hidden="true">◆</span><span data-i18n="a1h">OEM vyrobcovia</span></h3><p data-i18n="a1t">Potrebujete stabilne dodat funkcny stroj s kompletnym handoverom.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">◉</span><span data-i18n="a2h">System integratori</span></h3><p data-i18n="a2t">Hladate spolahlivy externy tim na cast projektu alebo startup.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">▣</span><span data-i18n="a3h">Fabriky</span></h3><p data-i18n="a3t">Spustate novu linku alebo retrofit a potrebujete rychly nabeh.</p></article>
       </div>
     </section>
 
-    <section class="block" data-reveal>
+    <section class="block" data-reveal="fade">
       <div class="block-head">
         <h2 data-i18n="xT">Co dodame</h2>
         <p data-i18n="xL">Technicky jasny rozsah od logiky PLC po commissioning na mieste.</p>
       </div>
-      <div class="grid-3">
+      <div class="grid-3" data-reveal="stagger">
         <article class="card"><h3><span class="hico" aria-hidden="true">⚙</span><span data-i18n="x1h">PLC/SPS software</span></h3><p data-i18n="x1t">Sekvencie, alarmy, receptury, HMI a prepojenie periferii.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">⌁</span><span data-i18n="x2h">Elektro dokumentacia</span></h3><p data-i18n="x2t">Schema, IO listy, test plan a podklady pre prevadzku.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">↗</span><span data-i18n="x3h">Commissioning</span></h3><p data-i18n="x3t">FAT/SAT, startup, odladenie cyklov a odovzdanie timu.</p></article>
       </div>
     </section>
 
-    <section class="block" data-reveal>
+    <section class="block" data-reveal="fade">
       <div class="block-head">
         <h2 data-i18n="pT">Dokaz pri vybere dodavatela</h2>
         <p data-i18n="pL">Kazdy projekt bezi na milnikoch, testoch a jasnej definicii "hotovo".</p>
       </div>
-      <div class="grid-3">
+      <div class="grid-3" data-reveal="stagger">
         <article class="card"><h3><span class="hico" aria-hidden="true">△</span><span data-i18n="p1h">Rizikovy audit</span></h3><p data-i18n="p1t">Kriticke body identifikujeme pred realizaciou.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">☑</span><span data-i18n="p2h">Testovaci plan</span></h3><p data-i18n="p2t">Scenare a akceptacne podmienky su definovane dopredu.</p></article>
         <article class="card"><h3><span class="hico" aria-hidden="true">⇢</span><span data-i18n="p3h">Handover balik</span></h3><p data-i18n="p3t">Dokumentacia pripravi prevadzku na bezny chod.</p></article>
       </div>
     </section>
 
-    <section id="brief" class="brief-message" data-reveal>
+    <section class="timeline" data-reveal="fade">
+      <div class="timeline-head"><span>Priebeh projektu</span><b>5 faz</b></div>
+      <div class="timeline-steps" data-reveal="stagger">
+        <div class="tl-step"><div class="tl-num">01</div><h4>Brief & Scope</h4><p>Definicia rozsahu, IO listov a technickych poziadaviek.</p></div>
+        <div class="tl-step"><div class="tl-num">02</div><h4>SW & Elektro</h4><p>PLC logika, schema, HMI a prepojenie periferii.</p></div>
+        <div class="tl-step"><div class="tl-num">03</div><h4>FAT</h4><p>Factory Acceptance Test — overenie v dielni pred expediciou.</p></div>
+        <div class="tl-step"><div class="tl-num">04</div><h4>SAT & Startup</h4><p>Site Acceptance Test, odladenie cyklov na mieste.</p></div>
+        <div class="tl-step"><div class="tl-num">05</div><h4>Handover</h4><p>Dokumentacia, zaskolenie a odovzdanie prevadzke.</p></div>
+      </div>
+    </section>
+
+    <section id="brief" class="brief-message" data-reveal="scale">
       <h2 data-i18n="bh">Poslite brief message. Do 24 hodin mate jasny dalsi krok.</h2>
       <p data-i18n="bt">Napisete typ stroja/linky, termin, lokalitu a co je uz hotove. Dostanete konkretne dalsie kroky, rozsah a navrh nacasovania.</p>
       <div class="cta-row">
@@ -603,15 +629,16 @@
         { trigger: '.block:nth-of-type(1)', a: '#061820', b: '#0a2430', c: '#061220' },
         { trigger: '.block:nth-of-type(2)', a: '#081c24', b: '#0c2838', c: '#081428' },
         { trigger: '.block:nth-of-type(3)', a: '#0a2028', b: '#0e2e40', c: '#0a1830' },
+        { trigger: '.timeline',       a: '#071a22', b: '#0c2a3a', c: '#071422' },
         { trigger: '.brief-message',  a: '#041218', b: '#081c28', c: '#040c16' }
       ]
     });
 
-    /* Replace IntersectionObserver with GSAP ScrollTrigger reveals */
-    gsap.utils.toArray('[data-reveal]').forEach(function(el){
-      gsap.fromTo(el, {opacity:0,y:30}, {opacity:1,y:0,duration:.7,ease:'power2.out',
-        scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-    });
+    /* Hero immediate load animation */
+    gsap.fromTo('.eyebrow', {y:20,opacity:0}, {y:0,opacity:1,duration:.7,delay:.15,ease:'power2.out'});
+    gsap.fromTo('.hero h1', {y:50,opacity:0}, {y:0,opacity:1,duration:1,delay:.25,ease:'power3.out'});
+    gsap.fromTo('.lead', {y:30,opacity:0}, {y:0,opacity:1,duration:.8,delay:.45,ease:'power2.out'});
+    gsap.fromTo('.cta-row', {y:20,opacity:0}, {y:0,opacity:1,duration:.7,delay:.6,ease:'power2.out'});
 
     const T = {
       sk: {
