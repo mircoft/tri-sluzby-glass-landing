@@ -13,20 +13,20 @@
     :root{
       --bg:#0c0a14;
       --bg2:#14101f;
-      --txt:#f4f0ff;
+      --txt:var(--color-hub-ink);
       --muted:rgba(244,240,255,.72);
       --line:rgba(255,255,255,.1);
-      --acc:#a78bfa;
-      --acc2:#f472b6;
+      --acc:var(--color-signal-accent);
+      --acc2:var(--color-signal-accent2);
       --gold:#fbbf24;
-      --r:12px;
+      --r:var(--ds-r-md);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html.lenis,html.lenis body{height:auto}
     .lenis.lenis-smooth{scroll-behavior:auto!important}
     body{
       min-height:100vh;
-      font-family:"DM Sans",system-ui,sans-serif;
+      font-family:var(--font-body);
       color:var(--txt);
       background:
         radial-gradient(ellipse 80% 50% at 70% -20%,rgba(167,139,250,.22),transparent),
@@ -39,7 +39,7 @@
     .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x)}
     .top .ds-header-row{min-height:72px}
     .brand{display:flex;flex-direction:column;text-decoration:none;color:var(--txt)}
-    .brand b{font-family:"Instrument Serif",serif;font-size:1.35rem;font-weight:400;letter-spacing:-.02em}
+    .brand b{font-family:var(--font-headline);font-size:1.35rem;font-weight:400;letter-spacing:-.02em}
     .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
     .nav{display:flex;gap:8px;flex-wrap:wrap}
     .nav a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;padding:8px 10px;border-radius:8px;transition:color .2s,background .2s}
@@ -48,7 +48,7 @@
     .wrap{width:var(--ds-container);margin:0 auto;padding:var(--ds-xl) var(--ds-pad-x) 100px}
     .hero{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:center}
     .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--acc);font-weight:700}
-    h1{margin-top:14px;font-family:"Instrument Serif",serif;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.05;font-weight:400;letter-spacing:-.02em;max-width:14ch}
+    h1{margin-top:14px;font-family:var(--font-headline);font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.05;font-weight:400;letter-spacing:-.02em;max-width:14ch}
     h1 em{font-style:italic;color:var(--acc2)}
     .lead{margin-top:16px;color:var(--muted);max-width:52ch;font-size:1.05rem}
     .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
@@ -64,7 +64,7 @@
     .hero-badge strong{color:var(--gold)}
     .services{margin-top:48px}
     .sec-head{margin-bottom:28px}
-    .sec-head h2{font-family:"Instrument Serif",serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400}
+    .sec-head h2{font-family:var(--font-headline);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400}
     .sec-head p{margin-top:8px;color:var(--muted);max-width:50ch}
     .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
     .svc{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:rgba(255,255,255,.03);transition:border-color .25s,transform .25s;display:flex;flex-direction:column;height:100%}
@@ -74,7 +74,7 @@
     .svc p{font-size:.88rem;color:var(--muted);flex:1}
     .svc img{width:100%;height:120px;object-fit:cover;border-radius:var(--ds-r-sm);margin-top:var(--ds-md)}
     .bundle{margin-top:48px;border:1px solid var(--line);border-radius:var(--r);padding:32px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(20,16,31,.9))}
-    .bundle h2{font-family:"Instrument Serif",serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;max-width:20ch}
+    .bundle h2{font-family:var(--font-headline);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;max-width:20ch}
     .bundle p{margin-top:10px;color:var(--muted);max-width:58ch}
     .bundle-list{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-md)}
     .bundle-li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
@@ -92,7 +92,7 @@
     .metric-val{font-size:clamp(2rem,4vw,2.6rem);font-weight:800;background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
     .metric-label{font-size:.74rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.1em}
     .brief{margin-top:40px;border:1px solid var(--line);border-radius:var(--r);padding:32px;background:rgba(0,0,0,.25)}
-    .brief h2{font-family:"Instrument Serif",serif;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:400}
+    .brief h2{font-family:var(--font-headline);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:400}
     .brief p{margin-top:10px;color:var(--muted)}
     footer{margin-top:32px;padding:24px 0 80px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:980px){
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div class="hero-visual" data-reveal="scale">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="Kreatívny tím pri brandingu" loading="lazy">
+        <img src="../img/nx/hero1.png" alt="Design studio showreel" loading="lazy">
         <div class="hero-badge"><span>Full-service pre B2B aj D2C</span><strong>48h → prvý koncept</strong></div>
       </div>
     </section>
@@ -158,37 +158,37 @@
           <div class="svc-icon">◇</div>
           <h3>Branding & identita</h3>
           <p>Logo, vizuál, tone of voice, brand book a aplikácia na všetky kanály.</p>
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="Branding a identita" loading="lazy">
+          <img src="../foto/images/nautilus.png" alt="Branding a identita" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">◈</div>
           <h3>Web & landingy</h3>
           <p>Konverzné weby, prezentácie a produktové stránky s meraním a CTA.</p>
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Web development" loading="lazy">
+          <img src="../img/nx/blog1.png" alt="Web development" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">▣</div>
           <h3>E-shop</h3>
           <p>Shopify, WooCommerce alebo custom — platby, sklad, UX nákupu.</p>
-          <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80" alt="E-commerce" loading="lazy">
+          <img src="../img/nx/blog2.png" alt="E-commerce" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">◎</div>
           <h3>Sociálne siete</h3>
           <p>Stratégia, šablóny, reels, community management a reporting.</p>
-          <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7a2be?auto=format&fit=crop&w=800&q=80" alt="Social media marketing" loading="lazy">
+          <img src="../foto/images/fluid.png" alt="Social media marketing" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">↗</div>
           <h3>Performance marketing</h3>
           <p>Meta, Google, remarketing — kampane naviazané na landing a e-shop.</p>
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Performance marketing analytics" loading="lazy">
+          <img src="../img/nx/cta5.png" alt="Performance marketing" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">✦</div>
           <h3>Content & foto/video</h3>
           <p>Kampane, produktové fotky, krátke videá a brand obsah pre web aj social.</p>
-          <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b9?auto=format&fit=crop&w=800&q=80" alt="Content production" loading="lazy">
+          <img src="../foto/images/rush.png" alt="Content production" loading="lazy">
         </article>
       </div>
     </section>

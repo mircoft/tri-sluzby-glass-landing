@@ -1,4 +1,6 @@
 /* thedesigns.org — shared layout & symmetry (DESIGN.md) */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&family=Instrument+Serif:ital@0;1&display=swap");
+@import "./tokens.css";
 
 :root {
   --ds-container: min(1200px, 92%);

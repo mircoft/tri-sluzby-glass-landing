@@ -77,9 +77,18 @@ thedesigns.org je **hub s tromi rovnocennými vetvami**. Vizuál je profesionál
 
 - Interaktívne prvky: `8px` alebo `12px` radius; pill tlačidlá `9999px` len pre CTA.
 
+## Assets (obrázky)
+
+- **Hub:** `./img/nx/tstimg.png`, `./foto/images/prismatic.png`, `./img/nx/hero3.png`
+- **Signal House:** `../img/nx/`, `../foto/images/` — lokálne assety zo starého design štúdia
+- **Everlight:** `../foto/images/` — umelecké PNG z foto šablóny
+- **Automatizácia:** `../img/nx/hero3.png`, `srv*.png`, `blog1.png`
+- Nepoužívať externé Unsplash URL (často 404); vždy relatívne cesty v repozitári.
+
 ## Do's and Don'ts
 
 - Do používať rovnaké medzery v celom riadku gridu.
 - Do zarovnávať header: logo vľavo, akcie vpravo, rovnaká výška riadku.
+- Do načítavať farby a fonty z `css/tokens.css` (odvodené z YAML v tomto súbore).
 - Don't používať náhodné `1.1fr` stĺpce alebo asymetrické `grid-column: span 2` bez dôvodu.
 - Don't mixovať rôzne `max-width` kontajnerov na jednej stránke.

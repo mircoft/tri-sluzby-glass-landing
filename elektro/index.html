@@ -15,9 +15,9 @@
       --bg2: #071021;
       --line: rgba(98, 229, 255, 0.28);
       --line-soft: rgba(255, 255, 255, 0.12);
-      --text: #eaf4ff;
+      --text: var(--color-auto-ink);
       --muted: rgba(234, 244, 255, 0.76);
-      --accent: #36f6ff;
+      --accent: var(--color-auto-accent);
       --accent2: #55a7ff;
       --siemens: #009999;
       --warn: #ffb100;
@@ -30,12 +30,12 @@
 
     body {
       min-height: 100vh;
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      color: var(--color-auto-ink);
+      font-family: var(--font-auto-body);
       background:
         radial-gradient(circle at 84% -10%, rgba(54, 246, 255, 0.18), transparent 46%),
         radial-gradient(circle at 0% 0%, rgba(85, 167, 255, 0.20), transparent 40%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+        linear-gradient(180deg, var(--color-auto-bg), var(--bg2));
       line-height: 1.55;
     }
 
@@ -160,7 +160,7 @@
       gap: 8px;
     }
     .pill {
-      font-family: "JetBrains Mono", monospace;
+      font-family: var(--font-auto-mono);
       font-size: 0.72rem;
       padding: 8px 12px;
       border-radius: 8px;
@@ -282,7 +282,7 @@
       bottom: 8px;
       left: 10px;
       z-index: 2;
-      font-family: "JetBrains Mono", monospace;
+      font-family: var(--font-auto-mono);
       font-size: 0.62rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -510,15 +510,15 @@
           </dl>
           <div class="shots">
             <div class="shot">
-              <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45a7?auto=format&fit=crop&w=1400&q=80" alt="Priemyselný robotický manipulátor vo výrobe" loading="lazy">
+              <img src="../img/nx/hero3.png" alt="Automatizovaná linka" loading="lazy">
               <span class="shot-label">Robotická bunka</span>
             </div>
             <div class="shot">
-              <img src="https://images.unsplash.com/photo-1581092160562-aa2e906d367c?auto=format&fit=crop&w=1000&q=80" alt="PLC riadiaca skriňa a kabeláž" loading="lazy">
+              <img src="../img/nx/srv1.png" alt="PLC a riadenie" loading="lazy">
               <span class="shot-label">PLC / elektro</span>
             </div>
             <div class="shot">
-              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Inžinier pri automatizovanej linke" loading="lazy">
+              <img src="../img/nx/about1.png" alt="Commissioning na linky" loading="lazy">
               <span class="shot-label">Commissioning</span>
             </div>
           </div>
@@ -533,19 +533,19 @@
       </div>
       <div class="gallery-row">
         <div class="shot">
-          <img src="https://images.unsplash.com/photo-1537467406-2678c81fb02d?auto=format&fit=crop&w=600&q=80" alt="Robotická ruka v automotive línke" loading="lazy">
+          <img src="../img/nx/srv2.png" alt="Robotická bunka" loading="lazy">
           <span class="shot-label">Robot</span>
         </div>
         <div class="shot">
-          <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Výrobná hala s automatizáciou" loading="lazy">
+          <img src="../img/nx/srv3.png" alt="Výrobná linka" loading="lazy">
           <span class="shot-label">Linka</span>
         </div>
         <div class="shot">
-          <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=600&q=80" alt="Riadiace moduly a elektronika" loading="lazy">
+          <img src="../foto/images/metal.png" alt="SIMATIC / I/O moduly" loading="lazy">
           <span class="shot-label">SIMATIC / I/O</span>
         </div>
         <div class="shot">
-          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80" alt="HMI panel a vizualizácia stroja" loading="lazy">
+          <img src="../img/nx/cta1.png" alt="HMI a vizualizácia" loading="lazy">
           <span class="shot-label">HMI / SCADA</span>
         </div>
       </div>
@@ -558,17 +558,17 @@
       </div>
       <div class="grid-3" data-reveal="stagger">
         <article class="card">
-          <img class="card-img" src="https://images.unsplash.com/photo-1581092160562-aa2e906d367c?auto=format&fit=crop&w=800&q=80" alt="PLC programovanie" loading="lazy">
+          <img class="card-img" src="../img/nx/srv4.png" alt="PLC programovanie" loading="lazy">
           <h3><span class="hico">⚙</span><span data-i18n="x1h">PLC / SPS software</span></h3>
           <p data-i18n="x1t">SIMATIC S7 — STL, SCL, LAD; safety, receptúry, alarmy, HMI WinCC Unified / Comfort.</p>
         </article>
         <article class="card">
-          <img class="card-img" src="https://images.unsplash.com/photo-1686710278078-26f028c6dad8?auto=format&fit=crop&w=800&q=80" alt="Robotická integrácia" loading="lazy">
+          <img class="card-img" src="../img/nx/hero3.png" alt="Robotická integrácia" loading="lazy">
           <h3><span class="hico">◎</span><span data-i18n="x4h">Robotika & linky</span></h3>
           <p data-i18n="x4t">Integrácia robotov, pick & place, paletizácia, synchronizácia s PLC a safety zóny.</p>
         </article>
         <article class="card">
-          <img class="card-img" src="https://images.unsplash.com/photo-1581092919535-7146ff1a5902?auto=format&fit=crop&w=800&q=80" alt="Elektro dokumentácia a schémy" loading="lazy">
+          <img class="card-img" src="../img/nx/blog1.png" alt="Elektro dokumentácia" loading="lazy">
           <h3><span class="hico">⌁</span><span data-i18n="x2h">Elektro & dokumentácia</span></h3>
           <p data-i18n="x2t">E-plan / schémy, IO listy, kabelážne výkresy, CE podklady a revízna dokumentácia.</p>
         </article>

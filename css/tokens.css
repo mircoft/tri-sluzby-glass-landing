@@ -1,0 +1,26 @@
+/* Generated from DESIGN.md — color & type tokens */
+
+:root {
+  --color-hub-ink: #ecf2ff;
+  --color-hub-bg: #080a1d;
+  --color-hub-accent: #6b2cff;
+
+  --color-signal-primary: #1a1c1e;
+  --color-signal-accent: #a78bfa;
+  --color-signal-accent2: #f472b6;
+
+  --color-ever-neutral: #f7f5f2;
+  --color-ever-ink: #1c1814;
+  --color-ever-accent: #b8860b;
+
+  --color-auto-ink: #eaf4ff;
+  --color-auto-bg: #05070f;
+  --color-auto-accent: #36f6ff;
+
+  --font-headline: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-ever-headline: "Cormorant Garamond", Georgia, serif;
+  --font-ever-body: "Outfit", system-ui, sans-serif;
+  --font-auto-body: Inter, system-ui, sans-serif;
+  --font-auto-mono: "JetBrains Mono", ui-monospace, monospace;
+}

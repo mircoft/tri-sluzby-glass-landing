@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./css/design-system.css">
   <style>
     :root {
-      --text: #ecf2ff;
+      --text: var(--color-hub-ink);
       --glass: rgba(255, 255, 255, 0.1);
       --border: rgba(255, 255, 255, 0.3);
       --shadow: rgba(0, 0, 0, 0.4);
@@ -19,13 +19,13 @@
 
     body {
       min-height: 100vh;
-      font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+      font-family: var(--font-body);
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
+        radial-gradient(circle at 15% 20%, var(--color-hub-accent) 0%, transparent 45%),
         radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
         radial-gradient(circle at 52% 85%, #ff2f8f 0%, transparent 38%),
-        linear-gradient(135deg, #080a1d 0%, #141938 100%);
+        linear-gradient(135deg, var(--color-hub-bg) 0%, #141938 100%);
     }
 
     .noise {
@@ -176,6 +176,8 @@
     }
 
     .col h2 {
+      font-family: var(--font-headline);
+      font-weight: 400;
       font-size: clamp(1.5rem, 2vw, 2.1rem);
       line-height: 1.15;
       text-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
@@ -215,7 +217,7 @@
   <main class="page ds-container">
     <div class="hub-grid">
       <a class="col" href="./weby/" aria-label="Signal House branding a marketing">
-        <img src="https://images.unsplash.com/photo-1557804506-669a69365ba0?auto=format&fit=crop&w=1400&q=80" alt="Kreatívne brandingové štúdio" loading="lazy">
+        <img src="./img/nx/tstimg.png" alt="Design studio — vizuálna identita" loading="lazy">
         <div class="ink">
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 2l3 6h6l-5 4 2 7-6-4-6 4 2-7-5-4h6z"/></svg>
@@ -227,7 +229,7 @@
       </a>
 
       <a class="col" href="./foto/" aria-label="Everlight svadobné foto a video">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80" alt="Svadobné fotenie a video" loading="lazy">
+        <img src="./foto/images/prismatic.png" alt="Everlight — svadobná produkcia" loading="lazy">
         <div class="ink">
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M20 12a8 8 0 1 1-16 0"/></svg>
@@ -239,7 +241,7 @@
       </a>
 
       <a class="col" href="./elektro/" aria-label="Priemyselná automatizácia">
-        <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45a7?auto=format&fit=crop&w=1400&q=80" alt="Priemyselná robotika a automatizácia" loading="lazy">
+        <img src="./img/nx/hero3.png" alt="Priemyselná automatizácia" loading="lazy">
         <div class="ink">
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 2v6"/><path d="M12 16v6"/><path d="M2 12h6"/><path d="M16 12h6"/><circle cx="12" cy="12" r="4"/></svg>
