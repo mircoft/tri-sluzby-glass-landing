@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/design-system.css">
   <style>
     :root {
       --bg: #05070f;
@@ -20,8 +21,7 @@
       --accent2: #55a7ff;
       --siemens: #009999;
       --warn: #ffb100;
-      --radius: 14px;
-      --container: min(1240px, 93%);
+      --radius: 12px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -67,16 +67,11 @@
     }
 
     .top-inner {
-      width: var(--container);
+      width: var(--ds-container);
       margin: 0 auto;
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding: 10px 0;
+      padding-inline: var(--ds-pad-x);
     }
+    .top-inner.ds-header-row { min-height: 72px; }
 
     .logo { color: var(--text); text-decoration: none; }
     .logo b {
@@ -114,13 +109,17 @@
       color: var(--accent);
     }
 
-    .wrap { width: var(--container); margin: 0 auto; padding: 72px 0 132px; }
+    .wrap {
+      width: var(--ds-container);
+      margin: 0 auto;
+      padding: var(--ds-xl) var(--ds-pad-x) 132px;
+    }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 32px;
-      align-items: start;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--ds-gutter);
+      align-items: stretch;
     }
 
     .eyebrow {
@@ -253,8 +252,8 @@
     .shots {
       margin-top: 16px;
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--ds-md);
     }
     .shot {
       position: relative;
@@ -291,12 +290,13 @@
     }
 
     .gallery-row {
-      margin-top: 18px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--ds-md);
+      padding: 22px;
+      align-items: stretch;
     }
-    .gallery-row .shot { min-height: 120px; }
+    .gallery-row .shot { min-height: 140px; aspect-ratio: 4/3; }
 
     section.block {
       margin-top: 18px;
@@ -326,14 +326,18 @@
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
+      gap: var(--ds-gutter);
       padding: 22px;
+      align-items: stretch;
     }
     .card {
       border: 1px solid rgba(54, 246, 255, 0.22);
       border-radius: 12px;
       padding: 18px;
       background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
     .card h3 {
       font-size: 0.98rem;
@@ -455,7 +459,7 @@
   <div class="grid-overlay" aria-hidden="true"></div>
 
   <header class="top">
-    <div class="top-inner">
+    <div class="top-inner ds-header-row">
       <a class="logo" href="../">
         <b>thedesigns.org</b>
         <span>Industrial automation · PLC · roboty</span>
@@ -526,7 +530,7 @@
         <h2 data-i18n="tT">Technológie & zariadenia</h2>
         <p data-i18n="tL">Pracujeme s ekosystémom Siemens a štandardnými fieldbus sieťami — bez improvizácie na mieste.</p>
       </div>
-      <div class="gallery-row" style="padding:0 22px 22px">
+      <div class="gallery-row">
         <div class="shot">
           <img src="https://images.unsplash.com/photo-1537467406-2678c81fb02d?auto=format&fit=crop&w=600&q=80" alt="Robotická ruka v automotive línke" loading="lazy">
           <span class="shot-label">Robot</span>

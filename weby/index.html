@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/design-system.css">
   <style>
     :root{
       --bg:#0c0a14;
@@ -18,8 +19,7 @@
       --acc:#a78bfa;
       --acc2:#f472b6;
       --gold:#fbbf24;
-      --r:16px;
-      --mx:min(1180px,92%);
+      --r:12px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html.lenis,html.lenis body{height:auto}
@@ -36,7 +36,8 @@
       overflow-x:hidden;
     }
     .top{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(12,10,20,.88);backdrop-filter:blur(12px)}
-    .top .ct{width:var(--mx);margin:0 auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0}
+    .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x)}
+    .top .ds-header-row{min-height:72px}
     .brand{display:flex;flex-direction:column;text-decoration:none;color:var(--txt)}
     .brand b{font-family:"Instrument Serif",serif;font-size:1.35rem;font-weight:400;letter-spacing:-.02em}
     .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
@@ -44,8 +45,8 @@
     .nav a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;padding:8px 10px;border-radius:8px;transition:color .2s,background .2s}
     .nav a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
     .ghost{border:1px solid var(--line);border-radius:10px;padding:10px 14px;color:var(--txt);text-decoration:none;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04)}
-    .wrap{width:var(--mx);margin:0 auto;padding:56px 0 100px}
-    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+    .wrap{width:var(--ds-container);margin:0 auto;padding:var(--ds-xl) var(--ds-pad-x) 100px}
+    .hero{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:center}
     .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--acc);font-weight:700}
     h1{margin-top:14px;font-family:"Instrument Serif",serif;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.05;font-weight:400;letter-spacing:-.02em;max-width:14ch}
     h1 em{font-style:italic;color:var(--acc2)}
@@ -65,17 +66,17 @@
     .sec-head{margin-bottom:28px}
     .sec-head h2{font-family:"Instrument Serif",serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400}
     .sec-head p{margin-top:8px;color:var(--muted);max-width:50ch}
-    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .svc{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:rgba(255,255,255,.03);transition:border-color .25s,transform .25s}
+    .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
+    .svc{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:rgba(255,255,255,.03);transition:border-color .25s,transform .25s;display:flex;flex-direction:column;height:100%}
     .svc:hover{border-color:rgba(167,139,250,.45);transform:translateY(-4px)}
     .svc-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(244,114,182,.15));display:grid;place-items:center;margin-bottom:14px;font-size:1.1rem}
     .svc h3{font-size:1rem;margin-bottom:8px;font-weight:700}
-    .svc p{font-size:.88rem;color:var(--muted)}
-    .svc img{width:100%;height:120px;object-fit:cover;border-radius:10px;margin-top:14px}
+    .svc p{font-size:.88rem;color:var(--muted);flex:1}
+    .svc img{width:100%;height:120px;object-fit:cover;border-radius:var(--ds-r-sm);margin-top:var(--ds-md)}
     .bundle{margin-top:48px;border:1px solid var(--line);border-radius:var(--r);padding:32px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(20,16,31,.9))}
     .bundle h2{font-family:"Instrument Serif",serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;max-width:20ch}
     .bundle p{margin-top:10px;color:var(--muted);max-width:58ch}
-    .bundle-list{margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .bundle-list{margin-top:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-md)}
     .bundle-li{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
     .bundle-li::before{content:"✓";color:var(--acc);font-weight:800}
     .process{margin-top:48px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -86,7 +87,7 @@
     .step-num{font-size:.66rem;color:var(--acc);font-weight:700;letter-spacing:.12em;margin-bottom:8px}
     .step h4{font-size:.95rem;margin-bottom:6px}
     .step p{font-size:.84rem;color:var(--muted)}
-    .metrics{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .metrics{margin-top:var(--ds-lg);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
     .metric{border:1px solid var(--line);border-radius:var(--r);padding:24px;text-align:center;background:rgba(0,0,0,.2)}
     .metric-val{font-size:clamp(2rem,4vw,2.6rem);font-weight:800;background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
     .metric-label{font-size:.74rem;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.1em}
@@ -103,7 +104,7 @@
 </head>
 <body>
   <header class="top">
-    <div class="ct">
+    <div class="ct ds-header-row">
       <a class="brand" href="../"><b>Signal House</b><span>Growth & brand studio</span></a>
       <nav class="nav">
         <a href="#services">Služby</a>

@@ -1,0 +1,84 @@
+/* thedesigns.org — shared layout & symmetry (DESIGN.md) */
+
+:root {
+  --ds-container: min(1200px, 92%);
+  --ds-pad-x: 16px;
+  --ds-xs: 4px;
+  --ds-sm: 8px;
+  --ds-md: 16px;
+  --ds-lg: 32px;
+  --ds-xl: 64px;
+  --ds-gutter: 24px;
+  --ds-r-sm: 8px;
+  --ds-r-md: 12px;
+  --ds-r-lg: 16px;
+}
+
+.ds-container {
+  width: var(--ds-container);
+  margin-inline: auto;
+  padding-inline: var(--ds-pad-x);
+}
+
+.ds-section {
+  padding-block: var(--ds-xl);
+}
+
+.ds-section-tight {
+  padding-block: var(--ds-lg);
+}
+
+.ds-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ds-gutter);
+  align-items: stretch;
+}
+
+.ds-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ds-gutter);
+  align-items: stretch;
+}
+
+.ds-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--ds-md);
+  align-items: stretch;
+}
+
+.ds-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-md);
+  min-height: 72px;
+}
+
+.ds-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ds-card-body {
+  flex: 1;
+}
+
+@media (max-width: 980px) {
+  .ds-grid-2,
+  .ds-grid-3,
+  .ds-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --ds-pad-x: 12px;
+    --ds-gutter: 16px;
+    --ds-xl: 48px;
+  }
+}
