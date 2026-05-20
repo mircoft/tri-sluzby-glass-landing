@@ -1,6 +1,6 @@
-/*  StoryEngine — Three.js painted background + GSAP ScrollTrigger + Lenis
+/*  StoryEngine v2 — Three.js painted background + GSAP ScrollTrigger + Lenis
  *  Shared module for thedesigns.org storytelling pages.
- *  CDN deps: three.js ≥ 0.160, gsap + ScrollTrigger ≥ 3.12, lenis ≥ 1.1
+ *  CDN deps: three.js >= 0.160, gsap + ScrollTrigger >= 3.12, lenis >= 1.1
  */
 (function () {
   'use strict';
@@ -27,7 +27,6 @@
     'uniform vec3  uCC;',
     'varying vec2  vUv;',
 
-    /* simplex 2‑D noise (Ashima Arts) */
     'vec3 permute(vec3 x){return mod(((x*34.0)+1.0)*x,289.0);}',
     'float snoise(vec2 v){',
     '  const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);',
@@ -44,42 +43,34 @@
     '  return 130.0*dot(m,g);',
     '}',
 
-    /* fractal brownian motion */
     'float fbm(vec2 p){float v=0.0,a=.5;for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=.5;}return v;}',
 
     'void main(){',
     '  vec2 uv=vUv;',
     '  vec2 asp=vec2(uRes.x/uRes.y,1.0);',
 
-    /* mouse ripple */
     '  float md=length((uv-uMouse)*asp);',
-    '  float mi=smoothstep(.55,0.0,md)*.12;',
+    '  float mi=smoothstep(.6,0.0,md)*.18;',
 
-    '  float t=uTime*.06;',
+    '  float t=uTime*.05;',
 
-    /* domain-warped noise for painterly texture (Inigo Quilez technique) */
-    '  vec2 q=vec2(fbm(uv*2.8+vec2(t*.4,t*.3)),fbm(uv*2.8+vec2(5.2,1.3)+t*.2));',
-    '  vec2 r=vec2(fbm(uv*2.8+4.0*q+vec2(1.7,9.2)+(uv-uMouse)*mi*6.0),',
-    '             fbm(uv*2.8+4.0*q+vec2(8.3,2.8)+(uv-uMouse)*mi*6.0));',
-    '  float f=fbm(uv*2.8+4.0*r);',
+    '  vec2 q=vec2(fbm(uv*2.4+vec2(t*.35,t*.25)),fbm(uv*2.4+vec2(5.2,1.3)+t*.18));',
+    '  vec2 r=vec2(fbm(uv*2.4+4.0*q+vec2(1.7,9.2)+(uv-uMouse)*mi*8.0),',
+    '             fbm(uv*2.4+4.0*q+vec2(8.3,2.8)+(uv-uMouse)*mi*8.0));',
+    '  float f=fbm(uv*2.4+4.0*r);',
 
-    /* colour blending driven by noise layers */
     '  float b1=smoothstep(-.6,.6,f);',
     '  float b2=smoothstep(-.4,.4,q.x);',
     '  vec3 col=mix(uCA,uCB,b1);',
-    '  col=mix(col,uCC,b2*.55);',
+    '  col=mix(col,uCC,b2*.6);',
 
-    /* mouse glow */
-    '  col+=mi*.7*uCB;',
+    '  col+=mi*1.2*uCB;',
 
-    /* vignette */
-    '  col*=1.0-smoothstep(.45,1.5,length((uv-.5)*1.7))*.55+.45;',
+    '  col*=1.0-smoothstep(.5,1.6,length((uv-.5)*1.5))*.45+.55;',
 
-    /* grain */
-    '  col+=fract(sin(dot(uv*uTime,vec2(12.9898,78.233)))*43758.5453)*.035-.0175;',
+    '  col+=fract(sin(dot(uv*uTime,vec2(12.9898,78.233)))*43758.5453)*.03-.015;',
 
-    /* keep dark */
-    '  col*=.32;',
+    '  col*=.45;',
 
     '  gl_FragColor=vec4(col,1.0);',
     '}'
@@ -103,10 +94,7 @@
   /* ── THREE.JS BACKGROUND ───────────────────────────────── */
 
   function initBackground(cfg) {
-    if (isMobile && cfg.disableOnMobile !== false) {
-      /* CSS gradient fallback only – skip Three.js on mobile */
-      return;
-    }
+    if (isMobile && cfg.disableOnMobile !== false) return;
     if (typeof THREE === 'undefined') return;
 
     var canvas = document.createElement('canvas');
@@ -135,25 +123,23 @@
       }
     });
 
-    var mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-    scene.add(mesh);
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material));
 
     document.addEventListener('mousemove', function (e) {
       targetMX = e.clientX / window.innerWidth;
       targetMY = 1.0 - e.clientY / window.innerHeight;
     }, { passive: true });
 
-    var onResize = function () {
+    window.addEventListener('resize', function () {
       renderer.setSize(window.innerWidth, window.innerHeight);
       material.uniforms.uRes.value.set(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', onResize);
+    });
 
     (function loop(t) {
       requestAnimationFrame(loop);
       material.uniforms.uTime.value = t * 0.001;
-      mouseX += (targetMX - mouseX) * 0.045;
-      mouseY += (targetMY - mouseY) * 0.045;
+      mouseX += (targetMX - mouseX) * 0.05;
+      mouseY += (targetMY - mouseY) * 0.05;
       material.uniforms.uMouse.value.set(mouseX, mouseY);
       renderer.render(scene, camera);
     })(0);
@@ -169,9 +155,9 @@
       var cB = new THREE.Color(ch.b);
       var cC = new THREE.Color(ch.c);
       function morph() {
-        gsap.to(material.uniforms.uCA.value, { r: cA.r, g: cA.g, b: cA.b, duration: 1.4, ease: 'power2.inOut' });
-        gsap.to(material.uniforms.uCB.value, { r: cB.r, g: cB.g, b: cB.b, duration: 1.4, ease: 'power2.inOut' });
-        gsap.to(material.uniforms.uCC.value, { r: cC.r, g: cC.g, b: cC.b, duration: 1.4, ease: 'power2.inOut' });
+        gsap.to(material.uniforms.uCA.value, { r: cA.r, g: cA.g, b: cA.b, duration: 1.6, ease: 'power2.inOut' });
+        gsap.to(material.uniforms.uCB.value, { r: cB.r, g: cB.g, b: cB.b, duration: 1.6, ease: 'power2.inOut' });
+        gsap.to(material.uniforms.uCC.value, { r: cC.r, g: cC.g, b: cC.b, duration: 1.6, ease: 'power2.inOut' });
       }
       ScrollTrigger.create({ trigger: ch.trigger, start: 'top 70%', end: 'bottom 30%', onEnter: morph, onEnterBack: morph });
     });
@@ -180,60 +166,78 @@
   /* ── CINEMATIC REVEALS ─────────────────────────────────── */
 
   function initReveals() {
-    /* title – big slide up */
+    /* bare data-reveal (no value) — generic fade up */
+    gsap.utils.toArray('[data-reveal]').forEach(function (el) {
+      var type = el.getAttribute('data-reveal');
+      if (type && type !== '') return;
+      gsap.fromTo(el, { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+    });
+
+    /* title – dramatic slide up with scale */
     gsap.utils.toArray('[data-reveal="title"]').forEach(function (el) {
-      gsap.fromTo(el, { y: 70, opacity: 0, scale: 0.97 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.fromTo(el, { y: 80, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
     });
 
     /* fade up */
     gsap.utils.toArray('[data-reveal="fade"]').forEach(function (el) {
-      gsap.fromTo(el, { y: 44, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.85, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+      gsap.fromTo(el, { y: 48, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
     });
 
     /* stagger children */
     gsap.utils.toArray('[data-reveal="stagger"]').forEach(function (el) {
-      gsap.fromTo(el.children, { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, stagger: 0.13, ease: 'power2.out',
+      gsap.fromTo(el.children, { y: 60, opacity: 0, scale: 0.96 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.4)',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
 
-    /* scale in – images / cards */
+    /* scale in – images / hero panels */
     gsap.utils.toArray('[data-reveal="scale"]').forEach(function (el) {
-      gsap.fromTo(el, { scale: 0.82, opacity: 0, y: 36 },
-        { scale: 1, opacity: 1, y: 0, duration: 1.05, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.fromTo(el, { scale: 0.8, opacity: 0, y: 40 },
+        { scale: 1, opacity: 1, y: 0, duration: 1.1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
     });
 
-    /* wipe from left */
+    /* wipe from left – cinematic image reveal */
     gsap.utils.toArray('[data-reveal="wipe"]').forEach(function (el) {
       gsap.fromTo(el, { clipPath: 'inset(0 100% 0 0)' },
-        { clipPath: 'inset(0 0% 0 0)', duration: 1.3, ease: 'power3.inOut',
+        { clipPath: 'inset(0 0% 0 0)', duration: 1.4, ease: 'power3.inOut',
           scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
     });
 
     /* slide from left */
     gsap.utils.toArray('[data-reveal="left"]').forEach(function (el) {
-      gsap.fromTo(el, { x: -80, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.fromTo(el, { x: -100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
     });
 
     /* slide from right */
     gsap.utils.toArray('[data-reveal="right"]').forEach(function (el) {
-      gsap.fromTo(el, { x: 80, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+      gsap.fromTo(el, { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
     });
 
     /* parallax */
     gsap.utils.toArray('[data-parallax]').forEach(function (el) {
       var speed = parseFloat(el.dataset.parallax) || 0.2;
       gsap.to(el, {
-        y: function () { return -120 * speed; }, ease: 'none',
+        y: function () { return -150 * speed; }, ease: 'none',
+        scrollTrigger: { trigger: el.parentElement || el, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
+    /* horizontal parallax */
+    gsap.utils.toArray('[data-parallax-x]').forEach(function (el) {
+      var speed = parseFloat(el.dataset.parallaxX) || 0.1;
+      gsap.to(el, {
+        x: function () { return -100 * speed; }, ease: 'none',
         scrollTrigger: { trigger: el.parentElement || el, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
