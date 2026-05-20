@@ -72,7 +72,35 @@
     .svc-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(244,114,182,.15));display:grid;place-items:center;margin-bottom:14px;font-size:1.1rem}
     .svc h3{font-size:1rem;margin-bottom:8px;font-weight:700}
     .svc p{font-size:.88rem;color:var(--muted);flex:1}
-    .svc img{width:100%;height:120px;object-fit:cover;border-radius:var(--ds-r-sm);margin-top:var(--ds-md)}
+    .svc img{width:100%;height:140px;object-fit:cover;border-radius:var(--ds-r-sm);margin-top:var(--ds-md)}
+    .work{margin-top:var(--ds-xl)}
+    .work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
+    .work-item{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:320px;display:flex;align-items:flex-end}
+    .work-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .work-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,10,20,.9),transparent 55%)}
+    .work-cap{position:relative;z-index:2;padding:var(--ds-gutter)}
+    .work-cap h3{font-size:1.05rem;margin-bottom:6px}
+    .work-cap p{font-size:.84rem;color:var(--muted);max-width:32ch}
+    .about-band{margin-top:var(--ds-xl);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:center}
+    .about-img{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3}
+    .about-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .about-txt h2{font-family:var(--font-headline);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;margin-bottom:12px}
+    .about-txt p{color:var(--muted);margin-bottom:12px;max-width:48ch}
+    .about-list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+    .about-li{font-size:.9rem;color:var(--muted);padding-left:18px;position:relative}
+    .about-li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+    .clients{margin-top:var(--ds-xl);border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:rgba(255,255,255,.03)}
+    .clients-row{display:flex;flex-wrap:wrap;gap:var(--ds-md);align-items:center;justify-content:space-between;margin-top:14px}
+    .cl{height:36px;width:auto;opacity:.85;filter:brightness(1.1)}
+    .tst{margin-top:var(--ds-xl)}
+    .tst-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter)}
+    .tst-card{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:14px}
+    .tst-top{display:flex;align-items:center;gap:12px}
+    .tst-av{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0}
+    .tst-av img{width:100%;height:100%;object-fit:cover}
+    .tst-meta b{display:block;font-size:.9rem}
+    .tst-meta span{font-size:.78rem;color:var(--muted)}
+    .tst-q{font-size:.92rem;color:var(--muted);line-height:1.65;font-style:italic}
     .bundle{margin-top:48px;border:1px solid var(--line);border-radius:var(--r);padding:32px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(20,16,31,.9))}
     .bundle h2{font-family:var(--font-headline);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:400;max-width:20ch}
     .bundle p{margin-top:10px;color:var(--muted);max-width:58ch}
@@ -96,7 +124,7 @@
     .brief p{margin-top:10px;color:var(--muted)}
     footer{margin-top:32px;padding:24px 0 80px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:980px){
-      .hero,.svc-grid,.process-steps,.metrics,.bundle-list{grid-template-columns:1fr}
+      .hero,.svc-grid,.process-steps,.metrics,.bundle-list,.work-grid,.about-band,.tst-grid{grid-template-columns:1fr}
       .step{border-right:0;border-bottom:1px solid var(--line)}
       .nav{display:none}
     }
@@ -108,8 +136,9 @@
       <a class="brand" href="../"><b>Signal House</b><span>Growth & brand studio</span></a>
       <nav class="nav">
         <a href="#services">Služby</a>
+        <a href="#work">Portfólio</a>
+        <a href="#about">O štúdiu</a>
         <a href="#bundle">Balík</a>
-        <a href="#process">Proces</a>
         <a href="#brief">Kontakt</a>
       </nav>
       <a class="ghost" href="../">Domov</a>
@@ -136,7 +165,7 @@
         </div>
       </div>
       <div class="hero-visual" data-reveal="scale">
-        <img src="../img/nx/hero1.png" alt="Design studio showreel" loading="lazy">
+        <img src="../img/nx/tstimg.png" alt="Design studio — branding a digitál" loading="lazy">
         <div class="hero-badge"><span>Full-service pre B2B aj D2C</span><strong>48h → prvý koncept</strong></div>
       </div>
     </section>
@@ -158,37 +187,114 @@
           <div class="svc-icon">◇</div>
           <h3>Branding & identita</h3>
           <p>Logo, vizuál, tone of voice, brand book a aplikácia na všetky kanály.</p>
-          <img src="../foto/images/nautilus.png" alt="Branding a identita" loading="lazy">
+          <img src="../foto/images/prismatic.png" alt="Branding a vizuálna identita" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">◈</div>
           <h3>Web & landingy</h3>
           <p>Konverzné weby, prezentácie a produktové stránky s meraním a CTA.</p>
-          <img src="../img/nx/blog1.png" alt="Web development" loading="lazy">
+          <img src="../img/nx/srv2.png" alt="Web a UX dizajn" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">▣</div>
           <h3>E-shop</h3>
           <p>Shopify, WooCommerce alebo custom — platby, sklad, UX nákupu.</p>
-          <img src="../img/nx/blog2.png" alt="E-commerce" loading="lazy">
+          <img src="../foto/images/device.png" alt="E-shop a produktový UX" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">◎</div>
           <h3>Sociálne siete</h3>
           <p>Stratégia, šablóny, reels, community management a reporting.</p>
-          <img src="../foto/images/fluid.png" alt="Social media marketing" loading="lazy">
+          <img src="../img/nx/cta8.png" alt="Sociálne siete a content" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">↗</div>
           <h3>Performance marketing</h3>
           <p>Meta, Google, remarketing — kampane naviazané na landing a e-shop.</p>
-          <img src="../img/nx/cta5.png" alt="Performance marketing" loading="lazy">
+          <img src="../img/nx/blog3.png" alt="Performance marketing a analytics" loading="lazy">
         </article>
         <article class="svc">
           <div class="svc-icon">✦</div>
           <h3>Content & foto/video</h3>
           <p>Kampane, produktové fotky, krátke videá a brand obsah pre web aj social.</p>
-          <img src="../foto/images/rush.png" alt="Content production" loading="lazy">
+          <img src="../img/nx/team1.png" alt="Content a produkčná fotografia" loading="lazy">
+        </article>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="sec-head" data-reveal="fade">
+        <p class="k">Portfólio</p>
+        <h2>Vybrané projekty — brand, web, digitál</h2>
+        <p>Ukážky z reálnych smerov štúdia: identita, webové zážitky a produktový dizajn.</p>
+      </div>
+      <div class="work-grid" data-reveal="stagger">
+        <article class="work-item">
+          <img src="../foto/images/mountain.png" alt="Rebranding a vizuálny systém" loading="lazy">
+          <div class="work-cap"><h3>Brand & identita</h3><p>Logo, paleta, typografia a aplikácia na web aj tlač.</p></div>
+        </article>
+        <article class="work-item">
+          <img src="../foto/images/metal.png" alt="Web a digitálny produkt" loading="lazy">
+          <div class="work-cap"><h3>Web & landing</h3><p>Konverzná štruktúra, UI systém a responzívny vývoj.</p></div>
+        </article>
+        <article class="work-item">
+          <img src="../foto/images/glass.png" alt="E-shop a digitálny obsah" loading="lazy">
+          <div class="work-cap"><h3>E-shop & social</h3><p>Produktové karty, kampane a obsah pre kanály.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-band" id="about" data-reveal="fade">
+      <div class="about-img">
+        <img src="../img/nx/about1.png" alt="Design studio tím pri práci" loading="lazy">
+      </div>
+      <div class="about-txt">
+        <p class="k">O Signal House</p>
+        <h2>Dizajn štúdio + web + marketing v jednom tíme</h2>
+        <p>Nie ste u troch dodávateľov — máte jeden kontakt, jednu víziu a jeden harmonogram. Od prvého workshopu po spustenie kampaní.</p>
+        <p>Pracujeme s firmami, ktoré chcú vyzerať prémiovo a predávať jasne: B2B, e-shopy, rebrandy aj štartupy na SK a DE trhu.</p>
+        <div class="about-list">
+          <div class="about-li">Brand discovery, moodboardy a finálny brand book</div>
+          <div class="about-li">Weby, e-shopy, landingy s meraním konverzií</div>
+          <div class="about-li">Social setup, content šablóny a performance kampane</div>
+        </div>
+        <div class="cta" style="margin-top:20px">
+          <a class="btn p" href="#brief">Rezervovať konzultáciu</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="clients" data-reveal="fade">
+      <p class="k">Dôvera</p>
+      <h2 style="font-family:var(--font-headline);font-size:1.4rem;font-weight:400">Spolupracujeme s tímami v retail, tech a službách</h2>
+      <div class="clients-row">
+        <img class="cl" src="../img/nx/cl1.png" alt="" width="100" height="36" loading="lazy">
+        <img class="cl" src="../img/nx/cl2.png" alt="" width="100" height="36" loading="lazy">
+        <img class="cl" src="../img/nx/cl3.png" alt="" width="100" height="36" loading="lazy">
+        <img class="cl" src="../img/nx/cl4.png" alt="" width="100" height="36" loading="lazy">
+        <img class="cl" src="../img/nx/cl5.png" alt="" width="100" height="36" loading="lazy">
+      </div>
+    </section>
+
+    <section class="tst" id="references">
+      <div class="sec-head" data-reveal="fade">
+        <p class="k">Referencie</p>
+        <h2>Čo hovoria klienti</h2>
+      </div>
+      <div class="tst-grid" data-reveal="stagger">
+        <article class="tst-card">
+          <div class="tst-top">
+            <div class="tst-av"><img src="../img/nx/tst1.png" alt="" loading="lazy"></div>
+            <div class="tst-meta"><b>Marketing lead</b><span>B2B SaaS</span></div>
+          </div>
+          <p class="tst-q">„Jeden tím nám spravil brand, web aj prvé kampane. Konečne rovnaký vizuál všade — a viac dopytov z rovnakého trafficu.“</p>
+        </article>
+        <article class="tst-card">
+          <div class="tst-top">
+            <div class="tst-av"><img src="../img/nx/tst2.png" alt="" loading="lazy"></div>
+            <div class="tst-meta"><b>Founder</b><span>E-commerce</span></div>
+          </div>
+          <p class="tst-q">„E-shop aj social sme mali hotové v jednom cykle. Jasné míľniky, žiadne dohady kto čo dodáva.“</p>
         </article>
       </div>
     </section>
@@ -242,6 +348,8 @@
       chapters: [
         { trigger: '.hero', a: '#1a1030', b: '#2a1848', c: '#120c20' },
         { trigger: '.services', a: '#1e1238', b: '#301850', c: '#140e24' },
+        { trigger: '.work', a: '#1a0e32', b: '#2c1650', c: '#120c22' },
+        { trigger: '.about-band', a: '#1e1238', b: '#301850', c: '#140e24' },
         { trigger: '.bundle', a: '#221438', b: '#341c52', c: '#161028' },
         { trigger: '.brief', a: '#180e28', b: '#281440', c: '#100c1c' }
       ]

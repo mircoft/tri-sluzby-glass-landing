@@ -60,6 +60,7 @@
     .svc-card{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);display:flex;flex-direction:column;height:100%}
     .svc-card h3{font-family:var(--font-ever-headline);font-size:1.5rem;margin-bottom:8px}
     .svc-card p{font-size:.9rem;color:var(--muted)}
+    .svc-thumb{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;margin-bottom:14px}
     .svc-card ul{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.86rem;color:var(--muted)}
     .svc-card li::before{content:"· ";color:var(--acc)}
     .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
@@ -124,7 +125,7 @@
 
   <section class="hero">
     <div class="hero-bg">
-      <img src="../foto/images/ethereal.png" alt="Svadobná atmosféra" fetchpriority="high">
+      <img src="wedding/hero.jpg" alt="Svadobný pár" fetchpriority="high">
     </div>
     <div class="ct">
       <p class="hero-k">Everlight · thedesigns.org</p>
@@ -142,12 +143,12 @@
     <h2 class="sec-h">Momenty, ktoré zostanú</h2>
     <p class="sec-p">Reportážny štýl, portréty páru a detailné zábery — bez stratených okamihov.</p>
     <div class="gallery" data-reveal="stagger">
-      <div class="g-item"><img src="../foto/images/rush.png" alt="Emócia a pohyb" loading="lazy"></div>
-      <div class="g-item"><img src="../foto/images/light.png" alt="Svetlo a atmosféra" loading="lazy"></div>
-      <div class="g-item"><img src="../foto/images/mountain.png" alt="Prírodná kulisa" loading="lazy"></div>
-      <div class="g-item"><img src="../foto/images/reflective.png" alt="Reflexie" loading="lazy"></div>
-      <div class="g-item"><img src="../foto/images/cloud.png" alt="Jemné tóny" loading="lazy"></div>
-      <div class="g-item"><img src="../foto/images/gradient.png" alt="Farebná hĺbka" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/kiss.jpg" alt="Svadobný bozk" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/ceremony.jpg" alt="Svadobný obrad" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/rings.jpg" alt="Prstene" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/dance.jpg" alt="Prvý tanec" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/bouquet.jpg" alt="Svadobná kytica" loading="lazy"></div>
+      <div class="g-item"><img src="wedding/venue.jpg" alt="Svadobné miesto" loading="lazy"></div>
     </div>
   </section>
 
@@ -157,16 +158,19 @@
     <p class="sec-p">Jeden tím, jeden kontakt. Žiadne dohadovanie medzi fotografom a kameramanom.</p>
     <div class="svc-row" data-reveal="stagger">
       <article class="svc-card">
+        <div class="svc-thumb"><img src="wedding/prep.jpg" alt="Prípravy nevesty" loading="lazy"></div>
         <h3>Svadobné foto</h3>
         <p>Reportáž + portréty. RAW spracovanie, online galéria pre hostí do 14 dní.</p>
         <ul><li>Prípravy & obrad</li><li>Pár & rodina</li><li>Večer & detail</li></ul>
       </article>
       <article class="svc-card">
+        <div class="svc-thumb"><img src="wedding/ceremony.jpg" alt="Svadobné video záznam" loading="lazy"></div>
         <h3>Svadobné video</h3>
         <p>Highlight film 3–8 min + dlhá verzia obradu a gratulácií. Kinematografický look.</p>
         <ul><li>4K záznam</li><li>Stabilizácia & zvuk</li><li>Teaser do 48h</li></ul>
       </article>
       <article class="svc-card">
+        <div class="svc-thumb"><img src="wedding/venue.jpg" alt="Svadobné miesto z výšky" loading="lazy"></div>
         <h3>Drone & extra</h3>
         <p>Letové zábery areálu, druhý kameraman, foto budka alebo album na mieru.</p>
         <ul><li>Dron (legálne povolenia)</li><li>Druhý fotoaparát</li><li>Tlačený album</li></ul>

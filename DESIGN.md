@@ -81,7 +81,7 @@ thedesigns.org je **hub s tromi rovnocennými vetvami**. Vizuál je profesionál
 
 - **Hub:** `./img/nx/tstimg.png`, `./foto/images/prismatic.png`, `./img/nx/hero3.png`
 - **Signal House:** `../img/nx/`, `../foto/images/` — lokálne assety zo starého design štúdia
-- **Everlight:** `../foto/images/` — umelecké PNG z foto šablóny
+- **Everlight:** `foto/wedding/*.jpg` — reálne svadobné fotky (Pexels, lokálne v repo)
 - **Automatizácia:** `../img/nx/hero3.png`, `srv*.png`, `blog1.png`
 - Nepoužívať externé Unsplash URL (často 404); vždy relatívne cesty v repozitári.
 
