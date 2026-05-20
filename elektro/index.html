@@ -27,8 +27,11 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html.lenis, html.lenis body { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
 
     body {
       min-height: 100vh;
@@ -521,10 +524,63 @@
     }
     .sticky p { color: var(--muted); font-size: 0.82rem; max-width: 52ch; }
 
+    .brands {
+      margin-top: var(--ds-lg);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+    .brands-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .brands-head h2 {
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .brands-head p { margin-top: 6px; color: var(--muted); font-size: 0.9rem; max-width: 58ch; }
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--ds-md);
+      padding: 22px;
+    }
+    .brand-item {
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      padding: 18px 12px;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .brand-note {
+      padding: 0 22px 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .factory-banner {
+      margin-top: var(--ds-md);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line-soft);
+      aspect-ratio: 21/9;
+      max-height: 320px;
+    }
+    .factory-banner img { height: 100%; object-fit: cover; }
+
     @media (max-width: 980px) {
-      .hero, .metrics, .grid-3, .model, .timeline-steps, .gallery-row, .when-grid, .tech-row {
+      .hero, .metrics, .grid-3, .model, .timeline-steps, .gallery-row, .when-grid, .tech-row, .brand-grid {
         grid-template-columns: 1fr;
       }
+      .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-stats { grid-template-columns: 1fr; }
       .hero-stat { border-right: 0; border-bottom: 1px solid var(--line-soft); }
       .tl-step { border-right: 0; border-bottom: 1px solid var(--line-soft); }
@@ -564,7 +620,7 @@
           <span class="pill">PROFINET / safety</span>
         </div>
 
-        <div class="model" data-reveal="stagger">
+        <div class="model">
           <div class="model-card"><b data-i18n="m1h">Situácia</b><p data-i18n="m1t">Projekt beží, SAT sa blíži — interný tím nestíha alebo chýba špecialista.</p></div>
           <div class="model-card"><b data-i18n="m2h">Čo nasadíme</b><p data-i18n="m2t">Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.</p></div>
           <div class="model-card"><b data-i18n="m3h">Výsledok</b><p data-i18n="m3t">Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.</p></div>
@@ -576,9 +632,9 @@
         </div>
       </div>
 
-      <aside class="hero-visual" data-reveal="scale">
+      <aside class="hero-visual">
         <div class="hero-img">
-          <img src="images/hero.jpg" alt="Moderná výrobná linka s robotmi" fetchpriority="high">
+          <img src="images/hero.jpg" alt="Interiér automobilovej výrobnej haly s linkou" fetchpriority="high">
           <p class="hero-cap" data-i18n="cap">Výroba 2026 · roboty · dopravníky · PLC</p>
         </div>
         <div class="hero-stats">
@@ -589,21 +645,42 @@
       </aside>
     </section>
 
-    <div class="metrics" data-reveal="stagger">
+    <div class="metrics">
       <div class="metric"><b data-i18n="k1b">Elektro</b><span data-i18n="k1t">montáž & zapojenie</span></div>
       <div class="metric"><b data-i18n="k2b">PLC / SPS</b><span data-i18n="k2t">TIA · úpravy · FAT</span></div>
       <div class="metric"><b data-i18n="k3b">Roboty</b><span data-i18n="k3t">integrácia · SAT</span></div>
       <div class="metric"><b data-i18n="k4b">Linky</b><span data-i18n="k4t">dopravníky · sekvencie</span></div>
     </div>
 
-    <section class="block" data-reveal="fade">
+    <section class="brands">
+      <div class="brands-head">
+        <h2 data-i18n="bT">Projekty v automobilových fabrikách</h2>
+        <p data-i18n="bL">Tímy nasadzujeme priamo vo výrobných halách — montáž, PLC, robotické linky a SAT.</p>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-item">BMW</div>
+        <div class="brand-item">Volkswagen</div>
+        <div class="brand-item">Bugatti</div>
+        <div class="brand-item">Audi</div>
+        <div class="brand-item">Porsche</div>
+        <div class="brand-item">Škoda</div>
+        <div class="brand-item">Mercedes-Benz</div>
+        <div class="brand-item">Kia</div>
+      </div>
+      <p class="brand-note" data-i18n="bN">Konkrétny závod a linka pod NDA — detail po kapacitnom briefe.</p>
+      <div class="factory-banner">
+        <img src="images/factory.jpg" alt="Interiér automobilovej výrobnej haly" loading="lazy">
+      </div>
+    </section>
+
+    <section class="block">
       <div class="block-head">
         <h2 data-i18n="xT">Čo konkrétne dodáme</h2>
         <p data-i18n="xL">Ľudia so skúsenosťou na zabehnutých linkách — podľa vášho harmonogramu a dokumentácie projektu.</p>
       </div>
-      <div class="grid-3" data-reveal="stagger">
+      <div class="grid-3">
         <article class="card">
-          <img class="card-img" src="images/team.jpg" alt="Elektrikári pri rozvádzači" loading="lazy">
+          <img class="card-img" src="images/factory.jpg" alt="Výrobná hala automobilky" loading="lazy">
           <h3><span class="hico">⌁</span><span data-i18n="x1h">Elektrikári</span></h3>
           <p data-i18n="x1t">Montáž rozvádzačov, kabeláž, merania, oživenie periférií a spolupráca s revíznymi požiadavkami.</p>
           <ul>
@@ -635,37 +712,37 @@
       </div>
     </section>
 
-    <section class="block" data-reveal="fade">
+    <section class="block">
       <div class="block-head">
-        <h2 data-i18n="gT">Technológie v praxi</h2>
-        <p data-i18n="gL">Moderné linky, ktoré dnes reálne montujeme a uvádzame do prevádzky.</p>
+        <h2 data-i18n="gT">Z výrobných hál</h2>
+        <p data-i18n="gL">Interiéry fabrik, montážne linky, roboty a dopravníky — reálne prostredie, nie stock ilustrácie.</p>
       </div>
       <div class="gallery-row">
         <div class="shot">
-          <img src="images/robot.jpg" alt="Robotická bunka" loading="lazy">
-          <span class="shot-label" data-i18n="g1">Roboty</span>
+          <img src="images/hero.jpg" alt="Automatizovaná montážna linka" loading="lazy">
+          <span class="shot-label" data-i18n="g1">Montážna linka</span>
         </div>
         <div class="shot">
-          <img src="images/conveyor.jpg" alt="Dopravník vo výrobe" loading="lazy">
-          <span class="shot-label" data-i18n="g2">Dopravníky</span>
+          <img src="images/robot.jpg" alt="Priemyselný robot vo fabrike" loading="lazy">
+          <span class="shot-label" data-i18n="g2">Roboty</span>
         </div>
         <div class="shot">
-          <img src="images/line.jpg" alt="Montážna linka" loading="lazy">
-          <span class="shot-label" data-i18n="g3">Linky</span>
+          <img src="images/conveyor.jpg" alt="Dopravník v automobilovej výrobe" loading="lazy">
+          <span class="shot-label" data-i18n="g3">Dopravníky</span>
         </div>
         <div class="shot">
-          <img src="images/warehouse.jpg" alt="Skladová automatizácia" loading="lazy">
-          <span class="shot-label" data-i18n="g4">Intralogistika</span>
+          <img src="images/line.jpg" alt="Interiér výrobnej haly" loading="lazy">
+          <span class="shot-label" data-i18n="g4">Výrobná hala</span>
         </div>
       </div>
     </section>
 
-    <section class="block" data-reveal="fade">
+    <section class="block">
       <div class="block-head">
         <h2 data-i18n="wT">Kedy nás zapnete</h2>
         <p data-i18n="wL">Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.</p>
       </div>
-      <div class="when-grid" data-reveal="stagger">
+      <div class="when-grid">
         <div class="when-card">
           <h3 data-i18n="w1h">Blíži sa SAT / odovzdanie</h3>
           <p data-i18n="w1t">Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.</p>
@@ -681,12 +758,12 @@
       </div>
     </section>
 
-    <section class="block" data-reveal="fade">
+    <section class="block">
       <div class="block-head">
         <h2 data-i18n="pT">Ako to prebieha</h2>
         <p data-i18n="pL">Jednoduchý proces — bez zbytočnej byrokracie, s jasným rozsahom.</p>
       </div>
-      <div class="timeline-steps" data-reveal="stagger">
+      <div class="timeline-steps">
         <div class="tl-step">
           <div class="tl-num">01</div>
           <h4 data-i18n="p1h">Kapacitný brief</h4>
@@ -710,7 +787,7 @@
       </div>
     </section>
 
-    <section class="block" data-reveal="fade">
+    <section class="block">
       <div class="block-head">
         <h2 data-i18n="tT">Platformy</h2>
         <p data-i18n="tL">Štandardné prostredie — bez experimentov na kritickej linke.</p>
@@ -728,12 +805,12 @@
       </div>
     </section>
 
-    <section class="block" data-reveal="fade">
+    <section class="block">
       <div class="block-head">
         <h2 data-i18n="aT">Pre koho</h2>
         <p data-i18n="aL">Partneri, ktorí potrebujú kapacitu, nie ďalší subdodávateľ „od nuly“.</p>
       </div>
-      <div class="grid-3" data-reveal="stagger">
+      <div class="grid-3">
         <article class="card">
           <h3><span class="hico">◆</span><span data-i18n="a1h">OEM & výrobcovia strojov</span></h3>
           <p data-i18n="a1t">Doplnenie elektro a PLC tímu pred expedíciou stroja alebo pri FAT u zákazníka.</p>
@@ -749,7 +826,7 @@
       </div>
     </section>
 
-    <section id="brief" class="brief-message" data-reveal="scale">
+    <section id="brief" class="brief-message">
       <h2 data-i18n="bh">Pošlite kapacitný brief — odpoveď do 24 hodín.</h2>
       <p data-i18n="bt">Uveďte: počet ľudí (elektro / PLC / robotika), lokalitu, termín nástupu, stav projektu (montáž / FAT / SAT) a PLC platformu. Navrhneme tím a rozsah.</p>
       <div class="cta-row">
@@ -766,27 +843,7 @@
     <a class="btn primary" href="#brief" data-i18n="sc">Kapacita</a>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="../js/story-engine.js"></script>
   <script>
-    StoryEngine.init({
-      colors: { a: '#041418', b: '#081e28', c: '#040e18' },
-      chapters: [
-        { trigger: '.hero', a: '#041418', b: '#081e28', c: '#040e18' },
-        { trigger: '.metrics', a: '#061820', b: '#0a2430', c: '#061220' },
-        { trigger: '.block:nth-of-type(1)', a: '#081c24', b: '#0c2838', c: '#081428' },
-        { trigger: '.block:nth-of-type(3)', a: '#071a22', b: '#0c2a3a', c: '#071422' },
-        { trigger: '.brief-message', a: '#041218', b: '#081c28', c: '#040c16' }
-      ]
-    });
-
-    gsap.fromTo('.eyebrow', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, delay: 0.15, ease: 'power2.out' });
-    gsap.fromTo('.hero h1', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.25, ease: 'power3.out' });
-    gsap.fromTo('.lead, .hero-note, .tech-pills', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.45, ease: 'power2.out', stagger: 0.08 });
-
     const T = {
       sk: {
         logo: "Kapacita pre automatizáciu",
@@ -799,7 +856,10 @@
         m2h: "Čo nasadíme", m2t: "Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.",
         m3h: "Výsledok", m3t: "Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.",
         c1: "Dopyt na kapacitu", c2: "Napísať mailom",
-        cap: "Výroba 2026 · roboty · dopravníky · PLC",
+        bT: "Projekty v automobilových fabrikách",
+        bL: "Tímy nasadzujeme priamo vo výrobných halách — montáž, PLC, robotické linky a SAT.",
+        bN: "Konkrétny závod a linka pod NDA — detail po kapacitnom briefe.",
+        cap: "Automobilová výroba · hala · linka",
         st1: "nasadenie", st2: "odpoveď na brief", st3: "kontakt pre tím",
         k1b: "Elektro", k1t: "montáž & zapojenie",
         k2b: "PLC / SPS", k2t: "TIA · úpravy · FAT",
@@ -813,8 +873,8 @@
         x2a: "Dokončenie alebo úprava SW", x2b: "FAT v dielni / simulácia I/O", x2c: "Podpora pri SAT a prevádzke",
         x3h: "Robotika & commissioning", x3t: "Integrácia robotov, synchronizácia s PLC, paletizácia, dopravníky a odladenie pred odovzdaním.",
         x3a: "Robotické bunky a pick & place", x3b: "Safety zóny a režimy linky", x3c: "Commissioning a handover",
-        gT: "Technológie v praxi", gL: "Moderné linky, ktoré dnes reálne montujeme a uvádzame do prevádzky.",
-        g1: "Roboty", g2: "Dopravníky", g3: "Linky", g4: "Intralogistika",
+        gT: "Z výrobných hál", gL: "Interiéry fabrik, montážne linky, roboty a dopravníky — reálne prostredie, nie stock ilustrácie.",
+        g1: "Montážna linka", g2: "Roboty", g3: "Dopravníky", g4: "Výrobná hala",
         wT: "Kedy nás zapnete", wL: "Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.",
         w1h: "Blíži sa SAT / odovzdanie", w1t: "Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.",
         w2h: "Integrátor potrebuje posilu", w2t: "Máte zákazníka a zmluvu, ale nie PLCárov alebo elektrikárov na celý mesiac.",
@@ -848,7 +908,10 @@
         m2h: "Was wir stellen", m2t: "Elektriker, SPS-Programmierer, optional Robotik/Commissioning nach Ihrem Scope.",
         m3h: "Ergebnis", m3t: "Kapazitaet vor Ort, ein Ansprechpartner, klare Uebergabe an Betrieb oder Integrator.",
         c1: "Kapazitaet anfragen", c2: "Per E-Mail",
-        cap: "Produktion 2026 · Roboter · Foerderer · SPS",
+        bT: "Projekte in Automobilwerken",
+        bL: "Teams direkt in Produktionshallen — Montage, SPS, Roboterlinien und SAT.",
+        bN: "Konkretes Werk und Linie unter NDA — Details nach Kapazitaets-Brief.",
+        cap: "Automobilproduktion · Halle · Linie",
         st1: "Einsatz", st2: "Antwort in 24h", st3: "ein Ansprechpartner",
         k1b: "Elektro", k1t: "Montage & Verdrahtung",
         k2b: "SPS / PLC", k2t: "TIA · Anpassungen · FAT",
@@ -862,8 +925,8 @@
         x2a: "SW fertigstellen oder anpassen", x2b: "FAT in der Werkstatt / IO-Simulation", x2c: "Unterstuetzung bei SAT und Betrieb",
         x3h: "Robotik & Commissioning", x3t: "Roboterintegration, SPS-Sync, Palettierung, Foerderer und Einfahren vor Uebergabe.",
         x3a: "Roboterzellen und Pick&Place", x3b: "Safety-Zonen und Linienmodi", x3c: "Commissioning und Handover",
-        gT: "Technologien in der Praxis", gL: "Moderne Linien, die wir heute real montieren und in Betrieb nehmen.",
-        g1: "Roboter", g2: "Foerderer", g3: "Linien", g4: "Intralogistik",
+        gT: "Aus Produktionshallen", gL: "Hallen, Montagelinien, Roboter und Foerderer — reale Umgebung, keine Stock-Illustrationen.",
+        g1: "Montagelinie", g2: "Roboter", g3: "Foerderer", g4: "Produktionshalle",
         wT: "Wann Sie uns einschalten", wL: "Nicht fuer Papierstudien — wenn echte Leute auf ein laufendes Projekt noetig sind.",
         w1h: "SAT / Abnahme naht", w1t: "Linie steht, Programmierung oder Einfahren oder Nachtschichten fehlen.",
         w2h: "Integrator braucht Verstaerkung", w2t: "Kunde und Vertrag da, aber keine SPS-Leute oder Elektriker fuer den Monat.",
