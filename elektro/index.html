@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatizácia | PLC · Roboty · Siemens SIMATIC</title>
-  <meta name="description" content="Priemyselná automatizácia: PLC/SPS, robotické linky, Siemens SIMATIC, PROFINET, commissioning a FAT/SAT. Od návrhu po odovzdanie prevádzke.">
+  <title>Automatizácia | Elektrikári & PLC programátori na projekt</title>
+  <meta name="description" content="Dodávame skúsených elektrikárov a PLC programátorov na zabehnuté automatizačné projekty. Roboty, linky, dopravníky, Siemens SIMATIC, commissioning v SK/CZ/DE.">
+  <link rel="canonical" href="https://thedesigns.org/elektro/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/design-system.css">
   <style>
     :root {
@@ -30,7 +32,7 @@
 
     body {
       min-height: 100vh;
-      color: var(--color-auto-ink);
+      color: var(--text);
       font-family: var(--font-auto-body);
       background:
         radial-gradient(circle at 84% -10%, rgba(54, 246, 255, 0.18), transparent 46%),
@@ -38,6 +40,8 @@
         linear-gradient(180deg, var(--color-auto-bg), var(--bg2));
       line-height: 1.55;
     }
+
+    img { display: block; max-width: 100%; width: 100%; height: 100%; object-fit: cover; }
 
     .grid-overlay {
       position: fixed;
@@ -144,14 +148,25 @@
 
     h1 {
       margin-top: 14px;
-      font-size: clamp(2rem, 4.5vw, 3.9rem);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
       letter-spacing: -0.03em;
-      line-height: 1.04;
-      max-width: 16ch;
+      line-height: 1.06;
+      max-width: 18ch;
       font-weight: 800;
     }
 
-    .lead { margin-top: 14px; color: var(--muted); max-width: 60ch; font-size: 1.04rem; }
+    .lead { margin-top: 14px; color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+
+    .hero-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent);
+      background: rgba(54, 246, 255, 0.08);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.92rem;
+      color: rgba(234, 244, 255, 0.92);
+      max-width: 52ch;
+    }
 
     .tech-pills {
       margin-top: 18px;
@@ -171,7 +186,7 @@
     }
 
     .model {
-      margin-top: 26px;
+      margin-top: 22px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--ds-md);
@@ -191,9 +206,9 @@
       font-size: 0.68rem;
       margin-bottom: 8px;
     }
-    .model-card p { color: var(--muted); font-size: 0.92rem; }
+    .model-card p { color: var(--muted); font-size: 0.9rem; }
 
-    .cta-row { margin-top: 28px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta-row { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -215,92 +230,98 @@
     }
     .btn.secondary { color: var(--text); background: rgba(255, 255, 255, 0.05); }
 
-    .spec {
+    .hero-visual {
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(0, 0, 0, 0.34);
       overflow: hidden;
-    }
-    .spec-head {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .spec-head b { color: var(--accent); }
-    .spec-body { padding: 14px; display: grid; gap: 10px; }
-
-    .kv {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 8px 12px;
-      font-size: 0.92rem;
-    }
-    .kv dt {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .shots {
-      margin-top: 16px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--ds-md);
-    }
-    .shot {
-      position: relative;
-      border: 1px solid var(--line-soft);
-      border-radius: 12px;
-      overflow: hidden;
-      min-height: 150px;
       background: #091628;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
     }
-    .shot img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-img {
+      position: relative;
+      flex: 1;
+      min-height: 280px;
     }
-    .shot::after {
+    .hero-img::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(165deg, rgba(54, 246, 255, 0.12), rgba(5, 7, 15, 0.5));
+      background: linear-gradient(180deg, transparent 40%, rgba(5, 7, 15, 0.85));
     }
-    .shot-label {
+    .hero-cap {
       position: absolute;
-      bottom: 8px;
-      left: 10px;
+      bottom: 12px;
+      left: 14px;
+      right: 14px;
       z-index: 2;
       font-family: var(--font-auto-mono);
-      font-size: 0.62rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(234, 244, 255, 0.9);
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero-stat {
+      padding: 14px;
+      border-right: 1px solid var(--line-soft);
+      text-align: center;
+    }
+    .hero-stat:last-child { border-right: 0; }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .hero-stat span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: rgba(234, 244, 255, 0.9);
+      color: var(--muted);
       font-weight: 600;
     }
 
-    .gallery-row {
+    .metrics {
+      margin-top: var(--ds-lg);
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: var(--ds-md);
-      padding: 22px;
       align-items: stretch;
     }
-    .gallery-row .shot { min-height: 140px; aspect-ratio: 4/3; }
+    .metric {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.22);
+      text-align: center;
+    }
+    .metric b {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .metric span {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
 
     section.block {
-      margin-top: 18px;
+      margin-top: var(--ds-lg);
       border: 1px solid var(--line-soft);
       border-radius: var(--radius);
       background: rgba(0, 0, 0, 0.22);
@@ -322,7 +343,7 @@
       color: var(--accent);
       font-weight: 700;
     }
-    .block-head p { color: var(--muted); font-size: 0.9rem; max-width: 46ch; }
+    .block-head p { color: var(--muted); font-size: 0.9rem; max-width: 52ch; }
 
     .grid-3 {
       display: grid;
@@ -340,20 +361,20 @@
       flex-direction: column;
       height: 100%;
     }
+    .card-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
     .card h3 {
-      font-size: 0.98rem;
+      font-size: 1rem;
       margin-bottom: 8px;
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-    .card-img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
     }
     .hico {
       width: 20px; height: 20px;
@@ -366,26 +387,71 @@
       font-size: 0.7rem;
       flex-shrink: 0;
     }
-    .card p { color: rgba(234, 244, 255, 0.92); font-size: 0.9rem; }
-
-    .timeline {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(0, 0, 0, 0.22);
-      overflow: hidden;
-    }
-    .timeline-head {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+    .card p { color: rgba(234, 244, 255, 0.92); font-size: 0.9rem; flex: 1; }
+    .card ul {
+      margin-top: 12px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
       color: var(--muted);
-      font-weight: 700;
     }
-    .timeline-head b { color: var(--accent); }
-    .timeline-steps { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .card li::before { content: "— "; color: var(--accent); }
+
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--ds-md);
+      padding: 22px;
+      align-items: stretch;
+    }
+    .shot {
+      position: relative;
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #091628;
+    }
+    .shot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(165deg, rgba(54, 246, 255, 0.1), rgba(5, 7, 15, 0.45));
+    }
+    .shot-label {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      z-index: 2;
+      font-family: var(--font-auto-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(234, 244, 255, 0.9);
+      font-weight: 600;
+    }
+
+    .when-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--ds-gutter);
+      padding: 22px;
+    }
+    .when-card {
+      padding: 18px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      background: rgba(54, 246, 255, 0.05);
+    }
+    .when-card h3 { font-size: 0.95rem; margin-bottom: 8px; font-weight: 700; }
+    .when-card p { font-size: 0.88rem; color: var(--muted); }
+
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
     .tl-step {
       padding: 22px 16px;
       border-right: 1px solid var(--line-soft);
@@ -402,8 +468,17 @@
     .tl-step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 4px; }
     .tl-step p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
 
+    .tech-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--ds-gutter);
+      padding: 22px;
+      align-items: start;
+    }
+    .tech-row p { color: var(--muted); font-size: 0.9rem; max-width: 48ch; }
+
     .brief-message {
-      margin-top: 30px;
+      margin-top: var(--ds-lg);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 28px;
@@ -413,7 +488,7 @@
       font-size: clamp(1.35rem, 2.5vw, 2rem);
       letter-spacing: -0.02em;
       line-height: 1.1;
-      max-width: 22ch;
+      max-width: 24ch;
       font-weight: 800;
     }
     .brief-message p { margin-top: 10px; color: var(--muted); max-width: 64ch; }
@@ -447,11 +522,12 @@
     .sticky p { color: var(--muted); font-size: 0.82rem; max-width: 52ch; }
 
     @media (max-width: 980px) {
-      .hero, .shots, .grid-3, .model, .timeline-steps, .gallery-row {
+      .hero, .metrics, .grid-3, .model, .timeline-steps, .gallery-row, .when-grid, .tech-row {
         grid-template-columns: 1fr;
       }
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stat { border-right: 0; border-bottom: 1px solid var(--line-soft); }
       .tl-step { border-right: 0; border-bottom: 1px solid var(--line-soft); }
-      .kv { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -463,10 +539,10 @@
     <div class="top-inner ds-header-row">
       <a class="logo" href="../">
         <b>thedesigns.org</b>
-        <span>Industrial automation · PLC · roboty</span>
+        <span data-i18n="logo">Kapacita pre automatizáciu</span>
       </a>
       <div class="top-actions">
-        <a class="ghost" href="../">Domov</a>
+        <a class="ghost" href="../" data-i18n="home">Domov</a>
         <button class="lang-btn" type="button" data-lang="sk" aria-pressed="true">SK</button>
         <button class="lang-btn" type="button" data-lang="de" aria-pressed="false">DE</button>
       </div>
@@ -476,143 +552,218 @@
   <main class="wrap">
     <section class="hero">
       <div class="hero-left">
-        <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Priemyselná automatizácia</div>
-        <h1 data-i18n="h1">Roboty, linky a PLC — od Siemens SIMATIC po commissioning.</h1>
-        <p class="lead" data-i18n="lead">Navrhujeme a uvádzame do prevádzky automatizáciu strojov a výrobných liniek. Robotické bunky, dopravníky, PLC program, elektro schémy a FAT/SAT na mieste u zákazníka.</p>
+        <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Posily na zabehnuté projekty</div>
+        <h1 data-i18n="h1">Elektrikári a PLC programátori, keď linka už beží a treba ľudí.</h1>
+        <p class="lead" data-i18n="lead">Dodávame skúsených ľudí na rozbehnuté automatizačné projekty — montáž, zapojenie, úpravy PLC, robotiku a commissioning. Nie sme „generálny dodávateľ továrne“, ale tím, ktorý dorazí, dorobí a odovzdá v termíne.</p>
+        <p class="hero-note" data-i18n="note">Typický dopyt: integrátor alebo prevádzka potrebuje 2–6 ľudí na 4–16 týždňov — elektro + program + prípadne robotika na jednej linke.</p>
 
         <div class="tech-pills">
-          <span class="pill">Siemens SIMATIC S7-1500</span>
-          <span class="pill">S7-1200 / ET200</span>
-          <span class="pill">TIA Portal</span>
-          <span class="pill">PROFINET / PROFIBUS</span>
-          <span class="pill">Roboty · I/O linky</span>
+          <span class="pill">Siemens SIMATIC</span>
+          <span class="pill">Roboty · AMR</span>
+          <span class="pill">Dopravníky · linky</span>
+          <span class="pill">PROFINET / safety</span>
         </div>
 
         <div class="model" data-reveal="stagger">
-          <div class="model-card"><b data-i18n="m1h">Problem</b><p data-i18n="m1t">Projekt stojí — chýba zodpovednosť od PLC cez robotiku po startup.</p></div>
-          <div class="model-card"><b data-i18n="m2h">Riziko</b><p data-i18n="m2t">Prestoje, SLA pokuty a nejasné odovzdanie dokumentácie.</p></div>
-          <div class="model-card"><b data-i18n="m3h">Vysledok</b><p data-i18n="m3t">Odladená linka, testy, HMI a handover pre prevádzku.</p></div>
+          <div class="model-card"><b data-i18n="m1h">Situácia</b><p data-i18n="m1t">Projekt beží, SAT sa blíži — interný tím nestíha alebo chýba špecialista.</p></div>
+          <div class="model-card"><b data-i18n="m2h">Čo nasadíme</b><p data-i18n="m2t">Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.</p></div>
+          <div class="model-card"><b data-i18n="m3h">Výsledok</b><p data-i18n="m3t">Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.</p></div>
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="#brief" data-i18n="c1">Poslať technický brief</a>
-          <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20projekt" data-i18n="c2">Poslať zadanie mailom</a>
+          <a class="btn primary" href="#brief" data-i18n="c1">Dopyt na kapacitu</a>
+          <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20kapacita" data-i18n="c2">Napísať mailom</a>
         </div>
       </div>
 
-      <aside class="spec" data-reveal="scale">
-        <div class="spec-head"><span>Project Sheet</span><b>EU / SK / DE</b></div>
-        <div class="spec-body">
-          <dl class="kv">
-            <dt>Scope</dt><dd data-i18n="s1">PLC · robotika · elektro · commissioning</dd>
-            <dt>Platformy</dt><dd>Siemens SIMATIC, TIA Portal, safety PLC</dd>
-            <dt>Output</dt><dd data-i18n="s2">SW, schémy, IO listy, FAT/SAT, školenie</dd>
-          </dl>
-          <div class="shots">
-            <div class="shot">
-              <img src="../img/nx/hero3.png" alt="Automatizovaná linka" loading="lazy">
-              <span class="shot-label">Robotická bunka</span>
-            </div>
-            <div class="shot">
-              <img src="../img/nx/srv1.png" alt="PLC a riadenie" loading="lazy">
-              <span class="shot-label">PLC / elektro</span>
-            </div>
-            <div class="shot">
-              <img src="../img/nx/about1.png" alt="Commissioning na linky" loading="lazy">
-              <span class="shot-label">Commissioning</span>
-            </div>
-          </div>
+      <aside class="hero-visual" data-reveal="scale">
+        <div class="hero-img">
+          <img src="images/hero.jpg" alt="Moderná výrobná linka s robotmi" fetchpriority="high">
+          <p class="hero-cap" data-i18n="cap">Výroba 2026 · roboty · dopravníky · PLC</p>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>SK/CZ/DE</strong><span data-i18n="st1">nasadenie</span></div>
+          <div class="hero-stat"><strong>24h</strong><span data-i18n="st2">odpoveď na brief</span></div>
+          <div class="hero-stat"><strong>1×</strong><span data-i18n="st3">kontakt pre tím</span></div>
         </div>
       </aside>
     </section>
 
+    <div class="metrics" data-reveal="stagger">
+      <div class="metric"><b data-i18n="k1b">Elektro</b><span data-i18n="k1t">montáž & zapojenie</span></div>
+      <div class="metric"><b data-i18n="k2b">PLC / SPS</b><span data-i18n="k2t">TIA · úpravy · FAT</span></div>
+      <div class="metric"><b data-i18n="k3b">Roboty</b><span data-i18n="k3t">integrácia · SAT</span></div>
+      <div class="metric"><b data-i18n="k4b">Linky</b><span data-i18n="k4t">dopravníky · sekvencie</span></div>
+    </div>
+
     <section class="block" data-reveal="fade">
       <div class="block-head">
-        <h2 data-i18n="tT">Technológie & zariadenia</h2>
-        <p data-i18n="tL">Pracujeme s ekosystémom Siemens a štandardnými fieldbus sieťami — bez improvizácie na mieste.</p>
+        <h2 data-i18n="xT">Čo konkrétne dodáme</h2>
+        <p data-i18n="xL">Ľudia so skúsenosťou na zabehnutých linkách — podľa vášho harmonogramu a dokumentácie projektu.</p>
+      </div>
+      <div class="grid-3" data-reveal="stagger">
+        <article class="card">
+          <img class="card-img" src="images/team.jpg" alt="Elektrikári pri rozvádzači" loading="lazy">
+          <h3><span class="hico">⌁</span><span data-i18n="x1h">Elektrikári</span></h3>
+          <p data-i18n="x1t">Montáž rozvádzačov, kabeláž, merania, oživenie periférií a spolupráca s revíznymi požiadavkami.</p>
+          <ul>
+            <li data-i18n="x1a">Silnoprúd / slaboprúd na linke</li>
+            <li data-i18n="x1b">Schémy a IO podľa vášho E-planu</li>
+            <li data-i18n="x1c">Prítomnosť v hale u zákazníka</li>
+          </ul>
+        </article>
+        <article class="card">
+          <img class="card-img" src="images/panel.jpg" alt="PLC rozvádzač a HMI" loading="lazy">
+          <h3><span class="hico">⚙</span><span data-i18n="x2h">PLC programátori</span></h3>
+          <p data-i18n="x2t">Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, safety, receptúry, alarmy a úpravy existujúcej logiky.</p>
+          <ul>
+            <li data-i18n="x2a">Dokončenie alebo úprava SW</li>
+            <li data-i18n="x2b">FAT v dielni / simulácia I/O</li>
+            <li data-i18n="x2c">Podpora pri SAT a prevádzke</li>
+          </ul>
+        </article>
+        <article class="card">
+          <img class="card-img" src="images/robot.jpg" alt="Priemyselný robot na linke" loading="lazy">
+          <h3><span class="hico">◎</span><span data-i18n="x3h">Robotika & commissioning</span></h3>
+          <p data-i18n="x3t">Integrácia robotov, synchronizácia s PLC, paletizácia, dopravníky a odladenie pred odovzdaním.</p>
+          <ul>
+            <li data-i18n="x3a">Robotické bunky a pick & place</li>
+            <li data-i18n="x3b">Safety zóny a režimy linky</li>
+            <li data-i18n="x3c">Commissioning a handover</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" data-reveal="fade">
+      <div class="block-head">
+        <h2 data-i18n="gT">Technológie v praxi</h2>
+        <p data-i18n="gL">Moderné linky, ktoré dnes reálne montujeme a uvádzame do prevádzky.</p>
       </div>
       <div class="gallery-row">
         <div class="shot">
-          <img src="../img/nx/srv2.png" alt="Robotická bunka" loading="lazy">
-          <span class="shot-label">Robot</span>
+          <img src="images/robot.jpg" alt="Robotická bunka" loading="lazy">
+          <span class="shot-label" data-i18n="g1">Roboty</span>
         </div>
         <div class="shot">
-          <img src="../img/nx/srv3.png" alt="Výrobná linka" loading="lazy">
-          <span class="shot-label">Linka</span>
+          <img src="images/conveyor.jpg" alt="Dopravník vo výrobe" loading="lazy">
+          <span class="shot-label" data-i18n="g2">Dopravníky</span>
         </div>
         <div class="shot">
-          <img src="../foto/images/metal.png" alt="SIMATIC / I/O moduly" loading="lazy">
-          <span class="shot-label">SIMATIC / I/O</span>
+          <img src="images/line.jpg" alt="Montážna linka" loading="lazy">
+          <span class="shot-label" data-i18n="g3">Linky</span>
         </div>
         <div class="shot">
-          <img src="../img/nx/cta1.png" alt="HMI a vizualizácia" loading="lazy">
-          <span class="shot-label">HMI / SCADA</span>
+          <img src="images/warehouse.jpg" alt="Skladová automatizácia" loading="lazy">
+          <span class="shot-label" data-i18n="g4">Intralogistika</span>
         </div>
       </div>
     </section>
 
     <section class="block" data-reveal="fade">
       <div class="block-head">
-        <h2 data-i18n="xT">Čo dodáme</h2>
-        <p data-i18n="xL">Kompletný rozsah od návrhu logiky po spustenie linky u zákazníka.</p>
+        <h2 data-i18n="wT">Kedy nás zapnete</h2>
+        <p data-i18n="wL">Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.</p>
       </div>
-      <div class="grid-3" data-reveal="stagger">
-        <article class="card">
-          <img class="card-img" src="../img/nx/srv4.png" alt="PLC programovanie" loading="lazy">
-          <h3><span class="hico">⚙</span><span data-i18n="x1h">PLC / SPS software</span></h3>
-          <p data-i18n="x1t">SIMATIC S7 — STL, SCL, LAD; safety, receptúry, alarmy, HMI WinCC Unified / Comfort.</p>
-        </article>
-        <article class="card">
-          <img class="card-img" src="../img/nx/hero3.png" alt="Robotická integrácia" loading="lazy">
-          <h3><span class="hico">◎</span><span data-i18n="x4h">Robotika & linky</span></h3>
-          <p data-i18n="x4t">Integrácia robotov, pick & place, paletizácia, synchronizácia s PLC a safety zóny.</p>
-        </article>
-        <article class="card">
-          <img class="card-img" src="../img/nx/blog1.png" alt="Elektro dokumentácia" loading="lazy">
-          <h3><span class="hico">⌁</span><span data-i18n="x2h">Elektro & dokumentácia</span></h3>
-          <p data-i18n="x2t">E-plan / schémy, IO listy, kabelážne výkresy, CE podklady a revízna dokumentácia.</p>
-        </article>
+      <div class="when-grid" data-reveal="stagger">
+        <div class="when-card">
+          <h3 data-i18n="w1h">Blíži sa SAT / odovzdanie</h3>
+          <p data-i18n="w1t">Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.</p>
+        </div>
+        <div class="when-card">
+          <h3 data-i18n="w2h">Integrátor potrebuje posilu</h3>
+          <p data-i18n="w2t">Máte zákazníka a zmluvu, ale nie PLCárov alebo elektrikárov na celý mesiac.</p>
+        </div>
+        <div class="when-card">
+          <h3 data-i18n="w3h">Rozšírenie prevádzky</h3>
+          <p data-i18n="w3t">Nový dopravník, robot alebo stanica na existujúcej SIMATIC — treba rýchlo zapojiť a spustiť.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-reveal="fade">
+      <div class="block-head">
+        <h2 data-i18n="pT">Ako to prebieha</h2>
+        <p data-i18n="pL">Jednoduchý proces — bez zbytočnej byrokracie, s jasným rozsahom.</p>
+      </div>
+      <div class="timeline-steps" data-reveal="stagger">
+        <div class="tl-step">
+          <div class="tl-num">01</div>
+          <h4 data-i18n="p1h">Kapacitný brief</h4>
+          <p data-i18n="p1t">Koľko ľudí, aké zručnosti (elektro/PLC/robot), lokalita, termín nástupu.</p>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">02</div>
+          <h4 data-i18n="p2h">Návrh tímu</h4>
+          <p data-i18n="p2t">Profily, rozsah dní, NDA a vstup do vášho projektu / u zákazníka.</p>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">03</div>
+          <h4 data-i18n="p3h">Nasadenie</h4>
+          <p data-i18n="p3t">Práca v hale, FAT, úpravy SW, spolupráca s vaším projektovým vedením.</p>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">04</div>
+          <h4 data-i18n="p4h">Odovzdanie</h4>
+          <p data-i18n="p4t">Dokumentácia, školenie prevádzky, prípadne dohľad po SAT.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" data-reveal="fade">
+      <div class="block-head">
+        <h2 data-i18n="tT">Platformy</h2>
+        <p data-i18n="tL">Štandardné prostredie — bez experimentov na kritickej linke.</p>
+      </div>
+      <div class="tech-row">
+        <div>
+          <div class="tech-pills">
+            <span class="pill">S7-1500 / S7-1200</span>
+            <span class="pill">TIA Portal V17+</span>
+            <span class="pill">WinCC Unified</span>
+            <span class="pill">Safety Integrated</span>
+          </div>
+        </div>
+        <p data-i18n="tP">Pracujeme s ekosystémom Siemens a bežnými robotmi / dopravníkmi na európskych linkách. Ak máte inú PLC platformu, uveďte to v briefe — posúdime vhodnosť tímu.</p>
       </div>
     </section>
 
     <section class="block" data-reveal="fade">
       <div class="block-head">
         <h2 data-i18n="aT">Pre koho</h2>
-        <p data-i18n="aL">OEM, integrátori a prevádzky, ktoré musia dodať alebo spustiť automatizáciu v termíne.</p>
+        <p data-i18n="aL">Partneri, ktorí potrebujú kapacitu, nie ďalší subdodávateľ „od nuly“.</p>
       </div>
       <div class="grid-3" data-reveal="stagger">
-        <article class="card"><h3><span class="hico">◆</span><span data-i18n="a1h">OEM výrobcovia strojov</span></h3><p data-i18n="a1t">Kompletná automatizácia stroja vrátane PLC, HMI a FAT pred expedíciou.</p></article>
-        <article class="card"><h3><span class="hico">◉</span><span data-i18n="a2h">System integrátori</span></h3><p data-i18n="a2t">Externý tím na PLC, robotiku alebo startup u zákazníka.</p></article>
-        <article class="card"><h3><span class="hico">▣</span><span data-i18n="a3h">Fabriky & prevádzky</span></h3><p data-i18n="a3t">Nová linka, retrofit alebo rozšírenie existujúcej SIMATIC zostavy.</p></article>
-      </div>
-    </section>
-
-    <section class="timeline" data-reveal="fade">
-      <div class="timeline-head"><span>Priebeh projektu</span><b>5 fáz</b></div>
-      <div class="timeline-steps" data-reveal="stagger">
-        <div class="tl-step"><div class="tl-num">01</div><h4>Brief & Scope</h4><p>IO listy, safety, robotické cykly, termín SAT.</p></div>
-        <div class="tl-step"><div class="tl-num">02</div><h4>SW & Elektro</h4><p>TIA Portal projekt, HMI, schémy a oživenie periférií.</p></div>
-        <div class="tl-step"><div class="tl-num">03</div><h4>FAT</h4><p>Test v dielni — simulácia I/O, safety a sekvencií.</p></div>
-        <div class="tl-step"><div class="tl-num">04</div><h4>SAT & Startup</h4><p>Montáž u zákazníka, odladenie robotov a linky.</p></div>
-        <div class="tl-step"><div class="tl-num">05</div><h4>Handover</h4><p>Školenie operátorov, dokumentácia, servisný režim.</p></div>
+        <article class="card">
+          <h3><span class="hico">◆</span><span data-i18n="a1h">OEM & výrobcovia strojov</span></h3>
+          <p data-i18n="a1t">Doplnenie elektro a PLC tímu pred expedíciou stroja alebo pri FAT u zákazníka.</p>
+        </article>
+        <article class="card">
+          <h3><span class="hico">◉</span><span data-i18n="a2h">System integrátori</span></h3>
+          <p data-i18n="a2t">Biela etiketa kapacity — vaši ľudia na vašom projekte, naša technická posila.</p>
+        </article>
+        <article class="card">
+          <h3><span class="hico">▣</span><span data-i18n="a3h">Prevádzky & fabriky</span></h3>
+          <p data-i18n="a3t">Rozšírenie linky, retrofit alebo nárazová pomoc pri prestoji.</p>
+        </article>
       </div>
     </section>
 
     <section id="brief" class="brief-message" data-reveal="scale">
-      <h2 data-i18n="bh">Pošlite technický brief — do 24 hodín ďalší krok.</h2>
-      <p data-i18n="bt">Typ stroja/linky, PLC platforma (napr. S7-1500), robotika, termín SAT a lokalita. Navrhneme rozsah a harmonogram.</p>
+      <h2 data-i18n="bh">Pošlite kapacitný brief — odpoveď do 24 hodín.</h2>
+      <p data-i18n="bt">Uveďte: počet ľudí (elektro / PLC / robotika), lokalitu, termín nástupu, stav projektu (montáž / FAT / SAT) a PLC platformu. Navrhneme tím a rozsah.</p>
       <div class="cta-row">
-        <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20brief%20message" data-i18n="bc1">Poslať brief</a>
-        <a class="btn secondary" href="tel:+421900000000" data-i18n="bc2">Technický call</a>
+        <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20kapacita%20brief" data-i18n="bc1">Poslať brief</a>
+        <a class="btn secondary" href="tel:+421900000000" data-i18n="bc2">Technický hovor</a>
       </div>
     </section>
   </main>
 
-  <footer data-i18n="f">© 2026 thedesigns.org — industrial automation · PLC · roboty · Siemens SIMATIC</footer>
+  <footer data-i18n="f">© 2026 thedesigns.org — elektrikári & PLC na zabehnuté projekty · SK/CZ/DE</footer>
 
   <div class="sticky">
-    <p data-i18n="sb">Automatizácia od scope po SAT. Siemens, roboty, linky.</p>
-    <a class="btn primary" href="#brief" data-i18n="sc">Brief</a>
+    <p data-i18n="sb">Potrebujete ľudí na linku? Elektro, PLC, robotika — jeden brief.</p>
+    <a class="btn primary" href="#brief" data-i18n="sc">Kapacita</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
@@ -625,71 +776,115 @@
       colors: { a: '#041418', b: '#081e28', c: '#040e18' },
       chapters: [
         { trigger: '.hero', a: '#041418', b: '#081e28', c: '#040e18' },
-        { trigger: '.block:nth-of-type(1)', a: '#061820', b: '#0a2430', c: '#061220' },
-        { trigger: '.block:nth-of-type(2)', a: '#081c24', b: '#0c2838', c: '#081428' },
-        { trigger: '.timeline', a: '#071a22', b: '#0c2a3a', c: '#071422' },
+        { trigger: '.metrics', a: '#061820', b: '#0a2430', c: '#061220' },
+        { trigger: '.block:nth-of-type(1)', a: '#081c24', b: '#0c2838', c: '#081428' },
+        { trigger: '.block:nth-of-type(3)', a: '#071a22', b: '#0c2a3a', c: '#071422' },
         { trigger: '.brief-message', a: '#041218', b: '#081c28', c: '#040c16' }
       ]
     });
 
     gsap.fromTo('.eyebrow', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, delay: 0.15, ease: 'power2.out' });
     gsap.fromTo('.hero h1', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.25, ease: 'power3.out' });
-    gsap.fromTo('.lead, .tech-pills', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.45, ease: 'power2.out', stagger: 0.1 });
+    gsap.fromTo('.lead, .hero-note, .tech-pills', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.45, ease: 'power2.out', stagger: 0.08 });
 
     const T = {
       sk: {
-        ey: "Priemyselná automatizácia",
-        h1: "Roboty, linky a PLC — od Siemens SIMATIC po commissioning.",
-        lead: "Navrhujeme a uvádzame do prevádzky automatizáciu strojov a výrobných liniek. Robotické bunky, dopravníky, PLC program, elektro schémy a FAT/SAT na mieste u zákazníka.",
-        m1h: "Problem", m1t: "Projekt stojí — chýba zodpovednosť od PLC cez robotiku po startup.",
-        m2h: "Riziko", m2t: "Prestoje, SLA pokuty a nejasné odovzdanie dokumentácie.",
-        m3h: "Vysledok", m3t: "Odladená linka, testy, HMI a handover pre prevádzku.",
-        c1: "Poslať technický brief", c2: "Poslať zadanie mailom",
-        s1: "PLC · robotika · elektro · commissioning",
-        s2: "SW, schémy, IO listy, FAT/SAT, školenie",
-        tT: "Technológie & zariadenia",
-        tL: "Pracujeme s ekosystémom Siemens a štandardnými fieldbus sieťami — bez improvizácie na mieste.",
-        xT: "Čo dodáme", xL: "Kompletný rozsah od návrhu logiky po spustenie linky u zákazníka.",
-        x1h: "PLC / SPS software", x1t: "SIMATIC S7 — STL, SCL, LAD; safety, receptúry, alarmy, HMI WinCC Unified / Comfort.",
-        x4h: "Robotika & linky", x4t: "Integrácia robotov, pick & place, paletizácia, synchronizácia s PLC a safety zóny.",
-        x2h: "Elektro & dokumentácia", x2t: "E-plan / schémy, IO listy, kabelážne výkresy, CE podklady a revízna dokumentácia.",
-        aT: "Pre koho", aL: "OEM, integrátori a prevádzky, ktoré musia dodať alebo spustiť automatizáciu v termíne.",
-        a1h: "OEM výrobcovia strojov", a1t: "Kompletná automatizácia stroja vrátane PLC, HMI a FAT pred expedíciou.",
-        a2h: "System integrátori", a2t: "Externý tím na PLC, robotiku alebo startup u zákazníka.",
-        a3h: "Fabriky & prevádzky", a3t: "Nová linka, retrofit alebo rozšírenie existujúcej SIMATIC zostavy.",
-        bh: "Pošlite technický brief — do 24 hodín ďalší krok.",
-        bt: "Typ stroja/linky, PLC platforma (napr. S7-1500), robotika, termín SAT a lokalita. Navrhneme rozsah a harmonogram.",
-        bc1: "Poslať brief", bc2: "Technický call",
-        sb: "Automatizácia od scope po SAT. Siemens, roboty, linky.",
-        sc: "Brief",
-        f: "© 2026 thedesigns.org — industrial automation · PLC · roboty · Siemens SIMATIC"
+        logo: "Kapacita pre automatizáciu",
+        home: "Domov",
+        ey: "Posily na zabehnuté projekty",
+        h1: "Elektrikári a PLC programátori, keď linka už beží a treba ľudí.",
+        lead: "Dodávame skúsených ľudí na rozbehnuté automatizačné projekty — montáž, zapojenie, úpravy PLC, robotiku a commissioning. Nie sme „generálny dodávateľ továrne“, ale tím, ktorý dorazí, dorobí a odovzdá v termíne.",
+        note: "Typický dopyt: integrátor alebo prevádzka potrebuje 2–6 ľudí na 4–16 týždňov — elektro + program + prípadne robotika na jednej linke.",
+        m1h: "Situácia", m1t: "Projekt beží, SAT sa blíži — interný tím nestíha alebo chýba špecialista.",
+        m2h: "Čo nasadíme", m2t: "Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.",
+        m3h: "Výsledok", m3t: "Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.",
+        c1: "Dopyt na kapacitu", c2: "Napísať mailom",
+        cap: "Výroba 2026 · roboty · dopravníky · PLC",
+        st1: "nasadenie", st2: "odpoveď na brief", st3: "kontakt pre tím",
+        k1b: "Elektro", k1t: "montáž & zapojenie",
+        k2b: "PLC / SPS", k2t: "TIA · úpravy · FAT",
+        k3b: "Roboty", k3t: "integrácia · SAT",
+        k4b: "Linky", k4t: "dopravníky · sekvencie",
+        xT: "Čo konkrétne dodáme",
+        xL: "Ľudia so skúsenosťou na zabehnutých linkách — podľa vášho harmonogramu a dokumentácie projektu.",
+        x1h: "Elektrikári", x1t: "Montáž rozvádzačov, kabeláž, merania, oživenie periférií a spolupráca s revíznymi požiadavkami.",
+        x1a: "Silnoprúd / slaboprúd na linke", x1b: "Schémy a IO podľa vášho E-planu", x1c: "Prítomnosť v hale u zákazníka",
+        x2h: "PLC programátori", x2t: "Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, safety, receptúry, alarmy a úpravy existujúcej logiky.",
+        x2a: "Dokončenie alebo úprava SW", x2b: "FAT v dielni / simulácia I/O", x2c: "Podpora pri SAT a prevádzke",
+        x3h: "Robotika & commissioning", x3t: "Integrácia robotov, synchronizácia s PLC, paletizácia, dopravníky a odladenie pred odovzdaním.",
+        x3a: "Robotické bunky a pick & place", x3b: "Safety zóny a režimy linky", x3c: "Commissioning a handover",
+        gT: "Technológie v praxi", gL: "Moderné linky, ktoré dnes reálne montujeme a uvádzame do prevádzky.",
+        g1: "Roboty", g2: "Dopravníky", g3: "Linky", g4: "Intralogistika",
+        wT: "Kedy nás zapnete", wL: "Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.",
+        w1h: "Blíži sa SAT / odovzdanie", w1t: "Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.",
+        w2h: "Integrátor potrebuje posilu", w2t: "Máte zákazníka a zmluvu, ale nie PLCárov alebo elektrikárov na celý mesiac.",
+        w3h: "Rozšírenie prevádzky", w3t: "Nový dopravník, robot alebo stanica na existujúcej SIMATIC — treba rýchlo zapojiť a spustiť.",
+        pT: "Ako to prebieha", pL: "Jednoduchý proces — bez zbytočnej byrokracie, s jasným rozsahom.",
+        p1h: "Kapacitný brief", p1t: "Koľko ľudí, aké zručnosti (elektro/PLC/robot), lokalita, termín nástupu.",
+        p2h: "Návrh tímu", p2t: "Profily, rozsah dní, NDA a vstup do vášho projektu / u zákazníka.",
+        p3h: "Nasadenie", p3t: "Práca v hale, FAT, úpravy SW, spolupráca s vaším projektovým vedením.",
+        p4h: "Odovzdanie", p4t: "Dokumentácia, školenie prevádzky, prípadne dohľad po SAT.",
+        tT: "Platformy", tL: "Štandardné prostredie — bez experimentov na kritickej linke.",
+        tP: "Pracujeme s ekosystémom Siemens a bežnými robotmi / dopravníkmi na európskych linkách. Ak máte inú PLC platformu, uveďte to v briefe — posúdime vhodnosť tímu.",
+        aT: "Pre koho", aL: "Partneri, ktorí potrebujú kapacitu, nie ďalší subdodávateľ „od nuly“.",
+        a1h: "OEM & výrobcovia strojov", a1t: "Doplnenie elektro a PLC tímu pred expedíciou stroja alebo pri FAT u zákazníka.",
+        a2h: "System integrátori", a2t: "Biela etiketa kapacity — vaši ľudia na vašom projekte, naša technická posila.",
+        a3h: "Prevádzky & fabriky", a3t: "Rozšírenie linky, retrofit alebo nárazová pomoc pri prestoji.",
+        bh: "Pošlite kapacitný brief — odpoveď do 24 hodín.",
+        bt: "Uveďte: počet ľudí (elektro / PLC / robotika), lokalitu, termín nástupu, stav projektu (montáž / FAT / SAT) a PLC platformu. Navrhneme tím a rozsah.",
+        bc1: "Poslať brief", bc2: "Technický hovor",
+        sb: "Potrebujete ľudí na linku? Elektro, PLC, robotika — jeden brief.",
+        sc: "Kapacita",
+        f: "© 2026 thedesigns.org — elektrikári & PLC na zabehnuté projekty · SK/CZ/DE"
       },
       de: {
-        ey: "Industrielle Automatisierung",
-        h1: "Roboter, Linien und PLC — von Siemens SIMATIC bis Commissioning.",
-        lead: "Wir planen und starten Maschinen- und Linienautomatisierung: Roboterzellen, Foerderer, PLC-Programm, Elektroplaene und FAT/SAT beim Kunden.",
-        m1h: "Problem", m1t: "Projekt steht — fehlende Verantwortung von PLC ueber Robotik bis Startup.",
-        m2h: "Risiko", m2t: "Stillstand, SLA-Strafen und unklare Dokumentationsuebergabe.",
-        m3h: "Ergebnis", m3t: "Eingefahrene Linie, Tests, HMI und Handover an den Betrieb.",
-        c1: "Technischen Brief senden", c2: "Scope per Mail senden",
-        s1: "PLC · Robotik · Elektro · Commissioning",
-        s2: "SW, Plaene, IO-Listen, FAT/SAT, Schulung",
-        tT: "Technologien & Geraete",
-        tL: "Siemens-Oekosystem und gaengige Feldbussen — ohne Improvisation vor Ort.",
-        xT: "Was wir liefern", xL: "Voller Umfang von der Logik bis zum Linienstart beim Kunden.",
-        x1h: "PLC / SPS software", x1t: "SIMATIC S7 — STL, SCL, LAD; Safety, Rezepte, Alarme, HMI WinCC.",
-        x4h: "Robotik & Linien", x4t: "Roboterintegration, Pick&Place, Palettierung, PLC-Sync und Safety-Zonen.",
-        x2h: "Elektro & Dokumentation", x2t: "E-Plan / Schaltplaene, IO-Listen, Verdrahtung, CE-Unterlagen.",
-        aT: "Fuer wen", aL: "OEM, Integratoren und Werke mit Termindruck bei Automatisierung.",
-        a1h: "OEM Maschinenbauer", a1t: "Komplette Maschinenautomatisierung inkl. PLC, HMI und FAT.",
-        a2h: "Systemintegratoren", a2t: "Externes Team fuer PLC, Robotik oder Startup beim Kunden.",
-        a3h: "Fabriken", a3t: "Neue Linie, Retrofit oder Erweiterung bestehender SIMATIC-Anlage.",
-        bh: "Technischen Brief senden — naechster Schritt in 24h.",
-        bt: "Maschinentyp/Linie, PLC (z.B. S7-1500), Robotik, SAT-Termin und Standort.",
+        logo: "Kapazitaet fuer Automatisierung",
+        home: "Start",
+        ey: "Verstaerkung fuer laufende Projekte",
+        h1: "Elektriker und SPS-Programmierer, wenn die Linie laeuft und Leute fehlen.",
+        lead: "Wir stellen erfahrene Fachkraefte fuer laufende Automatisierungsprojekte: Montage, Verdrahtung, SPS-Anpassungen, Robotik und Commissioning. Kein Generalunternehmer fuer ganze Werke — sondern ein Team, das ankommt, fertigstellt und termingerecht uebergibt.",
+        note: "Typische Anfrage: Integrator oder Betrieb braucht 2–6 Leute fuer 4–16 Wochen — Elektro + Programm + optional Robotik auf einer Linie.",
+        m1h: "Situation", m1t: "Projekt laeuft, SAT naht — internes Team reicht nicht oder Spezialist fehlt.",
+        m2h: "Was wir stellen", m2t: "Elektriker, SPS-Programmierer, optional Robotik/Commissioning nach Ihrem Scope.",
+        m3h: "Ergebnis", m3t: "Kapazitaet vor Ort, ein Ansprechpartner, klare Uebergabe an Betrieb oder Integrator.",
+        c1: "Kapazitaet anfragen", c2: "Per E-Mail",
+        cap: "Produktion 2026 · Roboter · Foerderer · SPS",
+        st1: "Einsatz", st2: "Antwort in 24h", st3: "ein Ansprechpartner",
+        k1b: "Elektro", k1t: "Montage & Verdrahtung",
+        k2b: "SPS / PLC", k2t: "TIA · Anpassungen · FAT",
+        k3b: "Roboter", k3t: "Integration · SAT",
+        k4b: "Linien", k4t: "Foerderer · Sequenzen",
+        xT: "Was wir liefern",
+        xL: "Erfahrene Leute auf laufenden Linien — nach Ihrem Zeitplan und Projektdoku.",
+        x1h: "Elektriker", x1t: "Schaltschrankbau, Verkabelung, Messungen, Inbetriebnahme der Peripherie.",
+        x1a: "Stark-/Schwachstrom an der Linie", x1b: "Plaene und IO nach Ihrem E-Plan", x1c: "Praesenz in der Halle beim Kunden",
+        x2h: "SPS-Programmierer", x2t: "Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, Safety, Rezepte, Alarme.",
+        x2a: "SW fertigstellen oder anpassen", x2b: "FAT in der Werkstatt / IO-Simulation", x2c: "Unterstuetzung bei SAT und Betrieb",
+        x3h: "Robotik & Commissioning", x3t: "Roboterintegration, SPS-Sync, Palettierung, Foerderer und Einfahren vor Uebergabe.",
+        x3a: "Roboterzellen und Pick&Place", x3b: "Safety-Zonen und Linienmodi", x3c: "Commissioning und Handover",
+        gT: "Technologien in der Praxis", gL: "Moderne Linien, die wir heute real montieren und in Betrieb nehmen.",
+        g1: "Roboter", g2: "Foerderer", g3: "Linien", g4: "Intralogistik",
+        wT: "Wann Sie uns einschalten", wL: "Nicht fuer Papierstudien — wenn echte Leute auf ein laufendes Projekt noetig sind.",
+        w1h: "SAT / Abnahme naht", w1t: "Linie steht, Programmierung oder Einfahren oder Nachtschichten fehlen.",
+        w2h: "Integrator braucht Verstaerkung", w2t: "Kunde und Vertrag da, aber keine SPS-Leute oder Elektriker fuer den Monat.",
+        w3h: "Erweiterung im Betrieb", w3t: "Neuer Foerderer, Roboter oder Station an bestehender SIMATIC — schnell anschliessen.",
+        pT: "Ablauf", pL: "Einfacher Prozess — wenig Buero, klarer Scope.",
+        p1h: "Kapazitaets-Brief", p1t: "Wie viele Leute, welche Skills (Elektro/SPS/Robotik), Ort, Starttermin.",
+        p2h: "Teamvorschlag", p2t: "Profile, Tage, NDA und Einstieg in Ihr Projekt / beim Kunden.",
+        p3h: "Einsatz", p3t: "Arbeit in der Halle, FAT, SW-Anpassungen, Abstimmung mit Ihrer Projektleitung.",
+        p4h: "Uebergabe", p4t: "Dokumentation, Operatorschulung, optional Betreuung nach SAT.",
+        tT: "Plattformen", tL: "Standardumgebung — keine Experimente an der kritischen Linie.",
+        tP: "Siemens-Oekosystem und gaengige Roboter/Foerderer auf europaeischen Linien. Andere SPS-Plattform im Brief angeben — wir pruefen die Passung.",
+        aT: "Fuer wen", aL: "Partner, die Kapazitaet brauchen, nicht noch einen Generalisten von null.",
+        a1h: "OEM & Maschinenbauer", a1t: "Elektro- und SPS-Team vor Auslieferung oder FAT beim Kunden.",
+        a2h: "Systemintegratoren", a2t: "White-Label-Kapazitaet — Ihr Projekt, unsere technische Verstaerkung.",
+        a3h: "Betriebe & Fabriken", a3t: "Linienerweiterung, Retrofit oder schnelle Hilfe bei Stillstand.",
+        bh: "Kapazitaets-Brief senden — Antwort in 24 Stunden.",
+        bt: "Angeben: Anzahl Leute (Elektro/SPS/Robotik), Ort, Start, Projektstatus (Montage/FAT/SAT) und SPS-Plattform.",
         bc1: "Brief senden", bc2: "Technischer Call",
-        sb: "Automatisierung von Scope bis SAT. Siemens, Roboter, Linien.",
-        sc: "Brief",
-        f: "© 2026 thedesigns.org — industrial automation · PLC · Roboter · Siemens SIMATIC"
+        sb: "Leute fuer die Linie noetig? Elektro, SPS, Robotik — ein Brief.",
+        sc: "Kapazitaet",
+        f: "© 2026 thedesigns.org — Elektriker & SPS fuer laufende Projekte · SK/CZ/DE"
       }
     };
 
