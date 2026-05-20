@@ -5,330 +5,476 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>thedesigns.org | Tri sluzby</title>
   <meta name="description" content="Tri vetvy pod jednou znackou: design studio, weby a e-shopy, industrialna automatizacia.">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --text: #ecf2ff;
-      --glass: rgba(255, 255, 255, 0.1);
-      --border: rgba(255, 255, 255, 0.3);
-      --shadow: rgba(0, 0, 0, 0.4);
-      --blur: 16px;
+      --muted: rgba(236,244,255,.68);
+      --glass: rgba(255,255,255,.07);
+      --border: rgba(255,255,255,.15);
+      --blur: 18px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
     body {
-      min-height: 100vh;
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: Inter, system-ui, sans-serif;
       color: var(--text);
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
-        radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
-        radial-gradient(circle at 52% 85%, #ff2f8f 0%, transparent 38%),
-        linear-gradient(135deg, #080a1d 0%, #141938 100%);
-      animation: bgShift 12s ease-in-out infinite alternate;
+      background: #06081a;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    @keyframes bgShift {
-      0% { filter: hue-rotate(0deg) saturate(100%); }
-      100% { filter: hue-rotate(18deg) saturate(125%); }
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 3px 3px;
-      mix-blend-mode: soft-light;
-      opacity: 0.3;
-    }
-
-    .wrap {
-      min-height: 100vh;
-      width: min(1320px, 94%);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .lang-switch {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 20;
+      position: fixed; top: 1.2rem; right: 1.2rem;
+      display: flex; gap: .5rem; z-index: 50;
     }
 
     .lang-btn {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(20, 24, 55, 0.45);
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(10,14,30,.55);
+      backdrop-filter: blur(8px);
       color: var(--text);
       border-radius: 999px;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
+      padding: .55rem .9rem;
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.25s ease;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all .2s ease;
     }
 
-    .lang-btn:hover,
-    .lang-btn.active {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.75);
+    .lang-btn:hover, .lang-btn.active {
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.6);
     }
 
-    .col {
-      flex: 1;
-      min-height: 78vh;
+    /* ── CHAPTERS ── */
+    .chapter {
       position: relative;
-      border-radius: 28px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(var(--blur));
-      -webkit-backdrop-filter: blur(var(--blur));
-      box-shadow: 0 25px 50px -20px var(--shadow);
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
+      min-height: 100vh;
       display: flex;
-      align-items: flex-end;
-      padding: 2rem;
-      transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
-      isolation: isolate;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      overflow: hidden;
     }
 
-    .col img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.42;
-      z-index: -3;
-      transform: scale(1.03);
-      transition: transform 0.5s ease, opacity 0.35s ease;
-    }
-
-    .col:hover img,
-    .col:focus-visible img {
-      transform: scale(1.08);
-      opacity: 0.5;
-    }
-
-    .col::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(140deg, rgba(255,255,255,0.35), rgba(255,255,255,0), rgba(255,255,255,0.25));
-      opacity: 0.55;
-      z-index: -1;
-      transition: opacity 0.45s ease;
-    }
-
-    .col::after {
-      content: "";
-      position: absolute;
-      width: 180%;
-      height: 180%;
-      top: -70%;
-      left: -40%;
-      background: conic-gradient(from 180deg, transparent 0deg, rgba(255,255,255,0.24) 120deg, transparent 220deg);
-      transform: rotate(0deg);
-      transition: transform 0.9s ease;
-      z-index: -1;
-    }
-
-    .col .ink {
+    .chapter-inner {
+      width: min(1200px, 92%);
       position: relative;
       z-index: 2;
     }
 
-    .ico {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(7, 9, 22, 0.4);
-      display: grid;
-      place-items: center;
-      margin-bottom: 0.9rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    /* ── HERO CHAPTER ── */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      margin-bottom: 28px;
     }
 
-    .ico svg {
-      width: 22px;
-      height: 22px;
-      stroke: rgba(235, 245, 255, 0.96);
+    .hero-badge i {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c5cff, #4fc3ff);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.2);
+    }
+
+    .hero-title {
+      font-size: clamp(3.8rem, 11vw, 10rem);
+      font-weight: 900;
+      line-height: .88;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-title span {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-title .line {
+      display: block;
+      transform: translateY(110%);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 48px;
+    }
+
+    .scroll-hint .line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,.25);
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .4; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(6px); }
+    }
+
+    .scroll-hint .arrow {
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ── SERVICE CHAPTERS ── */
+    .svc-chapter {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .svc-number {
+      font-size: clamp(6rem, 14vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,.04);
+      letter-spacing: -.04em;
+      position: absolute;
+      top: -20px; left: -10px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .svc-label {
+      display: inline-block;
+      padding: .5rem .9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .svc-title {
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin-bottom: 16px;
+    }
+
+    .svc-text {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 42ch;
+      margin-bottom: 28px;
+    }
+
+    .svc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .02em;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .svc-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -16px rgba(0,0,0,.6);
+    }
+
+    .svc-link svg {
+      width: 16px; height: 16px;
+      fill: currentColor;
+      transition: transform .3s;
+    }
+
+    .svc-link:hover svg { transform: translateX(4px); }
+
+    .link-design { background: linear-gradient(120deg, #7c5cff, #a78bfa); color: #fff; }
+    .link-weby { background: linear-gradient(120deg, #3b82f6, #60a5fa); color: #fff; }
+    .link-auto { background: linear-gradient(120deg, #06b6d4, #36f6ff); color: #031018; }
+
+    .svc-visual {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      backdrop-filter: blur(var(--blur));
+      aspect-ratio: 4/3;
+    }
+
+    .svc-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .55;
+      transition: opacity .5s, transform .6s;
+    }
+
+    .svc-visual:hover img {
+      opacity: .7;
+      transform: scale(1.04);
+    }
+
+    .svc-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(255,255,255,.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .svc-ico {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(6,8,26,.6);
+      backdrop-filter: blur(8px);
+      display: grid; place-items: center;
+    }
+
+    .svc-ico svg {
+      width: 22px; height: 22px;
+      stroke: rgba(235,245,255,.9);
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .col:hover,
-    .col:focus-visible {
-      transform: translateY(-14px) scale(1.02);
-      box-shadow: 0 35px 70px -24px rgba(0, 0, 0, 0.75);
-      border-color: rgba(255, 255, 255, 0.65);
-      outline: none;
-    }
-
-    .col:hover::before,
-    .col:focus-visible::before { opacity: 0.9; }
-
-    .col:hover::after,
-    .col:focus-visible::after { transform: rotate(28deg); }
-
-    .label {
-      display: inline-block;
-      padding: 0.5rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      background: rgba(8, 8, 20, 0.25);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.95rem;
-    }
-
-    h2 {
-      font-size: clamp(1.6rem, 2.1vw, 2.4rem);
-      line-height: 1.15;
-      text-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-      margin-bottom: 0.45rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-      opacity: 0.88;
-      max-width: 26ch;
-    }
-
-    .one { background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 43%, rgba(8, 24, 145, 1) 100%); }
-    .two { background: linear-gradient(160deg, rgba(219, 172, 0, 0.38) 14%, rgba(136, 136, 136, 1) 48%, rgba(6, 50, 229, 1) 74%, rgba(20, 29, 92, 0.2) 100%); }
-    .three { background: linear-gradient(160deg, rgba(255, 50, 150, 0.3), rgba(30, 15, 38, 0.2)); }
-
-    @media (max-width: 980px) {
-      body { overflow: auto; }
-      .wrap {
-        min-height: auto;
-        flex-direction: column;
-        padding: 1rem 0.85rem 2rem;
-      }
-      .col {
-        width: 100%;
-        min-height: 30vh;
-      }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .svc-grid { grid-template-columns: 1fr; gap: 32px; }
+      .svc-visual { max-height: 300px; }
+      .svc-number { font-size: 5rem; }
+      .hero-title { font-size: clamp(2.8rem, 10vw, 5rem); }
     }
   </style>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
 
   <div class="lang-switch">
     <button class="lang-btn active" type="button" data-lang="sk">SK</button>
     <button class="lang-btn" type="button" data-lang="de">DE</button>
   </div>
 
-  <main class="wrap">
-    <a class="col one" href="./foto/" aria-label="Design studio">
-      <img src="./img/nx/tstimg.png" alt="design studio visual">
-      <div class="ink">
-        <div class="ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 15l3-3 2 2 3-4"></path></svg>
-        </div>
-        <span class="label" data-i18n="label1">Sektor 01</span>
-        <h2 data-i18n="title1">Design studio</h2>
-        <p data-i18n="text1">Identita a foto, ktore zvysia doveru pred prvym callom.</p>
+  <!-- ═══ CHAPTER 0 — HERO ═══ -->
+  <section class="chapter" id="ch-hero">
+    <div class="chapter-inner">
+      <div data-reveal="fade">
+        <div class="hero-badge"><i aria-hidden="true"></i> <span data-i18n="badge">Tri vetvy pod jednou znackou</span></div>
       </div>
-    </a>
-
-    <a class="col two" href="./weby/" aria-label="Weby a e-shopy na mieru">
-      <img src="./img/nx/blog1.png" alt="web and ecommerce visual">
-      <div class="ink">
-        <div class="ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="M8 10h8"></path><path d="M8 14h5"></path></svg>
-        </div>
-        <span class="label" data-i18n="label2">Sektor 02</span>
-        <h2 data-i18n="title2">Weby a e-shopy</h2>
-        <p data-i18n="text2">Konverzny web s jasnym CTA a meratelnym vysledkom.</p>
+      <h1 class="hero-title">
+        <span><span class="line">the</span></span>
+        <span><span class="line">designs</span></span>
+      </h1>
+      <p class="hero-sub" data-reveal="fade" data-i18n="heroSub">Identita, weby a automatizacia — tri odbornosti, ktore zdielaju jednu filozofiu: dodame vysledok, nie iba pekny vystup.</p>
+      <div class="scroll-hint" data-reveal="fade">
+        <span class="line"></span>
+        <span data-i18n="scroll">Scrollujte nizsie</span>
+        <span class="arrow">↓</span>
       </div>
-    </a>
+    </div>
+  </section>
 
-    <a class="col three" href="./elektro/" aria-label="Automatizacia a elektro projekty">
-      <img src="./img/nx/hero3.png" alt="industrial automation visual">
-      <div class="ink">
-        <div class="ico" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2v6"></path><path d="M12 16v6"></path><path d="M2 12h6"></path><path d="M16 12h6"></path><circle cx="12" cy="12" r="4"></circle></svg>
+  <!-- ═══ CHAPTER 1 — DESIGN STUDIO ═══ -->
+  <section class="chapter svc-chapter" id="ch-design">
+    <div class="chapter-inner">
+      <div class="svc-grid">
+        <div style="position:relative">
+          <div class="svc-number" data-parallax="0.15">01</div>
+          <span class="svc-label" data-reveal="fade" data-i18n="label1">Sektor 01</span>
+          <h2 class="svc-title" data-reveal="title" data-i18n="title1">Design studio</h2>
+          <p class="svc-text" data-reveal="fade" data-i18n="text1">Identita a foto, ktore zvysia doveru pred prvym callom. Brand stratégia, vizuálna identita, profesionálna fotografia a kreatívna réžia.</p>
+          <div data-reveal="fade">
+            <a class="svc-link link-design" href="./foto/">
+              <span data-i18n="cta1">Prejst na studio</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
-        <span class="label" data-i18n="label3">Sektor 03</span>
-        <h2 data-i18n="title3">Automatizacia</h2>
-        <p data-i18n="text3">PLC/SPS, commissioning a handover pre stabilny nabeh vyroby.</p>
+        <div class="svc-visual" data-reveal="scale">
+          <img src="./img/nx/tstimg.png" alt="design studio visual" loading="lazy">
+          <div class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 15l3-3 2 2 3-4"></path></svg>
+          </div>
+        </div>
       </div>
-    </a>
-  </main>
+    </div>
+  </section>
 
+  <!-- ═══ CHAPTER 2 — WEBY & E-SHOPY ═══ -->
+  <section class="chapter svc-chapter" id="ch-weby">
+    <div class="chapter-inner">
+      <div class="svc-grid">
+        <div class="svc-visual" data-reveal="scale">
+          <img src="./img/nx/blog1.png" alt="web and ecommerce visual" loading="lazy">
+          <div class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="M8 10h8"></path><path d="M8 14h5"></path></svg>
+          </div>
+        </div>
+        <div style="position:relative">
+          <div class="svc-number" data-parallax="0.15">02</div>
+          <span class="svc-label" data-reveal="fade" data-i18n="label2">Sektor 02</span>
+          <h2 class="svc-title" data-reveal="title" data-i18n="title2">Weby a e-shopy</h2>
+          <p class="svc-text" data-reveal="fade" data-i18n="text2">Konverzny web s jasnym CTA a meratelnym vysledkom. Strukturu, copy, UX a meranie — vsetko, co potrebujete na to, aby web predaval.</p>
+          <div data-reveal="fade">
+            <a class="svc-link link-weby" href="./weby/">
+              <span data-i18n="cta2">Prejst na weby</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHAPTER 3 — AUTOMATIZÁCIA ═══ -->
+  <section class="chapter svc-chapter" id="ch-auto">
+    <div class="chapter-inner">
+      <div class="svc-grid">
+        <div style="position:relative">
+          <div class="svc-number" data-parallax="0.15">03</div>
+          <span class="svc-label" data-reveal="fade" data-i18n="label3">Sektor 03</span>
+          <h2 class="svc-title" data-reveal="title" data-i18n="title3">Automatizacia</h2>
+          <p class="svc-text" data-reveal="fade" data-i18n="text3">PLC/SPS, commissioning a handover pre stabilny nabeh vyroby. Od projektovania po spustenie — bez chaosu, s jasnym milnikom.</p>
+          <div data-reveal="fade">
+            <a class="svc-link link-auto" href="./elektro/">
+              <span data-i18n="cta3">Prejst na elektro</span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="svc-visual" data-reveal="scale">
+          <img src="./img/nx/hero3.png" alt="industrial automation visual" loading="lazy">
+          <div class="svc-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2v6"></path><path d="M12 16v6"></path><path d="M2 12h6"></path><path d="M16 12h6"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="./js/story-engine.js"></script>
   <script>
+    StoryEngine.init({
+      colors: { a: '#1a0a3e', b: '#0c1e4a', c: '#2a0a2e' },
+      chapters: [
+        { trigger: '#ch-hero',   a: '#1a0a3e', b: '#0c1e4a', c: '#2a0a2e' },
+        { trigger: '#ch-design', a: '#2a0f5c', b: '#1a0a44', c: '#3a1068' },
+        { trigger: '#ch-weby',   a: '#0a1a3e', b: '#102e5c', c: '#0a1038' },
+        { trigger: '#ch-auto',   a: '#041828', b: '#0a2838', c: '#062030' }
+      ]
+    });
+
+    /* Hero title line reveal */
+    gsap.to('.hero-title .line', {
+      y: 0, duration: 1.2, stagger: .15, delay: .4, ease: 'power3.out'
+    });
+
+    /* ── i18n ── */
     const dictionary = {
       sk: {
-        label1: "Sektor 01",
-        title1: "Design studio",
-        text1: "Identita a foto, ktore zvysia doveru pred prvym callom.",
-        label2: "Sektor 02",
-        title2: "Weby a e-shopy",
-        text2: "Konverzny web s jasnym CTA a meratelnym vysledkom.",
-        label3: "Sektor 03",
-        title3: "Automatizacia",
-        text3: "PLC/SPS, commissioning a handover pre stabilny nabeh vyroby."
+        badge: "Tri vetvy pod jednou znackou",
+        heroSub: "Identita, weby a automatizacia — tri odbornosti, ktore zdielaju jednu filozofiu: dodame vysledok, nie iba pekny vystup.",
+        scroll: "Scrollujte nizsie",
+        label1: "Sektor 01", title1: "Design studio",
+        text1: "Identita a foto, ktore zvysia doveru pred prvym callom. Brand stratégia, vizuálna identita, profesionálna fotografia a kreatívna réžia.",
+        cta1: "Prejst na studio",
+        label2: "Sektor 02", title2: "Weby a e-shopy",
+        text2: "Konverzny web s jasnym CTA a meratelnym vysledkom. Strukturu, copy, UX a meranie — vsetko, co potrebujete na to, aby web predaval.",
+        cta2: "Prejst na weby",
+        label3: "Sektor 03", title3: "Automatizacia",
+        text3: "PLC/SPS, commissioning a handover pre stabilny nabeh vyroby. Od projektovania po spustenie — bez chaosu, s jasnym milnikom.",
+        cta3: "Prejst na elektro"
       },
       de: {
-        label1: "Bereich 01",
-        title1: "Design Studio",
-        text1: "Identitat und Foto fur mehr Vertrauen vor dem ersten Call.",
-        label2: "Bereich 02",
-        title2: "Websites & Shops",
-        text2: "Conversion-Website mit klarer CTA und messbarem Ergebnis.",
-        label3: "Bereich 03",
-        title3: "Automatisierung",
-        text3: "PLC/SPS, Commissioning und Handover fur stabilen Produktionsstart."
+        badge: "Drei Bereiche unter einer Marke",
+        heroSub: "Identität, Websites und Automatisierung — drei Fachgebiete mit einer Philosophie: Wir liefern Ergebnisse, nicht nur schöne Outputs.",
+        scroll: "Nach unten scrollen",
+        label1: "Bereich 01", title1: "Design Studio",
+        text1: "Identität und Foto für mehr Vertrauen vor dem ersten Call. Markenstrategie, visuelle Identität, professionelle Fotografie und kreative Regie.",
+        cta1: "Zum Studio",
+        label2: "Bereich 02", title2: "Websites & Shops",
+        text2: "Conversion-Website mit klarer CTA und messbarem Ergebnis. Struktur, Copy, UX und Tracking — alles für performante Websites.",
+        cta2: "Zu Websites",
+        label3: "Bereich 03", title3: "Automatisierung",
+        text3: "PLC/SPS, Commissioning und Handover für stabilen Produktionsstart. Von Planung bis Inbetriebnahme — ohne Chaos, mit klaren Meilensteinen.",
+        cta3: "Zu Elektro"
       }
     };
 
-    const buttons = document.querySelectorAll(".lang-btn");
-    const targets = document.querySelectorAll("[data-i18n]");
+    const btns = document.querySelectorAll('.lang-btn');
+    const targets = document.querySelectorAll('[data-i18n]');
 
     function setLanguage(lang) {
       const pack = dictionary[lang];
       if (!pack) return;
-
       document.documentElement.lang = lang;
-      targets.forEach((el) => {
-        const key = el.getAttribute("data-i18n");
+      targets.forEach(el => {
+        const key = el.getAttribute('data-i18n');
         if (pack[key]) el.textContent = pack[key];
       });
-
-      buttons.forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
-
-      try { localStorage.setItem("td-lang", lang); } catch (_) {}
+      btns.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+      try { localStorage.setItem('td-lang', lang); } catch (_) {}
     }
 
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-    });
-
+    btns.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
     try {
-      const saved = localStorage.getItem("td-lang");
-      setLanguage(saved && dictionary[saved] ? saved : "sk");
-    } catch (_) {
-      setLanguage("sk");
-    }
+      const saved = localStorage.getItem('td-lang');
+      setLanguage(saved && dictionary[saved] ? saved : 'sk');
+    } catch (_) { setLanguage('sk'); }
   </script>
 </body>
 </html>
