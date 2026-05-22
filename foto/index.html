@@ -25,10 +25,10 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:auto}
-    body{font-family:var(--font-ever-body);color:var(--ink);background:var(--bg);line-height:1.55}
+    body{font-family:var(--font-ever-body);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-overflow-scrolling:touch}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%;width:100%;height:100%;object-fit:cover}
-    .top{position:sticky;top:0;z-index:50;background:rgba(250,248,245,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .top{position:sticky;top:0;z-index:50;background:rgba(250,248,245,.97);border-bottom:1px solid var(--line)}
     .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x)}
     .top .ds-header-row{min-height:72px}
     .logo{font-family:var(--font-ever-headline);font-size:1.65rem;font-weight:600;letter-spacing:.04em}
@@ -284,14 +284,7 @@
 
   <footer>© 2026 Everlight · svadobné foto & video · <a href="../">thedesigns.org</a></footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
   <script>
-    if (typeof Lenis !== 'undefined') {
-      const lenis = new Lenis({ smoothWheel: true });
-      function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-    }
-
     const busy = new Set(['2026-05-16','2026-06-20','2026-07-11','2026-08-08','2026-09-05']);
     let view = new Date(2026, 4, 1);
     const months = ['Január','Február','Marec','Apríl','Máj','Jún','Júl','August','September','Október','November','December'];

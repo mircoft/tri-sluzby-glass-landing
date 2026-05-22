@@ -79,7 +79,7 @@
   /* ── LENIS ─────────────────────────────────────────────── */
 
   function initLenis(cfg) {
-    if (!cfg || cfg.smoothScroll === false) return;
+    if (!cfg || cfg.smoothScroll !== true) return;
     if (typeof Lenis === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -252,7 +252,7 @@
     init: function (cfg) {
       cfg = cfg || {};
       gsap.registerPlugin(ScrollTrigger);
-      initLenis();
+      initLenis(cfg);
       initBackground(cfg);
       if (cfg.chapters) initChapters(cfg.chapters);
       initReveals();
