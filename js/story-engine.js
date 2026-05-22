@@ -78,13 +78,16 @@
 
   /* ── LENIS ─────────────────────────────────────────────── */
 
-  function initLenis() {
+  function initLenis(cfg) {
+    if (!cfg || cfg.smoothScroll === false) return;
     if (typeof Lenis === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     lenis = new Lenis({
-      duration: 1.4,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      lerp: 0.14,
+      wheelMultiplier: 1.15,
       smoothWheel: true,
-      touchMultiplier: 1.5
+      touchMultiplier: 1.2,
     });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
