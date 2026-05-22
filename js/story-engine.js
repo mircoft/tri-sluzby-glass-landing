@@ -253,7 +253,7 @@
       cfg = cfg || {};
       gsap.registerPlugin(ScrollTrigger);
       initLenis(cfg);
-      initBackground(cfg);
+      if (cfg.background !== false) initBackground(cfg);
       if (cfg.chapters) initChapters(cfg.chapters);
       initReveals();
     },

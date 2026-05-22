@@ -1,0 +1,26 @@
+/* Natívny okamžitý scroll — žiadny smooth / Lenis */
+html {
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  overflow-x: clip;
+  overscroll-behavior-y: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
