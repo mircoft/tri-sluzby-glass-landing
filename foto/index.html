@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Everlight | Svadobné foto & video</title>
-  <meta name="description" content="Svadobné fotenie a video na jednom mieste. Rezervácia termínu, balíky, drone, highlight film a galéria pre hostí.">
+  <meta name="description" content="Autentické okamihy. Filmové spomienky. Elegantné svadobné fotenie a emotívna videografia — Slovensko & Európa.">
   <link rel="canonical" href="https://thedesigns.org/foto/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,38 +32,45 @@
     .hero-bg img,.g-item img,.svc-thumb img{height:100%;object-fit:cover}
     .top{position:sticky;top:0;z-index:50;background:#faf8f5;border-bottom:1px solid var(--line);scroll-margin-top:0}
     .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x)}
-    .top .ds-header-row{min-height:72px}
+    .top .ds-header-row{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .logo{font-family:var(--font-ever-headline);font-size:1.65rem;font-weight:600;letter-spacing:.04em}
     .logo span{display:block;font-family:Outfit,sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:2px}
+    .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .nav{display:flex;gap:6px;flex-wrap:wrap}
     .nav a{font-size:.82rem;font-weight:600;color:var(--muted);padding:8px 10px;border-radius:8px}
     .nav a:hover{color:var(--ink);background:var(--line)}
+    .lang-btn{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--muted);cursor:pointer}
+    .lang-btn[aria-pressed="true"]{border-color:var(--acc);color:var(--acc2);background:rgba(184,134,11,.08)}
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 20px;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--ink);background:var(--ink);color:var(--cream)}
     .btn.outline{background:transparent;color:var(--ink)}
-    .hero{position:relative;min-height:min(72vh,720px);display:flex;align-items:flex-end;padding:0 0 64px;overflow:hidden;contain:paint}
+    .hero{position:relative;min-height:min(78vh,760px);display:flex;align-items:flex-end;padding:0 0 64px;overflow:hidden;contain:paint}
     .hero-bg{position:absolute;inset:0;z-index:0}
     .hero-bg img{width:100%;height:100%;object-fit:cover}
-    .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,24,20,.75) 0%,rgba(28,24,20,.2) 45%,rgba(28,24,20,.35) 100%)}
+    .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,24,20,.78) 0%,rgba(28,24,20,.25) 48%,rgba(28,24,20,.4) 100%)}
     .hero .ct{position:relative;z-index:2;width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x);color:var(--cream)}
     .hero-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.22em;font-weight:600;opacity:.85}
-    .hero h1{font-family:var(--font-ever-headline);font-size:clamp(2.8rem,7vw,5.2rem);line-height:1.05;font-weight:400;margin-top:12px;max-width:14ch}
-    .hero p{margin-top:16px;max-width:48ch;opacity:.9;font-size:1.05rem}
-    .hero-cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
-    .hero-cta .btn.outline{border-color:rgba(255,253,249,.5);color:var(--cream)}
+    .hero h1{font-family:var(--font-ever-headline);font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:1.08;font-weight:400;margin-top:12px;max-width:16ch;font-style:italic}
+    .hero p{margin-top:18px;max-width:52ch;opacity:.92;font-size:1.08rem;line-height:1.65}
+    .hero-cta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+    .hero-cta .btn.outline{border-color:rgba(255,253,249,.55);color:var(--cream)}
     .wrap{width:var(--ds-container);margin:0 auto;padding:var(--ds-xl) var(--ds-pad-x);content-visibility:auto;contain-intrinsic-size:auto 520px}
     .sec-k{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--acc);font-weight:700;margin-bottom:10px}
     .sec-h{font-family:var(--font-ever-headline);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;margin-bottom:12px}
-    .sec-p{color:var(--muted);max-width:52ch;margin-bottom:32px}
+    .sec-p{color:var(--muted);max-width:58ch;margin-bottom:32px;font-size:1.02rem;line-height:1.65}
     .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter)}
     .g-item{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:4/3}
-    @media (hover:hover){.g-item img{transition:transform .35s}.g-item:hover img{transform:scale(1.02)}}
-    .svc-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
-    .svc-card{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);display:flex;flex-direction:column;height:100%}
-    .svc-card h3{font-family:var(--font-ever-headline);font-size:1.5rem;margin-bottom:8px}
-    .svc-card p{font-size:.9rem;color:var(--muted)}
-    .svc-thumb{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;margin-bottom:14px}
-    .svc-card ul{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.86rem;color:var(--muted)}
-    .svc-card li::before{content:"· ";color:var(--acc)}
+    @media (hover:hover){.g-item img{transition:transform .45s ease}.g-item:hover img{transform:scale(1.03)}}
+    .phil-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
+    .phil-card{border:1px solid var(--line);border-radius:var(--r);padding:calc(var(--ds-gutter) + 4px);background:var(--cream);height:100%}
+    .phil-card h3{font-family:var(--font-ever-headline);font-size:clamp(1.45rem,2.5vw,1.85rem);margin-bottom:12px;line-height:1.15}
+    .phil-card p{font-size:.95rem;color:var(--muted);line-height:1.65}
+    .phil-card .phil-tag{display:inline-block;margin-bottom:14px;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;font-weight:700;color:var(--acc2)}
+    .xp-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch;position:relative}
+    .xp-step{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);height:100%;display:flex;flex-direction:column}
+    .xp-num{font-family:var(--font-ever-headline);font-size:2.4rem;line-height:1;color:rgba(184,134,11,.35);margin-bottom:10px}
+    .xp-step h3{font-family:var(--font-ever-headline);font-size:1.35rem;margin-bottom:10px;line-height:1.2}
+    .xp-step p{font-size:.9rem;color:var(--muted);line-height:1.6;flex:1}
+    .xp-sec{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
     .pkg{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);display:flex;flex-direction:column;height:100%}
     .pkg.featured{border-color:var(--acc);box-shadow:0 20px 50px -24px rgba(184,134,11,.35)}
@@ -99,10 +106,9 @@
     .faq-item h4{font-size:.95rem;margin-bottom:6px}
     .faq-item p{font-size:.86rem;color:var(--muted)}
     footer{padding:40px 0 100px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
-    .sticky-cal{position:fixed;bottom:16px;right:16px;z-index:40}
     @media(max-width:900px){
       .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .svc-row,.packages,.cal-wrap,.faq{grid-template-columns:1fr}
+      .phil-row,.xp-row,.packages,.cal-wrap,.faq{grid-template-columns:1fr}
       .nav{display:none}
     }
     @media(max-width:520px){
@@ -113,117 +119,138 @@
 <body>
   <header class="top">
     <div class="ct ds-header-row">
-      <a href="../" class="logo">Everlight<span>Svadobné foto & video</span></a>
+      <a href="../" class="logo">Everlight<span data-i18n="logo">Svadobné foto & video</span></a>
       <nav class="nav">
-        <a href="#gallery">Galéria</a>
-        <a href="#services">Služby</a>
-        <a href="#packages">Balíky</a>
-        <a href="#calendar">Termín</a>
+        <a href="#gallery" data-i18n="navG">Galéria</a>
+        <a href="#philosophy" data-i18n="navP">Filozofia</a>
+        <a href="#experience" data-i18n="navE">Zážitok</a>
+        <a href="#calendar" data-i18n="navC">Termín</a>
       </nav>
-      <a class="btn" href="#calendar">Rezervovať</a>
+      <div class="top-actions">
+        <button type="button" class="lang-btn" data-lang="sk" aria-pressed="true">SK</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+        <a class="btn" href="#calendar" data-i18n="navBook">Rezervovať</a>
+      </div>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-bg">
-      <img src="wedding/hero.jpg" alt="Európska svadba — pár pri západe slnka" fetchpriority="high">
+      <!-- IMAGE: cinematic wedding photography — warm sun-drenched couple laughing in landscape/historical venue -->
+      <img src="wedding/hero.jpg" alt="" data-i18n-alt="heroImgAlt" fetchpriority="high">
     </div>
     <div class="ct">
-      <p class="hero-k">Everlight · thedesigns.org</p>
-      <h1>Váš deň.<br>Naše foto & video.</h1>
-      <p>Kompletná svadobná produkcia — od príprav po večer. Foto, film, drone, online galéria a rezervácia termínu v kalendári.</p>
+      <p class="hero-k" data-i18n="heroK">Everlight · Príbeh vášho dňa</p>
+      <h1 data-i18n="heroH1">Autentické okamihy. Filmové spomienky.</h1>
+      <p data-i18n="heroSub">Elegantné svadobné fotenie a emotívna videografia, ktorá zachytí prirodzenú, nefiltrovanú krásu vášho veľkého dňa — takú, akú ju naozaj prežijete. Sme doma na Slovensku, srdcom však cestujeme po celej Európe.</p>
       <div class="hero-cta">
-        <a class="btn" href="#calendar">Vybrať termín</a>
-        <a class="btn outline" href="#packages">Balíky & ceny</a>
+        <a class="btn" href="#calendar" data-i18n="ctaAvail">Rezervovať termín</a>
+        <a class="btn outline" href="#gallery" data-i18n="ctaGallery">Vstúpte do galérie</a>
       </div>
     </div>
   </section>
 
   <section class="wrap" id="gallery">
-    <p class="sec-k">Portfolio</p>
-    <h2 class="sec-h">Momenty, ktoré zostanú</h2>
-    <p class="sec-p">Európske svadby — záhrady, vinohrady, jazerá a klasické obrady. Reportážny štýl bez stratených okamihov.</p>
+    <p class="sec-k" data-i18n="galK">Portfolio</p>
+    <h2 class="sec-h" data-i18n="galH">Tam, kde sa láska nehrá na kameru</h2>
+    <p class="sec-p" data-i18n="galP">Záhrady, historické sály, vinohrady a tiché brehy jazier — každý záber je malý príbeh. Nie katalóg póz, ale surové, nefiltrované okamihy vášho dňa.</p>
     <div class="gallery">
-      <div class="g-item"><img src="wedding/kiss.jpg" alt="Pár pri európskom jazere" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="wedding/ceremony.jpg" alt="Outdoor obrad v záhrade" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="wedding/rings.jpg" alt="Prstene — detail" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="wedding/dance.jpg" alt="Svadobný tanec" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="wedding/bouquet.jpg" alt="Nevesta s kyticou" loading="lazy" decoding="async"></div>
-      <div class="g-item"><img src="wedding/venue.jpg" alt="Svadba vo vinohradníckom prostredí" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/kiss.jpg" alt="" data-i18n-alt="gal1" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/ceremony.jpg" alt="" data-i18n-alt="gal2" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/rings.jpg" alt="" data-i18n-alt="gal3" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/dance.jpg" alt="" data-i18n-alt="gal4" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/bouquet.jpg" alt="" data-i18n-alt="gal5" loading="lazy" decoding="async"></div>
+      <div class="g-item"><img src="wedding/venue.jpg" alt="" data-i18n-alt="gal6" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
-  <section class="wrap" id="services">
-    <p class="sec-k">Služby</p>
-    <h2 class="sec-h">Foto, video, drone — všetko pre svadbu</h2>
-    <p class="sec-p">Jeden tím, jeden kontakt. Žiadne dohadovanie medzi fotografom a kameramanom.</p>
-    <div class="svc-row">
-      <article class="svc-card">
-        <div class="svc-thumb"><img src="wedding/prep.jpg" alt="Prípravy nevesty" loading="lazy" decoding="async"></div>
-        <h3>Svadobné foto</h3>
-        <p>Reportáž + portréty. RAW spracovanie, online galéria pre hostí do 14 dní.</p>
-        <ul><li>Prípravy & obrad</li><li>Pár & rodina</li><li>Večer & detail</li></ul>
+  <section class="wrap" id="philosophy">
+    <p class="sec-k" data-i18n="philK">Náš štýl & filozofia</p>
+    <h2 class="sec-h" data-i18n="philH">Vidíme viac než obrad. Vidíme príbeh.</h2>
+    <p class="sec-p" data-i18n="philP">Prémiová svadobná produkcia pre páry, ktoré nechcú inscenáciu — ale emóciu, svetlo a ticho medzi slovami.</p>
+    <div class="phil-row">
+      <article class="phil-card">
+        <span class="phil-tag" data-i18n="phil1tag">01 · Filmový dokument</span>
+        <h3 data-i18n="phil1h">Filmový & dokumentárny prístup</h3>
+        <p data-i18n="phil1p">Nepýtame tuhé, neprirodzené pózy. Pozorujeme, tušíme a zachytíme tie pohľady, smiech aj tiché slzy, ktoré prídu, keď sa nikto nehrá na kameru. Váš deň zostane autentický — my len ticho zaznamenáme, čo sa deje.</p>
       </article>
-      <article class="svc-card">
-        <div class="svc-thumb"><img src="wedding/ceremony.jpg" alt="Svadobné video záznam" loading="lazy" decoding="async"></div>
-        <h3>Svadobné video</h3>
-        <p>Highlight film 3–8 min + dlhá verzia obradu a gratulácií. Kinematografický look.</p>
-        <ul><li>4K záznam</li><li>Stabilizácia & zvuk</li><li>Teaser do 48h</li></ul>
+      <article class="phil-card">
+        <span class="phil-tag" data-i18n="phil2tag">02 · Hybridná produkcia</span>
+        <h3 data-i18n="phil2h">Prémiová hybridná produkcia</h3>
+        <p data-i18n="phil2p">Jeden kreatívny tím vám prináša umelecké fotografie aj cinematický highlight film — v jednotnom vizuálnom jazyku, s citlivým strihom a farbením. Foto aj video, ktoré k sebe patria ako dve strany tej istej spomienky.</p>
       </article>
-      <article class="svc-card">
-        <div class="svc-thumb"><img src="wedding/venue.jpg" alt="Svadobné miesto z výšky" loading="lazy" decoding="async"></div>
-        <h3>Drone & extra</h3>
-        <p>Letové zábery areálu, druhý kameraman, foto budka alebo album na mieru.</p>
-        <ul><li>Dron (legálne povolenia)</li><li>Druhý fotoaparát</li><li>Tlačený album</li></ul>
+    </div>
+  </section>
+
+  <section class="xp-sec wrap" id="experience">
+    <p class="sec-k" data-i18n="xpK">Svadobný zážitok</p>
+    <h2 class="sec-h" data-i18n="xpH">Čo môžete očakávať</h2>
+    <p class="sec-p" data-i18n="xpP">Od prvého stretnutia po finálne odovzdanie — jednoducho, ľudsky a bez zbytočného stresu.</p>
+    <div class="xp-row">
+      <article class="xp-step">
+        <div class="xp-num">01</div>
+        <h3 data-i18n="xp1h">Káva & plánovanie pred svadbou</h3>
+        <p data-i18n="xp1p">Pokojný rozhovor pri káve (alebo víne). Spoznáme váš príbeh, prejdeme si priestor a pripravíme jemný plán — aby ste v deň D mali pocit, že sme takmer neviditeľní.</p>
+      </article>
+      <article class="xp-step">
+        <div class="xp-num">02</div>
+        <h3 data-i18n="xp2h">Veľký deň</h3>
+        <p data-i18n="xp2p">Zmizneme v dave. Žiadne krikanie pokynov — len diskrétna prítomnosť pri sľuboch, prípitkoch aj na tanečnom parkete, až kým nezhasne posledná pieseň.</p>
+      </article>
+      <article class="xp-step">
+        <div class="xp-num">03</div>
+        <h3 data-i18n="xp3h">Odovzdanie</h3>
+        <p data-i18n="xp3p">Krásne upravená digitálna galéria a cinematický trailer, ktorý vám deň znovu prežije v srdci — ešte predtým, než doručíme celú kolekciu.</p>
       </article>
     </div>
   </section>
 
   <section class="wrap" id="packages">
-    <p class="sec-k">Balíky</p>
-    <h2 class="sec-h">Transparentné balíky</h2>
-    <p class="sec-p">Vyberte rozsah alebo pošlite dátum — pripravíme ponuku na mieru.</p>
+    <p class="sec-k" data-i18n="pkgK">Balíky</p>
+    <h2 class="sec-h" data-i18n="pkgH">Investícia do spomienok</h2>
+    <p class="sec-p" data-i18n="pkgP">Transparentné balíky pre rôzne rozsahy — alebo ponuka na mieru po krátkom rozhovore.</p>
     <div class="packages">
       <article class="pkg">
         <h3>Essential</h3>
-        <div class="pkg-price">od 890 € <small>/ deň</small></div>
+        <div class="pkg-price">od 890 € <small data-i18n="pkgDay">/ deň</small></div>
         <ul>
-          <li>6h foto reportáž</li>
-          <li>300+ upravených fotiek</li>
-          <li>Online galéria 12 mes.</li>
-          <li>1 fotograf</li>
+          <li data-i18n="pkg1a">6h foto reportáž</li>
+          <li data-i18n="pkg1b">300+ upravených fotiek</li>
+          <li data-i18n="pkg1c">Online galéria 12 mes.</li>
+          <li data-i18n="pkg1d">1 fotograf</li>
         </ul>
-        <a class="btn" href="#calendar">Rezervovať</a>
+        <a class="btn" href="#calendar" data-i18n="pkgBook">Rezervovať</a>
       </article>
       <article class="pkg featured">
         <h3>Everlight</h3>
-        <div class="pkg-price">od 1 490 € <small>/ deň</small></div>
+        <div class="pkg-price">od 1 490 € <small data-i18n="pkgDay">/ deň</small></div>
         <ul>
-          <li>10h foto + video tím</li>
-          <li>Highlight film + dlhá verzia</li>
-          <li>500+ fotiek, teaser do 48h</li>
-          <li>Dron (počasie / povolenia)</li>
+          <li data-i18n="pkg2a">10h foto + video tím</li>
+          <li data-i18n="pkg2b">Highlight film + dlhá verzia</li>
+          <li data-i18n="pkg2c">500+ fotiek, teaser do 48h</li>
+          <li data-i18n="pkg2d">Dron (počasie / povolenia)</li>
         </ul>
-        <a class="btn" href="#calendar">Najobľúbenejší</a>
+        <a class="btn" href="#calendar" data-i18n="pkgFav">Najobľúbenejší</a>
       </article>
       <article class="pkg">
         <h3>Prestige</h3>
-        <div class="pkg-price">od 2 190 € <small>/ víkend</small></div>
+        <div class="pkg-price">od 2 190 € <small data-i18n="pkgWknd">/ víkend</small></div>
         <ul>
-          <li>Celý víkend (SO–NE)</li>
-          <li>2 fotografi + 2 kameramani</li>
-          <li>Predsvadobné fotenie v cene</li>
-          <li>Album 30×30 cm</li>
+          <li data-i18n="pkg3a">Celý víkend (SO–NE)</li>
+          <li data-i18n="pkg3b">2 fotografi + 2 kameramani</li>
+          <li data-i18n="pkg3c">Predsvadobné fotenie v cene</li>
+          <li data-i18n="pkg3d">Album 30×30 cm</li>
         </ul>
-        <a class="btn" href="#calendar">Konzultácia</a>
+        <a class="btn" href="#calendar" data-i18n="pkgConsult">Konzultácia</a>
       </article>
     </div>
   </section>
 
   <section class="calendar-sec wrap" id="calendar">
-    <p class="sec-k">Rezervácia</p>
-    <h2 class="sec-h">Vyberte termín v kalendári</h2>
-    <p class="sec-p">Zelené dni sú voľné. Po odoslaní formulára potvrdíme dostupnosť do 24 hodín.</p>
+    <p class="sec-k" data-i18n="calK">Rezervácia</p>
+    <h2 class="sec-h" data-i18n="calH">Overte si voľný termín</h2>
+    <p class="sec-p" data-i18n="calP">Vyberte dátum v kalendári. Potvrdenie dostupnosti do 24 hodín — bez záväzkov.</p>
     <div class="cal-wrap">
       <div class="cal-box">
         <div class="cal-head">
@@ -234,61 +261,280 @@
           </div>
         </div>
         <div class="cal-grid" id="calGrid"></div>
-        <p class="book-note">Obsadené termíny sú prečiarknuté. Víkendy sa rezervujú v predstihu.</p>
+        <p class="book-note" data-i18n="calNote">Obsadené termíny sú prečiarknuté. Sezónne víkendy sa rezervujú v predstihu.</p>
       </div>
       <form class="book-form cal-box" id="bookForm">
         <div>
-          <label for="bDate">Vybraný termín</label>
-          <input type="text" id="bDate" name="date" readonly placeholder="Kliknite na deň v kalendári" required>
+          <label for="bDate" data-i18n="fDate">Vybraný termín</label>
+          <input type="text" id="bDate" name="date" readonly placeholder="Kliknite na deň v kalendári" data-i18n-ph="fDatePh" required>
         </div>
         <div>
-          <label for="bName">Meno & partner</label>
-          <input type="text" id="bName" name="name" placeholder="napr. Anna & Tomáš" required>
+          <label for="bName" data-i18n="fName">Meno & partner</label>
+          <input type="text" id="bName" name="name" placeholder="napr. Anna & Tomáš" data-i18n-ph="fNamePh" required>
         </div>
         <div>
-          <label for="bEmail">E-mail</label>
-          <input type="email" id="bEmail" name="email" placeholder="vas@email.sk" required>
+          <label for="bEmail" data-i18n="fEmail">E-mail</label>
+          <input type="email" id="bEmail" name="email" placeholder="vas@email.sk" data-i18n-ph="fEmailPh" required>
         </div>
         <div>
-          <label for="bPhone">Telefón</label>
-          <input type="tel" id="bPhone" name="phone" placeholder="+421 ...">
+          <label for="bPhone" data-i18n="fPhone">Telefón</label>
+          <input type="tel" id="bPhone" name="phone" placeholder="+421 ..." data-i18n-ph="fPhonePh">
         </div>
         <div>
-          <label for="bPkg">Balík</label>
+          <label for="bPkg" data-i18n="fPkg">Balík</label>
           <select id="bPkg" name="package">
-            <option value="essential">Essential — foto</option>
-            <option value="everlight" selected>Everlight — foto + video</option>
-            <option value="prestige">Prestige — víkend</option>
-            <option value="custom">Individuálna ponuka</option>
+            <option value="essential" data-i18n="fPkg1">Essential — foto</option>
+            <option value="everlight" selected data-i18n="fPkg2">Everlight — foto + video</option>
+            <option value="prestige" data-i18n="fPkg3">Prestige — víkend</option>
+            <option value="custom" data-i18n="fPkg4">Individuálna ponuka</option>
           </select>
         </div>
         <div>
-          <label for="bMsg">Poznámka (miesto, počet hostí)</label>
-          <textarea id="bMsg" name="message" placeholder="Dátum obradu, lokalita, špeciálne priania..."></textarea>
+          <label for="bMsg" data-i18n="fMsg">Poznámka (miesto, počet hostí)</label>
+          <textarea id="bMsg" name="message" placeholder="Dátum obradu, lokalita, špeciálne priania..." data-i18n-ph="fMsgPh"></textarea>
         </div>
-        <button type="submit" class="btn">Odoslať rezerváciu</button>
-        <p class="book-note">Odoslaním súhlasíte so spracovaním údajov pre účely rezervácie. Záväzná zmluva až po potvrdení.</p>
+        <button type="submit" class="btn" data-i18n="fSubmit">Odoslať rezerváciu</button>
+        <p class="book-note" data-i18n="fLegal">Odoslaním súhlasíte so spracovaním údajov pre účely rezervácie. Záväzná zmluva až po potvrdení.</p>
       </form>
     </div>
   </section>
 
   <section class="wrap">
-    <p class="sec-k">FAQ</p>
-    <h2 class="sec-h">Časté otázky</h2>
+    <p class="sec-k" data-i18n="faqK">FAQ</p>
+    <h2 class="sec-h" data-i18n="faqH">Časté otázky</h2>
     <div class="faq">
-      <div class="faq-item"><h4>Ako ďaleko vopred rezervovať?</h4><p>Sezónne termíny (máj–september) odporúčame 9–12 mesiacov vopred.</p></div>
-      <div class="faq-item"><h4>Kedy dostaneme fotky?</h4><p>Teaser do 48h, kompletná galéria zvyčajne do 4–6 týždňov.</p></div>
-      <div class="faq-item"><h4>Cestujete mimo SR?</h4><p>Áno — po dohode s cestovnými nákladami podľa lokality.</p></div>
-      <div class="faq-item"><h4>Čo ak prší?</h4><p>Máme plán B pre interiér; dron závisí od počasia a predpisov.</p></div>
+      <div class="faq-item"><h4 data-i18n="faq1h">Ako ďaleko vopred rezervovať?</h4><p data-i18n="faq1p">Sezónne termíny (máj–september) odporúčame 9–12 mesiacov vopred.</p></div>
+      <div class="faq-item"><h4 data-i18n="faq2h">Kedy dostaneme fotky?</h4><p data-i18n="faq2p">Teaser do 48h, kompletná galéria zvyčajne do 4–6 týždňov.</p></div>
+      <div class="faq-item"><h4 data-i18n="faq3h">Cestujete mimo SR?</h4><p data-i18n="faq3p">Áno — po celom Slovensku, Česku, Rakúsku, Nemecku a ďalších európskych destináciách.</p></div>
+      <div class="faq-item"><h4 data-i18n="faq4h">Čo ak prší?</h4><p data-i18n="faq4p">Máme plán B pre interiér; dron závisí od počasia a predpisov.</p></div>
     </div>
   </section>
 
-  <footer>© 2026 Everlight · svadobné foto & video · <a href="../">thedesigns.org</a></footer>
+  <footer data-i18n="footer">© 2026 Everlight · svadobné foto & video · thedesigns.org</footer>
 
   <script>
+    const T = {
+      sk: {
+        logo: "Svadobné foto & video",
+        navG: "Galéria", navP: "Filozofia", navE: "Zážitok", navC: "Termín", navBook: "Rezervovať",
+        heroImgAlt: "Novomanželský pár sa úprimne smeje pri zlatom západe slnka — filmová svadobná fotografia",
+        heroK: "Everlight · Príbeh vášho dňa",
+        heroH1: "Autentické okamihy. Filmové spomienky.",
+        heroSub: "Elegantné svadobné fotenie a emotívna videografia, ktorá zachytí prirodzenú, nefiltrovanú krásu vášho veľkého dňa — takú, akú ju naozaj prežijete. Sme doma na Slovensku, srdcom však cestujeme po celej Európe.",
+        ctaAvail: "Rezervovať termín", ctaGallery: "Vstúpte do galérie",
+        galK: "Portfolio",
+        galH: "Tam, kde sa láska nehrá na kameru",
+        galP: "Záhrady, historické sály, vinohrady a tiché brehy jazier — každý záber je malý príbeh. Nie katalóg póz, ale surové, nefiltrované okamihy vášho dňa.",
+        gal1: "Pár pri európskom jazere — autentický moment",
+        gal2: "Outdoor obrad v záhrade",
+        gal3: "Prstene — tichý detail",
+        gal4: "Svadobný tanec — emócia v pohybe",
+        gal5: "Nevesta s kyticou — prirodzené svetlo",
+        gal6: "Svadba vo vinohradníckom prostredí",
+        philK: "Náš štýl & filozofia",
+        philH: "Vidíme viac než obrad. Vidíme príbeh.",
+        philP: "Prémiová svadobná produkcia pre páry, ktoré nechcú inscenáciu — ale emóciu, svetlo a ticho medzi slovami.",
+        phil1tag: "01 · Filmový dokument",
+        phil1h: "Filmový & dokumentárny prístup",
+        phil1p: "Nepýtame tuhé, neprirodzené pózy. Pozorujeme, tušíme a zachytíme tie pohľady, smiech aj tiché slzy, ktoré prídu, keď sa nikto nehrá na kameru. Váš deň zostane autentický — my len ticho zaznamenáme, čo sa deje.",
+        phil2tag: "02 · Hybridná produkcia",
+        phil2h: "Prémiová hybridná produkcia",
+        phil2p: "Jeden kreatívny tím vám prináša umelecké fotografie aj cinematický highlight film — v jednotnom vizuálnom jazyku, s citlivým strihom a farbením. Foto aj video, ktoré k sebe patria ako dve strany tej istej spomienky.",
+        xpK: "Svadobný zážitok",
+        xpH: "Čo môžete očakávať",
+        xpP: "Od prvého stretnutia po finálne odovzdanie — jednoducho, ľudsky a bez zbytočného stresu.",
+        xp1h: "Káva & plánovanie pred svadbou",
+        xp1p: "Pokojný rozhovor pri káve (alebo víne). Spoznáme váš príbeh, prejdeme si priestor a pripravíme jemný plán — aby ste v deň D mali pocit, že sme takmer neviditeľní.",
+        xp2h: "Veľký deň",
+        xp2p: "Zmizneme v dave. Žiadne krikanie pokynov — len diskrétna prítomnosť pri sľuboch, prípitkoch aj na tanečnom parkete, až kým nezhasne posledná pieseň.",
+        xp3h: "Odovzdanie",
+        xp3p: "Krásne upravená digitálna galéria a cinematický trailer, ktorý vám deň znovu prežije v srdci — ešte predtým, než doručíme celú kolekciu.",
+        pkgK: "Balíky", pkgH: "Investícia do spomienok", pkgP: "Transparentné balíky pre rôzne rozsahy — alebo ponuka na mieru po krátkom rozhovore.",
+        pkgDay: "/ deň", pkgWknd: "/ víkend",
+        pkg1a: "6h foto reportáž", pkg1b: "300+ upravených fotiek", pkg1c: "Online galéria 12 mes.", pkg1d: "1 fotograf",
+        pkg2a: "10h foto + video tím", pkg2b: "Highlight film + dlhá verzia", pkg2c: "500+ fotiek, teaser do 48h", pkg2d: "Dron (počasie / povolenia)",
+        pkg3a: "Celý víkend (SO–NE)", pkg3b: "2 fotografi + 2 kameramani", pkg3c: "Predsvadobné fotenie v cene", pkg3d: "Album 30×30 cm",
+        pkgBook: "Rezervovať", pkgFav: "Najobľúbenejší", pkgConsult: "Konzultácia",
+        calK: "Rezervácia", calH: "Overte si voľný termín", calP: "Vyberte dátum v kalendári. Potvrdenie dostupnosti do 24 hodín — bez záväzkov.",
+        calNote: "Obsadené termíny sú prečiarknuté. Sezónne víkendy sa rezervujú v predstihu.",
+        fDate: "Vybraný termín", fDatePh: "Kliknite na deň v kalendári",
+        fName: "Meno & partner", fNamePh: "napr. Anna & Tomáš",
+        fEmail: "E-mail", fEmailPh: "vas@email.sk",
+        fPhone: "Telefón", fPhonePh: "+421 ...",
+        fPkg: "Balík", fPkg1: "Essential — foto", fPkg2: "Everlight — foto + video", fPkg3: "Prestige — víkend", fPkg4: "Individuálna ponuka",
+        fMsg: "Poznámka (miesto, počet hostí)", fMsgPh: "Dátum obradu, lokalita, špeciálne priania...",
+        fSubmit: "Odoslať rezerváciu",
+        fLegal: "Odoslaním súhlasíte so spracovaním údajov pre účely rezervácie. Záväzná zmluva až po potvrdení.",
+        faqK: "FAQ", faqH: "Časté otázky",
+        faq1h: "Ako ďaleko vopred rezervovať?", faq1p: "Sezónne termíny (máj–september) odporúčame 9–12 mesiacov vopred.",
+        faq2h: "Kedy dostaneme fotky?", faq2p: "Teaser do 48h, kompletná galéria zvyčajne do 4–6 týždňov.",
+        faq3h: "Cestujete mimo SR?", faq3p: "Áno — po celom Slovensku, Česku, Rakúsku, Nemecku a ďalších európskych destináciách.",
+        faq4h: "Čo ak prší?", faq4p: "Máme plán B pre interiér; dron závisí od počasia a predpisov.",
+        footer: "© 2026 Everlight · svadobné foto & video · thedesigns.org",
+        months: ["Január","Február","Marec","Apríl","Máj","Jún","Júl","August","September","Október","November","December"],
+        dows: ["Po","Ut","St","Št","Pi","So","Ne"],
+        calPrev: "Predchádzajúci mesiac", calNext: "Ďalší mesiac",
+        mailSubj: "Everlight rezervácia",
+        title: "Everlight | Svadobné foto & video",
+        desc: "Autentické okamihy. Filmové spomienky. Elegantné svadobné fotenie a emotívna videografia — Slovensko & Európa."
+      },
+      en: {
+        logo: "Wedding photography & film",
+        navG: "Gallery", navP: "Philosophy", navE: "Experience", navC: "Availability", navBook: "Book",
+        heroImgAlt: "Newlywed couple sharing an authentic laugh in golden light — cinematic wedding photography",
+        heroK: "Everlight · Wedding & Event Storytelling",
+        heroH1: "Authentic moments. Cinematic memories.",
+        heroSub: "Elegant wedding photography and emotional videography that captures the raw, unscripted beauty of your special day. Based in Slovakia, traveling across Europe.",
+        ctaAvail: "Check Availability", ctaGallery: "Enter the Gallery",
+        galK: "Portfolio",
+        galH: "Where love stops performing for the lens",
+        galP: "Gardens, historic halls, vineyards, and quiet lakeshores — each frame is a small story. Not a catalogue of poses, but the raw, unfiltered moments of your day.",
+        gal1: "Couple by a European lake — an unguarded moment",
+        gal2: "Outdoor ceremony in a garden",
+        gal3: "Rings — a quiet detail",
+        gal4: "First dance — emotion in motion",
+        gal5: "Bride with bouquet — natural light",
+        gal6: "Wedding in a vineyard landscape",
+        philK: "Our Style & Philosophy",
+        philH: "We see more than a ceremony. We see a story.",
+        philP: "Premium wedding production for couples who don't want performance — but emotion, light, and the silence between words.",
+        phil1tag: "01 · Cinematic documentary",
+        phil1h: "Cinematic & Documentary Style",
+        phil1p: "No stiff, awkward posing. We observe, anticipate, and capture the glances, laughter, and quiet tears that happen when no one is performing for the camera. Your day stays authentic — we simply record what unfolds.",
+        phil2tag: "02 · Hybrid production",
+        phil2h: "Premium Hybrid Production",
+        phil2p: "One creative team delivering both fine-art photographs and a cinematic highlight film — seamlessly graded, rhythmically edited, unmistakably yours. Photo and video that belong together like two sides of the same memory.",
+        xpK: "The Wedding Experience",
+        xpH: "What to expect",
+        xpP: "From first hello to final delivery — simple, human, and free of unnecessary stress.",
+        xp1h: "Pre-Wedding Coffee & Planning",
+        xp1p: "A relaxed conversation over coffee (or wine). We learn your story, walk the venue, and build a light roadmap — so on the day, you forget we're even there.",
+        xp2h: "The Big Day",
+        xp2p: "We blend into the crowd. No shouting directions — just discreet presence through vows, toasts, and the dance floor until the last song fades.",
+        xp3h: "The Delivery",
+        xp3p: "A beautifully graded digital gallery and a cinematic trailer that lets you feel the day again — before the full collection arrives.",
+        pkgK: "Collections", pkgH: "An investment in memory", pkgP: "Transparent collections for different scopes — or a bespoke proposal after a brief conversation.",
+        pkgDay: "/ day", pkgWknd: "/ weekend",
+        pkg1a: "6h photo reportage", pkg1b: "300+ edited images", pkg1c: "Online gallery 12 mo.", pkg1d: "1 photographer",
+        pkg2a: "10h photo + video team", pkg2b: "Highlight film + full ceremony", pkg2c: "500+ images, teaser within 48h", pkg2d: "Drone (weather / permits)",
+        pkg3a: "Full weekend (Sat–Sun)", pkg3b: "2 photographers + 2 filmmakers", pkg3c: "Engagement session included", pkg3d: "30×30 cm album",
+        pkgBook: "Book", pkgFav: "Most popular", pkgConsult: "Consultation",
+        calK: "Availability", calH: "Check your date", calP: "Select a date in the calendar. We confirm availability within 24 hours — no obligation.",
+        calNote: "Booked dates are crossed out. Peak-season weekends reserve early.",
+        fDate: "Selected date", fDatePh: "Click a day in the calendar",
+        fName: "Your names", fNamePh: "e.g. Anna & Thomas",
+        fEmail: "Email", fEmailPh: "you@email.com",
+        fPhone: "Phone", fPhonePh: "+421 ...",
+        fPkg: "Collection", fPkg1: "Essential — photo", fPkg2: "Everlight — photo + film", fPkg3: "Prestige — weekend", fPkg4: "Custom proposal",
+        fMsg: "Notes (venue, guest count)", fMsgPh: "Ceremony date, location, special wishes...",
+        fSubmit: "Send inquiry",
+        fLegal: "By submitting, you agree to data processing for booking purposes. Contract binding only after confirmation.",
+        faqK: "FAQ", faqH: "Common questions",
+        faq1h: "How far in advance should we book?", faq1p: "For peak season (May–September), we recommend 9–12 months ahead.",
+        faq2h: "When will we receive our images?", faq2p: "Teaser within 48h; full gallery typically within 4–6 weeks.",
+        faq3h: "Do you travel outside Slovakia?", faq3p: "Yes — across Slovakia, Czechia, Austria, Germany, and select European destinations.",
+        faq4h: "What if it rains?", faq4p: "We always have an indoor plan B; drone coverage depends on weather and regulations.",
+        footer: "© 2026 Everlight · wedding photography & film · thedesigns.org",
+        months: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+        dows: ["Mo","Tu","We","Th","Fr","Sa","Su"],
+        calPrev: "Previous month", calNext: "Next month",
+        mailSubj: "Everlight booking",
+        title: "Everlight | Wedding Photography & Film",
+        desc: "Authentic moments. Cinematic memories. Elegant wedding photography and emotional videography — Slovakia & Europe."
+      },
+      de: {
+        logo: "Hochzeitsfotografie & Film",
+        navG: "Galerie", navP: "Philosophie", navE: "Erlebnis", navC: "Termin", navBook: "Anfragen",
+        heroImgAlt: "Frisch verheiratetes Paar lacht authentisch im warmen Licht — cinematische Hochzeitsfotografie",
+        heroK: "Everlight · Hochzeitsreportage & Film",
+        heroH1: "Authentische Momente. Cinematische Erinnerungen.",
+        heroSub: "Elegante Hochzeitsfotografie und emotionale, cinematische Hochzeitsvideos, die die ungeschönte, ungestellte Schönheit Ihres Festes einfangen. Sitz in der Slowakei — für anspruchsvolle Boutique-Hochzeiten in ganz Europa.",
+        ctaAvail: "Verfügbarkeit prüfen", ctaGallery: "Galerie betreten",
+        galK: "Portfolio",
+        galH: "Wo Liebe nicht fürs Objektiv spielt",
+        galP: "Gärten, historische Säle, Weinberge und stille Seeufer — jedes Bild erzählt eine kleine Geschichte. Kein Posenkatalog, sondern rohe, ungefilterte Momente Ihres Tages.",
+        gal1: "Paar am europäischen See — ungestellter Moment",
+        gal2: "Freie Trauung im Garten",
+        gal3: "Ringe — stilles Detail",
+        gal4: "Erster Tanz — Emotion in Bewegung",
+        gal5: "Braut mit Bouquet — natürliches Licht",
+        gal6: "Hochzeit in Weinberglage",
+        philK: "Stil & Philosophie",
+        philH: "Wir sehen mehr als eine Zeremonie. Wir sehen eine Geschichte.",
+        philP: "Premium-Hochzeitsproduktion für Paare, die keine Inszenierung wollen — sondern Emotion, Licht und die Stille zwischen den Worten.",
+        phil1tag: "01 · Cinematischer Dokumentarstil",
+        phil1h: "Cinematischer Dokumentarstil",
+        phil1p: "Keine steifen Hochzeitsposen. Wir beobachten, antizipieren und halten Blicke, Lachen und leise Tränen fest — genau dann, wenn niemand fürs Objektiv spielt. Ihr Tag bleibt authentisch; wir halten leise fest, was geschieht.",
+        phil2tag: "02 · Premium Hybrid-Produktion",
+        phil2h: "Premium Hybrid-Produktion",
+        phil2p: "Ein kreatives Team liefert kunstvolle Hochzeitsfotografie und ein cinematisches Highlight-Video — farblich abgestimmt, rhythmisch geschnitten, unverkennbar Ihr Tag. Foto und Film wie zwei Seiten derselben Erinnerung.",
+        xpK: "Ihr Hochzeitserlebnis",
+        xpH: "Was Sie erwartet",
+        xpP: "Vom ersten Kennenlernen bis zur Übergabe — unkompliziert, persönlich und ohne unnötigen Stress.",
+        xp1h: "Kennenlernen & Planung",
+        xp1p: "Ein entspanntes Gespräch bei Kaffee oder Wein. Wir lernen Ihre Geschichte, begehen die Location und skizzieren einen leichten Ablauf — damit Sie am Tag selbst vergessen, dass wir da sind.",
+        xp2h: "Der große Tag",
+        xp2p: "Wir verschmelzen mit den Gästen. Keine lauten Regieanweisungen — nur diskrete Präsenz bei Trauung, Toast und Tanzfläche bis zum letzten Song.",
+        xp3h: "Übergabe",
+        xp3p: "Eine fein colour-gradede Online-Galerie und ein cinematischer Trailer, der den Tag wieder spürbar macht — noch bevor die vollständige Kollektion bei Ihnen ist.",
+        pkgK: "Pakete", pkgH: "Investition in Erinnerungen", pkgP: "Transparente Pakete für unterschiedliche Umfänge — oder ein individuelles Angebot nach einem kurzen Gespräch.",
+        pkgDay: "/ Tag", pkgWknd: "/ Wochenende",
+        pkg1a: "6h Hochzeitsreportage", pkg1b: "300+ bearbeitete Bilder", pkg1c: "Online-Galerie 12 Mon.", pkg1d: "1 Fotograf",
+        pkg2a: "10h Foto- + Videoteam", pkg2b: "Highlight-Film + Langversion", pkg2c: "500+ Bilder, Teaser in 48h", pkg2d: "Drohne (Wetter / Genehmigung)",
+        pkg3a: "Ganzes Wochenende (Sa–So)", pkg3b: "2 Fotografen + 2 Kameraleute", pkg3c: "Verlobungsshooting inklusive", pkg3d: "Album 30×30 cm",
+        pkgBook: "Anfragen", pkgFav: "Beliebtestes Paket", pkgConsult: "Beratung",
+        calK: "Reservierung", calH: "Termin prüfen", calP: "Wählen Sie ein Datum im Kalender. Verfügbarkeitsbestätigung innerhalb von 24 Stunden — unverbindlich.",
+        calNote: "Belegte Termine sind durchgestrichen. Saison-Wochenenden werden früh gebucht.",
+        fDate: "Gewählter Termin", fDatePh: "Tag im Kalender anklicken",
+        fName: "Ihre Namen", fNamePh: "z. B. Anna & Thomas",
+        fEmail: "E-Mail", fEmailPh: "ihre@email.de",
+        fPhone: "Telefon", fPhonePh: "+421 ...",
+        fPkg: "Paket", fPkg1: "Essential — Foto", fPkg2: "Everlight — Foto + Film", fPkg3: "Prestige — Wochenende", fPkg4: "Individuelles Angebot",
+        fMsg: "Anmerkung (Location, Gästezahl)", fMsgPh: "Trauungstermin, Ort, besondere Wünsche...",
+        fSubmit: "Anfrage senden",
+        fLegal: "Mit dem Absenden stimmen Sie der Datenverarbeitung zur Reservierung zu. Verbindlich erst nach Bestätigung.",
+        faqK: "FAQ", faqH: "Häufige Fragen",
+        faq1h: "Wie früh sollten wir buchen?", faq1p: "Für Hochsaison (Mai–September) empfehlen wir 9–12 Monate im Voraus.",
+        faq2h: "Wann erhalten wir die Bilder?", faq2p: "Teaser innerhalb von 48h; vollständige Galerie in der Regel nach 4–6 Wochen.",
+        faq3h: "Reisen Sie auch außerhalb der Slowakei?", faq3p: "Ja — Slowakei, Tschechien, Österreich, Deutschland und ausgewählte europäische Destinationen.",
+        faq4h: "Was bei Regen?", faq4p: "Wir haben immer einen Indoor-Plan B; Drohnenaufnahmen hängen von Wetter und Vorschriften ab.",
+        footer: "© 2026 Everlight · Hochzeitsfotografie & Film · thedesigns.org",
+        months: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+        dows: ["Mo","Di","Mi","Do","Fr","Sa","So"],
+        calPrev: "Vorheriger Monat", calNext: "Nächster Monat",
+        mailSubj: "Everlight Reservierung",
+        title: "Everlight | Hochzeitsfotografie & cinematische Hochzeitsvideos",
+        desc: "Authentische Momente. Cinematische Erinnerungen. Elegante Hochzeitsfotografie und emotionale Hochzeitsvideos — Slowakei & Europa."
+      }
+    };
+
+    let lang = "sk";
+    const nodes = document.querySelectorAll("[data-i18n]");
+    const altNodes = document.querySelectorAll("[data-i18n-alt]");
+    const phNodes = document.querySelectorAll("[data-i18n-ph]");
+    const btns = document.querySelectorAll("[data-lang]");
+
+    function setLang(next) {
+      const pack = T[next];
+      if (!pack) return;
+      lang = next;
+      document.documentElement.lang = next;
+      nodes.forEach((n) => { const k = n.dataset.i18n; if (pack[k]) n.textContent = pack[k]; });
+      altNodes.forEach((n) => { const k = n.dataset.i18nAlt; if (pack[k]) n.alt = pack[k]; });
+      phNodes.forEach((n) => { const k = n.dataset.i18nPh; if (pack[k]) n.placeholder = pack[k]; });
+      btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === next ? "true" : "false"));
+      document.getElementById("calPrev").setAttribute("aria-label", pack.calPrev);
+      document.getElementById("calNext").setAttribute("aria-label", pack.calNext);
+      document.title = pack.title;
+      document.querySelector('meta[name="description"]').content = pack.desc;
+      try { localStorage.setItem("everlight-lang", next); } catch (_) {}
+      renderCal();
+    }
+
+    btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
     const busy = new Set(['2026-05-16','2026-06-20','2026-07-11','2026-08-08','2026-09-05']);
     let view = new Date(2026, 4, 1);
-    const months = ['Január','Február','Marec','Apríl','Máj','Jún','Júl','August','September','Október','November','December'];
     const grid = document.getElementById('calGrid');
     const title = document.getElementById('calTitle');
     const bDate = document.getElementById('bDate');
@@ -298,10 +544,11 @@
     function key(y,m,d){return `${y}-${pad(m+1)}-${pad(d)}`;}
 
     function renderCal(){
+      const pack = T[lang];
       const y = view.getFullYear(), m = view.getMonth();
-      title.textContent = `${months[m]} ${y}`;
+      title.textContent = `${pack.months[m]} ${y}`;
       grid.innerHTML = '';
-      ['Po','Ut','St','Št','Pi','So','Ne'].forEach(d=>{
+      pack.dows.forEach(d=>{
         const el = document.createElement('div');
         el.className = 'dow';
         el.textContent = d;
@@ -329,7 +576,7 @@
         if(!e.classList.contains('past') && !e.classList.contains('busy')){
           e.addEventListener('click',()=>{
             selected = k;
-            bDate.value = `${d}. ${months[m]} ${y}`;
+            bDate.value = `${d}. ${pack.months[m]} ${y}`;
             renderCal();
           });
         }
@@ -339,17 +586,21 @@
 
     document.getElementById('calPrev').onclick = ()=>{ view.setMonth(view.getMonth()-1); renderCal(); };
     document.getElementById('calNext').onclick = ()=>{ view.setMonth(view.getMonth()+1); renderCal(); };
-    renderCal();
 
     document.getElementById('bookForm').addEventListener('submit', function(ev){
       ev.preventDefault();
       const data = Object.fromEntries(new FormData(this));
-      const subj = encodeURIComponent('Everlight rezervácia ' + (data.date || ''));
+      const subj = encodeURIComponent(T[lang].mailSubj + ' ' + (data.date || ''));
       const body = encodeURIComponent(
         `Termín: ${data.date}\nMeno: ${data.name}\nEmail: ${data.email}\nTel: ${data.phone}\nBalík: ${data.package}\n\n${data.message || ''}`
       );
       window.location.href = `mailto:hello@thedesigns.org?subject=${subj}&body=${body}`;
     });
+
+    try {
+      const saved = localStorage.getItem("everlight-lang");
+      setLang(saved && T[saved] ? saved : "sk");
+    } catch (_) { setLang("sk"); }
   </script>
   <script>
     document.documentElement.style.scrollBehavior = "auto";
