@@ -14,23 +14,31 @@
   <link rel="stylesheet" href="../css/scroll-perf.css?v=20260522">
   <style>
     :root{
-      --bg:var(--color-ever-neutral);
-      --bg2:#f3efe8;
-      --ink:var(--color-ever-ink);
-      --muted:#5c5348;
-      --line:rgba(28,24,20,.12);
-      --acc:var(--color-ever-accent);
-      --acc2:#8b5a2b;
-      --cream:#fffdf9;
+      --bg:#120f0d;
+      --bg2:#1d1713;
+      --ink:#fff7ed;
+      --muted:rgba(255,247,237,.68);
+      --line:rgba(255,247,237,.14);
+      --acc:#d6b06c;
+      --acc2:#c88f4f;
+      --cream:#211a16;
       --r:var(--ds-r-md);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:auto!important;scroll-padding-top:76px}
-    body{font-family:var(--font-ever-body);color:var(--ink);background:var(--bg);line-height:1.55}
+    body{
+      font-family:var(--font-ever-body);
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%,rgba(214,176,108,.16),transparent 38%),
+        radial-gradient(circle at 88% 18%,rgba(200,143,79,.12),transparent 34%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      line-height:1.55;
+    }
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%;width:100%;height:auto;object-fit:cover}
     .hero-bg img,.g-item img,.svc-thumb img{height:100%;object-fit:cover}
-    .top{position:sticky;top:0;z-index:50;background:#faf8f5;border-bottom:1px solid var(--line);scroll-margin-top:0}
+    .top{position:sticky;top:0;z-index:50;background:rgba(18,15,13,.88);border-bottom:1px solid var(--line);scroll-margin-top:0;backdrop-filter:blur(14px)}
     .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x)}
     .top .ds-header-row{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .logo{font-family:var(--font-ever-headline);font-size:1.65rem;font-weight:600;letter-spacing:.04em}
@@ -41,18 +49,18 @@
     .nav a:hover{color:var(--ink);background:var(--line)}
     .lang-btn{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--muted);cursor:pointer}
     .lang-btn[aria-pressed="true"]{border-color:var(--acc);color:var(--acc2);background:rgba(184,134,11,.08)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 20px;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.04em;border:1px solid var(--ink);background:var(--ink);color:var(--cream)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 20px;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.04em;border:1px solid rgba(214,176,108,.52);background:linear-gradient(120deg,var(--acc),#f3d7a4);color:#1c1814;box-shadow:0 18px 46px -24px rgba(214,176,108,.85)}
     .btn.outline{background:transparent;color:var(--ink)}
     .hero{position:relative;min-height:min(78vh,760px);display:flex;align-items:flex-end;padding:0 0 64px;overflow:hidden;contain:paint}
     .hero-bg{position:absolute;inset:0;z-index:0}
     .hero-bg img{width:100%;height:100%;object-fit:cover}
-    .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(28,24,20,.78) 0%,rgba(28,24,20,.25) 48%,rgba(28,24,20,.4) 100%)}
-    .hero .ct{position:relative;z-index:2;width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x);color:var(--cream)}
+    .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,15,13,.9) 0%,rgba(18,15,13,.34) 48%,rgba(18,15,13,.68) 100%)}
+    .hero .ct{position:relative;z-index:2;width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x);color:#fff7ed}
     .hero-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.22em;font-weight:600;opacity:.85}
     .hero h1{font-family:var(--font-ever-headline);font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:1.08;font-weight:400;margin-top:12px;max-width:16ch;font-style:italic}
     .hero p{margin-top:18px;max-width:52ch;opacity:.92;font-size:1.08rem;line-height:1.65}
     .hero-cta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
-    .hero-cta .btn.outline{border-color:rgba(255,253,249,.55);color:var(--cream)}
+    .hero-cta .btn.outline{border-color:rgba(255,253,249,.55);color:#fff7ed}
     .wrap{width:var(--ds-container);margin:0 auto;padding:var(--ds-xl) var(--ds-pad-x);content-visibility:auto;contain-intrinsic-size:auto 520px}
     .sec-k{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--acc);font-weight:700;margin-bottom:10px}
     .sec-h{font-family:var(--font-ever-headline);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;margin-bottom:12px}
@@ -61,28 +69,33 @@
     .g-item{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:4/3}
     @media (hover:hover){.g-item img{transition:transform .45s ease}.g-item:hover img{transform:scale(1.03)}}
     .phil-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
-    .phil-card{border:1px solid var(--line);border-radius:var(--r);padding:calc(var(--ds-gutter) + 4px);background:var(--cream);height:100%}
+    .phil-card{border:1px solid var(--line);border-radius:var(--r);padding:calc(var(--ds-gutter) + 4px);background:linear-gradient(180deg,rgba(255,247,237,.06),rgba(255,247,237,.025));height:100%;box-shadow:inset 0 1px 0 rgba(255,247,237,.08)}
     .phil-card h3{font-family:var(--font-ever-headline);font-size:clamp(1.45rem,2.5vw,1.85rem);margin-bottom:12px;line-height:1.15}
     .phil-card p{font-size:.95rem;color:var(--muted);line-height:1.65}
     .phil-card .phil-tag{display:inline-block;margin-bottom:14px;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;font-weight:700;color:var(--acc2)}
-    .xp-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch;position:relative}
-    .xp-step{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);height:100%;display:flex;flex-direction:column}
+    .sync-band{border:1px solid rgba(214,176,108,.26);border-radius:var(--r);padding:clamp(28px,5vw,48px);background:linear-gradient(135deg,rgba(214,176,108,.12),rgba(255,247,237,.03));box-shadow:0 28px 80px -54px rgba(214,176,108,.7)}
+    .sync-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);margin-top:28px}
+    .sync-item{border:1px solid var(--line);border-radius:var(--ds-r-sm);padding:18px;background:rgba(0,0,0,.18)}
+    .sync-item h3{font-family:var(--font-ever-headline);font-size:1.3rem;margin-bottom:8px}
+    .sync-item p{font-size:.9rem;color:var(--muted);line-height:1.6}
+    .xp-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch;position:relative}
+    .xp-step{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:linear-gradient(180deg,rgba(255,247,237,.06),rgba(255,247,237,.025));height:100%;display:flex;flex-direction:column}
     .xp-num{font-family:var(--font-ever-headline);font-size:2.4rem;line-height:1;color:rgba(184,134,11,.35);margin-bottom:10px}
     .xp-step h3{font-family:var(--font-ever-headline);font-size:1.35rem;margin-bottom:10px;line-height:1.2}
     .xp-step p{font-size:.9rem;color:var(--muted);line-height:1.6;flex:1}
-    .xp-sec{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .xp-sec{background:rgba(255,247,237,.035);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
-    .pkg{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);display:flex;flex-direction:column;height:100%}
+    .pkg{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:linear-gradient(180deg,rgba(255,247,237,.06),rgba(255,247,237,.025));display:flex;flex-direction:column;height:100%}
     .pkg.featured{border-color:var(--acc);box-shadow:0 20px 50px -24px rgba(184,134,11,.35)}
     .pkg h3{font-family:var(--font-ever-headline);font-size:1.6rem}
     .pkg-price{margin-top:8px;font-size:1.8rem;font-weight:700;color:var(--acc2)}
     .pkg-price small{font-size:.85rem;font-weight:500;color:var(--muted)}
     .pkg ul{margin-top:18px;flex:1;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.88rem;color:var(--muted)}
-    .pkg .btn{margin-top:20px;width:100%;background:var(--ink)}
+    .pkg .btn{margin-top:20px;width:100%}
     .pkg.featured .btn{background:linear-gradient(120deg,var(--acc),var(--acc2));border-color:transparent}
-    .calendar-sec{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .calendar-sec{background:rgba(255,247,237,.035);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .cal-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
-    .cal-box{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:var(--cream);height:100%;display:flex;flex-direction:column}
+    .cal-box{border:1px solid var(--line);border-radius:var(--r);padding:var(--ds-gutter);background:linear-gradient(180deg,rgba(255,247,237,.06),rgba(255,247,237,.025));height:100%;display:flex;flex-direction:column}
     .book-form{flex:1}
     .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
     .cal-head h4{font-weight:700}
@@ -92,23 +105,23 @@
     .cal-grid .dow{color:var(--muted);font-weight:600;padding:6px 0}
     .cal-day{padding:10px 4px;border-radius:8px;cursor:pointer;border:1px solid transparent;font-weight:500}
     .cal-day:hover:not(.empty):not(.past){border-color:var(--acc);background:rgba(184,134,11,.08)}
-    .cal-day.selected{background:var(--ink);color:var(--cream)}
+    .cal-day.selected{background:var(--acc);color:#1c1814}
     .cal-day.past{opacity:.35;cursor:not-allowed}
     .cal-day.empty{cursor:default}
     .cal-day.busy{text-decoration:line-through;opacity:.4;cursor:not-allowed}
     .book-form{display:flex;flex-direction:column;gap:12px}
     .book-form label{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-    .book-form input,.book-form select,.book-form textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:.95rem;background:var(--cream)}
+    .book-form input,.book-form select,.book-form textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:.95rem;background:rgba(0,0,0,.18);color:var(--ink)}
     .book-form textarea{min-height:90px;resize:vertical}
     .book-note{font-size:.82rem;color:var(--muted);margin-top:8px}
     .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-md)}
-    .faq-item{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--cream)}
+    .faq-item{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:linear-gradient(180deg,rgba(255,247,237,.06),rgba(255,247,237,.025))}
     .faq-item h4{font-size:.95rem;margin-bottom:6px}
     .faq-item p{font-size:.86rem;color:var(--muted)}
     footer{padding:40px 0 100px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:900px){
       .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .phil-row,.xp-row,.packages,.cal-wrap,.faq{grid-template-columns:1fr}
+      .phil-row,.sync-grid,.xp-row,.packages,.cal-wrap,.faq{grid-template-columns:1fr}
       .nav{display:none}
     }
     @media(max-width:520px){
@@ -130,7 +143,7 @@
         <button type="button" class="lang-btn" data-lang="sk" aria-pressed="true">SK</button>
         <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
-        <a class="btn" href="#calendar" data-i18n="navBook">Rezervovať</a>
+        <a class="btn" href="#calendar" data-i18n="navBook">Zabezpečiť termín</a>
       </div>
     </div>
   </header>
@@ -145,7 +158,7 @@
       <h1 data-i18n="heroH1">Autentické okamihy. Filmové spomienky.</h1>
       <p data-i18n="heroSub">Elegantné svadobné fotenie a emotívna videografia, ktorá zachytí prirodzenú, nefiltrovanú krásu vášho veľkého dňa — takú, akú ju naozaj prežijete. Sme doma na Slovensku, srdcom však cestujeme po celej Európe.</p>
       <div class="hero-cta">
-        <a class="btn" href="#calendar" data-i18n="ctaAvail">Rezervovať termín</a>
+        <a class="btn" href="#calendar" data-i18n="ctaAvail">Zabezpečiť termín</a>
         <a class="btn outline" href="#gallery" data-i18n="ctaGallery">Vstúpte do galérie</a>
       </div>
     </div>
@@ -176,10 +189,32 @@
         <p data-i18n="phil1p">Nepýtame tuhé, neprirodzené pózy. Pozorujeme, tušíme a zachytíme tie pohľady, smiech aj tiché slzy, ktoré prídu, keď sa nikto nehrá na kameru. Váš deň zostane autentický — my len ticho zaznamenáme, čo sa deje.</p>
       </article>
       <article class="phil-card">
-        <span class="phil-tag" data-i18n="phil2tag">02 · Hybridná produkcia</span>
-        <h3 data-i18n="phil2h">Prémiová hybridná produkcia</h3>
+        <span class="phil-tag" data-i18n="phil2tag">02 · Hybridná synchronizácia</span>
+        <h3 data-i18n="phil2h">Foto a film bez súperenia o záber</h3>
         <p data-i18n="phil2p">Jeden kreatívny tím vám prináša umelecké fotografie aj cinematický highlight film — v jednotnom vizuálnom jazyku, s citlivým strihom a farbením. Foto aj video, ktoré k sebe patria ako dve strany tej istej spomienky.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="hybrid">
+    <div class="sync-band">
+      <p class="sec-k" data-i18n="syncK">The Hybrid Synchronization</p>
+      <h2 class="sec-h" data-i18n="syncH">Jeden tím. Jeden color grading. Žiadne súperenie o uhly.</h2>
+      <p class="sec-p" data-i18n="syncP">Najväčšia výhoda pre svadobný deň: fotografi a kameramani spolu plánujú pohyb, svetlo aj priority. Nevznikajú dva rozdielne štýly — vzniká jedna súdržná spomienka.</p>
+      <div class="sync-grid">
+        <article class="sync-item">
+          <h3 data-i18n="sync1h">Zladený pohyb</h3>
+          <p data-i18n="sync1p">Tím vie, kto drží detail, kto široký záber a kedy nechať moment dýchať.</p>
+        </article>
+        <article class="sync-item">
+          <h3 data-i18n="sync2h">Jednotná farba</h3>
+          <p data-i18n="sync2p">Fotografie aj highlight film majú rovnakú teplú, filmovú náladu.</p>
+        </article>
+        <article class="sync-item">
+          <h3 data-i18n="sync3h">Menej stresu</h3>
+          <p data-i18n="sync3p">Neriešite dvoch dodávateľov, dva briefingy ani konfliktné pokyny počas dňa.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -190,18 +225,23 @@
     <div class="xp-row">
       <article class="xp-step">
         <div class="xp-num">01</div>
-        <h3 data-i18n="xp1h">Káva & plánovanie pred svadbou</h3>
+        <h3 data-i18n="xp1h">Káva pred svadbou</h3>
         <p data-i18n="xp1p">Pokojný rozhovor pri káve (alebo víne). Spoznáme váš príbeh, prejdeme si priestor a pripravíme jemný plán — aby ste v deň D mali pocit, že sme takmer neviditeľní.</p>
       </article>
       <article class="xp-step">
         <div class="xp-num">02</div>
-        <h3 data-i18n="xp2h">Veľký deň</h3>
-        <p data-i18n="xp2p">Zmizneme v dave. Žiadne krikanie pokynov — len diskrétna prítomnosť pri sľuboch, prípitkoch aj na tanečnom parkete, až kým nezhasne posledná pieseň.</p>
+        <h3 data-i18n="xp2h">Mapa príbehu</h3>
+        <p data-i18n="xp2p">Spoločne si prejdeme svetlo, presuny, rodinné priority a momenty, ktoré nesmú zmiznúť v chaose dňa.</p>
       </article>
       <article class="xp-step">
         <div class="xp-num">03</div>
-        <h3 data-i18n="xp3h">Odovzdanie</h3>
-        <p data-i18n="xp3p">Krásne upravená digitálna galéria a cinematický trailer, ktorý vám deň znovu prežije v srdci — ešte predtým, než doručíme celú kolekciu.</p>
+        <h3 data-i18n="xp3h">Svadobný deň</h3>
+        <p data-i18n="xp3p">Diskrétna foto + video zostava zachytí sľuby, prípitky aj pohyb na parkete bez rušenia atmosféry.</p>
+      </article>
+      <article class="xp-step">
+        <div class="xp-num">04</div>
+        <h3 data-i18n="xp4h">Digitálna galéria</h3>
+        <p data-i18n="xp4p">Teaser, filmový highlight a finálna galéria prídu v jednotnom vizuálnom štýle pripravenom na zdieľanie aj tlač.</p>
       </article>
     </div>
   </section>
@@ -316,12 +356,12 @@
     const T = {
       sk: {
         logo: "Svadobné foto & video",
-        navG: "Galéria", navP: "Filozofia", navE: "Zážitok", navC: "Termín", navBook: "Rezervovať",
+        navG: "Galéria", navP: "Filozofia", navE: "Zážitok", navC: "Termín", navBook: "Zabezpečiť termín",
         heroImgAlt: "Novomanželský pár sa úprimne smeje pri zlatom západe slnka — filmová svadobná fotografia",
         heroK: "Everlight · Príbeh vášho dňa",
         heroH1: "Autentické okamihy. Filmové spomienky.",
         heroSub: "Elegantné svadobné fotenie a emotívna videografia, ktorá zachytí prirodzenú, nefiltrovanú krásu vášho veľkého dňa — takú, akú ju naozaj prežijete. Sme doma na Slovensku, srdcom však cestujeme po celej Európe.",
-        ctaAvail: "Rezervovať termín", ctaGallery: "Vstúpte do galérie",
+        ctaAvail: "Zabezpečiť termín", ctaGallery: "Vstúpte do galérie",
         galK: "Portfolio",
         galH: "Tam, kde sa láska nehrá na kameru",
         galP: "Záhrady, historické sály, vinohrady a tiché brehy jazier — každý záber je malý príbeh. Nie katalóg póz, ale surové, nefiltrované okamihy vášho dňa.",
@@ -337,25 +377,33 @@
         phil1tag: "01 · Filmový dokument",
         phil1h: "Filmový & dokumentárny prístup",
         phil1p: "Nepýtame tuhé, neprirodzené pózy. Pozorujeme, tušíme a zachytíme tie pohľady, smiech aj tiché slzy, ktoré prídu, keď sa nikto nehrá na kameru. Váš deň zostane autentický — my len ticho zaznamenáme, čo sa deje.",
-        phil2tag: "02 · Hybridná produkcia",
-        phil2h: "Prémiová hybridná produkcia",
+        phil2tag: "02 · Hybridná synchronizácia",
+        phil2h: "Foto a film bez súperenia o záber",
         phil2p: "Jeden kreatívny tím vám prináša umelecké fotografie aj cinematický highlight film — v jednotnom vizuálnom jazyku, s citlivým strihom a farbením. Foto aj video, ktoré k sebe patria ako dve strany tej istej spomienky.",
+        syncK: "The Hybrid Synchronization",
+        syncH: "Jeden tím. Jeden color grading. Žiadne súperenie o uhly.",
+        syncP: "Najväčšia výhoda pre svadobný deň: fotografi a kameramani spolu plánujú pohyb, svetlo aj priority. Nevznikajú dva rozdielne štýly — vzniká jedna súdržná spomienka.",
+        sync1h: "Zladený pohyb", sync1p: "Tím vie, kto drží detail, kto široký záber a kedy nechať moment dýchať.",
+        sync2h: "Jednotná farba", sync2p: "Fotografie aj highlight film majú rovnakú teplú, filmovú náladu.",
+        sync3h: "Menej stresu", sync3p: "Neriešite dvoch dodávateľov, dva briefingy ani konfliktné pokyny počas dňa.",
         xpK: "Svadobný zážitok",
         xpH: "Čo môžete očakávať",
         xpP: "Od prvého stretnutia po finálne odovzdanie — jednoducho, ľudsky a bez zbytočného stresu.",
-        xp1h: "Káva & plánovanie pred svadbou",
+        xp1h: "Káva pred svadbou",
         xp1p: "Pokojný rozhovor pri káve (alebo víne). Spoznáme váš príbeh, prejdeme si priestor a pripravíme jemný plán — aby ste v deň D mali pocit, že sme takmer neviditeľní.",
-        xp2h: "Veľký deň",
-        xp2p: "Zmizneme v dave. Žiadne krikanie pokynov — len diskrétna prítomnosť pri sľuboch, prípitkoch aj na tanečnom parkete, až kým nezhasne posledná pieseň.",
-        xp3h: "Odovzdanie",
-        xp3p: "Krásne upravená digitálna galéria a cinematický trailer, ktorý vám deň znovu prežije v srdci — ešte predtým, než doručíme celú kolekciu.",
+        xp2h: "Mapa príbehu",
+        xp2p: "Spoločne si prejdeme svetlo, presuny, rodinné priority a momenty, ktoré nesmú zmiznúť v chaose dňa.",
+        xp3h: "Svadobný deň",
+        xp3p: "Diskrétna foto + video zostava zachytí sľuby, prípitky aj pohyb na parkete bez rušenia atmosféry.",
+        xp4h: "Digitálna galéria",
+        xp4p: "Teaser, filmový highlight a finálna galéria prídu v jednotnom vizuálnom štýle pripravenom na zdieľanie aj tlač.",
         pkgK: "Balíky", pkgH: "Investícia do spomienok", pkgP: "Transparentné balíky pre rôzne rozsahy — alebo ponuka na mieru po krátkom rozhovore.",
         pkgDay: "/ deň", pkgWknd: "/ víkend",
         pkg1a: "6h foto reportáž", pkg1b: "300+ upravených fotiek", pkg1c: "Online galéria 12 mes.", pkg1d: "1 fotograf",
-        pkg2a: "10h foto + video tím", pkg2b: "Highlight film + dlhá verzia", pkg2c: "500+ fotiek, teaser do 48h", pkg2d: "Dron (počasie / povolenia)",
+        pkg2a: "10h synchronizovaný foto + video tím", pkg2b: "Highlight film + dlhá verzia", pkg2c: "500+ fotiek, teaser do 48h", pkg2d: "Dron (počasie / povolenia)",
         pkg3a: "Celý víkend (SO–NE)", pkg3b: "2 fotografi + 2 kameramani", pkg3c: "Predsvadobné fotenie v cene", pkg3d: "Album 30×30 cm",
         pkgBook: "Rezervovať", pkgFav: "Najobľúbenejší", pkgConsult: "Konzultácia",
-        calK: "Rezervácia", calH: "Overte si voľný termín", calP: "Vyberte dátum v kalendári. Potvrdenie dostupnosti do 24 hodín — bez záväzkov.",
+        calK: "Rezervácia", calH: "Zabezpečte si svoj termín", calP: "Vyberte dátum v kalendári. Potvrdenie dostupnosti do 24 hodín — bez záväzkov.",
         calNote: "Obsadené termíny sú prečiarknuté. Sezónne víkendy sa rezervujú v predstihu.",
         fDate: "Vybraný termín", fDatePh: "Kliknite na deň v kalendári",
         fName: "Meno & partner", fNamePh: "napr. Anna & Tomáš",
@@ -363,7 +411,7 @@
         fPhone: "Telefón", fPhonePh: "+421 ...",
         fPkg: "Balík", fPkg1: "Essential — foto", fPkg2: "Everlight — foto + video", fPkg3: "Prestige — víkend", fPkg4: "Individuálna ponuka",
         fMsg: "Poznámka (miesto, počet hostí)", fMsgPh: "Dátum obradu, lokalita, špeciálne priania...",
-        fSubmit: "Odoslať rezerváciu",
+        fSubmit: "Zabezpečiť termín",
         fLegal: "Odoslaním súhlasíte so spracovaním údajov pre účely rezervácie. Záväzná zmluva až po potvrdení.",
         faqK: "FAQ", faqH: "Časté otázky",
         faq1h: "Ako ďaleko vopred rezervovať?", faq1p: "Sezónne termíny (máj–september) odporúčame 9–12 mesiacov vopred.",
@@ -380,12 +428,12 @@
       },
       en: {
         logo: "Wedding photography & film",
-        navG: "Gallery", navP: "Philosophy", navE: "Experience", navC: "Availability", navBook: "Book",
+        navG: "Gallery", navP: "Philosophy", navE: "Experience", navC: "Availability", navBook: "Secure Your Date",
         heroImgAlt: "Newlywed couple sharing an authentic laugh in golden light — cinematic wedding photography",
         heroK: "Everlight · Wedding & Event Storytelling",
         heroH1: "Authentic moments. Cinematic memories.",
         heroSub: "Elegant wedding photography and emotional videography that captures the raw, unscripted beauty of your special day. Based in Slovakia, traveling across Europe.",
-        ctaAvail: "Check Availability", ctaGallery: "Enter the Gallery",
+        ctaAvail: "Secure Your Date", ctaGallery: "Enter the Gallery",
         galK: "Portfolio",
         galH: "Where love stops performing for the lens",
         galP: "Gardens, historic halls, vineyards, and quiet lakeshores — each frame is a small story. Not a catalogue of poses, but the raw, unfiltered moments of your day.",
@@ -401,25 +449,33 @@
         phil1tag: "01 · Cinematic documentary",
         phil1h: "Cinematic & Documentary Style",
         phil1p: "No stiff, awkward posing. We observe, anticipate, and capture the glances, laughter, and quiet tears that happen when no one is performing for the camera. Your day stays authentic — we simply record what unfolds.",
-        phil2tag: "02 · Hybrid production",
-        phil2h: "Premium Hybrid Production",
+        phil2tag: "02 · Hybrid synchronization",
+        phil2h: "Photo and film without competing for angles",
         phil2p: "One creative team delivering both fine-art photographs and a cinematic highlight film — seamlessly graded, rhythmically edited, unmistakably yours. Photo and video that belong together like two sides of the same memory.",
+        syncK: "The Hybrid Synchronization",
+        syncH: "One team. One color grade. No competition for angles.",
+        syncP: "The wedding-day advantage: photographers and filmmakers plan movement, light and priorities together. You do not receive two conflicting styles — you receive one cohesive memory.",
+        sync1h: "Aligned movement", sync1p: "The team knows who holds the detail, who takes the wide frame and when to let the moment breathe.",
+        sync2h: "Unified color", sync2p: "Your gallery and highlight film share the same warm, cinematic atmosphere.",
+        sync3h: "Less stress", sync3p: "No two vendors, two briefings or conflicting directions during your day.",
         xpK: "The Wedding Experience",
         xpH: "What to expect",
         xpP: "From first hello to final delivery — simple, human, and free of unnecessary stress.",
-        xp1h: "Pre-Wedding Coffee & Planning",
+        xp1h: "Pre-wedding coffee",
         xp1p: "A relaxed conversation over coffee (or wine). We learn your story, walk the venue, and build a light roadmap — so on the day, you forget we're even there.",
-        xp2h: "The Big Day",
-        xp2p: "We blend into the crowd. No shouting directions — just discreet presence through vows, toasts, and the dance floor until the last song fades.",
-        xp3h: "The Delivery",
-        xp3p: "A beautifully graded digital gallery and a cinematic trailer that lets you feel the day again — before the full collection arrives.",
+        xp2h: "Story map",
+        xp2p: "We align light, movement, family priorities and the moments that should not disappear in the rush of the day.",
+        xp3h: "Wedding day",
+        xp3p: "A discreet photo + film team captures vows, toasts and dance-floor movement without disrupting the atmosphere.",
+        xp4h: "Digital gallery",
+        xp4p: "Teaser, cinematic highlight and final gallery arrive in one visual language, ready for sharing and print.",
         pkgK: "Collections", pkgH: "An investment in memory", pkgP: "Transparent collections for different scopes — or a bespoke proposal after a brief conversation.",
         pkgDay: "/ day", pkgWknd: "/ weekend",
         pkg1a: "6h photo reportage", pkg1b: "300+ edited images", pkg1c: "Online gallery 12 mo.", pkg1d: "1 photographer",
-        pkg2a: "10h photo + video team", pkg2b: "Highlight film + full ceremony", pkg2c: "500+ images, teaser within 48h", pkg2d: "Drone (weather / permits)",
+        pkg2a: "10h synchronized photo + film team", pkg2b: "Highlight film + full ceremony", pkg2c: "500+ images, teaser within 48h", pkg2d: "Drone (weather / permits)",
         pkg3a: "Full weekend (Sat–Sun)", pkg3b: "2 photographers + 2 filmmakers", pkg3c: "Engagement session included", pkg3d: "30×30 cm album",
         pkgBook: "Book", pkgFav: "Most popular", pkgConsult: "Consultation",
-        calK: "Availability", calH: "Check your date", calP: "Select a date in the calendar. We confirm availability within 24 hours — no obligation.",
+        calK: "Availability", calH: "Secure your date", calP: "Select a date in the calendar. We confirm availability within 24 hours — no obligation.",
         calNote: "Booked dates are crossed out. Peak-season weekends reserve early.",
         fDate: "Selected date", fDatePh: "Click a day in the calendar",
         fName: "Your names", fNamePh: "e.g. Anna & Thomas",
@@ -427,7 +483,7 @@
         fPhone: "Phone", fPhonePh: "+421 ...",
         fPkg: "Collection", fPkg1: "Essential — photo", fPkg2: "Everlight — photo + film", fPkg3: "Prestige — weekend", fPkg4: "Custom proposal",
         fMsg: "Notes (venue, guest count)", fMsgPh: "Ceremony date, location, special wishes...",
-        fSubmit: "Send inquiry",
+        fSubmit: "Secure Your Date",
         fLegal: "By submitting, you agree to data processing for booking purposes. Contract binding only after confirmation.",
         faqK: "FAQ", faqH: "Common questions",
         faq1h: "How far in advance should we book?", faq1p: "For peak season (May–September), we recommend 9–12 months ahead.",
@@ -444,12 +500,12 @@
       },
       de: {
         logo: "Hochzeitsfotografie & Film",
-        navG: "Galerie", navP: "Philosophie", navE: "Erlebnis", navC: "Termin", navBook: "Anfragen",
+        navG: "Galerie", navP: "Philosophie", navE: "Erlebnis", navC: "Termin", navBook: "Termin sichern",
         heroImgAlt: "Frisch verheiratetes Paar lacht authentisch im warmen Licht — cinematische Hochzeitsfotografie",
         heroK: "Everlight · Hochzeitsreportage & Film",
         heroH1: "Authentische Momente. Cinematische Erinnerungen.",
         heroSub: "Elegante Hochzeitsfotografie und emotionale, cinematische Hochzeitsvideos, die die ungeschönte, ungestellte Schönheit Ihres Festes einfangen. Sitz in der Slowakei — für anspruchsvolle Boutique-Hochzeiten in ganz Europa.",
-        ctaAvail: "Verfügbarkeit prüfen", ctaGallery: "Galerie betreten",
+        ctaAvail: "Termin sichern", ctaGallery: "Galerie betreten",
         galK: "Portfolio",
         galH: "Wo Liebe nicht fürs Objektiv spielt",
         galP: "Gärten, historische Säle, Weinberge und stille Seeufer — jedes Bild erzählt eine kleine Geschichte. Kein Posenkatalog, sondern rohe, ungefilterte Momente Ihres Tages.",
@@ -465,25 +521,33 @@
         phil1tag: "01 · Cinematischer Dokumentarstil",
         phil1h: "Cinematischer Dokumentarstil",
         phil1p: "Keine steifen Hochzeitsposen. Wir beobachten, antizipieren und halten Blicke, Lachen und leise Tränen fest — genau dann, wenn niemand fürs Objektiv spielt. Ihr Tag bleibt authentisch; wir halten leise fest, was geschieht.",
-        phil2tag: "02 · Premium Hybrid-Produktion",
-        phil2h: "Premium Hybrid-Produktion",
+        phil2tag: "02 · Hybrid-Synchronisation",
+        phil2h: "Foto und Film ohne Kampf um Blickwinkel",
         phil2p: "Ein kreatives Team liefert kunstvolle Hochzeitsfotografie und ein cinematisches Highlight-Video — farblich abgestimmt, rhythmisch geschnitten, unverkennbar Ihr Tag. Foto und Film wie zwei Seiten derselben Erinnerung.",
+        syncK: "The Hybrid Synchronization",
+        syncH: "Ein Team. Ein Color Grading. Kein Kampf um Blickwinkel.",
+        syncP: "Der Vorteil am Hochzeitstag: Fotografen und Filmer planen Bewegung, Licht und Prioritäten gemeinsam. Es entstehen nicht zwei Stile — sondern eine stimmige Erinnerung.",
+        sync1h: "Abgestimmte Bewegung", sync1p: "Das Team weiß, wer Details hält, wer die Totale nimmt und wann ein Moment Raum braucht.",
+        sync2h: "Einheitliche Farbe", sync2p: "Galerie und Highlight-Film teilen dieselbe warme, cinematische Stimmung.",
+        sync3h: "Weniger Stress", sync3p: "Keine zwei Dienstleister, zwei Briefings oder widersprüchlichen Anweisungen am Tag selbst.",
         xpK: "Ihr Hochzeitserlebnis",
         xpH: "Was Sie erwartet",
         xpP: "Vom ersten Kennenlernen bis zur Übergabe — unkompliziert, persönlich und ohne unnötigen Stress.",
-        xp1h: "Kennenlernen & Planung",
+        xp1h: "Kaffee vor der Hochzeit",
         xp1p: "Ein entspanntes Gespräch bei Kaffee oder Wein. Wir lernen Ihre Geschichte, begehen die Location und skizzieren einen leichten Ablauf — damit Sie am Tag selbst vergessen, dass wir da sind.",
-        xp2h: "Der große Tag",
-        xp2p: "Wir verschmelzen mit den Gästen. Keine lauten Regieanweisungen — nur diskrete Präsenz bei Trauung, Toast und Tanzfläche bis zum letzten Song.",
-        xp3h: "Übergabe",
-        xp3p: "Eine fein colour-gradede Online-Galerie und ein cinematischer Trailer, der den Tag wieder spürbar macht — noch bevor die vollständige Kollektion bei Ihnen ist.",
+        xp2h: "Story Map",
+        xp2p: "Wir stimmen Licht, Wege, Familienprioritäten und die Momente ab, die im Tagesfluss nicht verloren gehen dürfen.",
+        xp3h: "Hochzeitstag",
+        xp3p: "Ein diskretes Foto- und Filmteam hält Gelübde, Toasts und Tanzfläche fest, ohne die Atmosphäre zu stören.",
+        xp4h: "Digitale Galerie",
+        xp4p: "Teaser, Highlight-Film und finale Galerie kommen in einer visuellen Sprache — bereit zum Teilen und Drucken.",
         pkgK: "Pakete", pkgH: "Investition in Erinnerungen", pkgP: "Transparente Pakete für unterschiedliche Umfänge — oder ein individuelles Angebot nach einem kurzen Gespräch.",
         pkgDay: "/ Tag", pkgWknd: "/ Wochenende",
         pkg1a: "6h Hochzeitsreportage", pkg1b: "300+ bearbeitete Bilder", pkg1c: "Online-Galerie 12 Mon.", pkg1d: "1 Fotograf",
-        pkg2a: "10h Foto- + Videoteam", pkg2b: "Highlight-Film + Langversion", pkg2c: "500+ Bilder, Teaser in 48h", pkg2d: "Drohne (Wetter / Genehmigung)",
+        pkg2a: "10h synchronisiertes Foto- + Filmteam", pkg2b: "Highlight-Film + Langversion", pkg2c: "500+ Bilder, Teaser in 48h", pkg2d: "Drohne (Wetter / Genehmigung)",
         pkg3a: "Ganzes Wochenende (Sa–So)", pkg3b: "2 Fotografen + 2 Kameraleute", pkg3c: "Verlobungsshooting inklusive", pkg3d: "Album 30×30 cm",
         pkgBook: "Anfragen", pkgFav: "Beliebtestes Paket", pkgConsult: "Beratung",
-        calK: "Reservierung", calH: "Termin prüfen", calP: "Wählen Sie ein Datum im Kalender. Verfügbarkeitsbestätigung innerhalb von 24 Stunden — unverbindlich.",
+        calK: "Reservierung", calH: "Termin sichern", calP: "Wählen Sie ein Datum im Kalender. Verfügbarkeitsbestätigung innerhalb von 24 Stunden — unverbindlich.",
         calNote: "Belegte Termine sind durchgestrichen. Saison-Wochenenden werden früh gebucht.",
         fDate: "Gewählter Termin", fDatePh: "Tag im Kalender anklicken",
         fName: "Ihre Namen", fNamePh: "z. B. Anna & Thomas",
@@ -491,7 +555,7 @@
         fPhone: "Telefon", fPhonePh: "+421 ...",
         fPkg: "Paket", fPkg1: "Essential — Foto", fPkg2: "Everlight — Foto + Film", fPkg3: "Prestige — Wochenende", fPkg4: "Individuelles Angebot",
         fMsg: "Anmerkung (Location, Gästezahl)", fMsgPh: "Trauungstermin, Ort, besondere Wünsche...",
-        fSubmit: "Anfrage senden",
+        fSubmit: "Termin sichern",
         fLegal: "Mit dem Absenden stimmen Sie der Datenverarbeitung zur Reservierung zu. Verbindlich erst nach Bestätigung.",
         faqK: "FAQ", faqH: "Häufige Fragen",
         faq1h: "Wie früh sollten wir buchen?", faq1p: "Für Hochsaison (Mai–September) empfehlen wir 9–12 Monate im Voraus.",
