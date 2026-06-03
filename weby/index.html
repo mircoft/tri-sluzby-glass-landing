@@ -95,8 +95,18 @@
       position:relative;
       min-height:320px;
     }
-    .hero-split .pane{position:relative;overflow:hidden;min-height:280px}
-    .hero-split .pane img{width:100%;height:100%;object-fit:cover;display:block;min-height:280px}
+    .hero-split .pane{
+      position:relative;
+      overflow:hidden;
+      min-height:280px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(167,139,250,.2),transparent 38%),
+        linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+    }
     .hero-split .pane::after{
       content:"";
       position:absolute;inset:0;
@@ -114,6 +124,28 @@
       font-weight:700;
       color:rgba(255,255,255,.85);
     }
+    .mock-window{
+      width:min(280px,100%);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:14px;
+      background:rgba(8,6,15,.88);
+      box-shadow:0 24px 70px -34px rgba(167,139,250,.85);
+      overflow:hidden;
+      transform:rotate(-2deg);
+    }
+    .mock-bar{height:34px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.04)}
+    .mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+    .mock-code{padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:rgba(236,242,255,.84);display:grid;gap:8px}
+    .mock-code span{height:9px;border-radius:999px;background:linear-gradient(90deg,var(--acc),rgba(244,114,182,.25));opacity:.9}
+    .mock-code span:nth-child(2){width:78%;background:linear-gradient(90deg,rgba(125,211,252,.9),rgba(255,255,255,.08))}
+    .mock-code span:nth-child(3){width:62%}
+    .mock-code span:nth-child(4){width:88%;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,.05))}
+    .camera-mock{width:150px;height:96px;border-radius:22px;background:linear-gradient(145deg,#1c1b24,#08060f);border:1px solid rgba(255,255,255,.12);position:relative;box-shadow:0 24px 70px -34px rgba(244,114,182,.8)}
+    .camera-mock::before{content:"";position:absolute;width:62px;height:62px;border-radius:50%;left:44px;top:17px;background:radial-gradient(circle,var(--acc) 0 18%,#111 19% 42%,rgba(125,211,252,.8) 43% 48%,#05030a 49%);box-shadow:0 0 34px rgba(125,211,252,.38)}
+    .camera-mock::after{content:"";position:absolute;width:44px;height:16px;border-radius:9px 9px 0 0;left:24px;top:-12px;background:#181520;border:1px solid rgba(255,255,255,.1)}
+    .poster-stack{position:absolute;right:18px;bottom:52px;width:90px;height:120px;transform:rotate(7deg)}
+    .poster-stack i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 18px 50px -28px rgba(244,114,182,.9)}
+    .poster-stack i:nth-child(2){transform:translate(-12px,12px);opacity:.7;background:linear-gradient(135deg,#7dd3fc,#a78bfa)}
     .hero-split .divider{
       position:absolute;
       top:12%;
@@ -168,7 +200,11 @@
     }
     .eco-card h3{font-size:1.08rem;font-weight:700;margin-bottom:10px;line-height:1.25}
     .eco-card p{font-size:.9rem;color:var(--muted);flex:1}
-    .eco-card img{width:100%;height:150px;object-fit:cover;border-radius:var(--ds-r-sm);margin-top:var(--ds-md);border:1px solid var(--line)}
+    .eco-visual{height:150px;border-radius:var(--ds-r-sm);margin-top:var(--ds-md);border:1px solid var(--line);background:rgba(0,0,0,.22);position:relative;overflow:hidden}
+    .eco-visual::before{content:"";position:absolute;inset:18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(167,139,250,.18),rgba(244,114,182,.08))}
+    .eco-visual::after{content:"";position:absolute;left:34px;right:34px;bottom:28px;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));box-shadow:0 0 30px rgba(167,139,250,.45)}
+    .eco-visual.media::before{border-radius:18px;background:radial-gradient(circle at 50% 50%,rgba(125,211,252,.6) 0 16%,#0d0a14 17% 38%,rgba(255,255,255,.08) 39% 42%,transparent 43%),linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.02))}
+    .eco-visual.print::before{transform:rotate(-5deg);background:linear-gradient(135deg,rgba(244,114,182,.35),rgba(167,139,250,.25));box-shadow:34px 18px 0 rgba(125,211,252,.16)}
     .promise{
       margin-top:var(--ds-xl);
       border:1px solid var(--line);
@@ -213,12 +249,24 @@
     .promise-item p{font-size:.88rem;color:var(--muted)}
     .work{margin-top:var(--ds-xl)}
     .work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter)}
-    .work-item{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:300px;display:flex;align-items:flex-end}
-    .work-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .work-item{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:300px;display:flex;align-items:flex-end;background:#090711}
+    .work-item::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(167,139,250,.34),transparent 36%),linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.01))}
+    .work-item.product::before{background:radial-gradient(circle at 50% 38%,rgba(125,211,252,.35),transparent 28%),linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.01))}
+    .work-item.festival::before{background:linear-gradient(135deg,rgba(244,114,182,.34),rgba(167,139,250,.24)),repeating-linear-gradient(90deg,transparent 0 18px,rgba(255,255,255,.08) 18px 19px)}
     .work-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,6,15,.92),transparent 55%)}
     .work-cap{position:relative;z-index:2;padding:var(--ds-gutter)}
     .work-cap h3{font-size:1rem;margin-bottom:6px}
     .work-cap p{font-size:.84rem;color:var(--muted)}
+    .showcase{margin-top:var(--ds-xl)}
+    .showcase details{border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.025);overflow:hidden}
+    .showcase details + details{margin-top:12px}
+    .showcase summary{cursor:pointer;list-style:none;padding:20px var(--ds-gutter);display:flex;justify-content:space-between;gap:16px;font-weight:800}
+    .showcase summary::-webkit-details-marker{display:none}
+    .showcase summary span{color:var(--acc);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em}
+    .showcase-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);padding:0 var(--ds-gutter) var(--ds-gutter)}
+    .ba-card{border:1px solid var(--line);border-radius:var(--ds-r-sm);padding:18px;background:rgba(0,0,0,.24)}
+    .ba-card h4{font-size:.95rem;margin-bottom:8px}
+    .ba-card p{font-size:.88rem;color:var(--muted)}
     .process{margin-top:var(--ds-xl);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
     .process-head{padding:14px 18px;border-bottom:1px solid var(--line);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
     .process-steps{display:grid;grid-template-columns:repeat(4,1fr)}
@@ -233,7 +281,7 @@
     .brief .cta{justify-content:center}
     footer{margin-top:32px;padding:24px 0 80px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
     @media(max-width:980px){
-      .hero,.eco-grid,.promise-grid,.process-steps,.work-grid{grid-template-columns:1fr}
+      .hero,.eco-grid,.promise-grid,.process-steps,.work-grid,.showcase-body{grid-template-columns:1fr}
       .hero-split{grid-template-columns:1fr}
       .hero-split .divider{display:none}
       .hero-float{position:static;transform:none;margin-top:16px;white-space:normal;flex-wrap:wrap;justify-content:center}
@@ -276,18 +324,22 @@
           <span data-i18n="aud4">Festivals & Culture</span>
         </div>
         <div class="cta" data-reveal="fade">
-          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Start Your Project</a>
+          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Let's Scale Your Brand</a>
           <a class="btn s" href="#ecosystem" data-i18n="ctaSecondary">See Our Ecosystem</a>
         </div>
       </div>
       <div data-reveal="scale" style="position:relative;padding-bottom:28px">
         <div class="hero-split" role="img" aria-label="Split view: web engineering and multimedia production studio">
           <div class="pane">
-            <img src="../img/nx/srv2.png" alt="Custom web code and interface design" loading="eager" width="400" height="320">
+            <div class="mock-window" aria-hidden="true">
+              <div class="mock-bar"><i></i><i></i><i></i></div>
+              <div class="mock-code"><span></span><span></span><span></span><span></span></div>
+            </div>
             <span class="pane-label" data-i18n="heroPaneWeb">Web & E-Commerce</span>
           </div>
           <div class="pane">
-            <img src="../img/nx/team1.png" alt="Studio photography, video and graphic design" loading="eager" width="400" height="320">
+            <div class="camera-mock" aria-hidden="true"></div>
+            <div class="poster-stack" aria-hidden="true"><i></i><i></i></div>
             <span class="pane-label" data-i18n="heroPaneMedia">Photo · Video · Print</span>
           </div>
           <div class="divider" aria-hidden="true"></div>
@@ -310,19 +362,19 @@
           <div class="eco-letter">A</div>
           <h3 data-i18n="ecoA_title">Web Engineering & E-Commerce</h3>
           <p data-i18n="ecoA_body">Custom-built websites and fast online stores tailored for conversions — with zero templates. Built for local businesses, hospitality, and brands that need to sell online.</p>
-          <img src="../foto/images/device.png" alt="" loading="lazy" width="400" height="150">
+          <div class="eco-visual" aria-hidden="true"></div>
         </article>
         <article class="eco-card">
           <div class="eco-letter">B</div>
           <h3 data-i18n="ecoB_title">Commercial Photo & Video</h3>
           <p data-i18n="ecoB_body">High-end product photography, interior shots for cafés and hotels, and cinematic video trailers for your business or festival. Content that looks as premium as your offer.</p>
-          <img src="../foto/images/mountain.png" alt="" loading="lazy" width="400" height="150">
+          <div class="eco-visual media" aria-hidden="true"></div>
         </article>
         <article class="eco-card">
           <div class="eco-letter">C</div>
           <h3 data-i18n="ecoC_title">Graphic Design & Branding</h3>
           <p data-i18n="ecoC_body">Identity design, social media kits, and premium offline marketing materials — event posters, flyers, and print-ready assets that match your digital presence.</p>
-          <img src="../foto/images/prismatic.png" alt="" loading="lazy" width="400" height="150">
+          <div class="eco-visual print" aria-hidden="true"></div>
         </article>
       </div>
     </section>
@@ -330,8 +382,8 @@
     <section class="promise" id="promise" data-reveal="fade">
       <div class="promise-inner">
         <p class="k" data-i18n="promiseKicker">Why clients choose us</p>
-        <h2 data-i18n="promiseTitle">The "No-Headache" Promise</h2>
-        <p data-i18n="promiseLead">Stop juggling a web agency, a photographer, and a print shop. We save you time and money with one partner who owns the full picture.</p>
+        <h2 data-i18n="promiseTitle">The Frictionless Package</h2>
+        <p data-i18n="promiseLead">Stop managing four separate freelancers for web, photo, video and print. One team owns the full execution, so every customer touchpoint feels intentional.</p>
         <div class="promise-grid" data-reveal="stagger">
           <div class="promise-item">
             <h4 data-i18n="promise1_title">Single point of contact</h4>
@@ -347,7 +399,7 @@
           </div>
         </div>
         <div class="cta" style="margin-top:28px">
-          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Start Your Project</a>
+          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Let's Scale Your Brand</a>
         </div>
       </div>
     </section>
@@ -360,27 +412,58 @@
       </div>
       <div class="work-grid" data-reveal="stagger">
         <article class="work-item">
-          <img src="../foto/images/glass.png" alt="" loading="lazy">
           <div class="work-cap">
             <h3 data-i18n="work1_title">Hospitality & local</h3>
             <p data-i18n="work1_body">Interiors, menus, booking sites, and social content for cafés and hotels.</p>
           </div>
         </article>
-        <article class="work-item">
-          <img src="../foto/images/metal.png" alt="" loading="lazy">
+        <article class="work-item product">
           <div class="work-cap">
             <h3 data-i18n="work2_title">E-commerce & product</h3>
             <p data-i18n="work2_body">Custom stores, product shots, and conversion-focused product pages.</p>
           </div>
         </article>
-        <article class="work-item">
-          <img src="../img/nx/cta8.png" alt="" loading="lazy">
+        <article class="work-item festival">
           <div class="work-cap">
             <h3 data-i18n="work3_title">Festivals & culture</h3>
             <p data-i18n="work3_body">Trailers, poster systems, and campaign visuals for music and cultural events.</p>
           </div>
         </article>
       </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+      <div class="sec-head" data-reveal="fade">
+        <p class="k" data-i18n="showcaseKicker">Before / After Showcase</p>
+        <h2 data-i18n="showcaseTitle">One local launch, every touchpoint aligned</h2>
+        <p data-i18n="showcaseLead">A practical accordion for prospects to see how one brief becomes a website, content shoot, launch trailer, posters and print assets.</p>
+      </div>
+      <details open>
+        <summary><span data-i18n="showcase1Tag">Cafe example</span><strong data-i18n="showcase1Title">From scattered Instagram posts to a complete booking funnel</strong></summary>
+        <div class="showcase-body">
+          <div class="ba-card">
+            <h4 data-i18n="beforeTitle">Before</h4>
+            <p data-i18n="showcase1Before">No conversion website, inconsistent phone photos, outdated menu PDFs and posters designed by different vendors.</p>
+          </div>
+          <div class="ba-card">
+            <h4 data-i18n="afterTitle">After</h4>
+            <p data-i18n="showcase1After">Mobile-first booking page, commercial interior shoot, short reels, refreshed menu design and print-ready street posters in one visual system.</p>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary><span data-i18n="showcase2Tag">Festival example</span><strong data-i18n="showcase2Title">From event idea to launch campaign</strong></summary>
+        <div class="showcase-body">
+          <div class="ba-card">
+            <h4 data-i18n="beforeTitle">Before</h4>
+            <p data-i18n="showcase2Before">Lineup announcement, ticket page, trailer and printed posters were planned separately, causing weak campaign recall.</p>
+          </div>
+          <div class="ba-card">
+            <h4 data-i18n="afterTitle">After</h4>
+            <p data-i18n="showcase2After">Landing page, teaser video, social motion kit, poster system and print exports built from one launch direction.</p>
+          </div>
+        </div>
+      </details>
     </section>
 
     <section class="process" id="process" data-reveal="fade">
@@ -410,10 +493,10 @@
     </section>
 
     <section class="brief" id="brief" data-reveal="scale">
-      <h2 data-i18n="briefTitle">Tell us what you're building — we'll reply within 24 hours.</h2>
-      <p data-i18n="briefLead">Share your business type, goals, and timeline. We'll propose scope, deliverables, and a clear next step.</p>
+      <h2 data-i18n="briefTitle">Ready to make your brand easier to buy from?</h2>
+      <p data-i18n="briefLead">Share your business type, goals and deadline. We'll map the web, content and print deliverables needed to scale.</p>
       <div class="cta">
-        <a class="btn p" href="mailto:hello@thedesigns.org?subject=Signal%20House%20%E2%80%94%20Project%20Brief" data-i18n="briefCta">Send project brief</a>
+        <a class="btn p" href="mailto:hello@thedesigns.org?subject=Signal%20House%20%E2%80%94%20Project%20Brief" data-i18n="briefCta">Let's Scale Your Brand</a>
         <a class="btn s" href="tel:+421900000000" data-i18n="briefCall">Book a call</a>
       </div>
     </section>
@@ -433,7 +516,7 @@
         heroTitle: "Your Entire Brand Presence. Built Under One Roof.",
         heroLead: "We eliminate the need for multiple agencies. We deliver high-end web development, custom e-commerce, professional brand photography, cinematic video production, graphic design, and print-ready posters.",
         aud1: "Local Business", aud2: "Cafés & Hotels", aud3: "E-Commerce", aud4: "Festivals & Culture",
-        ctaPrimary: "Start Your Project", ctaSecondary: "See Our Ecosystem",
+        ctaPrimary: "Let's Scale Your Brand", ctaSecondary: "See Our Ecosystem",
         heroPaneWeb: "Web & E-Commerce", heroPaneMedia: "Photo · Video · Print",
         heroFloatLabel: "One studio · Web to print", heroFloatValue: "Zero templates",
         ecoKicker: "The Core Offer",
@@ -446,8 +529,8 @@
         ecoC_title: "Graphic Design & Branding",
         ecoC_body: "Identity design, social media kits, and premium offline marketing materials — event posters, flyers, and print-ready assets that match your digital presence.",
         promiseKicker: "Why clients choose us",
-        promiseTitle: "The \"No-Headache\" Promise",
-        promiseLead: "Stop juggling a web agency, a photographer, and a print shop. We save you time and money with one partner who owns the full picture.",
+        promiseTitle: "The Frictionless Package",
+        promiseLead: "Stop managing four separate freelancers for web, photo, video and print. One team owns the full execution, so every customer touchpoint feels intentional.",
         promise1_title: "Single point of contact",
         promise1_body: "One brief, one timeline, one invoice. No lost emails between vendors or conflicting deadlines.",
         promise2_title: "Unified visual style",
@@ -460,14 +543,27 @@
         work1_title: "Hospitality & local", work1_body: "Interiors, menus, booking sites, and social content for cafés and hotels.",
         work2_title: "E-commerce & product", work2_body: "Custom stores, product shots, and conversion-focused product pages.",
         work3_title: "Festivals & culture", work3_body: "Trailers, poster systems, and campaign visuals for music and cultural events.",
+        showcaseKicker: "Before / After Showcase",
+        showcaseTitle: "One local launch, every touchpoint aligned",
+        showcaseLead: "A practical accordion for prospects to see how one brief becomes a website, content shoot, launch trailer, posters and print assets.",
+        showcase1Tag: "Cafe example",
+        showcase1Title: "From scattered Instagram posts to a complete booking funnel",
+        beforeTitle: "Before",
+        afterTitle: "After",
+        showcase1Before: "No conversion website, inconsistent phone photos, outdated menu PDFs and posters designed by different vendors.",
+        showcase1After: "Mobile-first booking page, commercial interior shoot, short reels, refreshed menu design and print-ready street posters in one visual system.",
+        showcase2Tag: "Festival example",
+        showcase2Title: "From event idea to launch campaign",
+        showcase2Before: "Lineup announcement, ticket page, trailer and printed posters were planned separately, causing weak campaign recall.",
+        showcase2After: "Landing page, teaser video, social motion kit, poster system and print exports built from one launch direction.",
         processHead: "How we work · 4 phases",
         step1_title: "Discovery", step1_body: "Goals, audience, channels, and what “launch” means for your business.",
         step2_title: "Creative direction", step2_body: "Brand system, web architecture, shot lists, and print formats aligned in one plan.",
         step3_title: "Production", step3_body: "Development, shoot days, video edit, and design — in parallel where it counts.",
         step4_title: "Launch", step4_body: "Go-live, handover, and assets ready for web, social, and print.",
-        briefTitle: "Tell us what you're building — we'll reply within 24 hours.",
-        briefLead: "Share your business type, goals, and timeline. We'll propose scope, deliverables, and a clear next step.",
-        briefCta: "Send project brief", briefCall: "Book a call",
+        briefTitle: "Ready to make your brand easier to buy from?",
+        briefLead: "Share your business type, goals and deadline. We'll map the web, content and print deliverables needed to scale.",
+        briefCta: "Let's Scale Your Brand", briefCall: "Book a call",
         footer: "© 2026 Signal House · All-in-One Digital Studio · thedesigns.org/weby"
       },
       sk: {
@@ -477,7 +573,7 @@
         heroTitle: "Celá vaša značka. Vytvorená pod jednou strechou.",
         heroLead: "Eliminujeme potrebu viacerých agentúr. Dodávame špičkový web na mieru, custom e-commerce, profesionálnu brand fotografiu, filmovú video produkciu, grafický dizajn a tlačové plagáty pripravené na tlač.",
         aud1: "Lokálne podniky", aud2: "Kaviarne & hotely", aud3: "E-commerce", aud4: "Festivaly & kultúra",
-        ctaPrimary: "Poďme tvoriť", ctaSecondary: "Pozrieť ekosystém",
+        ctaPrimary: "Naštartovať značku", ctaSecondary: "Pozrieť ekosystém",
         heroPaneWeb: "Web & E-shop", heroPaneMedia: "Foto · Video · Tlač",
         heroFloatLabel: "Jedno štúdio · od webu po plagát", heroFloatValue: "Bez šablón",
         ecoKicker: "Jadro ponuky",
@@ -490,8 +586,8 @@
         ecoC_title: "Grafický dizajn & branding",
         ecoC_body: "Identita, social media kity a prémiové offline materiály — eventové plagáty, letáky a tlačové podklady v súlade s digitálnou prezentáciou.",
         promiseKicker: "Prečo si nás vyberajú klienti",
-        promiseTitle: "Prísľub „bez starostí“",
-        promiseLead: "Prestaňte koordinovať webovú agentúru, fotografa a tlačiareň. Šetríme čas aj peniaze — jeden partner, celý obraz značky.",
+        promiseTitle: "Frictionless balík bez trenia",
+        promiseLead: "Prestaňte koordinovať štyroch dodávateľov pre web, foto, video a tlač. Jeden tím drží celú realizáciu, aby každý dotyk so zákazníkom pôsobil premyslene.",
         promise1_title: "Jeden kontakt, celý projekt",
         promise1_body: "Jeden brief, jeden harmonogram, jedna faktúra. Žiadne stratené e-maily medzi dodávateľmi ani rozpory v termínoch.",
         promise2_title: "Jednotný vizuálny štýl",
@@ -504,14 +600,27 @@
         work1_title: "Gastro & lokál", work1_body: "Interiéry, menu, booking weby a obsah pre kaviarne a hotely.",
         work2_title: "E-commerce & produkt", work2_body: "Custom obchody, produktové fotky a stránky zamerané na konverzie.",
         work3_title: "Festivaly & kultúra", work3_body: "Trailery, plagátové systémy a kampaňové vizuály pre hudbu a kultúru.",
+        showcaseKicker: "Before / After ukážka",
+        showcaseTitle: "Jeden lokálny launch, všetky touchpointy zladené",
+        showcaseLead: "Praktický accordion ukazuje, ako sa jeden brief zmení na web, content shoot, launch trailer, plagáty a printové podklady.",
+        showcase1Tag: "Príklad kaviarne",
+        showcase1Title: "Od náhodných Instagram postov k booking funnelu",
+        beforeTitle: "Predtým",
+        afterTitle: "Potom",
+        showcase1Before: "Žiadny konverzný web, nekonzistentné fotky z mobilu, staré PDF menu a plagáty od rôznych dodávateľov.",
+        showcase1After: "Mobile-first rezervačná stránka, komerčný shoot interiéru, krátke reels, redizajn menu a tlačové plagáty v jednom vizuálnom systéme.",
+        showcase2Tag: "Príklad festivalu",
+        showcase2Title: "Od nápadu eventu po launch kampaň",
+        showcase2Before: "Lineup, ticket page, trailer a tlačené plagáty sa riešili oddelene, takže kampaň nemala jasnú zapamätateľnosť.",
+        showcase2After: "Landing page, teaser video, motion kit na social, poster systém a print exporty postavené z jedného kreatívneho smeru.",
         processHead: "Ako spolupracujeme · 4 fázy",
         step1_title: "Discovery", step1_body: "Ciele, publikum, kanály a čo pre vás znamená „launch“.",
         step2_title: "Kreatívny smer", step2_body: "Brand systém, architektúra webu, shot listy a formáty tlače v jednom pláne.",
         step3_title: "Produkcia", step3_body: "Vývoj, shoot dni, strih videa a dizajn — paralelne tam, kde to dáva zmysel.",
         step4_title: "Launch", step4_body: "Spustenie, odovzdanie a assety pripravené na web, social aj tlač.",
-        briefTitle: "Napíšte, čo budujete — ozveme sa do 24 hodín.",
-        briefLead: "Typ podniku, ciele a termín. Navrhneme rozsah, deliverables a ďalší krok.",
-        briefCta: "Poslať brief", briefCall: "Rezervovať hovor",
+        briefTitle: "Chcete, aby sa z vašej značky ľahšie nakupovalo?",
+        briefLead: "Pošlite typ podniku, ciele a deadline. Navrhneme web, obsah a printové deliverables potrebné na rast.",
+        briefCta: "Naštartovať značku", briefCall: "Rezervovať hovor",
         footer: "© 2026 Signal House · All-in-One digitálne štúdio · thedesigns.org/weby"
       },
       de: {
@@ -521,7 +630,7 @@
         heroTitle: "Ihre gesamte Markenpräsenz. Unter einem Dach.",
         heroLead: "Wir ersetzen mehrere Agenturen durch ein Studio: High-End-Webentwicklung, individuellen E-Commerce, professionelle Markenfotografie, cineastische Videoproduktion, Grafikdesign und druckfertige Poster.",
         aud1: "Lokale Unternehmen", aud2: "Cafés & Hotels", aud3: "E-Commerce", aud4: "Festivals & Kultur",
-        ctaPrimary: "Projekt starten", ctaSecondary: "Ökosystem entdecken",
+        ctaPrimary: "Marke skalieren", ctaSecondary: "Ökosystem entdecken",
         heroPaneWeb: "Web & E-Commerce", heroPaneMedia: "Foto · Video · Druck",
         heroFloatLabel: "Ein Studio · Web bis Plakat", heroFloatValue: "Keine Templates",
         ecoKicker: "Das Kernangebot",
@@ -534,8 +643,8 @@
         ecoC_title: "Grafikdesign & Branding",
         ecoC_body: "Identität, Social-Media-Kits und premium Offline-Materialien — Event-Poster, Flyer und druckfertige Assets im Einklang mit Ihrem Digital-Auftritt.",
         promiseKicker: "Warum Kunden uns wählen",
-        promiseTitle: "Das „Kein-Stress“-Versprechen",
-        promiseLead: "Schluss mit Web-Agentur, Fotograf und Druckerei parallel koordinieren. Ein Partner, volles Bild — weniger Zeit, weniger Kosten.",
+        promiseTitle: "Das Frictionless Package",
+        promiseLead: "Koordinieren Sie nicht vier separate Dienstleister für Web, Foto, Video und Druck. Ein Team verantwortet die gesamte Umsetzung, damit jeder Touchpoint bewusst wirkt.",
         promise1_title: "Eine Ansprechperson",
         promise1_body: "Ein Briefing, ein Zeitplan, eine Rechnung. Keine verlorenen E-Mails zwischen Dienstleistern.",
         promise2_title: "Einheitlicher Stil",
@@ -548,14 +657,27 @@
         work1_title: "Gastronomie & lokal", work1_body: "Interiors, Menüs, Booking-Sites und Social Content für Cafés und Hotels.",
         work2_title: "E-Commerce & Produkt", work2_body: "Custom Shops, Produktfotos und conversion-starke Produktseiten.",
         work3_title: "Festivals & Kultur", work3_body: "Trailer, Poster-Systeme und Kampagnenvisuals für Musik und Kultur.",
+        showcaseKicker: "Before / After Showcase",
+        showcaseTitle: "Ein lokaler Launch, alle Touchpoints abgestimmt",
+        showcaseLead: "Das Accordion zeigt, wie aus einem Briefing Website, Content-Shooting, Launch-Trailer, Poster und Druckdaten entstehen.",
+        showcase1Tag: "Cafe-Beispiel",
+        showcase1Title: "Von verstreuten Instagram-Posts zum Booking-Funnel",
+        beforeTitle: "Vorher",
+        afterTitle: "Nachher",
+        showcase1Before: "Keine Conversion-Website, uneinheitliche Handyfotos, alte Menü-PDFs und Poster von verschiedenen Dienstleistern.",
+        showcase1After: "Mobile-first Booking-Seite, kommerzielles Interior-Shooting, kurze Reels, neues Menüdesign und druckfertige Straßenposter in einem visuellen System.",
+        showcase2Tag: "Festival-Beispiel",
+        showcase2Title: "Von der Event-Idee zur Launch-Kampagne",
+        showcase2Before: "Line-up, Ticketseite, Trailer und gedruckte Poster wurden getrennt geplant — mit schwachem Wiedererkennungswert.",
+        showcase2After: "Landingpage, Teaser-Video, Social-Motion-Kit, Postersystem und Druckexporte aus einer Launch-Direction.",
         processHead: "So arbeiten wir · 4 Phasen",
         step1_title: "Discovery", step1_body: "Ziele, Zielgruppe, Kanäle und was „Launch“ für Sie bedeutet.",
         step2_title: "Creative Direction", step2_body: "Brand-System, Web-Architektur, Shotlists und Druckformate in einem Plan.",
         step3_title: "Produktion", step3_body: "Entwicklung, Shootings, Videoschnitt und Design — parallel wo es zählt.",
         step4_title: "Launch", step4_body: "Go-live, Übergabe und Assets für Web, Social und Druck.",
-        briefTitle: "Erzählen Sie uns Ihr Projekt — Antwort innerhalb von 24 Stunden.",
-        briefLead: "Branche, Ziele und Timeline. Wir schlagen Umfang, Deliverables und den nächsten Schritt vor.",
-        briefCta: "Projekt-Brief senden", briefCall: "Gespräch buchen",
+        briefTitle: "Bereit, Ihre Marke kaufbarer zu machen?",
+        briefLead: "Teilen Sie Branche, Ziele und Deadline. Wir skizzieren Web-, Content- und Print-Deliverables für Wachstum.",
+        briefCta: "Marke skalieren", briefCall: "Gespräch buchen",
         footer: "© 2026 Signal House · All-in-One Digital Studio · thedesigns.org/weby"
       }
     };

@@ -182,11 +182,57 @@
     .btn.primary {
       background: linear-gradient(120deg, var(--accent), var(--accent2));
       color: #041018;
+      box-shadow: 0 16px 44px -18px rgba(54, 246, 255, 0.78);
     }
     .btn.secondary {
       border-color: var(--line-soft);
       color: var(--text);
       background: rgba(255, 255, 255, 0.04);
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .availability-status {
+      margin-top: 18px;
+      max-width: 620px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      border: 1px solid rgba(54, 246, 255, 0.34);
+      border-radius: 16px;
+      padding: 14px;
+      background:
+        linear-gradient(135deg, rgba(54, 246, 255, 0.13), rgba(85, 167, 255, 0.05)),
+        rgba(0, 0, 0, 0.34);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 60px -34px rgba(54, 246, 255, 0.75);
+    }
+    .live-dot {
+      width: 12px;
+      height: 12px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(54, 246, 255, 0.12), 0 0 24px rgba(54, 246, 255, 0.9);
+    }
+    .availability-status span {
+      display: block;
+      font-family: var(--font-auto-mono);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .availability-status strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+    .availability-status p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.86rem;
     }
 
     .hero-visual {
@@ -195,6 +241,8 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      background: rgba(255, 255, 255, 0.035);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 80px -42px rgba(54, 246, 255, 0.5);
     }
     .hero-visual img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
     .hero-cap {
@@ -216,7 +264,10 @@
       border: 1px solid var(--line-soft);
       border-radius: var(--radius);
       padding: 18px;
-      background: rgba(0, 0, 0, 0.28);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+        rgba(0, 0, 0, 0.28);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
     }
     .trust-card strong {
       display: block;
@@ -339,6 +390,49 @@
     .aud-card h3 { font-size: 1rem; margin-bottom: 8px; }
     .aud-card p { font-size: 0.88rem; color: var(--muted); }
 
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--ds-md);
+    }
+    .risk-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(54, 246, 255, 0.2);
+      border-radius: var(--radius);
+      padding: 18px;
+      background:
+        linear-gradient(145deg, rgba(54, 246, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(0, 0, 0, 0.28);
+      min-height: 150px;
+    }
+    .risk-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 45%);
+      opacity: 0.7;
+    }
+    .risk-card b {
+      position: relative;
+      z-index: 1;
+      display: block;
+      font-family: var(--font-auto-mono);
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .risk-card p {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
     .brief {
       margin-top: var(--ds-xl);
       border: 1px solid rgba(54, 246, 255, 0.35);
@@ -375,7 +469,7 @@
     .sticky-bar p { font-size: 0.88rem; color: var(--muted); max-width: 52ch; }
 
     @media (max-width: 980px) {
-      .hero, .stack-grid, .trust-grid, .process, .when-grid, .audience {
+      .hero, .stack-grid, .trust-grid, .process, .when-grid, .audience, .risk-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -393,6 +487,7 @@
       <div class="top-actions">
         <a class="ghost" href="../" data-i18n="home">Domov</a>
         <button class="lang-btn" type="button" data-lang="sk" aria-pressed="true">SK</button>
+        <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
         <button class="lang-btn" type="button" data-lang="de" aria-pressed="false">DE</button>
       </div>
     </div>
@@ -404,6 +499,14 @@
         <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Staff Augmentation / Subdodávka</div>
         <h1 data-i18n="h1">PLC programátori a priemyselní elektrikári — prenájom špecialistov do vášho projektu.</h1>
         <p class="lead" data-i18n="lead">Nie generálny dodávateľ linky. Poskytujeme skúsených kontraktorov, ktorí sa okamžite zapoja do vášho tímu — TIA Portal, commissioning, robotika, EPLAN — v celej EÚ vrátane Nemecka.</p>
+        <div class="availability-status" aria-live="polite">
+          <i class="live-dot" aria-hidden="true"></i>
+          <div>
+            <span data-i18n="avLabel">Live kapacita</span>
+            <strong data-i18n="avTitle">Najbližšie nasadenie: 2–4 týždne</strong>
+            <p data-i18n="avBody">5-členná elektro zostava alebo PLC programátori pripravení na potvrdenie kapacity po krátkom technickom briefe.</p>
+          </div>
+        </div>
 
         <div class="hero-kw" aria-label="Kľúčové technológie">
           <span class="kw">TIA Portal V13–V19</span>
@@ -417,7 +520,7 @@
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="#brief" data-i18n="c1">Kapacitný brief</a>
+          <a class="btn primary" href="#brief" data-i18n="c1">Vyžiadať kapacity tímu</a>
           <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Staff%20Augmentation%20Brief" data-i18n="c2">E-mail</a>
         </div>
       </div>
@@ -430,7 +533,7 @@
 
     <section class="trust-grid" aria-label="Nasadenie a compliance">
       <div class="trust-card">
-        <strong data-i18n="t1h">Rýchle nasadenie</strong>
+        <strong data-i18n="t1h">Instant Squad Availability</strong>
         <p data-i18n="t1p">Jednotlivca alebo ucelený 5-členný tím vieme nasadiť do 2–4 týždňov od schválenia projektu.</p>
       </div>
       <div class="trust-card">
@@ -440,6 +543,31 @@
       <div class="trust-card">
         <strong data-i18n="t3h">Región</strong>
         <p data-i18n="t3p">Nasadenie SK · CZ · DE · AT a ďalšie EÚ lokality. Jeden kontakt, jeden tím.</p>
+      </div>
+    </section>
+
+    <section class="block" id="risk">
+      <div class="sec-head">
+        <h2 data-i18n="riskT">Risk Mitigation Grid</h2>
+        <p data-i18n="riskL">Dokumenty a pravidlá, ktoré potrebujú projektoví manažéri pred nasadením externého tímu na linku.</p>
+      </div>
+      <div class="risk-grid">
+        <article class="risk-card">
+          <b>A1 Forms</b>
+          <p data-i18n="risk1">Potvrdenia pripravené pre cezhraničné nasadenie v EÚ a kontrolu na stavbe.</p>
+        </article>
+        <article class="risk-card">
+          <b>SCC</b>
+          <p data-i18n="risk2">Bezpečnostná disciplína pre priemyselné prevádzky, montáže a commissioning.</p>
+        </article>
+        <article class="risk-card">
+          <b>Liability Insurance</b>
+          <p data-i18n="risk3">Medzinárodné zodpovednostné poistenie pre subdodávateľské práce.</p>
+        </article>
+        <article class="risk-card">
+          <b>NDA / Profiles</b>
+          <p data-i18n="risk4">CV, certifikáty a NDA tok pred vstupom do zákazníckeho prostredia.</p>
+        </article>
       </div>
     </section>
 
@@ -608,14 +736,23 @@
         ey: "Staff Augmentation / Subdodávka",
         h1: "PLC programátori a priemyselní elektrikári — prenájom špecialistov do vášho projektu.",
         lead: "Nie generálny dodávateľ linky. Poskytujeme skúsených kontraktorov, ktorí sa okamžite zapoja do vášho tímu — TIA Portal, commissioning, robotika, EPLAN — v celej EÚ vrátane Nemecka.",
+        avLabel: "Live kapacita",
+        avTitle: "Najbližšie nasadenie: 2–4 týždne",
+        avBody: "5-členná elektro zostava alebo PLC programátori pripravení na potvrdenie kapacity po krátkom technickom briefe.",
         cap: "PLC · TIA Portal · rozvádzač · commissioning",
-        c1: "Kapacitný brief", c2: "E-mail",
-        t1h: "Rýchle nasadenie",
+        c1: "Vyžiadať kapacity tímu", c2: "E-mail",
+        t1h: "Instant Squad Availability",
         t1p: "Jednotlivca alebo ucelený 5-členný tím vieme nasadiť do 2–4 týždňov od schválenia projektu.",
         t2h: "Legislatíva EÚ / DE",
         t2p: "A1 formuláre, zodpovednostné poistenie (Liability Insurance), nemecké SCC / A1 — pripravené pre audity zákazníka.",
         t3h: "Región",
         t3p: "Nasadenie SK · CZ · DE · AT a ďalšie EÚ lokality. Jeden kontakt, jeden tím.",
+        riskT: "Risk Mitigation Grid",
+        riskL: "Dokumenty a pravidlá, ktoré potrebujú projektoví manažéri pred nasadením externého tímu na linku.",
+        risk1: "Potvrdenia pripravené pre cezhraničné nasadenie v EÚ a kontrolu na stavbe.",
+        risk2: "Bezpečnostná disciplína pre priemyselné prevádzky, montáže a commissioning.",
+        risk3: "Medzinárodné zodpovednostné poistenie pre subdodávateľské práce.",
+        risk4: "CV, certifikáty a NDA tok pred vstupom do zákazníckeho prostredia.",
         stackT: "Technologický stack & expertíza",
         stackL: "Kľúčové slová, ktoré hľadá projektový manažér v Nemecku a EÚ — bez omáčok, priamo k pointe.",
         s1h: "1. PLC programátori & automatizéri",
@@ -661,10 +798,87 @@
         a3h: "Prevádzky & fabriky", a3t: "Nárazová pomoc pri prestoji, rozšírenie linky, nočné smeny pred SAT.",
         bh: "Pošlite kapacitný brief",
         bt: "Uveďte: počet ľudí, rolu (PLC programátor / elektrikár), platformu (TIA Portal, TwinCAT, Rockwell…), lokalitu (DE/CZ/SK), termín a či potrebujete A1/SCC dokumentáciu. Odpoveď do 24 h.",
-        bc1: "Brief e-mailom", bc2: "Technický call",
+        bc1: "Vyžiadať kapacity tímu", bc2: "Technický call",
         sb: "TIA Portal, TwinCAT, commissioning — jeden brief, tím do 2–4 týždňov.",
         sc: "Brief",
-        f: "© 2026 thedesigns.org — Staff Augmentation · PLC & priemyselná automatizácia · SK/CZ/DE"
+        f: "© 2026 thedesigns.org — Staff Augmentation · PLC & priemyselná automatizácia · SK/CZ/DE",
+        title: "Staff Augmentation | PLC programátori & elektrikári | thedesigns.org",
+        desc: "Prenájom PLC programátorov a priemyselných elektrikárov pre commissioning v EÚ. A1, SCC, poistenie a nasadenie tímu do 2–4 týždňov."
+      },
+      en: {
+        logo: "Staff Augmentation · Automation",
+        home: "Home",
+        ey: "Staff Augmentation / Subcontracting",
+        h1: "PLC programmers and industrial electricians — specialist capacity for your project.",
+        lead: "Not a turnkey line contractor. We provide experienced subcontractors who integrate into your team immediately — TIA Portal, commissioning, robotics, EPLAN — across Germany and the EU.",
+        avLabel: "Live capacity",
+        avTitle: "Next available deployment: 2–4 weeks",
+        avBody: "A 5-person electrical squad or PLC programmers can be reserved after a short technical capacity brief.",
+        cap: "PLC · TIA Portal · control cabinet · commissioning",
+        c1: "Request Team Capacities", c2: "E-mail",
+        t1h: "Instant Squad Availability",
+        t1p: "Deploy an individual specialist or a complete 5-person squad within 2–4 weeks after project approval.",
+        t2h: "EU / DE Compliance",
+        t2p: "A1 forms, international liability insurance and SCC documentation prepared for customer audits.",
+        t3h: "Region",
+        t3p: "Deployment across SK · CZ · DE · AT and other EU sites. One contact, one team.",
+        riskT: "Risk Mitigation Grid",
+        riskL: "The compliance signals project managers need before bringing an external automation team on site.",
+        risk1: "Cross-border confirmations prepared for EU deployment and site checks.",
+        risk2: "Safety discipline for industrial sites, assembly work and commissioning.",
+        risk3: "International liability insurance for subcontracted electrical and automation work.",
+        risk4: "CVs, certificates and NDA flow ready before entering the customer environment.",
+        stackT: "Technology stack & expertise",
+        stackL: "The keywords an EU project manager needs to recognize immediately — direct, technical and specific.",
+        s1h: "1. PLC programmers & automation engineers",
+        s1intro: "Staff augmentation / subcontracting — immediate integration into your internal team on active lines.",
+        s1plc_t: "PLC platforms",
+        s1plc_v: "Siemens (TIA Portal V13–V19, Step 7, WinCC, PCS7), Beckhoff (TwinCAT 2/3), Allen-Bradley / Rockwell Automation, Schneider Electric, Omron.",
+        s1hmi_t: "HMI / SCADA",
+        s1hmi_v: "WinCC Unified, Ignition, Wonderware ArchestrA, InTouch.",
+        s1net_t: "Networks & fieldbus",
+        s1net_v: "PROFINET, PROFIBUS, EtherCAT, Modbus TCP/RTU, Ethernet/IP, IO-Link.",
+        s1drv_t: "Drives & frequency converters",
+        s1drv_v: "Siemens SINAMICS, SEW Eurodrive, ABB, Danfoss.",
+        s1rob_t: "Robotics",
+        s1rob_v: "KUKA, ABB, Fanuc — programming, path optimization and commissioning.",
+        s2h: "2. Industrial electricians & commissioning",
+        s2intro: "Qualified specialists for EU projects (A1, SCC) — assembly, hardware commissioning and redlining.",
+        s2hw_t: "Hardware commissioning",
+        s2hw_v: "Loop checks, sensor and actuator calibration, I/O tests and drive parameterization.",
+        s2cab_t: "Control cabinets & field work",
+        s2cab_v: "Industrial cabinet wiring, cable routing, diagnostics and retrofits of existing lines.",
+        s2norm_t: "Standards & safety",
+        s2norm_v: "EN 60204-1, CE directives, STN / DIN VDE.",
+        s2doc_t: "Documentation",
+        s2doc_v: "On-site redlining and schematic updates — EPLAN P8 / AutoCAD.",
+        wT: "When to bring us in",
+        wL: "Typical staff augmentation scenarios — not greenfield turnkey delivery.",
+        w1h: "SAT / commissioning",
+        w1t: "You are missing a TIA Portal PLC programmer or electrician for loop checks before line handover.",
+        w2h: "Integrator without capacity",
+        w2t: "You have a customer in DE/CZ and need 3–5 people for 8–12 weeks — white-label capacity.",
+        w3h: "Retrofit & expansion",
+        w3t: "New robot, conveyor or station on an existing SIMATIC platform — fast wiring and FAT support.",
+        pT: "Process",
+        pL: "From brief to specialists on the line.",
+        p1h: "Brief", p1t: "Headcount, role (PLC / electrical), platform, location and start date.",
+        p2h: "Profiles", p2t: "CVs, certificates, NDA, A1 and insurance confirmation.",
+        p3h: "Deployment", p3t: "On-site or remote depending on the project — FAT, SAT and redlining.",
+        p4h: "Handover", p4t: "Documentation, operator training and post-handover support.",
+        aT: "Who it is for",
+        aL: "Partners in automotive, machine building and system integration.",
+        a1h: "OEMs & machine builders", a1t: "Extra capacity before FAT, machine shipping or customer commissioning.",
+        a2h: "System integrators", a2t: "Subcontracting capacity — your project, our specialists on the line.",
+        a3h: "Plants & factories", a3t: "Short-term support during downtime, line expansion or night shifts before SAT.",
+        bh: "Send a capacity brief",
+        bt: "Include: headcount, role (PLC programmer / electrician), platform (TIA Portal, TwinCAT, Rockwell...), location (DE/CZ/SK), start date and A1/SCC needs. Reply within 24 h.",
+        bc1: "Request Team Capacities", bc2: "Technical call",
+        sb: "TIA Portal, TwinCAT, commissioning — one brief, team in 2–4 weeks.",
+        sc: "Brief",
+        f: "© 2026 thedesigns.org — Staff Augmentation · PLC & industrial automation · SK/CZ/DE",
+        title: "Staff Augmentation | PLC Programmers & Industrial Electricians | thedesigns.org",
+        desc: "PLC programmers and industrial electricians for EU commissioning. A1, SCC, liability insurance and team deployment in 2–4 weeks."
       },
       de: {
         logo: "Staff Augmentation · Automatisierung",
@@ -672,14 +886,23 @@
         ey: "Staff Augmentation / Subunternehmer",
         h1: "SPS-Programmierer und Industrieelektriker — Spezialisten fuer Ihr Projekt.",
         lead: "Kein Generalunternehmer fuer die ganze Linie. Wir stellen erfahrene Subunternehmer, die sofort in Ihr Team integriert werden — TIA Portal, Inbetriebnahme, Robotik, EPLAN — in DE und der gesamten EU.",
+        avLabel: "Live-Kapazität",
+        avTitle: "Nächster Einsatz: 2–4 Wochen",
+        avBody: "5-köpfiges Elektro-Team oder SPS-Programmierer nach kurzem technischen Kapazitätsbrief reservierbar.",
         cap: "SPS · TIA Portal · Schaltschrank · Inbetriebnahme",
-        c1: "Kapazitaets-Brief", c2: "E-Mail",
-        t1h: "Schnelle Bereitstellung",
+        c1: "Teamkapazitäten anfragen", c2: "E-Mail",
+        t1h: "Instant Squad Availability",
         t1p: "Einzelperson oder ein 5-koepfiges Team innerhalb von 2–4 Wochen nach Projektfreigabe.",
         t2h: "EU / DE Compliance",
         t2p: "A1-Bescheinigung, Haftpflichtversicherung (Liability Insurance), SCC-Zertifikat — dokumentiert fuer Kundenaudits.",
         t3h: "Region",
         t3p: "Einsatz SK · CZ · DE · AT und weitere EU-Standorte. Ein Ansprechpartner.",
+        riskT: "Risk Mitigation Grid",
+        riskL: "Compliance-Signale, die Projektleiter vor dem Einsatz externer Spezialisten an der Linie brauchen.",
+        risk1: "Bescheinigungen für grenzüberschreitende EU-Einsätze und Kontrollen vor Ort.",
+        risk2: "Sicherheitsdisziplin für Industrieanlagen, Montage und Inbetriebnahme.",
+        risk3: "Internationale Haftpflichtversicherung für Subunternehmerleistungen.",
+        risk4: "CVs, Zertifikate und NDA-Prozess vor Eintritt in die Kundenumgebung.",
         stackT: "Tech-Stack & Profil unserer Spezialisten",
         stackL: "Keywords, die ein deutscher Projektleiter sofort erkennen muss — ohne Marketing-Fuelltext.",
         s1h: "1. SPS-Programmierer & Automatisierungstechniker",
@@ -725,10 +948,12 @@
         a3h: "Betriebe & Werke", a3t: "Stillstand, Linienerweiterung, Nachtschichten vor SAT.",
         bh: "Kapazitaets-Brief senden",
         bt: "Angeben: Anzahl, Rolle (SPS-Programmierer / Elektriker), Plattform (TIA Portal, TwinCAT, Rockwell…), Ort (DE/CZ/SK), Termin, A1/SCC. Antwort in 24 h.",
-        bc1: "Brief per E-Mail", bc2: "Technischer Call",
+        bc1: "Teamkapazitäten anfragen", bc2: "Technischer Call",
         sb: "TIA Portal, TwinCAT, Inbetriebnahme — ein Brief, Team in 2–4 Wochen.",
         sc: "Brief",
-        f: "© 2026 thedesigns.org — Staff Augmentation · SPS & Automatisierung · SK/CZ/DE"
+        f: "© 2026 thedesigns.org — Staff Augmentation · SPS & Automatisierung · SK/CZ/DE",
+        title: "Staff Augmentation | SPS-Programmierer & Industrieelektriker | thedesigns.org",
+        desc: "SPS-Programmierer und Industrieelektriker für Inbetriebnahmen in der EU. A1, SCC, Haftpflicht und Teameinsatz in 2–4 Wochen."
       }
     };
 
@@ -744,9 +969,8 @@
       });
       btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
       try { localStorage.setItem("td-lang", lang); } catch (_) {}
-      document.title = lang === "de"
-        ? "Staff Augmentation | SPS-Programmierer & Industrieelektriker | thedesigns.org"
-        : "Staff Augmentation | PLC programátori & elektrikári | thedesigns.org";
+      document.title = pack.title;
+      document.querySelector('meta[name="description"]').content = pack.desc;
     }
     btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
     try {

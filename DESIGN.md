@@ -79,11 +79,11 @@ thedesigns.org je **hub s tromi rovnocennými vetvami**. Vizuál je profesionál
 
 ## Assets (obrázky)
 
-- **Hub:** `./img/nx/tstimg.png`, `./foto/images/prismatic.png`, `./img/nx/hero3.png`
-- **Signal House:** `../img/nx/`, `../foto/images/` — lokálne assety zo starého design štúdia
-- **Everlight:** `foto/wedding/*.jpg` — európske svadobné fotky (outdoor, vinohrad, záhrada; Pexels, lokálne v repo)
-- **Automatizácia:** `elektro/images/*.jpg` — moderná výroba (roboty, dopravníky, linky; Pexels, lokálne v repo)
-- Nepoužívať externé Unsplash URL (často 404); vždy relatívne cesty v repozitári.
+- **Hub:** môže kombinovať náhľady všetkých troch vetiev, ale musí jasne označiť segmenty.
+- **Signal House:** tmavé kreatívne štúdio, laptop s čistým code editorom, mirrorless kamera, produktový/commercial BTS, eventové plagáty a print proofy. Nepoužívať svadobné ani priemyselné zábery.
+- **Everlight:** `foto/wedding/*.jpg` — teplé, filmové svadobné momenty, golden hour, pohyb, candid emócie. Nepoužívať hardvér, rozvádzače ani code editor.
+- **Automatizácia:** `elektro/images/*.jpg` — PLC wiring, rozvádzače, commissioning, inžinieri na linke. Nepoužívať svadby, lifestyle marketing ani webové mockupy.
+- Nepoužívať externé Unsplash URL (často 404); vždy relatívne cesty v repozitári alebo CSS mockupy, kým nie sú dodané finálne licencované assety.
 
 ## Do's and Don'ts
 
