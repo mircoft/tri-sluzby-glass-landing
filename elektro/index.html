@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatizácia | Elektrikári & PLC programátori na projekt</title>
-  <meta name="description" content="Dodávame skúsených elektrikárov a PLC programátorov na zabehnuté automatizačné projekty. Roboty, linky, dopravníky, Siemens SIMATIC, commissioning v SK/CZ/DE.">
+  <title>Staff Augmentation | PLC Programátori & Priemyselní Elektrikári | thedesigns.org</title>
+  <meta name="description" content="Prenájom PLC programátorov (TIA Portal, TwinCAT, Rockwell) a priemyselných elektrikárov pre commissioning v EÚ. A1, SCC, nasadenie tímu do 2–4 týždňov. SK/CZ/DE.">
   <link rel="canonical" href="https://thedesigns.org/elektro/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,32 +28,19 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: auto; }
 
     body {
       min-height: 100vh;
       color: var(--text);
       font-family: var(--font-auto-body);
       background:
-        radial-gradient(circle at 84% -10%, rgba(54, 246, 255, 0.18), transparent 46%),
-        radial-gradient(circle at 0% 0%, rgba(85, 167, 255, 0.20), transparent 40%),
+        radial-gradient(circle at 84% -10%, rgba(54, 246, 255, 0.16), transparent 46%),
+        radial-gradient(circle at 0% 0%, rgba(85, 167, 255, 0.18), transparent 40%),
         linear-gradient(180deg, var(--color-auto-bg), var(--bg2));
       line-height: 1.55;
     }
 
-    img { display: block; max-width: 100%; width: 100%; height: 100%; object-fit: cover; }
-
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.16;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 100% 34px, 42px 100%;
-    }
+    img { display: block; max-width: 100%; height: auto; object-fit: cover; }
 
     .hazard {
       height: 4px;
@@ -66,16 +53,19 @@
       top: 0;
       z-index: 30;
       border-bottom: 1px solid var(--line-soft);
-      background: rgba(5, 7, 15, 0.88);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 7, 15, 0.96);
     }
 
     .top-inner {
       width: var(--ds-container);
       margin: 0 auto;
       padding-inline: var(--ds-pad-x);
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--ds-md);
     }
-    .top-inner.ds-header-row { min-height: 72px; }
 
     .logo { color: var(--text); text-decoration: none; }
     .logo b {
@@ -89,12 +79,12 @@
     .logo span {
       display: block;
       margin-top: 4px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--muted);
       font-weight: 600;
     }
 
-    .top-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .ghost, .lang-btn {
       text-decoration: none;
       color: var(--text);
@@ -116,7 +106,7 @@
     .wrap {
       width: var(--ds-container);
       margin: 0 auto;
-      padding: var(--ds-xl) var(--ds-pad-x) 132px;
+      padding: var(--ds-xl) var(--ds-pad-x) 120px;
     }
 
     .hero {
@@ -143,456 +133,262 @@
     .eyebrow i {
       width: 7px; height: 7px; border-radius: 2px;
       background: linear-gradient(130deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 5px rgba(54, 246, 255, 0.12);
     }
 
     h1 {
       margin-top: 14px;
-      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-size: clamp(1.85rem, 4vw, 3.2rem);
       letter-spacing: -0.03em;
-      line-height: 1.06;
-      max-width: 18ch;
+      line-height: 1.08;
       font-weight: 800;
     }
 
-    .lead { margin-top: 14px; color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+    .lead { margin-top: 14px; color: var(--muted); max-width: 56ch; font-size: 1.05rem; }
 
-    .hero-note {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-left: 3px solid var(--accent);
-      background: rgba(54, 246, 255, 0.08);
-      border-radius: 0 10px 10px 0;
-      font-size: 0.92rem;
-      color: rgba(234, 244, 255, 0.92);
-      max-width: 52ch;
-    }
-
-    .tech-pills {
+    .hero-kw {
       margin-top: 18px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-    .pill {
+    .kw {
       font-family: var(--font-auto-mono);
-      font-size: 0.72rem;
-      padding: 8px 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 8px 11px;
       border-radius: 8px;
       border: 1px solid rgba(0, 153, 153, 0.45);
       background: rgba(0, 153, 153, 0.12);
       color: #7ee8e8;
-      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    .model {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--ds-md);
-      align-items: stretch;
-    }
-    .model-card {
-      border: 1px solid var(--line-soft);
-      border-radius: 12px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 14px;
-    }
-    .model-card b {
-      display: block;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.68rem;
-      margin-bottom: 8px;
-    }
-    .model-card p { color: var(--muted); font-size: 0.9rem; }
-
-    .cta-row { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta-row { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 12px 16px;
+      min-height: 46px;
+      padding: 12px 20px;
       border-radius: 10px;
-      text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 800;
+      font-size: 0.82rem;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border: 1px solid var(--line-soft);
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
     }
     .btn.primary {
       background: linear-gradient(120deg, var(--accent), var(--accent2));
-      color: #031018;
-      border-color: rgba(255, 255, 255, 0.14);
+      color: #041018;
     }
-    .btn.secondary { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+    .btn.secondary {
+      border-color: var(--line-soft);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
 
     .hero-visual {
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-soft);
       border-radius: var(--radius);
       overflow: hidden;
-      background: #091628;
       display: flex;
       flex-direction: column;
-      min-height: 100%;
     }
-    .hero-img {
-      position: relative;
-      flex: 1;
-      min-height: 280px;
-    }
-    .hero-img::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(5, 7, 15, 0.85));
-    }
+    .hero-visual img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
     .hero-cap {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      right: 14px;
-      z-index: 2;
+      padding: 12px 14px;
       font-family: var(--font-auto-mono);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(234, 244, 255, 0.9);
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0;
-      border-top: 1px solid var(--line);
-    }
-    .hero-stat {
-      padding: 14px;
-      border-right: 1px solid var(--line-soft);
-      text-align: center;
-    }
-    .hero-stat:last-child { border-right: 0; }
-    .hero-stat strong {
-      display: block;
-      font-size: 1.1rem;
-      color: var(--accent);
-      font-weight: 800;
-    }
-    .hero-stat span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      font-size: 0.72rem;
       color: var(--muted);
-      font-weight: 600;
+      border-top: 1px solid var(--line-soft);
+      background: rgba(0, 0, 0, 0.35);
     }
 
-    .metrics {
+    .trust-grid {
       margin-top: var(--ds-lg);
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--ds-md);
-      align-items: stretch;
     }
-    .metric {
+    .trust-card {
       border: 1px solid var(--line-soft);
       border-radius: var(--radius);
       padding: 18px;
-      background: rgba(0, 0, 0, 0.22);
-      text-align: center;
+      background: rgba(0, 0, 0, 0.28);
     }
-    .metric b {
+    .trust-card strong {
       display: block;
-      font-size: 1.35rem;
-      color: var(--accent);
-      font-weight: 800;
-    }
-    .metric span {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-    }
-
-    section.block {
-      margin-top: var(--ds-lg);
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius);
-      background: rgba(0, 0, 0, 0.22);
-      overflow: hidden;
-    }
-    .block-head {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line-soft);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .block-head h2 {
-      font-size: 0.84rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .block-head p { color: var(--muted); font-size: 0.9rem; max-width: 52ch; }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--ds-gutter);
-      padding: 22px;
-      align-items: stretch;
-    }
-    .card {
-      border: 1px solid rgba(54, 246, 255, 0.22);
-      border-radius: 12px;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.06);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .card-img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 14px;
-    }
-    .card h3 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       margin-bottom: 8px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .hico {
-      width: 20px; height: 20px;
-      border-radius: 6px;
-      border: 1px solid rgba(54, 246, 255, 0.38);
-      background: rgba(54, 246, 255, 0.12);
-      display: inline-grid;
-      place-items: center;
       color: var(--accent);
-      font-size: 0.7rem;
-      flex-shrink: 0;
     }
-    .card p { color: rgba(234, 244, 255, 0.92); font-size: 0.9rem; flex: 1; }
-    .card ul {
-      margin-top: 12px;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.82rem;
+    .trust-card p { font-size: 0.88rem; color: var(--muted); }
+
+    .sec-head { margin-bottom: var(--ds-md); }
+    .sec-head h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+    .sec-head p { margin-top: 8px; color: var(--muted); max-width: 62ch; }
+
+    .block { margin-top: var(--ds-xl); }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--ds-gutter);
+      align-items: start;
+    }
+
+    .stack-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+    .stack-card-head {
+      padding: 20px 20px 0;
+    }
+    .stack-card-head h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .stack-card-head p {
+      margin-top: 8px;
+      font-size: 0.9rem;
       color: var(--muted);
     }
-    .card li::before { content: "— "; color: var(--accent); }
+    .stack-img {
+      margin: 16px 20px 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line-soft);
+      aspect-ratio: 16/9;
+    }
+    .stack-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    .gallery-row {
+    .stack-list {
+      padding: 18px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .stack-item dt {
+      font-family: var(--font-auto-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .stack-item dd {
+      font-size: 0.86rem;
+      color: rgba(234, 244, 255, 0.9);
+      line-height: 1.5;
+    }
+
+    .process {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: var(--ds-md);
-      padding: 22px;
-      align-items: stretch;
     }
-    .shot {
-      position: relative;
+    .step {
       border: 1px solid var(--line-soft);
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: #091628;
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.25);
     }
-    .shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(165deg, rgba(54, 246, 255, 0.1), rgba(5, 7, 15, 0.45));
-    }
-    .shot-label {
-      position: absolute;
-      bottom: 8px;
-      left: 10px;
-      z-index: 2;
+    .step-num {
       font-family: var(--font-auto-mono);
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(234, 244, 255, 0.9);
+      font-size: 0.75rem;
+      color: var(--accent);
       font-weight: 600;
     }
+    .step h4 { margin-top: 8px; font-size: 0.95rem; }
+    .step p { margin-top: 6px; font-size: 0.84rem; color: var(--muted); }
 
     .when-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--ds-gutter);
-      padding: 22px;
+      gap: var(--ds-md);
     }
     .when-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
       padding: 18px;
-      border: 1px dashed var(--line);
-      border-radius: 12px;
-      background: rgba(54, 246, 255, 0.05);
+      background: rgba(0, 0, 0, 0.22);
     }
-    .when-card h3 { font-size: 0.95rem; margin-bottom: 8px; font-weight: 700; }
+    .when-card h3 { font-size: 1rem; margin-bottom: 8px; }
     .when-card p { font-size: 0.88rem; color: var(--muted); }
 
-    .timeline-steps {
+    .audience {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--ds-md);
     }
-    .tl-step {
-      padding: 22px 16px;
-      border-right: 1px solid var(--line-soft);
+    .aud-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      padding: 18px;
     }
-    .tl-step:last-child { border-right: 0; }
-    .tl-num {
-      font-size: 0.66rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .tl-step h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 4px; }
-    .tl-step p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+    .aud-card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .aud-card p { font-size: 0.88rem; color: var(--muted); }
 
-    .tech-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--ds-gutter);
-      padding: 22px;
-      align-items: start;
-    }
-    .tech-row p { color: var(--muted); font-size: 0.9rem; max-width: 48ch; }
-
-    .brief-message {
-      margin-top: var(--ds-lg);
-      border: 1px solid var(--line);
+    .brief {
+      margin-top: var(--ds-xl);
+      border: 1px solid rgba(54, 246, 255, 0.35);
       border-radius: var(--radius);
       padding: 28px;
-      background: linear-gradient(130deg, rgba(54, 246, 255, 0.14), rgba(7, 16, 33, 0.9));
+      background: linear-gradient(135deg, rgba(54, 246, 255, 0.1), rgba(0, 0, 0, 0.35));
     }
-    .brief-message h2 {
-      font-size: clamp(1.35rem, 2.5vw, 2rem);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      max-width: 24ch;
-      font-weight: 800;
-    }
-    .brief-message p { margin-top: 10px; color: var(--muted); max-width: 64ch; }
+    .brief h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; }
+    .brief p { margin-top: 10px; color: var(--muted); max-width: 58ch; }
 
     footer {
-      margin-top: 20px;
-      padding: 22px 0 106px;
-      border-top: 1px solid var(--line-soft);
-      color: var(--muted);
+      padding: 28px var(--ds-pad-x) 100px;
       text-align: center;
+      color: var(--muted);
       font-size: 0.86rem;
+      border-top: 1px solid var(--line-soft);
     }
 
-    .sticky {
+    .sticky-bar {
       position: fixed;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 40;
+      padding: 12px var(--ds-pad-x);
+      background: rgba(5, 7, 15, 0.96);
+      border-top: 1px solid var(--line-soft);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(5, 7, 15, 0.94);
-      backdrop-filter: blur(8px);
-      padding: 10px 12px;
     }
-    .sticky p { color: var(--muted); font-size: 0.82rem; max-width: 52ch; }
-
-    .brands {
-      margin-top: var(--ds-lg);
-      border: 1px solid var(--line-soft);
-      border-radius: var(--radius);
-      background: rgba(0, 0, 0, 0.22);
-      overflow: hidden;
-    }
-    .brands-head {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--line-soft);
-    }
-    .brands-head h2 {
-      font-size: 0.84rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .brands-head p { margin-top: 6px; color: var(--muted); font-size: 0.9rem; max-width: 58ch; }
-    .brand-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--ds-md);
-      padding: 22px;
-    }
-    .brand-item {
-      border: 1px solid var(--line-soft);
-      border-radius: 10px;
-      padding: 18px 12px;
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .brand-note {
-      padding: 0 22px 18px;
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-    .factory-banner {
-      margin-top: var(--ds-md);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--line-soft);
-      aspect-ratio: 21/9;
-      max-height: 320px;
-    }
-    .factory-banner img { height: 100%; object-fit: cover; }
+    .sticky-bar p { font-size: 0.88rem; color: var(--muted); max-width: 52ch; }
 
     @media (max-width: 980px) {
-      .hero, .metrics, .grid-3, .model, .timeline-steps, .gallery-row, .when-grid, .tech-row, .brand-grid {
+      .hero, .stack-grid, .trust-grid, .process, .when-grid, .audience {
         grid-template-columns: 1fr;
       }
-      .brand-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-stats { grid-template-columns: 1fr; }
-      .hero-stat { border-right: 0; border-bottom: 1px solid var(--line-soft); }
-      .tl-step { border-right: 0; border-bottom: 1px solid var(--line-soft); }
     }
   </style>
 </head>
 <body>
   <div class="hazard" aria-hidden="true"></div>
-  <div class="grid-overlay" aria-hidden="true"></div>
 
   <header class="top">
-    <div class="top-inner ds-header-row">
+    <div class="top-inner">
       <a class="logo" href="../">
         <b>thedesigns.org</b>
-        <span data-i18n="logo">Kapacita pre automatizáciu</span>
+        <span data-i18n="logo">Staff Augmentation · Automatizácia</span>
       </a>
       <div class="top-actions">
         <a class="ghost" href="../" data-i18n="home">Domov</a>
@@ -604,347 +400,335 @@
 
   <main class="wrap">
     <section class="hero">
-      <div class="hero-left">
-        <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Posily na zabehnuté projekty</div>
-        <h1 data-i18n="h1">Elektrikári a PLC programátori, keď linka už beží a treba ľudí.</h1>
-        <p class="lead" data-i18n="lead">Dodávame skúsených ľudí na rozbehnuté automatizačné projekty — montáž, zapojenie, úpravy PLC, robotiku a commissioning. Nie sme „generálny dodávateľ továrne“, ale tím, ktorý dorazí, dorobí a odovzdá v termíne.</p>
-        <p class="hero-note" data-i18n="note">Typický dopyt: integrátor alebo prevádzka potrebuje 2–6 ľudí na 4–16 týždňov — elektro + program + prípadne robotika na jednej linke.</p>
+      <div>
+        <div class="eyebrow" data-i18n="ey"><i aria-hidden="true"></i>Staff Augmentation / Subdodávka</div>
+        <h1 data-i18n="h1">PLC programátori a priemyselní elektrikári — prenájom špecialistov do vášho projektu.</h1>
+        <p class="lead" data-i18n="lead">Nie generálny dodávateľ linky. Poskytujeme skúsených kontraktorov, ktorí sa okamžite zapoja do vášho tímu — TIA Portal, commissioning, robotika, EPLAN — v celej EÚ vrátane Nemecka.</p>
 
-        <div class="tech-pills">
-          <span class="pill">Siemens SIMATIC</span>
-          <span class="pill">Roboty · AMR</span>
-          <span class="pill">Dopravníky · linky</span>
-          <span class="pill">PROFINET / safety</span>
-        </div>
-
-        <div class="model">
-          <div class="model-card"><b data-i18n="m1h">Situácia</b><p data-i18n="m1t">Projekt beží, SAT sa blíži — interný tím nestíha alebo chýba špecialista.</p></div>
-          <div class="model-card"><b data-i18n="m2h">Čo nasadíme</b><p data-i18n="m2t">Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.</p></div>
-          <div class="model-card"><b data-i18n="m3h">Výsledok</b><p data-i18n="m3t">Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.</p></div>
+        <div class="hero-kw" aria-label="Kľúčové technológie">
+          <span class="kw">TIA Portal V13–V19</span>
+          <span class="kw">TwinCAT 2/3</span>
+          <span class="kw">Rockwell / Allen-Bradley</span>
+          <span class="kw">PROFINET · EtherCAT</span>
+          <span class="kw">KUKA · ABB · Fanuc</span>
+          <span class="kw">EPLAN P8</span>
+          <span class="kw">Commissioning</span>
+          <span class="kw">EN 60204-1</span>
         </div>
 
         <div class="cta-row">
-          <a class="btn primary" href="#brief" data-i18n="c1">Dopyt na kapacitu</a>
-          <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20kapacita" data-i18n="c2">Napísať mailom</a>
+          <a class="btn primary" href="#brief" data-i18n="c1">Kapacitný brief</a>
+          <a class="btn secondary" href="mailto:hello@thedesigns.org?subject=Staff%20Augmentation%20Brief" data-i18n="c2">E-mail</a>
         </div>
       </div>
 
       <aside class="hero-visual">
-        <div class="hero-img">
-          <img src="images/hero.jpg" alt="Interiér automobilovej výrobnej haly s linkou" fetchpriority="high">
-          <p class="hero-cap" data-i18n="cap">Výroba 2026 · roboty · dopravníky · PLC</p>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><strong>SK/CZ/DE</strong><span data-i18n="st1">nasadenie</span></div>
-          <div class="hero-stat"><strong>24h</strong><span data-i18n="st2">odpoveď na brief</span></div>
-          <div class="hero-stat"><strong>1×</strong><span data-i18n="st3">kontakt pre tím</span></div>
-        </div>
+        <img src="images/panel.jpg" alt="Priemyselný rozvádzač a diagnostický softvér" fetchpriority="high" width="800" height="600">
+        <p class="hero-cap" data-i18n="cap">PLC · TIA Portal · Schaltschrank · Commissioning</p>
       </aside>
     </section>
 
-    <div class="metrics">
-      <div class="metric"><b data-i18n="k1b">Elektro</b><span data-i18n="k1t">montáž & zapojenie</span></div>
-      <div class="metric"><b data-i18n="k2b">PLC / SPS</b><span data-i18n="k2t">TIA · úpravy · FAT</span></div>
-      <div class="metric"><b data-i18n="k3b">Roboty</b><span data-i18n="k3t">integrácia · SAT</span></div>
-      <div class="metric"><b data-i18n="k4b">Linky</b><span data-i18n="k4t">dopravníky · sekvencie</span></div>
-    </div>
+    <section class="trust-grid" aria-label="Nasadenie a compliance">
+      <div class="trust-card">
+        <strong data-i18n="t1h">Rýchle nasadenie</strong>
+        <p data-i18n="t1p">Jednotlivca alebo ucelený 5-členný tím vieme nasadiť do 2–4 týždňov od schválenia projektu.</p>
+      </div>
+      <div class="trust-card">
+        <strong data-i18n="t2h">Legislatíva EÚ / DE</strong>
+        <p data-i18n="t2p">A1 formuláre, zodpovednostné poistenie (Liability Insurance), nemecké SCC / A1 — pripravené pre audity zákazníka.</p>
+      </div>
+      <div class="trust-card">
+        <strong data-i18n="t3h">Región</strong>
+        <p data-i18n="t3p">Nasadenie SK · CZ · DE · AT a ďalšie EÚ lokality. Jeden kontakt, jeden tím.</p>
+      </div>
+    </section>
 
-    <section class="brands">
-      <div class="brands-head">
-        <h2 data-i18n="bT">Projekty v automobilových fabrikách</h2>
-        <p data-i18n="bL">Tímy nasadzujeme priamo vo výrobných halách — montáž, PLC, robotické linky a SAT.</p>
+    <section class="block" id="stack">
+      <div class="sec-head">
+        <h2 data-i18n="stackT">Technologický stack & expertíza</h2>
+        <p data-i18n="stackL">Kľúčové slová, ktoré hľadá projektový manažér v Nemecku a EÚ — bez omáčok, priamo k pointe.</p>
       </div>
-      <div class="brand-grid">
-        <div class="brand-item">BMW</div>
-        <div class="brand-item">Volkswagen</div>
-        <div class="brand-item">Bugatti</div>
-        <div class="brand-item">Audi</div>
-        <div class="brand-item">Porsche</div>
-        <div class="brand-item">Škoda</div>
-        <div class="brand-item">Mercedes-Benz</div>
-        <div class="brand-item">Kia</div>
-      </div>
-      <p class="brand-note" data-i18n="bN">Konkrétny závod a linka pod NDA — detail po kapacitnom briefe.</p>
-      <div class="factory-banner">
-        <img src="images/factory.jpg" alt="Interiér automobilovej výrobnej haly" loading="lazy">
+
+      <div class="stack-grid">
+        <article class="stack-card">
+          <div class="stack-card-head">
+            <h3 data-i18n="s1h">1. PLC programátori & automatizéri</h3>
+            <p data-i18n="s1intro">Prenájom / subdodávka — okamžitá integrácia do vášho interného tímu na rozbehnutých linkách.</p>
+          </div>
+          <div class="stack-img">
+            <img src="images/control.jpg" alt="PLC programovanie a HMI" loading="lazy" decoding="async" width="640" height="360">
+          </div>
+          <dl class="stack-list">
+            <div class="stack-item">
+              <dt data-i18n="s1plc_t">PLC platformy</dt>
+              <dd data-i18n="s1plc_v">Siemens (TIA Portal V13–V19, Step 7, WinCC, PCS7), Beckhoff (TwinCAT 2/3), Allen-Bradley / Rockwell Automation, Schneider Electric, Omron.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s1hmi_t">HMI / SCADA</dt>
+              <dd data-i18n="s1hmi_v">WinCC Unified, Ignition, Wonderware ArchestrA, InTouch.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s1net_t">Siete & fieldbus</dt>
+              <dd data-i18n="s1net_v">PROFINET, PROFIBUS, EtherCAT, Modbus TCP/RTU, Ethernet/IP, IO-Link.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s1drv_t">Pohony & frekvenčné meniče</dt>
+              <dd data-i18n="s1drv_v">Siemens SINAMICS, SEW Eurodrive, ABB, Danfoss.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s1rob_t">Robotika</dt>
+              <dd data-i18n="s1rob_v">KUKA, ABB, Fanuc — programovanie, optimalizácia dráh, commissioning.</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="stack-card">
+          <div class="stack-card-head">
+            <h3 data-i18n="s2h">2. Priemyselní elektrikári & commissioning</h3>
+            <p data-i18n="s2intro">Kvalifikovaní špecialisti s certifikáciou pre EÚ (A1, vyhl. 21/22/23/24, SCC) — montáž, oživovanie, redlining.</p>
+          </div>
+          <div class="stack-img">
+            <img src="images/assembly.jpg" alt="Montáž a zapojenie v rozvádzači" loading="lazy" decoding="async" width="640" height="360">
+          </div>
+          <dl class="stack-list">
+            <div class="stack-item">
+              <dt data-i18n="s2hw_t">Hardware commissioning</dt>
+              <dd data-i18n="s2hw_v">Loop checky, kalibrácia snímačov a akčných členov, I/O testy, parametrizácia frekvenčných meničov.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s2cab_t">Rozvádzače & terén</dt>
+              <dd data-i18n="s2cab_v">Pripájanie priemyselných rozvádzačov, trasovanie, diagnostika, retrofit starších liniek.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s2norm_t">Normy & bezpečnosť</dt>
+              <dd data-i18n="s2norm_v">EN 60204-1, CE smernice, STN / DIN VDE.</dd>
+            </div>
+            <div class="stack-item">
+              <dt data-i18n="s2doc_t">Dokumentácia</dt>
+              <dd data-i18n="s2doc_v">Redlining a aktualizácia schém priamo na stavbe — EPLAN P8 / AutoCAD.</dd>
+            </div>
+          </dl>
+        </article>
       </div>
     </section>
 
     <section class="block">
-      <div class="block-head">
-        <h2 data-i18n="xT">Čo konkrétne dodáme</h2>
-        <p data-i18n="xL">Ľudia so skúsenosťou na zabehnutých linkách — podľa vášho harmonogramu a dokumentácie projektu.</p>
-      </div>
-      <div class="grid-3">
-        <article class="card">
-          <img class="card-img" src="images/factory.jpg" alt="Výrobná hala automobilky" loading="lazy">
-          <h3><span class="hico">⌁</span><span data-i18n="x1h">Elektrikári</span></h3>
-          <p data-i18n="x1t">Montáž rozvádzačov, kabeláž, merania, oživenie periférií a spolupráca s revíznymi požiadavkami.</p>
-          <ul>
-            <li data-i18n="x1a">Silnoprúd / slaboprúd na linke</li>
-            <li data-i18n="x1b">Schémy a IO podľa vášho E-planu</li>
-            <li data-i18n="x1c">Prítomnosť v hale u zákazníka</li>
-          </ul>
-        </article>
-        <article class="card">
-          <img class="card-img" src="images/panel.jpg" alt="PLC rozvádzač a HMI" loading="lazy">
-          <h3><span class="hico">⚙</span><span data-i18n="x2h">PLC programátori</span></h3>
-          <p data-i18n="x2t">Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, safety, receptúry, alarmy a úpravy existujúcej logiky.</p>
-          <ul>
-            <li data-i18n="x2a">Dokončenie alebo úprava SW</li>
-            <li data-i18n="x2b">FAT v dielni / simulácia I/O</li>
-            <li data-i18n="x2c">Podpora pri SAT a prevádzke</li>
-          </ul>
-        </article>
-        <article class="card">
-          <img class="card-img" src="images/robot.jpg" alt="Priemyselný robot na linke" loading="lazy">
-          <h3><span class="hico">◎</span><span data-i18n="x3h">Robotika & commissioning</span></h3>
-          <p data-i18n="x3t">Integrácia robotov, synchronizácia s PLC, paletizácia, dopravníky a odladenie pred odovzdaním.</p>
-          <ul>
-            <li data-i18n="x3a">Robotické bunky a pick & place</li>
-            <li data-i18n="x3b">Safety zóny a režimy linky</li>
-            <li data-i18n="x3c">Commissioning a handover</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head">
-        <h2 data-i18n="gT">Z výrobných hál</h2>
-        <p data-i18n="gL">Interiéry fabrik, montážne linky, roboty a dopravníky — reálne prostredie, nie stock ilustrácie.</p>
-      </div>
-      <div class="gallery-row">
-        <div class="shot">
-          <img src="images/hero.jpg" alt="Automatizovaná montážna linka" loading="lazy">
-          <span class="shot-label" data-i18n="g1">Montážna linka</span>
-        </div>
-        <div class="shot">
-          <img src="images/robot.jpg" alt="Priemyselný robot vo fabrike" loading="lazy">
-          <span class="shot-label" data-i18n="g2">Roboty</span>
-        </div>
-        <div class="shot">
-          <img src="images/conveyor.jpg" alt="Dopravník v automobilovej výrobe" loading="lazy">
-          <span class="shot-label" data-i18n="g3">Dopravníky</span>
-        </div>
-        <div class="shot">
-          <img src="images/line.jpg" alt="Interiér výrobnej haly" loading="lazy">
-          <span class="shot-label" data-i18n="g4">Výrobná hala</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head">
+      <div class="sec-head">
         <h2 data-i18n="wT">Kedy nás zapnete</h2>
-        <p data-i18n="wL">Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.</p>
+        <p data-i18n="wL">Typické scenáre staff augmentation — nie greenfield od nuly.</p>
       </div>
       <div class="when-grid">
         <div class="when-card">
-          <h3 data-i18n="w1h">Blíži sa SAT / odovzdanie</h3>
-          <p data-i18n="w1t">Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.</p>
+          <h3 data-i18n="w1h">SAT / commissioning</h3>
+          <p data-i18n="w1t">Chýba PLC programátor na TIA Portal alebo elektrikár na loop checky pred odovzdaním linky.</p>
         </div>
         <div class="when-card">
-          <h3 data-i18n="w2h">Integrátor potrebuje posilu</h3>
-          <p data-i18n="w2t">Máte zákazníka a zmluvu, ale nie PLCárov alebo elektrikárov na celý mesiac.</p>
+          <h3 data-i18n="w2h">Integrátor bez kapacity</h3>
+          <p data-i18n="w2t">Máte zákazníka v DE/CZ, potrebujete 3–5 ľudí na 8–12 týždňov — biela etiketa kapacity.</p>
         </div>
         <div class="when-card">
-          <h3 data-i18n="w3h">Rozšírenie prevádzky</h3>
-          <p data-i18n="w3t">Nový dopravník, robot alebo stanica na existujúcej SIMATIC — treba rýchlo zapojiť a spustiť.</p>
+          <h3 data-i18n="w3h">Retrofit & rozšírenie</h3>
+          <p data-i18n="w3t">Nový robot, dopravník alebo stanica na existujúcej SIMATIC — rýchle zapojenie a FAT.</p>
         </div>
       </div>
     </section>
 
     <section class="block">
-      <div class="block-head">
-        <h2 data-i18n="pT">Ako to prebieha</h2>
-        <p data-i18n="pL">Jednoduchý proces — bez zbytočnej byrokracie, s jasným rozsahom.</p>
+      <div class="sec-head">
+        <h2 data-i18n="pT">Ablauf / proces</h2>
+        <p data-i18n="pL">Od briefu po ľudí na linke.</p>
       </div>
-      <div class="timeline-steps">
-        <div class="tl-step">
-          <div class="tl-num">01</div>
-          <h4 data-i18n="p1h">Kapacitný brief</h4>
-          <p data-i18n="p1t">Koľko ľudí, aké zručnosti (elektro/PLC/robot), lokalita, termín nástupu.</p>
+      <div class="process">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h4 data-i18n="p1h">Brief</h4>
+          <p data-i18n="p1t">Počet ľudí, rola (PLC / elektro), platforma, lokalita, dátum nástupu.</p>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">02</div>
-          <h4 data-i18n="p2h">Návrh tímu</h4>
-          <p data-i18n="p2t">Profily, rozsah dní, NDA a vstup do vášho projektu / u zákazníka.</p>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h4 data-i18n="p2h">Profily</h4>
+          <p data-i18n="p2t">CV, certifikáty, NDA, potvrdenie A1 / poistenia.</p>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">03</div>
+        <div class="step">
+          <div class="step-num">03</div>
           <h4 data-i18n="p3h">Nasadenie</h4>
-          <p data-i18n="p3t">Práca v hale, FAT, úpravy SW, spolupráca s vaším projektovým vedením.</p>
+          <p data-i18n="p3t">Práca u zákazníka alebo remote podľa projektu — FAT, SAT, redlining.</p>
         </div>
-        <div class="tl-step">
-          <div class="tl-num">04</div>
-          <h4 data-i18n="p4h">Odovzdanie</h4>
-          <p data-i18n="p4t">Dokumentácia, školenie prevádzky, prípadne dohľad po SAT.</p>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h4 data-i18n="p4h">Handover</h4>
+          <p data-i18n="p4t">Dokumentácia, školenie prevádzky, dohľad po odovzdaní.</p>
         </div>
       </div>
     </section>
 
     <section class="block">
-      <div class="block-head">
-        <h2 data-i18n="tT">Platformy</h2>
-        <p data-i18n="tL">Štandardné prostredie — bez experimentov na kritickej linke.</p>
-      </div>
-      <div class="tech-row">
-        <div>
-          <div class="tech-pills">
-            <span class="pill">S7-1500 / S7-1200</span>
-            <span class="pill">TIA Portal V17+</span>
-            <span class="pill">WinCC Unified</span>
-            <span class="pill">Safety Integrated</span>
-          </div>
-        </div>
-        <p data-i18n="tP">Pracujeme s ekosystémom Siemens a bežnými robotmi / dopravníkmi na európskych linkách. Ak máte inú PLC platformu, uveďte to v briefe — posúdime vhodnosť tímu.</p>
-      </div>
-    </section>
-
-    <section class="block">
-      <div class="block-head">
+      <div class="sec-head">
         <h2 data-i18n="aT">Pre koho</h2>
-        <p data-i18n="aL">Partneri, ktorí potrebujú kapacitu, nie ďalší subdodávateľ „od nuly“.</p>
+        <p data-i18n="aL">Partneri v automotive, strojárstve a system integrácii.</p>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <h3><span class="hico">◆</span><span data-i18n="a1h">OEM & výrobcovia strojov</span></h3>
-          <p data-i18n="a1t">Doplnenie elektro a PLC tímu pred expedíciou stroja alebo pri FAT u zákazníka.</p>
-        </article>
-        <article class="card">
-          <h3><span class="hico">◉</span><span data-i18n="a2h">System integrátori</span></h3>
-          <p data-i18n="a2t">Biela etiketa kapacity — vaši ľudia na vašom projekte, naša technická posila.</p>
-        </article>
-        <article class="card">
-          <h3><span class="hico">▣</span><span data-i18n="a3h">Prevádzky & fabriky</span></h3>
-          <p data-i18n="a3t">Rozšírenie linky, retrofit alebo nárazová pomoc pri prestoji.</p>
-        </article>
+      <div class="audience">
+        <div class="aud-card">
+          <h3 data-i18n="a1h">OEM & strojárne</h3>
+          <p data-i18n="a1t">Posila pred FAT / expedíciou stroja alebo pri commissioning u zákazníka.</p>
+        </div>
+        <div class="aud-card">
+          <h3 data-i18n="a2h">System integrátori</h3>
+          <p data-i18n="a2t">Subcontracting kapacity — váš projekt, naši špecialisti na línii.</p>
+        </div>
+        <div class="aud-card">
+          <h3 data-i18n="a3h">Prevádzky & fabriky</h3>
+          <p data-i18n="a3t">Nárazová pomoc pri prestoji, rozšírenie linky, nočné smeny pred SAT.</p>
+        </div>
       </div>
     </section>
 
-    <section id="brief" class="brief-message">
-      <h2 data-i18n="bh">Pošlite kapacitný brief — odpoveď do 24 hodín.</h2>
-      <p data-i18n="bt">Uveďte: počet ľudí (elektro / PLC / robotika), lokalitu, termín nástupu, stav projektu (montáž / FAT / SAT) a PLC platformu. Navrhneme tím a rozsah.</p>
+    <section id="brief" class="brief">
+      <h2 data-i18n="bh">Pošlite kapacitný brief</h2>
+      <p data-i18n="bt">Uveďte: počet ľudí, rolu (SPS-Programmierer / Elektriker), platformu (TIA Portal, TwinCAT, Rockwell…), lokalitu (DE/CZ/SK), termín a či potrebujete A1/SCC dokumentáciu. Odpoveď do 24 h.</p>
       <div class="cta-row">
-        <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Automatizacia%20kapacita%20brief" data-i18n="bc1">Poslať brief</a>
-        <a class="btn secondary" href="tel:+421900000000" data-i18n="bc2">Technický hovor</a>
+        <a class="btn primary" href="mailto:hello@thedesigns.org?subject=Staff%20Augmentation%20Brief" data-i18n="bc1">Brief e-mailom</a>
+        <a class="btn secondary" href="tel:+421900000000" data-i18n="bc2">Technický call</a>
       </div>
     </section>
   </main>
 
-  <footer data-i18n="f">© 2026 thedesigns.org — elektrikári & PLC na zabehnuté projekty · SK/CZ/DE</footer>
+  <footer data-i18n="f">© 2026 thedesigns.org — Staff Augmentation · PLC & priemyselná automatizácia · SK/CZ/DE</footer>
 
-  <div class="sticky">
-    <p data-i18n="sb">Potrebujete ľudí na linku? Elektro, PLC, robotika — jeden brief.</p>
-    <a class="btn primary" href="#brief" data-i18n="sc">Kapacita</a>
+  <div class="sticky-bar">
+    <p data-i18n="sb">TIA Portal, TwinCAT, commissioning — jeden brief, tím do 2–4 týždňov.</p>
+    <a class="btn primary" href="#brief" data-i18n="sc">Brief</a>
   </div>
 
   <script>
     const T = {
       sk: {
-        logo: "Kapacita pre automatizáciu",
+        logo: "Staff Augmentation · Automatizácia",
         home: "Domov",
-        ey: "Posily na zabehnuté projekty",
-        h1: "Elektrikári a PLC programátori, keď linka už beží a treba ľudí.",
-        lead: "Dodávame skúsených ľudí na rozbehnuté automatizačné projekty — montáž, zapojenie, úpravy PLC, robotiku a commissioning. Nie sme „generálny dodávateľ továrne“, ale tím, ktorý dorazí, dorobí a odovzdá v termíne.",
-        note: "Typický dopyt: integrátor alebo prevádzka potrebuje 2–6 ľudí na 4–16 týždňov — elektro + program + prípadne robotika na jednej linke.",
-        m1h: "Situácia", m1t: "Projekt beží, SAT sa blíži — interný tím nestíha alebo chýba špecialista.",
-        m2h: "Čo nasadíme", m2t: "Elektrikárov, PLC programátorov, prípadne robotiku/commissioning podľa vášho rozsahu.",
-        m3h: "Výsledok", m3t: "Kapacita na mieste, jeden kontakt, jasné odovzdanie prevádzke alebo integrátorovi.",
-        c1: "Dopyt na kapacitu", c2: "Napísať mailom",
-        bT: "Projekty v automobilových fabrikách",
-        bL: "Tímy nasadzujeme priamo vo výrobných halách — montáž, PLC, robotické linky a SAT.",
-        bN: "Konkrétny závod a linka pod NDA — detail po kapacitnom briefe.",
-        cap: "Automobilová výroba · hala · linka",
-        st1: "nasadenie", st2: "odpoveď na brief", st3: "kontakt pre tím",
-        k1b: "Elektro", k1t: "montáž & zapojenie",
-        k2b: "PLC / SPS", k2t: "TIA · úpravy · FAT",
-        k3b: "Roboty", k3t: "integrácia · SAT",
-        k4b: "Linky", k4t: "dopravníky · sekvencie",
-        xT: "Čo konkrétne dodáme",
-        xL: "Ľudia so skúsenosťou na zabehnutých linkách — podľa vášho harmonogramu a dokumentácie projektu.",
-        x1h: "Elektrikári", x1t: "Montáž rozvádzačov, kabeláž, merania, oživenie periférií a spolupráca s revíznymi požiadavkami.",
-        x1a: "Silnoprúd / slaboprúd na linke", x1b: "Schémy a IO podľa vášho E-planu", x1c: "Prítomnosť v hale u zákazníka",
-        x2h: "PLC programátori", x2t: "Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, safety, receptúry, alarmy a úpravy existujúcej logiky.",
-        x2a: "Dokončenie alebo úprava SW", x2b: "FAT v dielni / simulácia I/O", x2c: "Podpora pri SAT a prevádzke",
-        x3h: "Robotika & commissioning", x3t: "Integrácia robotov, synchronizácia s PLC, paletizácia, dopravníky a odladenie pred odovzdaním.",
-        x3a: "Robotické bunky a pick & place", x3b: "Safety zóny a režimy linky", x3c: "Commissioning a handover",
-        gT: "Z výrobných hál", gL: "Interiéry fabrik, montážne linky, roboty a dopravníky — reálne prostredie, nie stock ilustrácie.",
-        g1: "Montážna linka", g2: "Roboty", g3: "Dopravníky", g4: "Výrobná hala",
-        wT: "Kedy nás zapnete", wL: "Nie na papierové štúdie — keď treba reálnych ľudí na rozbehnutý projekt.",
-        w1h: "Blíži sa SAT / odovzdanie", w1t: "Linka je namontovaná, chýba doprogramovanie, odladenie alebo ľudia na nočné smeny.",
-        w2h: "Integrátor potrebuje posilu", w2t: "Máte zákazníka a zmluvu, ale nie PLCárov alebo elektrikárov na celý mesiac.",
-        w3h: "Rozšírenie prevádzky", w3t: "Nový dopravník, robot alebo stanica na existujúcej SIMATIC — treba rýchlo zapojiť a spustiť.",
-        pT: "Ako to prebieha", pL: "Jednoduchý proces — bez zbytočnej byrokracie, s jasným rozsahom.",
-        p1h: "Kapacitný brief", p1t: "Koľko ľudí, aké zručnosti (elektro/PLC/robot), lokalita, termín nástupu.",
-        p2h: "Návrh tímu", p2t: "Profily, rozsah dní, NDA a vstup do vášho projektu / u zákazníka.",
-        p3h: "Nasadenie", p3t: "Práca v hale, FAT, úpravy SW, spolupráca s vaším projektovým vedením.",
-        p4h: "Odovzdanie", p4t: "Dokumentácia, školenie prevádzky, prípadne dohľad po SAT.",
-        tT: "Platformy", tL: "Štandardné prostredie — bez experimentov na kritickej linke.",
-        tP: "Pracujeme s ekosystémom Siemens a bežnými robotmi / dopravníkmi na európskych linkách. Ak máte inú PLC platformu, uveďte to v briefe — posúdime vhodnosť tímu.",
-        aT: "Pre koho", aL: "Partneri, ktorí potrebujú kapacitu, nie ďalší subdodávateľ „od nuly“.",
-        a1h: "OEM & výrobcovia strojov", a1t: "Doplnenie elektro a PLC tímu pred expedíciou stroja alebo pri FAT u zákazníka.",
-        a2h: "System integrátori", a2t: "Biela etiketa kapacity — vaši ľudia na vašom projekte, naša technická posila.",
-        a3h: "Prevádzky & fabriky", a3t: "Rozšírenie linky, retrofit alebo nárazová pomoc pri prestoji.",
-        bh: "Pošlite kapacitný brief — odpoveď do 24 hodín.",
-        bt: "Uveďte: počet ľudí (elektro / PLC / robotika), lokalitu, termín nástupu, stav projektu (montáž / FAT / SAT) a PLC platformu. Navrhneme tím a rozsah.",
-        bc1: "Poslať brief", bc2: "Technický hovor",
-        sb: "Potrebujete ľudí na linku? Elektro, PLC, robotika — jeden brief.",
-        sc: "Kapacita",
-        f: "© 2026 thedesigns.org — elektrikári & PLC na zabehnuté projekty · SK/CZ/DE"
+        ey: "Staff Augmentation / Subdodávka",
+        h1: "PLC programátori a priemyselní elektrikári — prenájom špecialistov do vášho projektu.",
+        lead: "Nie generálny dodávateľ linky. Poskytujeme skúsených kontraktorov, ktorí sa okamžite zapoja do vášho tímu — TIA Portal, commissioning, robotika, EPLAN — v celej EÚ vrátane Nemecka.",
+        cap: "PLC · TIA Portal · rozvádzač · commissioning",
+        c1: "Kapacitný brief", c2: "E-mail",
+        t1h: "Rýchle nasadenie",
+        t1p: "Jednotlivca alebo ucelený 5-členný tím vieme nasadiť do 2–4 týždňov od schválenia projektu.",
+        t2h: "Legislatíva EÚ / DE",
+        t2p: "A1 formuláre, zodpovednostné poistenie (Liability Insurance), nemecké SCC / A1 — pripravené pre audity zákazníka.",
+        t3h: "Región",
+        t3p: "Nasadenie SK · CZ · DE · AT a ďalšie EÚ lokality. Jeden kontakt, jeden tím.",
+        stackT: "Technologický stack & expertíza",
+        stackL: "Kľúčové slová, ktoré hľadá projektový manažér v Nemecku a EÚ — bez omáčok, priamo k pointe.",
+        s1h: "1. PLC programátori & automatizéri",
+        s1intro: "Prenájom / subdodávka — okamžitá integrácia do vášho interného tímu na rozbehnutých linkách.",
+        s1plc_t: "PLC platformy",
+        s1plc_v: "Siemens (TIA Portal V13–V19, Step 7, WinCC, PCS7), Beckhoff (TwinCAT 2/3), Allen-Bradley / Rockwell Automation, Schneider Electric, Omron.",
+        s1hmi_t: "HMI / SCADA",
+        s1hmi_v: "WinCC Unified, Ignition, Wonderware ArchestrA, InTouch.",
+        s1net_t: "Siete & fieldbus",
+        s1net_v: "PROFINET, PROFIBUS, EtherCAT, Modbus TCP/RTU, Ethernet/IP, IO-Link.",
+        s1drv_t: "Pohony & frekvenčné meniče",
+        s1drv_v: "Siemens SINAMICS, SEW Eurodrive, ABB, Danfoss.",
+        s1rob_t: "Robotika",
+        s1rob_v: "KUKA, ABB, Fanuc — programovanie, optimalizácia dráh, commissioning.",
+        s2h: "2. Priemyselní elektrikári & commissioning",
+        s2intro: "Kvalifikovaní špecialisti s certifikáciou pre EÚ (A1, vyhl. 21/22/23/24, SCC) — montáž, oživovanie, redlining.",
+        s2hw_t: "Hardware commissioning",
+        s2hw_v: "Loop checky, kalibrácia snímačov a akčných členov, I/O testy, parametrizácia frekvenčných meničov.",
+        s2cab_t: "Rozvádzače & terén",
+        s2cab_v: "Pripájanie priemyselných rozvádzačov, trasovanie, diagnostika, retrofit starších liniek.",
+        s2norm_t: "Normy & bezpečnosť",
+        s2norm_v: "EN 60204-1, CE smernice, STN / DIN VDE.",
+        s2doc_t: "Dokumentácia",
+        s2doc_v: "Redlining a aktualizácia schém priamo na stavbe — EPLAN P8 / AutoCAD.",
+        wT: "Kedy nás zapnete",
+        wL: "Typické scenáre staff augmentation — nie greenfield od nuly.",
+        w1h: "SAT / commissioning",
+        w1t: "Chýba PLC programátor na TIA Portal alebo elektrikár na loop checky pred odovzdaním linky.",
+        w2h: "Integrátor bez kapacity",
+        w2t: "Máte zákazníka v DE/CZ, potrebujete 3–5 ľudí na 8–12 týždňov — biela etiketa kapacity.",
+        w3h: "Retrofit & rozšírenie",
+        w3t: "Nový robot, dopravník alebo stanica na existujúcej SIMATIC — rýchle zapojenie a FAT.",
+        pT: "Proces",
+        pL: "Od briefu po ľudí na linke.",
+        p1h: "Brief", p1t: "Počet ľudí, rola (PLC / elektro), platforma, lokalita, dátum nástupu.",
+        p2h: "Profily", p2t: "CV, certifikáty, NDA, potvrdenie A1 / poistenia.",
+        p3h: "Nasadenie", p3t: "Práca u zákazníka alebo remote podľa projektu — FAT, SAT, redlining.",
+        p4h: "Handover", p4t: "Dokumentácia, školenie prevádzky, dohľad po odovzdaní.",
+        aT: "Pre koho",
+        aL: "Partneri v automotive, strojárstve a system integrácii.",
+        a1h: "OEM & strojárne", a1t: "Posila pred FAT / expedíciou stroja alebo pri commissioning u zákazníka.",
+        a2h: "System integrátori", a2t: "Subcontracting kapacity — váš projekt, naši špecialisti na línii.",
+        a3h: "Prevádzky & fabriky", a3t: "Nárazová pomoc pri prestoji, rozšírenie linky, nočné smeny pred SAT.",
+        bh: "Pošlite kapacitný brief",
+        bt: "Uveďte: počet ľudí, rolu (PLC programátor / elektrikár), platformu (TIA Portal, TwinCAT, Rockwell…), lokalitu (DE/CZ/SK), termín a či potrebujete A1/SCC dokumentáciu. Odpoveď do 24 h.",
+        bc1: "Brief e-mailom", bc2: "Technický call",
+        sb: "TIA Portal, TwinCAT, commissioning — jeden brief, tím do 2–4 týždňov.",
+        sc: "Brief",
+        f: "© 2026 thedesigns.org — Staff Augmentation · PLC & priemyselná automatizácia · SK/CZ/DE"
       },
       de: {
-        logo: "Kapazitaet fuer Automatisierung",
+        logo: "Staff Augmentation · Automatisierung",
         home: "Start",
-        ey: "Verstaerkung fuer laufende Projekte",
-        h1: "Elektriker und SPS-Programmierer, wenn die Linie laeuft und Leute fehlen.",
-        lead: "Wir stellen erfahrene Fachkraefte fuer laufende Automatisierungsprojekte: Montage, Verdrahtung, SPS-Anpassungen, Robotik und Commissioning. Kein Generalunternehmer fuer ganze Werke — sondern ein Team, das ankommt, fertigstellt und termingerecht uebergibt.",
-        note: "Typische Anfrage: Integrator oder Betrieb braucht 2–6 Leute fuer 4–16 Wochen — Elektro + Programm + optional Robotik auf einer Linie.",
-        m1h: "Situation", m1t: "Projekt laeuft, SAT naht — internes Team reicht nicht oder Spezialist fehlt.",
-        m2h: "Was wir stellen", m2t: "Elektriker, SPS-Programmierer, optional Robotik/Commissioning nach Ihrem Scope.",
-        m3h: "Ergebnis", m3t: "Kapazitaet vor Ort, ein Ansprechpartner, klare Uebergabe an Betrieb oder Integrator.",
-        c1: "Kapazitaet anfragen", c2: "Per E-Mail",
-        bT: "Projekte in Automobilwerken",
-        bL: "Teams direkt in Produktionshallen — Montage, SPS, Roboterlinien und SAT.",
-        bN: "Konkretes Werk und Linie unter NDA — Details nach Kapazitaets-Brief.",
-        cap: "Automobilproduktion · Halle · Linie",
-        st1: "Einsatz", st2: "Antwort in 24h", st3: "ein Ansprechpartner",
-        k1b: "Elektro", k1t: "Montage & Verdrahtung",
-        k2b: "SPS / PLC", k2t: "TIA · Anpassungen · FAT",
-        k3b: "Roboter", k3t: "Integration · SAT",
-        k4b: "Linien", k4t: "Foerderer · Sequenzen",
-        xT: "Was wir liefern",
-        xL: "Erfahrene Leute auf laufenden Linien — nach Ihrem Zeitplan und Projektdoku.",
-        x1h: "Elektriker", x1t: "Schaltschrankbau, Verkabelung, Messungen, Inbetriebnahme der Peripherie.",
-        x1a: "Stark-/Schwachstrom an der Linie", x1b: "Plaene und IO nach Ihrem E-Plan", x1c: "Praesenz in der Halle beim Kunden",
-        x2h: "SPS-Programmierer", x2t: "Siemens SIMATIC (S7-1200/1500, ET200), TIA Portal, Safety, Rezepte, Alarme.",
-        x2a: "SW fertigstellen oder anpassen", x2b: "FAT in der Werkstatt / IO-Simulation", x2c: "Unterstuetzung bei SAT und Betrieb",
-        x3h: "Robotik & Commissioning", x3t: "Roboterintegration, SPS-Sync, Palettierung, Foerderer und Einfahren vor Uebergabe.",
-        x3a: "Roboterzellen und Pick&Place", x3b: "Safety-Zonen und Linienmodi", x3c: "Commissioning und Handover",
-        gT: "Aus Produktionshallen", gL: "Hallen, Montagelinien, Roboter und Foerderer — reale Umgebung, keine Stock-Illustrationen.",
-        g1: "Montagelinie", g2: "Roboter", g3: "Foerderer", g4: "Produktionshalle",
-        wT: "Wann Sie uns einschalten", wL: "Nicht fuer Papierstudien — wenn echte Leute auf ein laufendes Projekt noetig sind.",
-        w1h: "SAT / Abnahme naht", w1t: "Linie steht, Programmierung oder Einfahren oder Nachtschichten fehlen.",
-        w2h: "Integrator braucht Verstaerkung", w2t: "Kunde und Vertrag da, aber keine SPS-Leute oder Elektriker fuer den Monat.",
-        w3h: "Erweiterung im Betrieb", w3t: "Neuer Foerderer, Roboter oder Station an bestehender SIMATIC — schnell anschliessen.",
-        pT: "Ablauf", pL: "Einfacher Prozess — wenig Buero, klarer Scope.",
-        p1h: "Kapazitaets-Brief", p1t: "Wie viele Leute, welche Skills (Elektro/SPS/Robotik), Ort, Starttermin.",
-        p2h: "Teamvorschlag", p2t: "Profile, Tage, NDA und Einstieg in Ihr Projekt / beim Kunden.",
-        p3h: "Einsatz", p3t: "Arbeit in der Halle, FAT, SW-Anpassungen, Abstimmung mit Ihrer Projektleitung.",
-        p4h: "Uebergabe", p4t: "Dokumentation, Operatorschulung, optional Betreuung nach SAT.",
-        tT: "Plattformen", tL: "Standardumgebung — keine Experimente an der kritischen Linie.",
-        tP: "Siemens-Oekosystem und gaengige Roboter/Foerderer auf europaeischen Linien. Andere SPS-Plattform im Brief angeben — wir pruefen die Passung.",
-        aT: "Fuer wen", aL: "Partner, die Kapazitaet brauchen, nicht noch einen Generalisten von null.",
-        a1h: "OEM & Maschinenbauer", a1t: "Elektro- und SPS-Team vor Auslieferung oder FAT beim Kunden.",
-        a2h: "Systemintegratoren", a2t: "White-Label-Kapazitaet — Ihr Projekt, unsere technische Verstaerkung.",
-        a3h: "Betriebe & Fabriken", a3t: "Linienerweiterung, Retrofit oder schnelle Hilfe bei Stillstand.",
-        bh: "Kapazitaets-Brief senden — Antwort in 24 Stunden.",
-        bt: "Angeben: Anzahl Leute (Elektro/SPS/Robotik), Ort, Start, Projektstatus (Montage/FAT/SAT) und SPS-Plattform.",
-        bc1: "Brief senden", bc2: "Technischer Call",
-        sb: "Leute fuer die Linie noetig? Elektro, SPS, Robotik — ein Brief.",
-        sc: "Kapazitaet",
-        f: "© 2026 thedesigns.org — Elektriker & SPS fuer laufende Projekte · SK/CZ/DE"
+        ey: "Staff Augmentation / Subunternehmer",
+        h1: "SPS-Programmierer und Industrieelektriker — Spezialisten fuer Ihr Projekt.",
+        lead: "Kein Generalunternehmer fuer die ganze Linie. Wir stellen erfahrene Subunternehmer, die sofort in Ihr Team integriert werden — TIA Portal, Inbetriebnahme, Robotik, EPLAN — in DE und der gesamten EU.",
+        cap: "SPS · TIA Portal · Schaltschrank · Inbetriebnahme",
+        c1: "Kapazitaets-Brief", c2: "E-Mail",
+        t1h: "Schnelle Bereitstellung",
+        t1p: "Einzelperson oder ein 5-koepfiges Team innerhalb von 2–4 Wochen nach Projektfreigabe.",
+        t2h: "EU / DE Compliance",
+        t2p: "A1-Bescheinigung, Haftpflichtversicherung (Liability Insurance), SCC-Zertifikat — dokumentiert fuer Kundenaudits.",
+        t3h: "Region",
+        t3p: "Einsatz SK · CZ · DE · AT und weitere EU-Standorte. Ein Ansprechpartner.",
+        stackT: "Tech-Stack & Profil unserer Spezialisten",
+        stackL: "Keywords, die ein deutscher Projektleiter sofort erkennen muss — ohne Marketing-Fuelltext.",
+        s1h: "1. SPS-Programmierer & Automatisierungstechniker",
+        s1intro: "Bodyshopping / Freelancer — sofortige Verstaerkung Ihres internen Teams auf laufenden Linien.",
+        s1plc_t: "SPS-Plattformen",
+        s1plc_v: "Siemens (TIA Portal V13–V19, Step 7, WinCC, PCS7), Beckhoff (TwinCAT 2/3), Allen-Bradley / Rockwell Automation, Schneider Electric, Omron.",
+        s1hmi_t: "HMI / SCADA",
+        s1hmi_v: "WinCC Unified, Ignition, Wonderware ArchestrA, InTouch.",
+        s1net_t: "Netzwerke & Feldbusse",
+        s1net_v: "PROFINET, PROFIBUS, EtherCAT, Modbus TCP/RTU, Ethernet/IP, IO-Link.",
+        s1drv_t: "Antriebstechnik",
+        s1drv_v: "Siemens SINAMICS, SEW Eurodrive, ABB, Danfoss.",
+        s1rob_t: "Robotik",
+        s1rob_v: "KUKA, ABB, Fanuc — Programmierung, Bahnumschaltung, Inbetriebnahme.",
+        s2h: "2. Industrieelektriker / Inbetriebnehmer",
+        s2intro: "Qualifizierte Elektrofachkraefte fuer DE/EU (A1, SCC) — Montage, Hardware-Inbetriebnahme, Redlining.",
+        s2hw_t: "Hardware-Inbetriebnahme",
+        s2hw_v: "Loop-Checks, Sensor-/Aktortests, E/A-Pruefung, Parametrierung von Frequenzumrichtern.",
+        s2cab_t: "Schaltschrank & Feld",
+        s2cab_v: "Anschluss von Industrieanlagen, Kabeltrassen, Fehlersuche, Retrofit Bestandsanlagen.",
+        s2norm_t: "Normen",
+        s2norm_v: "EN 60204-1, CE-Richtlinien, DIN VDE.",
+        s2doc_t: "Dokumentation",
+        s2doc_v: "Redlining im Schaltplan vor Ort — EPLAN P8 / AutoCAD.",
+        wT: "Wann Sie uns einschalten",
+        wL: "Typische Staff-Augmentation-Szenarien.",
+        w1h: "SAT / Inbetriebnahme",
+        w1t: "SPS-Programmierer fuer TIA Portal oder Elektriker fuer Loop-Checks vor Abnahme fehlen.",
+        w2h: "Integrator ohne Kapazitaet",
+        w2t: "Kunde in DE/CZ — 3–5 Leute fuer 8–12 Wochen, White-Label-Kapazitaet.",
+        w3h: "Retrofit & Erweiterung",
+        w3t: "Neuer Roboter oder Foerderer an bestehender SIMATIC — schnell anschliessen und FAT.",
+        pT: "Ablauf",
+        pL: "Vom Brief bis zu Leuten an der Linie.",
+        p1h: "Brief", p1t: "Anzahl, Rolle (SPS/Elektro), Plattform, Ort, Starttermin.",
+        p2h: "Profile", p2t: "CV, Zertifikate, NDA, A1 / Versicherung.",
+        p3h: "Einsatz", p3t: "Vor Ort oder remote — FAT, SAT, Redlining.",
+        p4h: "Uebergabe", p4t: "Doku, Operatorschulung, Betreuung nach SAT.",
+        aT: "Fuer wen",
+        aL: "Partner aus Automotive, Maschinenbau und Systemintegration.",
+        a1h: "OEM & Maschinenbauer", a1t: "Verstaerkung vor FAT oder Inbetriebnahme beim Kunden.",
+        a2h: "Systemintegratoren", a2t: "Subcontracting — Ihr Projekt, unsere Spezialisten.",
+        a3h: "Betriebe & Werke", a3t: "Stillstand, Linienerweiterung, Nachtschichten vor SAT.",
+        bh: "Kapazitaets-Brief senden",
+        bt: "Angeben: Anzahl, Rolle (SPS-Programmierer / Elektriker), Plattform (TIA Portal, TwinCAT, Rockwell…), Ort (DE/CZ/SK), Termin, A1/SCC. Antwort in 24 h.",
+        bc1: "Brief per E-Mail", bc2: "Technischer Call",
+        sb: "TIA Portal, TwinCAT, Inbetriebnahme — ein Brief, Team in 2–4 Wochen.",
+        sc: "Brief",
+        f: "© 2026 thedesigns.org — Staff Augmentation · SPS & Automatisierung · SK/CZ/DE"
       }
     };
 
@@ -954,9 +738,15 @@
       const pack = T[lang];
       if (!pack) return;
       document.documentElement.lang = lang;
-      nodes.forEach((n) => { const key = n.dataset.i18n; if (pack[key]) n.textContent = pack[key]; });
+      nodes.forEach((n) => {
+        const key = n.dataset.i18n;
+        if (pack[key]) n.textContent = pack[key];
+      });
       btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
       try { localStorage.setItem("td-lang", lang); } catch (_) {}
+      document.title = lang === "de"
+        ? "Staff Augmentation | SPS-Programmierer & Industrieelektriker | thedesigns.org"
+        : "Staff Augmentation | PLC programátori & elektrikári | thedesigns.org";
     }
     btns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
     try {
