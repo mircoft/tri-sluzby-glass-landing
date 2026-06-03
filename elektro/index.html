@@ -65,6 +65,7 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--ds-md);
+      flex-wrap: wrap;
     }
 
     .logo { color: var(--text); text-decoration: none; }
@@ -178,6 +179,10 @@
       text-decoration: none;
       border: 1px solid transparent;
       cursor: pointer;
+      text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn.primary {
       background: linear-gradient(120deg, var(--accent), var(--accent2));
@@ -472,6 +477,17 @@
       .hero, .stack-grid, .trust-grid, .process, .when-grid, .audience, .risk-grid {
         grid-template-columns: 1fr;
       }
+      .top-inner { padding-block: 10px; }
+      .logo { flex: 1 1 100%; }
+      .top-actions { width: 100%; justify-content: space-between; }
+    }
+    @media (max-width: 560px) {
+      .btn { width: 100%; white-space: normal; }
+      .top-actions .ghost,
+      .top-actions .lang-btn { flex: 1 1 auto; }
+      .cta-row { width: 100%; }
+      .sticky-bar { align-items: stretch; }
+      .sticky-bar p { max-width: none; }
     }
   </style>
 </head>

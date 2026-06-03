@@ -24,7 +24,7 @@
       min-height: 100vh;
       font-family: "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      overflow: hidden;
+      overflow-x: hidden;
       background:
         radial-gradient(circle at 15% 20%, #6b2cff 0%, transparent 45%),
         radial-gradient(circle at 85% 18%, #00bfff 0%, transparent 40%),
@@ -50,13 +50,13 @@
 
     .wrap {
       min-height: 100vh;
-      width: min(1320px, 94%);
+      width: min(1200px, 92%);
       margin: 0 auto;
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
+      gap: 24px;
+      padding: 72px 16px 32px;
     }
 
     .lang-switch {
@@ -78,6 +78,7 @@
       letter-spacing: 0.06em;
       cursor: pointer;
       transition: all 0.25s ease;
+      white-space: nowrap;
     }
 
     .lang-btn:hover,
@@ -87,8 +88,7 @@
     }
 
     .col {
-      flex: 1;
-      min-height: 78vh;
+      min-height: 62vh;
       position: relative;
       border-radius: 28px;
       background: var(--glass);
@@ -181,11 +181,7 @@
         overflow: auto;
       }
 
-      .wrap {
-        min-height: auto;
-        flex-direction: column;
-        padding: 1rem 0.85rem 2rem;
-      }
+      .wrap { grid-template-columns: 1fr; min-height: auto; padding: 72px 0.85rem 2rem; }
 
       .col {
         width: 100%;

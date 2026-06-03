@@ -56,7 +56,7 @@ thedesigns.org je **hub s tromi rovnocennými vetvami**. Vizuál je profesionál
 
 - **Hub:** tmavé sklo, fialovo-modrý akcent — navigácia medzi vetvami.
 - **Signal House:** fialovo-ružový growth studio na tmavom podklade.
-- **Everlight:** teplá neutrálna báza, zlatohnedý akcent — svadobná elegancia.
+- **Everlight:** krémovo-biela papierová báza, teplý zlatohnedý akcent — luxusná svadobná elegancia. Tmavý overlay iba na hero fotografii kvôli čitateľnosti textu.
 - **Automatizácia:** tmavý priemyselný vzhľad, cyan akcent.
 
 ## Typography
