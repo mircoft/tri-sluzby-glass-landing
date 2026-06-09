@@ -3,299 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signal House | All-in-One Digital Studio</title>
-  <meta name="description" content="Web engineering, e-commerce, commercial photo & video, graphic design and print — one studio for local businesses, hotels, e-commerce and festivals.">
+  <title>Signal House</title>
+  <meta name="description" content="Signal House — branding, web, photo, video and print. One studio.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/design-system.css?v=20260603">
-  <link rel="stylesheet" href="../css/scroll-perf.css?v=20260603">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#08060f;
-      --bg2:#100c18;
-      --txt:var(--color-hub-ink);
-      --muted:rgba(244,240,255,.72);
-      --line:rgba(255,255,255,.1);
-      --acc:var(--color-signal-accent);
-      --acc2:var(--color-signal-accent2);
-      --gold:#fbbf24;
-      --r:var(--ds-r-md);
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000;
+      --fg: #f5f5f0;
+      --muted: rgba(245, 245, 240, 0.45);
+      --line: rgba(245, 245, 240, 0.12);
+      --serif: "Instrument Serif", Georgia, serif;
+      --sans: "DM Sans", system-ui, sans-serif;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:auto}
-    body{
-      min-height:100vh;
-      font-family:var(--font-body);
-      color:var(--txt);
-      background:
-        radial-gradient(ellipse 90% 55% at 80% -15%,rgba(167,139,250,.2),transparent),
-        radial-gradient(ellipse 50% 45% at 0% 40%,rgba(244,114,182,.1),transparent),
-        linear-gradient(180deg,var(--bg),var(--bg2));
-      line-height:1.55;
-      overflow-x:hidden;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .lang-switch{
-      position:fixed;
-      top:auto;
-      bottom:16px;
-      right:16px;
-      z-index:50;
-      display:flex;
-      gap:6px;
-      padding:4px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(8,6,15,.9);
-      backdrop-filter:blur(12px);
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: 0.65; }
+
+    .site {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(20px, 4vw, 40px);
     }
-    .lang-btn{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:.72rem;
-      font-weight:700;
-      letter-spacing:.08em;
-      cursor:pointer;
-      transition:color .2s,background .2s;
+
+    .masthead {
+      text-align: center;
+      padding-bottom: clamp(32px, 6vw, 64px);
     }
-    .lang-btn:hover{color:var(--txt)}
-    .lang-btn.active{background:rgba(167,139,250,.25);color:var(--txt)}
-    .top{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(8,6,15,.9);backdrop-filter:blur(12px)}
-    .top .ct{width:var(--ds-container);margin:0 auto;padding-inline:var(--ds-pad-x);display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:16px}
-    .brand{display:flex;flex-direction:column;text-decoration:none;color:var(--txt)}
-    .brand b{font-family:var(--font-headline);font-size:1.35rem;font-weight:400;letter-spacing:-.02em}
-    .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
-    .nav{display:flex;gap:4px;flex-wrap:wrap}
-    .nav a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;padding:8px 10px;border-radius:8px;transition:color .2s,background .2s}
-    .nav a:hover{color:var(--txt);background:rgba(255,255,255,.06)}
-    .ghost{border:1px solid var(--line);border-radius:10px;padding:10px 14px;color:var(--txt);text-decoration:none;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.04);white-space:nowrap}
-    .wrap{width:var(--ds-container);margin:0 auto;padding:var(--ds-xl) var(--ds-pad-x) 100px}
-    .hero{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);align-items:center;padding-top:24px}
-    .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--acc);font-weight:700}
-    h1{margin-top:14px;font-family:var(--font-headline);font-size:clamp(2.2rem,4.8vw,3.85rem);line-height:1.06;font-weight:400;letter-spacing:-.02em;max-width:16ch}
-    h1 em{font-style:italic;color:var(--acc2)}
-    .lead{margin-top:16px;color:var(--muted);max-width:54ch;font-size:1.05rem}
-    .audience{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-    .audience span{padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-size:.76rem;color:var(--muted);font-weight:600;background:rgba(255,255,255,.03)}
-    .cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:999px;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;font-weight:800;border:1px solid var(--line);transition:transform .2s,box-shadow .2s;text-align:center;line-height:1.15;white-space:nowrap}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.p{background:linear-gradient(120deg,var(--acc),var(--acc2));border-color:transparent;color:#1a0a24;box-shadow:0 12px 40px -12px rgba(167,139,250,.55)}
-    .btn.s{background:rgba(255,255,255,.05);color:var(--txt)}
-    .hero-split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:3px;
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      overflow:hidden;
-      background:#000;
-      position:relative;
-      min-height:320px;
+
+    .masthead h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
-    .hero-split .pane{
-      position:relative;
-      overflow:hidden;
-      min-height:280px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:22px;
-      background:
-        radial-gradient(circle at 20% 20%,rgba(167,139,250,.2),transparent 38%),
-        linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+
+    .stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 5vw, 56px);
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
     }
-    .hero-split .pane::after{
-      content:"";
-      position:absolute;inset:0;
-      background:linear-gradient(180deg,transparent 40%,rgba(8,6,15,.85));
+
+    .series-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .hero-split .pane-label{
-      position:absolute;
-      bottom:12px;
-      left:12px;
-      right:12px;
-      z-index:2;
-      font-size:.68rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:700;
-      color:rgba(255,255,255,.85);
+
+    .series-item {
+      border-top: 1px solid var(--line);
+      padding: 18px 0;
+      cursor: pointer;
+      transition: opacity 0.3s;
     }
-    .mock-window{
-      width:min(280px,100%);
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:14px;
-      background:rgba(8,6,15,.88);
-      box-shadow:0 24px 70px -34px rgba(167,139,250,.85);
-      overflow:hidden;
-      transform:rotate(-2deg);
+
+    .series-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .series-item[data-active="false"] {
+      opacity: 0.35;
     }
-    .mock-bar{height:34px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.04)}
-    .mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--acc)}
-    .mock-code{padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:rgba(236,242,255,.84);display:grid;gap:8px}
-    .mock-code span{height:9px;border-radius:999px;background:linear-gradient(90deg,var(--acc),rgba(244,114,182,.25));opacity:.9}
-    .mock-code span:nth-child(2){width:78%;background:linear-gradient(90deg,rgba(125,211,252,.9),rgba(255,255,255,.08))}
-    .mock-code span:nth-child(3){width:62%}
-    .mock-code span:nth-child(4){width:88%;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,.05))}
-    .camera-mock{width:150px;height:96px;border-radius:22px;background:linear-gradient(145deg,#1c1b24,#08060f);border:1px solid rgba(255,255,255,.12);position:relative;box-shadow:0 24px 70px -34px rgba(244,114,182,.8)}
-    .camera-mock::before{content:"";position:absolute;width:62px;height:62px;border-radius:50%;left:44px;top:17px;background:radial-gradient(circle,var(--acc) 0 18%,#111 19% 42%,rgba(125,211,252,.8) 43% 48%,#05030a 49%);box-shadow:0 0 34px rgba(125,211,252,.38)}
-    .camera-mock::after{content:"";position:absolute;width:44px;height:16px;border-radius:9px 9px 0 0;left:24px;top:-12px;background:#181520;border:1px solid rgba(255,255,255,.1)}
-    .poster-stack{position:absolute;right:18px;bottom:52px;width:90px;height:120px;transform:rotate(7deg)}
-    .poster-stack i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 18px 50px -28px rgba(244,114,182,.9)}
-    .poster-stack i:nth-child(2){transform:translate(-12px,12px);opacity:.7;background:linear-gradient(135deg,#7dd3fc,#a78bfa)}
-    .hero-split .divider{
-      position:absolute;
-      top:12%;
-      bottom:12%;
-      left:50%;
-      width:2px;
-      transform:translateX(-50%);
-      background:linear-gradient(180deg,transparent,var(--acc),transparent);
-      z-index:3;
-      pointer-events:none;
+
+    .series-item[data-active="false"]:hover {
+      opacity: 0.6;
     }
-    .hero-float{
-      position:absolute;
-      bottom:-12px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:4;
-      padding:12px 20px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(8,6,15,.92);
-      backdrop-filter:blur(10px);
-      font-size:.8rem;
-      white-space:nowrap;
-      display:flex;
-      gap:16px;
-      align-items:center;
+
+    .series-item[data-coming="true"] {
+      cursor: default;
+      pointer-events: none;
     }
-    .hero-float strong{color:var(--gold);font-weight:800}
-    .ecosystem{margin-top:var(--ds-xl)}
-    .sec-head{margin-bottom:28px;max-width:640px}
-    .sec-head h2{font-family:var(--font-headline);font-size:clamp(1.85rem,3.5vw,2.75rem);font-weight:400;line-height:1.1}
-    .sec-head p{margin-top:10px;color:var(--muted);font-size:1rem}
-    .eco-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter);align-items:stretch}
-    .eco-card{
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      padding:var(--ds-gutter);
-      background:rgba(255,255,255,.025);
-      display:flex;
-      flex-direction:column;
-      height:100%;
-      transition:border-color .25s,transform .25s;
+
+    .series-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
     }
-    .eco-card:hover{border-color:rgba(167,139,250,.45);transform:translateY(-4px)}
-    .eco-letter{
-      font-family:var(--font-headline);
-      font-size:2.5rem;
-      line-height:1;
-      color:rgba(167,139,250,.35);
-      margin-bottom:8px;
+
+    .series-title {
+      font-family: var(--serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
     }
-    .eco-card h3{font-size:1.08rem;font-weight:700;margin-bottom:10px;line-height:1.25}
-    .eco-card p{font-size:.9rem;color:var(--muted);flex:1}
-    .eco-visual{height:150px;border-radius:var(--ds-r-sm);margin-top:var(--ds-md);border:1px solid var(--line);background:rgba(0,0,0,.22);position:relative;overflow:hidden}
-    .eco-visual::before{content:"";position:absolute;inset:18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(167,139,250,.18),rgba(244,114,182,.08))}
-    .eco-visual::after{content:"";position:absolute;left:34px;right:34px;bottom:28px;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--acc),var(--acc2));box-shadow:0 0 30px rgba(167,139,250,.45)}
-    .eco-visual.media::before{border-radius:18px;background:radial-gradient(circle at 50% 50%,rgba(125,211,252,.6) 0 16%,#0d0a14 17% 38%,rgba(255,255,255,.08) 39% 42%,transparent 43%),linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.02))}
-    .eco-visual.print::before{transform:rotate(-5deg);background:linear-gradient(135deg,rgba(244,114,182,.35),rgba(167,139,250,.25));box-shadow:34px 18px 0 rgba(125,211,252,.16)}
-    .promise{
-      margin-top:var(--ds-xl);
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      padding:clamp(28px,5vw,48px);
-      background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(8,6,15,.95));
-      position:relative;
-      overflow:hidden;
+
+    .series-meta {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
     }
-    .promise::before{
-      content:"";
-      position:absolute;
-      top:-40%;
-      right:-10%;
-      width:50%;
-      height:120%;
-      background:radial-gradient(circle,rgba(244,114,182,.12),transparent 65%);
-      pointer-events:none;
+
+    .series-coming {
+      margin-top: 6px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .promise-inner{position:relative;z-index:1}
-    .promise h2{font-family:var(--font-headline);font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:400;max-width:22ch}
-    .promise > .promise-inner > p{margin-top:12px;color:var(--muted);max-width:58ch;font-size:1rem}
-    .promise-grid{
-      margin-top:28px;
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:var(--ds-gutter);
+
+    .viewer {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-height: 70dvh;
+      background: #0a0a0a;
+      overflow: hidden;
     }
-    .promise-item{
-      padding:20px;
-      border-radius:var(--ds-r-sm);
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.25);
+
+    .viewer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+      inset: 0;
     }
-    .promise-item h4{font-size:.95rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-    .promise-item h4::before{
-      content:"";
-      width:8px;height:8px;border-radius:50%;
-      background:linear-gradient(120deg,var(--acc),var(--acc2));
-      flex-shrink:0;
+
+    .viewer img.active { opacity: 1; }
+
+    .viewer-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 24px;
+      z-index: 2;
     }
-    .promise-item p{font-size:.88rem;color:var(--muted)}
-    .work{margin-top:var(--ds-xl)}
-    .work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--ds-gutter)}
-    .work-item{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:300px;display:flex;align-items:flex-end;background:#090711}
-    .work-item::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(167,139,250,.34),transparent 36%),linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.01))}
-    .work-item.product::before{background:radial-gradient(circle at 50% 38%,rgba(125,211,252,.35),transparent 28%),linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.01))}
-    .work-item.festival::before{background:linear-gradient(135deg,rgba(244,114,182,.34),rgba(167,139,250,.24)),repeating-linear-gradient(90deg,transparent 0 18px,rgba(255,255,255,.08) 18px 19px)}
-    .work-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,6,15,.92),transparent 55%)}
-    .work-cap{position:relative;z-index:2;padding:var(--ds-gutter)}
-    .work-cap h3{font-size:1rem;margin-bottom:6px}
-    .work-cap p{font-size:.84rem;color:var(--muted)}
-    .showcase{margin-top:var(--ds-xl)}
-    .showcase details{border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.025);overflow:hidden}
-    .showcase details + details{margin-top:12px}
-    .showcase summary{cursor:pointer;list-style:none;padding:20px var(--ds-gutter);display:flex;justify-content:space-between;gap:16px;font-weight:800}
-    .showcase summary::-webkit-details-marker{display:none}
-    .showcase summary span{color:var(--acc);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em}
-    .showcase-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gutter);padding:0 var(--ds-gutter) var(--ds-gutter)}
-    .ba-card{border:1px solid var(--line);border-radius:var(--ds-r-sm);padding:18px;background:rgba(0,0,0,.24)}
-    .ba-card h4{font-size:.95rem;margin-bottom:8px}
-    .ba-card p{font-size:.88rem;color:var(--muted)}
-    .process{margin-top:var(--ds-xl);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-    .process-head{padding:14px 18px;border-bottom:1px solid var(--line);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
-    .process-steps{display:grid;grid-template-columns:repeat(4,1fr)}
-    .step{padding:22px 18px;border-right:1px solid var(--line)}
-    .step:last-child{border-right:0}
-    .step-num{font-size:.66rem;color:var(--acc);font-weight:700;letter-spacing:.12em;margin-bottom:8px}
-    .step h4{font-size:.95rem;margin-bottom:6px}
-    .step p{font-size:.84rem;color:var(--muted)}
-    .brief{margin-top:var(--ds-xl);border:1px solid var(--line);border-radius:var(--r);padding:clamp(28px,4vw,40px);background:rgba(0,0,0,.3);text-align:center}
-    .brief h2{font-family:var(--font-headline);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;max-width:20ch;margin-inline:auto}
-    .brief p{margin-top:12px;color:var(--muted);max-width:48ch;margin-inline:auto}
-    .brief .cta{justify-content:center}
-    footer{margin-top:32px;padding:24px 0 80px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.86rem}
-    @media(max-width:980px){
-      .hero,.eco-grid,.promise-grid,.process-steps,.work-grid,.showcase-body{grid-template-columns:1fr}
-      .hero-split{grid-template-columns:1fr}
-      .hero-split .divider{display:none}
-      .hero-float{position:static;transform:none;margin-top:16px;white-space:normal;flex-wrap:wrap;justify-content:center}
-      .nav{display:none}
-      .step{border-right:0;border-bottom:1px solid var(--line)}
-      .top .ct{min-height:auto;flex-wrap:wrap;padding-block:10px}
-      .brand{flex:1 1 auto}
+
+    .viewer-controls button {
+      background: none;
+      border: none;
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px 12px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
-    @media(max-width:560px){
-      .ghost,.cta .btn{width:100%}
-      .cta{width:100%}
-      .btn{white-space:normal}
-      .top .ct{align-items:stretch}
+
+    .viewer-controls button:hover { opacity: 1; }
+
+    .essay {
+      font-size: clamp(12px, 1.4vw, 13px);
+      line-height: 1.75;
+      color: rgba(245, 245, 240, 0.72);
+      letter-spacing: 0.02em;
+      max-width: 58ch;
+    }
+
+    .essay p + p { margin-top: 1em; }
+
+    .foot {
+      margin-top: auto;
+      padding-top: clamp(48px, 8vw, 96px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .foot-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: clamp(20px, 4vw, 40px);
+      right: clamp(20px, 4vw, 40px);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active { color: var(--fg); }
+
+    .version-hint {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      opacity: 0.35;
+    }
+
+    .version-hint a { text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (min-width: 768px) {
+      .stage {
+        grid-template-columns: 1fr 1.1fr;
+        max-width: 1100px;
+        align-items: start;
+      }
+
+      .series-nav { order: 1; }
+      .viewer-wrap { order: 2; position: sticky; top: clamp(20px, 4vw, 40px); }
     }
   </style>
 </head>
@@ -303,403 +250,133 @@
   <div class="lang-switch" role="group" aria-label="Language">
     <button class="lang-btn active" type="button" data-lang="en">EN</button>
     <button class="lang-btn" type="button" data-lang="sk">SK</button>
-    <button class="lang-btn" type="button" data-lang="de">DE</button>
   </div>
 
-  <header class="top">
-    <div class="ct">
-      <a class="brand" href="../"><b>Signal House</b><span data-i18n="brandTag">All-in-One Digital Studio</span></a>
-      <nav class="nav">
-        <a href="#ecosystem" data-i18n="navEco">Ecosystem</a>
-        <a href="#promise" data-i18n="navPromise">Promise</a>
-        <a href="#work" data-i18n="navWork">Work</a>
-        <a href="#brief" data-i18n="navContact">Contact</a>
+  <div class="site">
+    <header class="masthead">
+      <h1>Signal House</h1>
+    </header>
+
+    <div class="stage">
+      <nav class="series-nav" aria-label="Series">
+        <div class="series-item" data-series="0" data-active="true" role="button" tabindex="0">
+          <div class="series-label" data-i18n="s1label">Series 01</div>
+          <div class="series-title" data-i18n="s1title">Brand Identity</div>
+          <div class="series-meta" data-i18n="s1meta">(The Origin, 2025)</div>
+        </div>
+        <div class="series-item" data-series="1" data-active="false" role="button" tabindex="0">
+          <div class="series-label" data-i18n="s2label">Series 02</div>
+          <div class="series-title" data-i18n="s2title">Web & E-Commerce</div>
+          <div class="series-meta" data-i18n="s2meta">(Engineering, 2025)</div>
+        </div>
+        <div class="series-item" data-series="2" data-active="false" data-coming="true">
+          <div class="series-label" data-i18n="s3label">Series 03</div>
+          <div class="series-title" data-i18n="s3title">Commercial Photo & Video</div>
+          <div class="series-coming" data-i18n="coming">Coming Soon</div>
+        </div>
+        <div class="series-item" data-series="3" data-active="false" data-coming="true">
+          <div class="series-label" data-i18n="s4label">Series 04</div>
+          <div class="series-title" data-i18n="s4title">Print & Campaign</div>
+          <div class="series-coming" data-i18n="coming">Coming Soon</div>
+        </div>
       </nav>
-      <a class="ghost" href="../" data-i18n="navHome">Home</a>
+
+      <div class="viewer-wrap">
+        <div class="viewer" id="viewer" role="img" aria-live="polite">
+          <img src="../img/nx/tstimg.png" alt="" class="active" data-slide="0" data-i18n-alt="slide1alt">
+          <img src="../img/nx/hero1.png" alt="" data-slide="1" data-i18n-alt="slide2alt" loading="lazy">
+          <img src="../img/nx/srv2.png" alt="" data-slide="2" data-i18n-alt="slide3alt" loading="lazy">
+        </div>
+        <div class="viewer-controls" aria-label="Image navigation">
+          <button type="button" id="prev" aria-label="Previous">‹</button>
+          <button type="button" id="next" aria-label="Next">›</button>
+        </div>
+        <div class="essay" style="margin-top: 28px;">
+          <p data-i18n="essay1">Signal House is an all-in-one digital studio. Brand identity, custom web, commercial photography, cinematic video and print-ready campaigns — built under one roof, with zero templates.</p>
+          <p data-i18n="essay2">One brief. One visual language. From your homepage to the poster on the street.</p>
+        </div>
+      </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div>
-        <p class="k" data-reveal="fade" data-i18n="heroKicker">All-in-One Digital Studio</p>
-        <h1 data-reveal="title" data-i18n="heroTitle">Your Entire Brand Presence. Built Under One Roof.</h1>
-        <p class="lead" data-reveal="fade" data-i18n="heroLead">We eliminate the need for multiple agencies. We deliver high-end web development, custom e-commerce, professional brand photography, cinematic video production, graphic design, and print-ready posters.</p>
-        <div class="audience" data-reveal="stagger">
-          <span data-i18n="aud1">Local Business</span>
-          <span data-i18n="aud2">Cafés & Hotels</span>
-          <span data-i18n="aud3">E-Commerce</span>
-          <span data-i18n="aud4">Festivals & Culture</span>
-        </div>
-        <div class="cta" data-reveal="fade">
-          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Let's Scale Your Brand</a>
-          <a class="btn s" href="#ecosystem" data-i18n="ctaSecondary">See Our Ecosystem</a>
-        </div>
+    <footer class="foot">
+      <a href="mailto:hello@thedesigns.org" data-i18n="contact">hello@thedesigns.org</a>
+      <div class="foot-links">
+        <a href="../" data-i18n="home">Home</a>
+        <span class="version-hint"><a href="./index.full.html" data-i18n="fullVersion">Full version</a></span>
       </div>
-      <div data-reveal="scale" style="position:relative;padding-bottom:28px">
-        <div class="hero-split" role="img" aria-label="Split view: web engineering and multimedia production studio">
-          <div class="pane">
-            <div class="mock-window" aria-hidden="true">
-              <div class="mock-bar"><i></i><i></i><i></i></div>
-              <div class="mock-code"><span></span><span></span><span></span><span></span></div>
-            </div>
-            <span class="pane-label" data-i18n="heroPaneWeb">Web & E-Commerce</span>
-          </div>
-          <div class="pane">
-            <div class="camera-mock" aria-hidden="true"></div>
-            <div class="poster-stack" aria-hidden="true"><i></i><i></i></div>
-            <span class="pane-label" data-i18n="heroPaneMedia">Photo · Video · Print</span>
-          </div>
-          <div class="divider" aria-hidden="true"></div>
-        </div>
-        <div class="hero-float">
-          <span data-i18n="heroFloatLabel">One studio · Web to print</span>
-          <strong data-i18n="heroFloatValue">Zero templates</strong>
-        </div>
-      </div>
-    </section>
+    </footer>
+  </div>
 
-    <section class="ecosystem" id="ecosystem">
-      <div class="sec-head" data-reveal="fade">
-        <p class="k" data-i18n="ecoKicker">The Core Offer</p>
-        <h2 data-i18n="ecoTitle">The All-in-One Ecosystem</h2>
-        <p data-i18n="ecoLead">Three disciplines. One team. One visual language — from your homepage to the festival poster on the street.</p>
-      </div>
-      <div class="eco-grid" data-reveal="stagger">
-        <article class="eco-card">
-          <div class="eco-letter">A</div>
-          <h3 data-i18n="ecoA_title">Web Engineering & E-Commerce</h3>
-          <p data-i18n="ecoA_body">Custom-built websites and fast online stores tailored for conversions — with zero templates. Built for local businesses, hospitality, and brands that need to sell online.</p>
-          <div class="eco-visual" aria-hidden="true"></div>
-        </article>
-        <article class="eco-card">
-          <div class="eco-letter">B</div>
-          <h3 data-i18n="ecoB_title">Commercial Photo & Video</h3>
-          <p data-i18n="ecoB_body">High-end product photography, interior shots for cafés and hotels, and cinematic video trailers for your business or festival. Content that looks as premium as your offer.</p>
-          <div class="eco-visual media" aria-hidden="true"></div>
-        </article>
-        <article class="eco-card">
-          <div class="eco-letter">C</div>
-          <h3 data-i18n="ecoC_title">Graphic Design & Branding</h3>
-          <p data-i18n="ecoC_body">Identity design, social media kits, and premium offline marketing materials — event posters, flyers, and print-ready assets that match your digital presence.</p>
-          <div class="eco-visual print" aria-hidden="true"></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="promise" id="promise" data-reveal="fade">
-      <div class="promise-inner">
-        <p class="k" data-i18n="promiseKicker">Why clients choose us</p>
-        <h2 data-i18n="promiseTitle">The Frictionless Package</h2>
-        <p data-i18n="promiseLead">Stop managing four separate freelancers for web, photo, video and print. One team owns the full execution, so every customer touchpoint feels intentional.</p>
-        <div class="promise-grid" data-reveal="stagger">
-          <div class="promise-item">
-            <h4 data-i18n="promise1_title">Single point of contact</h4>
-            <p data-i18n="promise1_body">One brief, one timeline, one invoice. No lost emails between vendors or conflicting deadlines.</p>
-          </div>
-          <div class="promise-item">
-            <h4 data-i18n="promise2_title">Unified visual style</h4>
-            <p data-i18n="promise2_body">Your website, social feeds, menus, hotel galleries, and event posters share the same brand system — online and offline.</p>
-          </div>
-          <div class="promise-item">
-            <h4 data-i18n="promise3_title">Fast deployment</h4>
-            <p data-i18n="promise3_body">Parallel production across web, media, and print means you launch faster — without sacrificing craft or consistency.</p>
-          </div>
-        </div>
-        <div class="cta" style="margin-top:28px">
-          <a class="btn p" href="#brief" data-i18n="ctaPrimary">Let's Scale Your Brand</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="work" id="work">
-      <div class="sec-head" data-reveal="fade">
-        <p class="k" data-i18n="workKicker">Selected work</p>
-        <h2 data-i18n="workTitle">Built for businesses that need to look and sell better</h2>
-        <p data-i18n="workLead">From neighbourhood cafés to e-commerce launches and cultural festivals — one studio, end to end.</p>
-      </div>
-      <div class="work-grid" data-reveal="stagger">
-        <article class="work-item">
-          <div class="work-cap">
-            <h3 data-i18n="work1_title">Hospitality & local</h3>
-            <p data-i18n="work1_body">Interiors, menus, booking sites, and social content for cafés and hotels.</p>
-          </div>
-        </article>
-        <article class="work-item product">
-          <div class="work-cap">
-            <h3 data-i18n="work2_title">E-commerce & product</h3>
-            <p data-i18n="work2_body">Custom stores, product shots, and conversion-focused product pages.</p>
-          </div>
-        </article>
-        <article class="work-item festival">
-          <div class="work-cap">
-            <h3 data-i18n="work3_title">Festivals & culture</h3>
-            <p data-i18n="work3_body">Trailers, poster systems, and campaign visuals for music and cultural events.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="showcase" id="showcase">
-      <div class="sec-head" data-reveal="fade">
-        <p class="k" data-i18n="showcaseKicker">Before / After Showcase</p>
-        <h2 data-i18n="showcaseTitle">One local launch, every touchpoint aligned</h2>
-        <p data-i18n="showcaseLead">A practical accordion for prospects to see how one brief becomes a website, content shoot, launch trailer, posters and print assets.</p>
-      </div>
-      <details open>
-        <summary><span data-i18n="showcase1Tag">Cafe example</span><strong data-i18n="showcase1Title">From scattered Instagram posts to a complete booking funnel</strong></summary>
-        <div class="showcase-body">
-          <div class="ba-card">
-            <h4 data-i18n="beforeTitle">Before</h4>
-            <p data-i18n="showcase1Before">No conversion website, inconsistent phone photos, outdated menu PDFs and posters designed by different vendors.</p>
-          </div>
-          <div class="ba-card">
-            <h4 data-i18n="afterTitle">After</h4>
-            <p data-i18n="showcase1After">Mobile-first booking page, commercial interior shoot, short reels, refreshed menu design and print-ready street posters in one visual system.</p>
-          </div>
-        </div>
-      </details>
-      <details>
-        <summary><span data-i18n="showcase2Tag">Festival example</span><strong data-i18n="showcase2Title">From event idea to launch campaign</strong></summary>
-        <div class="showcase-body">
-          <div class="ba-card">
-            <h4 data-i18n="beforeTitle">Before</h4>
-            <p data-i18n="showcase2Before">Lineup announcement, ticket page, trailer and printed posters were planned separately, causing weak campaign recall.</p>
-          </div>
-          <div class="ba-card">
-            <h4 data-i18n="afterTitle">After</h4>
-            <p data-i18n="showcase2After">Landing page, teaser video, social motion kit, poster system and print exports built from one launch direction.</p>
-          </div>
-        </div>
-      </details>
-    </section>
-
-    <section class="process" id="process" data-reveal="fade">
-      <div class="process-head" data-i18n="processHead">How we work · 4 phases</div>
-      <div class="process-steps" data-reveal="stagger">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h4 data-i18n="step1_title">Discovery</h4>
-          <p data-i18n="step1_body">Goals, audience, channels, and what “launch” means for your business.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h4 data-i18n="step2_title">Creative direction</h4>
-          <p data-i18n="step2_body">Brand system, web architecture, shot lists, and print formats aligned in one plan.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h4 data-i18n="step3_title">Production</h4>
-          <p data-i18n="step3_body">Development, shoot days, video edit, and design — in parallel where it counts.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <h4 data-i18n="step4_title">Launch</h4>
-          <p data-i18n="step4_body">Go-live, handover, and assets ready for web, social, and print.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="brief" id="brief" data-reveal="scale">
-      <h2 data-i18n="briefTitle">Ready to make your brand easier to buy from?</h2>
-      <p data-i18n="briefLead">Share your business type, goals and deadline. We'll map the web, content and print deliverables needed to scale.</p>
-      <div class="cta">
-        <a class="btn p" href="mailto:hello@thedesigns.org?subject=Signal%20House%20%E2%80%94%20Project%20Brief" data-i18n="briefCta">Let's Scale Your Brand</a>
-        <a class="btn s" href="tel:+421900000000" data-i18n="briefCall">Book a call</a>
-      </div>
-    </section>
-  </main>
-
-  <footer><span data-i18n="footer">© 2026 Signal House · All-in-One Digital Studio · thedesigns.org/weby</span></footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="../js/story-engine.js"></script>
   <script>
     const dictionary = {
       en: {
-        brandTag: "All-in-One Digital Studio",
-        navEco: "Ecosystem", navPromise: "Promise", navWork: "Work", navContact: "Contact", navHome: "Home",
-        heroKicker: "All-in-One Digital Studio · thedesigns.org",
-        heroTitle: "Your Entire Brand Presence. Built Under One Roof.",
-        heroLead: "We eliminate the need for multiple agencies. We deliver high-end web development, custom e-commerce, professional brand photography, cinematic video production, graphic design, and print-ready posters.",
-        aud1: "Local Business", aud2: "Cafés & Hotels", aud3: "E-Commerce", aud4: "Festivals & Culture",
-        ctaPrimary: "Let's Scale Your Brand", ctaSecondary: "See Our Ecosystem",
-        heroPaneWeb: "Web & E-Commerce", heroPaneMedia: "Photo · Video · Print",
-        heroFloatLabel: "One studio · Web to print", heroFloatValue: "Zero templates",
-        ecoKicker: "The Core Offer",
-        ecoTitle: "The All-in-One Ecosystem",
-        ecoLead: "Three disciplines. One team. One visual language — from your homepage to the festival poster on the street.",
-        ecoA_title: "Web Engineering & E-Commerce",
-        ecoA_body: "Custom-built websites and fast online stores tailored for conversions — with zero templates. Built for local businesses, hospitality, and brands that need to sell online.",
-        ecoB_title: "Commercial Photo & Video",
-        ecoB_body: "High-end product photography, interior shots for cafés and hotels, and cinematic video trailers for your business or festival. Content that looks as premium as your offer.",
-        ecoC_title: "Graphic Design & Branding",
-        ecoC_body: "Identity design, social media kits, and premium offline marketing materials — event posters, flyers, and print-ready assets that match your digital presence.",
-        promiseKicker: "Why clients choose us",
-        promiseTitle: "The Frictionless Package",
-        promiseLead: "Stop managing four separate freelancers for web, photo, video and print. One team owns the full execution, so every customer touchpoint feels intentional.",
-        promise1_title: "Single point of contact",
-        promise1_body: "One brief, one timeline, one invoice. No lost emails between vendors or conflicting deadlines.",
-        promise2_title: "Unified visual style",
-        promise2_body: "Your website, social feeds, menus, hotel galleries, and event posters share the same brand system — online and offline.",
-        promise3_title: "Fast deployment",
-        promise3_body: "Parallel production across web, media, and print means you launch faster — without sacrificing craft or consistency.",
-        workKicker: "Selected work",
-        workTitle: "Built for businesses that need to look and sell better",
-        workLead: "From neighbourhood cafés to e-commerce launches and cultural festivals — one studio, end to end.",
-        work1_title: "Hospitality & local", work1_body: "Interiors, menus, booking sites, and social content for cafés and hotels.",
-        work2_title: "E-commerce & product", work2_body: "Custom stores, product shots, and conversion-focused product pages.",
-        work3_title: "Festivals & culture", work3_body: "Trailers, poster systems, and campaign visuals for music and cultural events.",
-        showcaseKicker: "Before / After Showcase",
-        showcaseTitle: "One local launch, every touchpoint aligned",
-        showcaseLead: "A practical accordion for prospects to see how one brief becomes a website, content shoot, launch trailer, posters and print assets.",
-        showcase1Tag: "Cafe example",
-        showcase1Title: "From scattered Instagram posts to a complete booking funnel",
-        beforeTitle: "Before",
-        afterTitle: "After",
-        showcase1Before: "No conversion website, inconsistent phone photos, outdated menu PDFs and posters designed by different vendors.",
-        showcase1After: "Mobile-first booking page, commercial interior shoot, short reels, refreshed menu design and print-ready street posters in one visual system.",
-        showcase2Tag: "Festival example",
-        showcase2Title: "From event idea to launch campaign",
-        showcase2Before: "Lineup announcement, ticket page, trailer and printed posters were planned separately, causing weak campaign recall.",
-        showcase2After: "Landing page, teaser video, social motion kit, poster system and print exports built from one launch direction.",
-        processHead: "How we work · 4 phases",
-        step1_title: "Discovery", step1_body: "Goals, audience, channels, and what “launch” means for your business.",
-        step2_title: "Creative direction", step2_body: "Brand system, web architecture, shot lists, and print formats aligned in one plan.",
-        step3_title: "Production", step3_body: "Development, shoot days, video edit, and design — in parallel where it counts.",
-        step4_title: "Launch", step4_body: "Go-live, handover, and assets ready for web, social, and print.",
-        briefTitle: "Ready to make your brand easier to buy from?",
-        briefLead: "Share your business type, goals and deadline. We'll map the web, content and print deliverables needed to scale.",
-        briefCta: "Let's Scale Your Brand", briefCall: "Book a call",
-        footer: "© 2026 Signal House · All-in-One Digital Studio · thedesigns.org/weby"
+        s1label: "Series 01", s1title: "Brand Identity", s1meta: "(The Origin, 2025)",
+        s2label: "Series 02", s2title: "Web & E-Commerce", s2meta: "(Engineering, 2025)",
+        s3label: "Series 03", s3title: "Commercial Photo & Video",
+        s4label: "Series 04", s4title: "Print & Campaign",
+        coming: "Coming Soon",
+        essay1: "Signal House is an all-in-one digital studio. Brand identity, custom web, commercial photography, cinematic video and print-ready campaigns — built under one roof, with zero templates.",
+        essay2: "One brief. One visual language. From your homepage to the poster on the street.",
+        contact: "hello@thedesigns.org",
+        home: "Home",
+        fullVersion: "Full version",
+        slide1alt: "Brand identity — visual system",
+        slide2alt: "Web engineering — custom build",
+        slide3alt: "Studio — creative production"
       },
       sk: {
-        brandTag: "All-in-One digitálne štúdio",
-        navEco: "Ekosystém", navPromise: "Prísľub", navWork: "Portfólio", navContact: "Kontakt", navHome: "Domov",
-        heroKicker: "All-in-One digitálne štúdio · thedesigns.org",
-        heroTitle: "Celá vaša značka. Vytvorená pod jednou strechou.",
-        heroLead: "Eliminujeme potrebu viacerých agentúr. Dodávame špičkový web na mieru, custom e-commerce, profesionálnu brand fotografiu, filmovú video produkciu, grafický dizajn a tlačové plagáty pripravené na tlač.",
-        aud1: "Lokálne podniky", aud2: "Kaviarne & hotely", aud3: "E-commerce", aud4: "Festivaly & kultúra",
-        ctaPrimary: "Naštartovať značku", ctaSecondary: "Pozrieť ekosystém",
-        heroPaneWeb: "Web & E-shop", heroPaneMedia: "Foto · Video · Tlač",
-        heroFloatLabel: "Jedno štúdio · od webu po plagát", heroFloatValue: "Bez šablón",
-        ecoKicker: "Jadro ponuky",
-        ecoTitle: "All-in-One ekosystém",
-        ecoLead: "Tri disciplíny. Jeden tím. Jeden vizuálny jazyk — od homepage po festivalový plagát na ulici.",
-        ecoA_title: "Web engineering & E-commerce",
-        ecoA_body: "Weby a rýchle e-shopy na mieru, postavené na konverzie — bez šablón. Pre lokálne firmy, gastro, hotely a značky, ktoré chcú predávať online.",
-        ecoB_title: "Komerčná foto & video produkcia",
-        ecoB_body: "Produktová fotografia, interiéry pre kaviarne a hotely, filmové trailery pre váš biznis alebo festival. Obsah, ktorý vyzerá rovnako prémiovo ako váš produkt.",
-        ecoC_title: "Grafický dizajn & branding",
-        ecoC_body: "Identita, social media kity a prémiové offline materiály — eventové plagáty, letáky a tlačové podklady v súlade s digitálnou prezentáciou.",
-        promiseKicker: "Prečo si nás vyberajú klienti",
-        promiseTitle: "Frictionless balík bez trenia",
-        promiseLead: "Prestaňte koordinovať štyroch dodávateľov pre web, foto, video a tlač. Jeden tím drží celú realizáciu, aby každý dotyk so zákazníkom pôsobil premyslene.",
-        promise1_title: "Jeden kontakt, celý projekt",
-        promise1_body: "Jeden brief, jeden harmonogram, jedna faktúra. Žiadne stratené e-maily medzi dodávateľmi ani rozpory v termínoch.",
-        promise2_title: "Jednotný vizuálny štýl",
-        promise2_body: "Web, sociálne siete, menu, galérie hotela aj festivalové plagáty — rovnaký brand systém online aj offline.",
-        promise3_title: "Rýchle nasadenie",
-        promise3_body: "Paralelná produkcia webu, médií a tlače = rýchlejší launch bez kompromisov v kvalite.",
-        workKicker: "Vybrané projekty",
-        workTitle: "Pre firmy, ktoré chcú vyzerať aj predávať lepšie",
-        workLead: "Od lokálnej kaviarne po e-commerce launch a kultúrne festivaly — jedno štúdio, celý proces.",
-        work1_title: "Gastro & lokál", work1_body: "Interiéry, menu, booking weby a obsah pre kaviarne a hotely.",
-        work2_title: "E-commerce & produkt", work2_body: "Custom obchody, produktové fotky a stránky zamerané na konverzie.",
-        work3_title: "Festivaly & kultúra", work3_body: "Trailery, plagátové systémy a kampaňové vizuály pre hudbu a kultúru.",
-        showcaseKicker: "Before / After ukážka",
-        showcaseTitle: "Jeden lokálny launch, všetky touchpointy zladené",
-        showcaseLead: "Praktický accordion ukazuje, ako sa jeden brief zmení na web, content shoot, launch trailer, plagáty a printové podklady.",
-        showcase1Tag: "Príklad kaviarne",
-        showcase1Title: "Od náhodných Instagram postov k booking funnelu",
-        beforeTitle: "Predtým",
-        afterTitle: "Potom",
-        showcase1Before: "Žiadny konverzný web, nekonzistentné fotky z mobilu, staré PDF menu a plagáty od rôznych dodávateľov.",
-        showcase1After: "Mobile-first rezervačná stránka, komerčný shoot interiéru, krátke reels, redizajn menu a tlačové plagáty v jednom vizuálnom systéme.",
-        showcase2Tag: "Príklad festivalu",
-        showcase2Title: "Od nápadu eventu po launch kampaň",
-        showcase2Before: "Lineup, ticket page, trailer a tlačené plagáty sa riešili oddelene, takže kampaň nemala jasnú zapamätateľnosť.",
-        showcase2After: "Landing page, teaser video, motion kit na social, poster systém a print exporty postavené z jedného kreatívneho smeru.",
-        processHead: "Ako spolupracujeme · 4 fázy",
-        step1_title: "Discovery", step1_body: "Ciele, publikum, kanály a čo pre vás znamená „launch“.",
-        step2_title: "Kreatívny smer", step2_body: "Brand systém, architektúra webu, shot listy a formáty tlače v jednom pláne.",
-        step3_title: "Produkcia", step3_body: "Vývoj, shoot dni, strih videa a dizajn — paralelne tam, kde to dáva zmysel.",
-        step4_title: "Launch", step4_body: "Spustenie, odovzdanie a assety pripravené na web, social aj tlač.",
-        briefTitle: "Chcete, aby sa z vašej značky ľahšie nakupovalo?",
-        briefLead: "Pošlite typ podniku, ciele a deadline. Navrhneme web, obsah a printové deliverables potrebné na rast.",
-        briefCta: "Naštartovať značku", briefCall: "Rezervovať hovor",
-        footer: "© 2026 Signal House · All-in-One digitálne štúdio · thedesigns.org/weby"
-      },
-      de: {
-        brandTag: "All-in-One Digital Studio",
-        navEco: "Ökosystem", navPromise: "Versprechen", navWork: "Arbeiten", navContact: "Kontakt", navHome: "Start",
-        heroKicker: "All-in-One Digital Studio · thedesigns.org",
-        heroTitle: "Ihre gesamte Markenpräsenz. Unter einem Dach.",
-        heroLead: "Wir ersetzen mehrere Agenturen durch ein Studio: High-End-Webentwicklung, individuellen E-Commerce, professionelle Markenfotografie, cineastische Videoproduktion, Grafikdesign und druckfertige Poster.",
-        aud1: "Lokale Unternehmen", aud2: "Cafés & Hotels", aud3: "E-Commerce", aud4: "Festivals & Kultur",
-        ctaPrimary: "Marke skalieren", ctaSecondary: "Ökosystem entdecken",
-        heroPaneWeb: "Web & E-Commerce", heroPaneMedia: "Foto · Video · Druck",
-        heroFloatLabel: "Ein Studio · Web bis Plakat", heroFloatValue: "Keine Templates",
-        ecoKicker: "Das Kernangebot",
-        ecoTitle: "Das All-in-One-Ökosystem",
-        ecoLead: "Drei Disziplinen. Ein Team. Eine visuelle Sprache — von der Homepage bis zum Festivalplakat.",
-        ecoA_title: "Web Engineering & E-Commerce",
-        ecoA_body: "Maßgeschneiderte Websites und schnelle Online-Shops für Conversion — ohne Templates. Für lokale Betriebe, Gastronomie, Hotels und Marken mit Online-Verkauf.",
-        ecoB_title: "Kommerzielle Foto- & Videoproduktion",
-        ecoB_body: "High-End-Produktfotografie, Interior-Shots für Cafés und Hotels sowie cineastische Trailer für Ihr Business oder Festival.",
-        ecoC_title: "Grafikdesign & Branding",
-        ecoC_body: "Identität, Social-Media-Kits und premium Offline-Materialien — Event-Poster, Flyer und druckfertige Assets im Einklang mit Ihrem Digital-Auftritt.",
-        promiseKicker: "Warum Kunden uns wählen",
-        promiseTitle: "Das Frictionless Package",
-        promiseLead: "Koordinieren Sie nicht vier separate Dienstleister für Web, Foto, Video und Druck. Ein Team verantwortet die gesamte Umsetzung, damit jeder Touchpoint bewusst wirkt.",
-        promise1_title: "Eine Ansprechperson",
-        promise1_body: "Ein Briefing, ein Zeitplan, eine Rechnung. Keine verlorenen E-Mails zwischen Dienstleistern.",
-        promise2_title: "Einheitlicher Stil",
-        promise2_body: "Website, Social, Speisekarten, Hotel-Galerien und Event-Poster — ein Brand-System online und offline.",
-        promise3_title: "Schneller Go-live",
-        promise3_body: "Parallele Produktion von Web, Medien und Druck — schneller live, ohne Qualitätsverlust.",
-        workKicker: "Ausgewählte Arbeiten",
-        workTitle: "Für Unternehmen, die besser aussehen und verkaufen wollen",
-        workLead: "Vom Nachbarschafts-Café bis zum E-Commerce-Launch und Kulturfestival — ein Studio, durchgängig.",
-        work1_title: "Gastronomie & lokal", work1_body: "Interiors, Menüs, Booking-Sites und Social Content für Cafés und Hotels.",
-        work2_title: "E-Commerce & Produkt", work2_body: "Custom Shops, Produktfotos und conversion-starke Produktseiten.",
-        work3_title: "Festivals & Kultur", work3_body: "Trailer, Poster-Systeme und Kampagnenvisuals für Musik und Kultur.",
-        showcaseKicker: "Before / After Showcase",
-        showcaseTitle: "Ein lokaler Launch, alle Touchpoints abgestimmt",
-        showcaseLead: "Das Accordion zeigt, wie aus einem Briefing Website, Content-Shooting, Launch-Trailer, Poster und Druckdaten entstehen.",
-        showcase1Tag: "Cafe-Beispiel",
-        showcase1Title: "Von verstreuten Instagram-Posts zum Booking-Funnel",
-        beforeTitle: "Vorher",
-        afterTitle: "Nachher",
-        showcase1Before: "Keine Conversion-Website, uneinheitliche Handyfotos, alte Menü-PDFs und Poster von verschiedenen Dienstleistern.",
-        showcase1After: "Mobile-first Booking-Seite, kommerzielles Interior-Shooting, kurze Reels, neues Menüdesign und druckfertige Straßenposter in einem visuellen System.",
-        showcase2Tag: "Festival-Beispiel",
-        showcase2Title: "Von der Event-Idee zur Launch-Kampagne",
-        showcase2Before: "Line-up, Ticketseite, Trailer und gedruckte Poster wurden getrennt geplant — mit schwachem Wiedererkennungswert.",
-        showcase2After: "Landingpage, Teaser-Video, Social-Motion-Kit, Postersystem und Druckexporte aus einer Launch-Direction.",
-        processHead: "So arbeiten wir · 4 Phasen",
-        step1_title: "Discovery", step1_body: "Ziele, Zielgruppe, Kanäle und was „Launch“ für Sie bedeutet.",
-        step2_title: "Creative Direction", step2_body: "Brand-System, Web-Architektur, Shotlists und Druckformate in einem Plan.",
-        step3_title: "Produktion", step3_body: "Entwicklung, Shootings, Videoschnitt und Design — parallel wo es zählt.",
-        step4_title: "Launch", step4_body: "Go-live, Übergabe und Assets für Web, Social und Druck.",
-        briefTitle: "Bereit, Ihre Marke kaufbarer zu machen?",
-        briefLead: "Teilen Sie Branche, Ziele und Deadline. Wir skizzieren Web-, Content- und Print-Deliverables für Wachstum.",
-        briefCta: "Marke skalieren", briefCall: "Gespräch buchen",
-        footer: "© 2026 Signal House · All-in-One Digital Studio · thedesigns.org/weby"
+        s1label: "Séria 01", s1title: "Brand Identity", s1meta: "(Pôvod, 2025)",
+        s2label: "Séria 02", s2title: "Web & E-Commerce", s2meta: "(Engineering, 2025)",
+        s3label: "Séria 03", s3title: "Komerčná foto & video",
+        s4label: "Séria 04", s4title: "Tlač & kampaň",
+        coming: "Čoskoro",
+        essay1: "Signal House je all-in-one digitálne štúdio. Brand identita, web na mieru, komerčná fotografia, filmové video a tlačové kampane — pod jednou strechou, bez šablón.",
+        essay2: "Jeden brief. Jeden vizuálny jazyk. Od homepage po plagát na ulici.",
+        contact: "hello@thedesigns.org",
+        home: "Domov",
+        fullVersion: "Plná verzia",
+        slide1alt: "Brand identita — vizuálny systém",
+        slide2alt: "Web engineering — vývoj na mieru",
+        slide3alt: "Štúdio — kreatívna produkcia"
       }
     };
 
+    const slides = document.querySelectorAll(".viewer img");
+    const seriesItems = document.querySelectorAll(".series-item:not([data-coming])");
+    let current = 0;
+
+    function showSlide(i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((img, idx) => img.classList.toggle("active", idx === current));
+    }
+
+    document.getElementById("prev").addEventListener("click", () => showSlide(current - 1));
+    document.getElementById("next").addEventListener("click", () => showSlide(current + 1));
+
+    seriesItems.forEach((item) => {
+      const activate = () => {
+        seriesItems.forEach((el) => el.dataset.active = el === item ? "true" : "false");
+        const idx = Number(item.dataset.series);
+        if (idx < slides.length) showSlide(idx);
+      };
+      item.addEventListener("click", activate);
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
+      });
+    });
+
     const buttons = document.querySelectorAll(".lang-btn");
-    const targets = document.querySelectorAll("[data-i18n]");
+    const targets = document.querySelectorAll("[data-i18n], [data-i18n-alt]");
 
     function setLanguage(lang) {
       const pack = dictionary[lang];
       if (!pack) return;
       document.documentElement.lang = lang;
       targets.forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (pack[key] != null) el.textContent = pack[key];
+        const key = el.getAttribute("data-i18n") || el.getAttribute("data-i18n-alt");
+        if (pack[key] == null) return;
+        if (el.hasAttribute("data-i18n-alt")) el.alt = pack[key];
+        else el.textContent = pack[key];
       });
       buttons.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
       try { localStorage.setItem("td-weby-lang", lang); } catch (_) {}
@@ -710,19 +387,6 @@
       const saved = localStorage.getItem("td-weby-lang");
       setLanguage(saved && dictionary[saved] ? saved : "en");
     } catch (_) { setLanguage("en"); }
-
-    StoryEngine.init({
-      smoothScroll: false,
-      background: false,
-      colors: { a: '#120a20', b: '#221438', c: '#08060f' },
-      chapters: [
-        { trigger: '.hero', a: '#120a20', b: '#221438', c: '#08060f' },
-        { trigger: '.ecosystem', a: '#161028', b: '#281848', c: '#0a0814' },
-        { trigger: '.promise', a: '#1a1230', b: '#2c1848', c: '#0c0a16' },
-        { trigger: '.work', a: '#140e26', b: '#261440', c: '#08060f' },
-        { trigger: '.brief', a: '#100c1c', b: '#201038', c: '#06050c' }
-      ]
-    });
   </script>
 </body>
 </html>
