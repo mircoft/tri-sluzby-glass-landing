@@ -7,206 +7,165 @@
   <meta name="description" content="Signal House — branding, web, photo, video and print. One studio.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #000;
-      --fg: #f5f5f0;
-      --muted: rgba(245, 245, 240, 0.45);
-      --line: rgba(245, 245, 240, 0.12);
-      --serif: "Instrument Serif", Georgia, serif;
-      --sans: "DM Sans", system-ui, sans-serif;
+      --fg: #e8e8e3;
+      --muted: rgba(232, 232, 227, 0.42);
+      --sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      min-height: 100dvh;
       font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
       color: var(--fg);
       background: var(--bg);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
-    a:hover { opacity: 0.65; }
+    a:hover { opacity: 0.5; }
 
-    .site {
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      padding: clamp(20px, 4vw, 40px);
+    .page {
+      padding: clamp(48px, 10vh, 96px) clamp(20px, 5vw, 40px) clamp(80px, 14vh, 140px);
     }
 
-    .masthead {
+    .brand {
       text-align: center;
-      padding-bottom: clamp(32px, 6vw, 64px);
-    }
-
-    .masthead h1 {
-      font-family: var(--serif);
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(13px, 2vw, 15px);
       font-weight: 400;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
+      margin-bottom: clamp(64px, 12vh, 120px);
     }
 
-    .stage {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(32px, 5vw, 56px);
-      max-width: 720px;
-      width: 100%;
+    .chapter {
+      max-width: 640px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .series-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .chapter + .chapter {
+      margin-top: clamp(80px, 14vh, 140px);
     }
 
-    .series-item {
-      border-top: 1px solid var(--line);
-      padding: 18px 0;
-      cursor: pointer;
-      transition: opacity 0.3s;
+    .chapter-head {
+      margin-bottom: clamp(32px, 6vh, 56px);
     }
 
-    .series-item:last-child { border-bottom: 1px solid var(--line); }
-
-    .series-item[data-active="false"] {
-      opacity: 0.35;
-    }
-
-    .series-item[data-active="false"]:hover {
-      opacity: 0.6;
-    }
-
-    .series-item[data-coming="true"] {
-      cursor: default;
-      pointer-events: none;
-    }
-
-    .series-label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .series-title {
-      font-family: var(--serif);
-      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+    .series-line {
+      font-size: clamp(11px, 1.6vw, 12px);
       font-weight: 400;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
-    }
-
-    .series-meta {
-      margin-top: 4px;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-
-    .series-coming {
-      margin-top: 6px;
-      font-size: 10px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      line-height: 1.9;
+    }
+
+    .series-sub {
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
       color: var(--muted);
     }
 
     .viewer {
       position: relative;
-      aspect-ratio: 4 / 5;
-      max-height: 70dvh;
-      background: #0a0a0a;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 72vh;
+      margin: 0 auto;
+      background: #080808;
       overflow: hidden;
     }
 
     .viewer img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
       opacity: 0;
-      transition: opacity 0.5s ease;
-      position: absolute;
-      inset: 0;
+      transition: opacity 0.7s ease;
     }
 
     .viewer img.active { opacity: 1; }
 
-    .viewer-controls {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
+    .carousel {
       display: flex;
-      gap: 24px;
-      z-index: 2;
+      justify-content: center;
+      gap: clamp(32px, 8vw, 64px);
+      margin: clamp(20px, 4vh, 32px) 0 clamp(36px, 7vh, 56px);
     }
 
-    .viewer-controls button {
+    .carousel button {
       background: none;
       border: none;
       color: var(--fg);
       font-family: var(--sans);
-      font-size: 18px;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0;
       cursor: pointer;
-      padding: 8px 12px;
-      opacity: 0.7;
-      transition: opacity 0.2s;
+      padding: 8px 4px;
+      opacity: 0.55;
+      transition: opacity 0.25s;
     }
 
-    .viewer-controls button:hover { opacity: 1; }
+    .carousel button:hover { opacity: 1; }
 
     .essay {
-      font-size: clamp(12px, 1.4vw, 13px);
-      line-height: 1.75;
-      color: rgba(245, 245, 240, 0.72);
-      letter-spacing: 0.02em;
-      max-width: 58ch;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0.04em;
+      color: rgba(232, 232, 227, 0.78);
     }
 
-    .essay p + p { margin-top: 1em; }
+    .upcoming .series-line {
+      color: var(--muted);
+    }
 
-    .foot {
-      margin-top: auto;
-      padding-top: clamp(48px, 8vw, 96px);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      font-size: 11px;
-      letter-spacing: 0.12em;
+    .upcoming .coming {
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .foot-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+    .upcoming .series-sub {
+      margin-top: 4px;
+    }
+
+    .foot {
+      margin-top: clamp(100px, 18vh, 160px);
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .foot a + a::before {
+      content: " · ";
+      opacity: 0.4;
     }
 
     .lang-switch {
       position: fixed;
-      top: clamp(20px, 4vw, 40px);
-      right: clamp(20px, 4vw, 40px);
+      bottom: clamp(20px, 4vw, 32px);
+      right: clamp(20px, 4vw, 32px);
       display: flex;
-      gap: 8px;
+      gap: 10px;
       z-index: 10;
     }
 
@@ -215,8 +174,8 @@
       border: none;
       color: var(--muted);
       font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 0.14em;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
       padding: 4px 0;
@@ -227,22 +186,11 @@
     .lang-btn.active { color: var(--fg); }
 
     .version-hint {
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      opacity: 0.35;
-    }
-
-    .version-hint a { text-decoration: underline; text-underline-offset: 3px; }
-
-    @media (min-width: 768px) {
-      .stage {
-        grid-template-columns: 1fr 1.1fr;
-        max-width: 1100px;
-        align-items: start;
-      }
-
-      .series-nav { order: 1; }
-      .viewer-wrap { order: 2; position: sticky; top: clamp(20px, 4vw, 40px); }
+      display: block;
+      margin-top: 20px;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      opacity: 0.22;
     }
   </style>
 </head>
@@ -252,97 +200,106 @@
     <button class="lang-btn" type="button" data-lang="sk">SK</button>
   </div>
 
-  <div class="site">
-    <header class="masthead">
-      <h1>Signal House</h1>
-    </header>
+  <main class="page">
+    <h1 class="brand">Signal House</h1>
 
-    <div class="stage">
-      <nav class="series-nav" aria-label="Series">
-        <div class="series-item" data-series="0" data-active="true" role="button" tabindex="0">
-          <div class="series-label" data-i18n="s1label">Series 01</div>
-          <div class="series-title" data-i18n="s1title">Brand Identity</div>
-          <div class="series-meta" data-i18n="s1meta">(The Origin, 2025)</div>
-        </div>
-        <div class="series-item" data-series="1" data-active="false" role="button" tabindex="0">
-          <div class="series-label" data-i18n="s2label">Series 02</div>
-          <div class="series-title" data-i18n="s2title">Web & E-Commerce</div>
-          <div class="series-meta" data-i18n="s2meta">(Engineering, 2025)</div>
-        </div>
-        <div class="series-item" data-series="2" data-active="false" data-coming="true">
-          <div class="series-label" data-i18n="s3label">Series 03</div>
-          <div class="series-title" data-i18n="s3title">Commercial Photo & Video</div>
-          <div class="series-coming" data-i18n="coming">Coming Soon</div>
-        </div>
-        <div class="series-item" data-series="3" data-active="false" data-coming="true">
-          <div class="series-label" data-i18n="s4label">Series 04</div>
-          <div class="series-title" data-i18n="s4title">Print & Campaign</div>
-          <div class="series-coming" data-i18n="coming">Coming Soon</div>
-        </div>
-      </nav>
+    <article class="chapter" id="chapter-01">
+      <header class="chapter-head">
+        <p class="series-line" data-i18n="s1line">Series 01: Brand Identity</p>
+        <p class="series-sub" data-i18n="s1sub">(The Origin, 2025)</p>
+      </header>
 
-      <div class="viewer-wrap">
-        <div class="viewer" id="viewer" role="img" aria-live="polite">
-          <img src="../img/nx/tstimg.png" alt="" class="active" data-slide="0" data-i18n-alt="slide1alt">
-          <img src="../img/nx/hero1.png" alt="" data-slide="1" data-i18n-alt="slide2alt" loading="lazy">
-          <img src="../img/nx/srv2.png" alt="" data-slide="2" data-i18n-alt="slide3alt" loading="lazy">
-        </div>
-        <div class="viewer-controls" aria-label="Image navigation">
-          <button type="button" id="prev" aria-label="Previous">‹</button>
-          <button type="button" id="next" aria-label="Next">›</button>
-        </div>
-        <div class="essay" style="margin-top: 28px;">
-          <p data-i18n="essay1">Signal House is an all-in-one digital studio. Brand identity, custom web, commercial photography, cinematic video and print-ready campaigns — built under one roof, with zero templates.</p>
-          <p data-i18n="essay2">One brief. One visual language. From your homepage to the poster on the street.</p>
-        </div>
+      <div class="viewer" role="img" aria-live="polite">
+        <img src="../img/nx/tstimg.png" alt="" class="active" data-i18n-alt="slide1alt">
+        <img src="../img/nx/hero1.png" alt="" data-i18n-alt="slide2alt" loading="lazy">
+        <img src="../img/nx/srv2.png" alt="" data-i18n-alt="slide3alt" loading="lazy">
+        <img src="../img/nx/team1.png" alt="" data-i18n-alt="slide4alt" loading="lazy">
       </div>
-    </div>
+
+      <div class="carousel" aria-label="Image navigation">
+        <button type="button" id="prev" aria-label="Previous">‹</button>
+        <button type="button" id="next" aria-label="Next">›</button>
+      </div>
+
+      <div class="essay">
+        <p data-i18n="essay">Presence is the first architecture of commerce. A brand does not begin in the boardroom — it begins in the first pixel, the first photograph, the first poster on the wall. Signal House stages the business inside the language of craft: identity systems built without templates, websites written as objects rather than pages, commercial imagery that treats a café interior or a product shelf with the same reverence as a gallery. Each deliverable is not passive decoration but an apparatus that moulds perception — turning a homepage into a threshold, a menu into ritual, a festival poster into a reliquary of the event itself. This series marks the origin point in a four-part cycle. The studio becomes the first shrine: one brief, one visual language, one team holding web, image, motion and print in the same hand — from screen to street without fracture.</p>
+      </div>
+    </article>
+
+    <section class="chapter upcoming" aria-label="Upcoming series">
+      <header class="chapter-head">
+        <p class="series-line" data-i18n="s2line">Series 02: Web & E-Commerce</p>
+        <p class="series-sub" data-i18n="s2sub">(Engineering, 2026)</p>
+        <p class="coming" data-i18n="coming">Coming Soon</p>
+      </header>
+    </section>
+
+    <section class="chapter upcoming">
+      <header class="chapter-head">
+        <p class="series-line" data-i18n="s3line">Series 03: Commercial Photo & Video</p>
+        <p class="series-sub" data-i18n="s3sub">(The Lens, 2026)</p>
+        <p class="coming" data-i18n="coming">Coming Soon</p>
+      </header>
+    </section>
+
+    <section class="chapter upcoming">
+      <header class="chapter-head">
+        <p class="series-line" data-i18n="s4line">Series 04: Print & Campaign</p>
+        <p class="series-sub" data-i18n="s4sub">(The Street, 2027)</p>
+        <p class="coming" data-i18n="coming">Coming Soon</p>
+      </header>
+    </section>
 
     <footer class="foot">
       <a href="mailto:hello@thedesigns.org" data-i18n="contact">hello@thedesigns.org</a>
-      <div class="foot-links">
-        <a href="../" data-i18n="home">Home</a>
-        <span class="version-hint"><a href="./index.full.html" data-i18n="fullVersion">Full version</a></span>
-      </div>
+      <a href="../" data-i18n="home">Home</a>
+      <span class="version-hint"><a href="./index.full.html" data-i18n="fullVersion">Full version</a></span>
     </footer>
-  </div>
+  </main>
 
   <script>
     const dictionary = {
       en: {
-        s1label: "Series 01", s1title: "Brand Identity", s1meta: "(The Origin, 2025)",
-        s2label: "Series 02", s2title: "Web & E-Commerce", s2meta: "(Engineering, 2025)",
-        s3label: "Series 03", s3title: "Commercial Photo & Video",
-        s4label: "Series 04", s4title: "Print & Campaign",
+        s1line: "Series 01: Brand Identity",
+        s1sub: "(The Origin, 2025)",
+        s2line: "Series 02: Web & E-Commerce",
+        s2sub: "(Engineering, 2026)",
+        s3line: "Series 03: Commercial Photo & Video",
+        s3sub: "(The Lens, 2026)",
+        s4line: "Series 04: Print & Campaign",
+        s4sub: "(The Street, 2027)",
         coming: "Coming Soon",
-        essay1: "Signal House is an all-in-one digital studio. Brand identity, custom web, commercial photography, cinematic video and print-ready campaigns — built under one roof, with zero templates.",
-        essay2: "One brief. One visual language. From your homepage to the poster on the street.",
+        essay: "Presence is the first architecture of commerce. A brand does not begin in the boardroom — it begins in the first pixel, the first photograph, the first poster on the wall. Signal House stages the business inside the language of craft: identity systems built without templates, websites written as objects rather than pages, commercial imagery that treats a café interior or a product shelf with the same reverence as a gallery. Each deliverable is not passive decoration but an apparatus that moulds perception — turning a homepage into a threshold, a menu into ritual, a festival poster into a reliquary of the event itself. This series marks the origin point in a four-part cycle. The studio becomes the first shrine: one brief, one visual language, one team holding web, image, motion and print in the same hand — from screen to street without fracture.",
         contact: "hello@thedesigns.org",
         home: "Home",
         fullVersion: "Full version",
         slide1alt: "Brand identity — visual system",
         slide2alt: "Web engineering — custom build",
-        slide3alt: "Studio — creative production"
+        slide3alt: "Studio — creative production",
+        slide4alt: "Production — behind the scenes"
       },
       sk: {
-        s1label: "Séria 01", s1title: "Brand Identity", s1meta: "(Pôvod, 2025)",
-        s2label: "Séria 02", s2title: "Web & E-Commerce", s2meta: "(Engineering, 2025)",
-        s3label: "Séria 03", s3title: "Komerčná foto & video",
-        s4label: "Séria 04", s4title: "Tlač & kampaň",
+        s1line: "Séria 01: Brand Identity",
+        s1sub: "(Pôvod, 2025)",
+        s2line: "Séria 02: Web & E-Commerce",
+        s2sub: "(Engineering, 2026)",
+        s3line: "Séria 03: Komerčná foto & video",
+        s3sub: "(Objektív, 2026)",
+        s4line: "Séria 04: Tlač & kampaň",
+        s4sub: "(Ulica, 2027)",
         coming: "Čoskoro",
-        essay1: "Signal House je all-in-one digitálne štúdio. Brand identita, web na mieru, komerčná fotografia, filmové video a tlačové kampane — pod jednou strechou, bez šablón.",
-        essay2: "Jeden brief. Jeden vizuálny jazyk. Od homepage po plagát na ulici.",
+        essay: "Prítomnosť je prvou architektúrou obchodu. Značka nezačína v zasadacej miestnosti — začína v prvom pixeli, prvej fotografii, prvom plagáte na stene. Signal House stavia podnik do jazyka remesla: identitné systémy bez šablón, weby písané ako objekty namiesto stránok, komerčné obrazy, ktoré interiér kaviarne alebo produktovú policu spracúvajú s rovnakou úctou ako galériu. Každý výstup nie je pasívna dekorácia, ale aparát formujúci vnímanie — homepage sa stáva prahom, menu rituálom, festivalový plagát relikviou samotného podujatia. Táto séria označuje počiatok štvordielneho cyklu. Štúdio sa stáva prvou svätyňou: jeden brief, jeden vizuálny jazyk, jeden tím držiaci web, obraz, motion a tlač v jednej ruke — od obrazovky po ulicu bez prasklín.",
         contact: "hello@thedesigns.org",
         home: "Domov",
         fullVersion: "Plná verzia",
         slide1alt: "Brand identita — vizuálny systém",
         slide2alt: "Web engineering — vývoj na mieru",
-        slide3alt: "Štúdio — kreatívna produkcia"
+        slide3alt: "Štúdio — kreatívna produkcia",
+        slide4alt: "Produkcia — zákulisie"
       }
     };
 
     const slides = document.querySelectorAll(".viewer img");
-    const seriesItems = document.querySelectorAll(".series-item:not([data-coming])");
     let current = 0;
 
     function showSlide(i) {
@@ -352,18 +309,6 @@
 
     document.getElementById("prev").addEventListener("click", () => showSlide(current - 1));
     document.getElementById("next").addEventListener("click", () => showSlide(current + 1));
-
-    seriesItems.forEach((item) => {
-      const activate = () => {
-        seriesItems.forEach((el) => el.dataset.active = el === item ? "true" : "false");
-        const idx = Number(item.dataset.series);
-        if (idx < slides.length) showSlide(idx);
-      };
-      item.addEventListener("click", activate);
-      item.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
-      });
-    });
 
     const buttons = document.querySelectorAll(".lang-btn");
     const targets = document.querySelectorAll("[data-i18n], [data-i18n-alt]");
